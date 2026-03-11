@@ -1,2 +1,0 @@
-# KittyCrawler
-Roguelite dungeon crawler
