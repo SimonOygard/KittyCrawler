@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dlvx6rjfa0lrn"]
+
+[ext_resource type="PackedScene" uid="uid://dqi8f4g7csls0" path="res://testmap.tscn" id="1_sbslj"]
+[ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://character_body_2d.tscn" id="2_qr8fx"]
+
+[node name="Game" type="Node2D" unique_id=612895247]
+
+[node name="Testmap" parent="." unique_id=2145394548 instance=ExtResource("1_sbslj")]
+
+[node name="CharacterBody2D" parent="." unique_id=1948828453 instance=ExtResource("2_qr8fx")]
+position = Vector2(244, 13)
