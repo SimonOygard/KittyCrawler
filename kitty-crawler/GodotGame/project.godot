@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*uid://cjlebxf7waev6"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 
 [display]
 
@@ -30,6 +31,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="KittyCrawler"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [input]
 
@@ -62,3 +67,4 @@ down={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+2d/snap/snap_2d_transforms_to_pixel=true
