@@ -26,6 +26,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6seei"]
+size = Vector2(162, 57)
+
 [node name="Testmap" type="Node2D" unique_id=2145394548]
 position = Vector2(780, 620)
 
@@ -80,3 +83,17 @@ position = Vector2(-480, -320)
 scale = Vector2(2.499999, 2.656249)
 sprite_frames = SubResource("SpriteFrames_e86xl")
 frame_progress = 0.15700957
+
+[node name="Area2D" type="Area2D" parent="." unique_id=940898586]
+collision_layer = 7
+input_pickable = false
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Area2D" unique_id=190518785]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D/RigidBody2D" unique_id=248698577]
+position = Vector2(-543, 82.5)
+shape = SubResource("RectangleShape2D_6seei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1577323132]
+position = Vector2(-543, 77.5)
+shape = SubResource("RectangleShape2D_6seei")
