@@ -54,7 +54,7 @@ tile_set = ExtResource("1_julm7")
 [node name="Walls" type="TileMapLayer" parent="TileMapLayer" unique_id=1431743250]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer/Walls" unique_id=1375475827]
-tile_map_data = PackedByteArray("AADc//j/BwAfAAgAAADd//j/BwAgAAgAAADe//j/BwAhAAgAAADf//j/BwAiAAgAAADj//j/BwAfAAgAAADk//j/BwAgAAgAAADl//j/BwAhAAgAAADm//j/BwAiAAgAAADd/+P/BwAfAAgAAADe/+P/BwAgAAgAAADf/+P/BwAhAAgAAADg/+P/BwAiAAgAAADj/+P/BwAfAAgAAADk/+P/BwAgAAgAAADl/+P/BwAhAAgAAADm/+P/BwAiAAgAAAA=")
+tile_map_data = PackedByteArray("AADc//j/BwAfAAgAAADd//j/BwAgAAgAAADe//j/BwAhAAgAAADf//j/BwAiAAgAAADj//j/BwAfAAgAAADk//j/BwAgAAgAAADl//j/BwAhAAgAAADm//j/BwAiAAgAAADd/+P/BwAfAAgAAADe/+P/BwAgAAgAAADf/+P/BwAhAAgAAADk/+P/BwAgAAgAAADl/+P/BwAhAAgAAADm/+P/BwAiAAgAAADj/+P/BwAfAAgAAAA=")
 tile_set = ExtResource("1_julm7")
 
 [node name="Backwall textures" type="TileMapLayer" parent="TileMapLayer/Walls" unique_id=1819008360]
