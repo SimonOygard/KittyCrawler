@@ -1,30 +1,6 @@
 [gd_scene format=4 uid="uid://dqi8f4g7csls0"]
 
-[ext_resource type="TileSet" uid="uid://75k1udtax0ns" path="res://catacomb.tres" id="1_julm7"]
-[ext_resource type="Texture2D" uid="uid://cm2dnk4rn263o" path="res://assets/Characters/NPC/monsters_idle/skeleton1/v1/skeleton_v1_1.png" id="2_6seei"]
-[ext_resource type="Texture2D" uid="uid://cbxl7vnn13ts5" path="res://assets/Characters/NPC/monsters_idle/skeleton1/v1/skeleton_v1_2.png" id="3_dbxb2"]
-[ext_resource type="Texture2D" uid="uid://d2o0w52k3bsuw" path="res://assets/Characters/NPC/monsters_idle/skeleton1/v1/skeleton_v1_3.png" id="4_ov2oi"]
-[ext_resource type="Texture2D" uid="uid://duac52mnlpavw" path="res://assets/Characters/NPC/monsters_idle/skeleton1/v1/skeleton_v1_4.png" id="5_x6wp4"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_e86xl"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_6seei")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_dbxb2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_ov2oi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_x6wp4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="TileSet" uid="uid://75k1udtax0ns" path="res://resources/tilesets/catacomb.tres" id="1_julm7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6seei"]
 size = Vector2(162, 57)
@@ -77,12 +53,6 @@ tile_set = ExtResource("1_julm7")
 [node name="TileMapLayer" type="TileMapLayer" parent="decor" unique_id=442830687]
 tile_map_data = PackedByteArray("AAACAAYABgAHAAcAAAAFAP//BgAAAAkAAAAJAP//BgAAAAkAAAA=")
 tile_set = ExtResource("1_julm7")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1023907550]
-position = Vector2(-480, -320)
-scale = Vector2(2.499999, 2.656249)
-sprite_frames = SubResource("SpriteFrames_e86xl")
-frame_progress = 0.15700957
 
 [node name="Area2D" type="Area2D" parent="." unique_id=940898586]
 collision_layer = 7

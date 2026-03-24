@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dj0p2c5mpm834"]
 
-[ext_resource type="Script" uid="uid://xdl6gdym542t" path="res://Player.cs" id="1_ij6vw"]
+[ext_resource type="Script" uid="uid://xdl6gdym542t" path="res://scripts/Player.cs" id="1_ij6vw"]
 [ext_resource type="Texture2D" uid="uid://bioha43asr34i" path="res://assets/Characters/BlackCat/WhiteCat.png" id="2_ghijl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
@@ -322,7 +322,7 @@ _data = {
 &"idle": SubResource("Animation_ij6vw")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1948828453]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1948828453 groups=["player"]]
 texture_filter = 1
 script = ExtResource("1_ij6vw")
 

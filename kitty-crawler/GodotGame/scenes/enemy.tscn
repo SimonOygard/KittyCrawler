@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bl2i18wvtuxsi"]
+
+[ext_resource type="Texture2D" uid="uid://3ob43qhylw3j" path="res://assets/Characters/NPC/monsters_idle/skeleton2/v2/skeleton2_v2_1.png" id="1_iifgy"]
+[ext_resource type="Texture2D" uid="uid://33pa8yh6ekul" path="res://assets/Characters/NPC/monsters_idle/skeleton2/v2/skeleton2_v2_2.png" id="2_epg4t"]
+[ext_resource type="Texture2D" uid="uid://ei0fo51rfd30" path="res://assets/Characters/NPC/monsters_idle/skeleton2/v2/skeleton2_v2_3.png" id="3_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://ehvcil5q7bll" path="res://assets/Characters/NPC/monsters_idle/skeleton2/v2/skeleton2_v2_4.png" id="4_wujgv"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="5_epg4t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb8ge"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1ltt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iifgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_epg4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3yqyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wujgv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxifv"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=544271468]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2017506823]
+shape = SubResource("RectangleShape2D_hb8ge")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=727598214]
+sprite_frames = SubResource("SpriteFrames_e1ltt")
+autoplay = "default"
+frame_progress = 0.6390774
+
+[node name="Area2D Scene trigger" type="Area2D" parent="." unique_id=31746336]
+collision_layer = 0
+script = ExtResource("5_epg4t")
+ScenePath = "res://scenes/battle.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D Scene trigger" unique_id=241487541]
+shape = SubResource("RectangleShape2D_dxifv")
+
+[connection signal="body_entered" from="Area2D Scene trigger" to="Area2D Scene trigger" method="_on_body_entered"]

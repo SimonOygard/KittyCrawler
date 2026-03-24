@@ -36,6 +36,10 @@ project/assembly_name="KittyCrawler"
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
+[global_group]
+
+player="playercharacters"
+
 [input]
 
 left={
