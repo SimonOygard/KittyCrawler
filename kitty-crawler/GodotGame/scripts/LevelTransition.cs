@@ -30,6 +30,7 @@ public partial class LevelTransition : Area2D
             if (instance is BattleScene battle)
             {
                 battle.EnemyName = EnemyName;
+                battle.ReturnScenePath = GetTree().CurrentScene.SceneFilePath;
                 GD.Print("Enemy name assigned");
             }
             GD.Print("About to switch scenes");

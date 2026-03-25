@@ -44,10 +44,10 @@ anchor_left = -2.2450001
 anchor_top = 2.0340002
 anchor_right = -2.2450001
 anchor_bottom = 2.0340002
-offset_left = 16.800003
-offset_top = -47.36001
-offset_right = 24.800003
-offset_bottom = -39.36001
+offset_left = 437.8
+offset_top = 128.63998
+offset_right = 445.8
+offset_bottom = 136.63998
 
 [node name="OldDungeon" type="Sprite2D" parent="." unique_id=814259752]
 position = Vector2(320.2222, 179.75)
@@ -60,3 +60,5 @@ scale = Vector2(22.593878, 22.593878)
 sprite_frames = SubResource("SpriteFrames_0npn6")
 autoplay = "default"
 frame_progress = 0.08065308
+
+[connection signal="pressed" from="Control UI/Button" to="." method="OnRunDownButtonPressed"]
