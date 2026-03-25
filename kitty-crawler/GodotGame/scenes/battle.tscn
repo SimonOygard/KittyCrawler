@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bv0mh6m33icd6"]
 
-[ext_resource type="Script" uid="uid://bqur80073lldv" path="res://BattleScene.cs" id="1_6t8i5"]
+[ext_resource type="Script" uid="uid://bqur80073lldv" path="res://scripts/BattleScene.cs" id="1_6t8i5"]
 [ext_resource type="Texture2D" uid="uid://c5wxkqopuswud" path="res://assets/Backgrounds/Old Dungeon/OldDungeon.png" id="1_ip7xm"]
 [ext_resource type="Texture2D" uid="uid://cy3sew3ti6uxw" path="res://assets/Characters/NPC/skeleton_sword/ready_1.png" id="2_i431l"]
 [ext_resource type="Texture2D" uid="uid://cssr6gs4xomu3" path="res://assets/Characters/NPC/skeleton_sword/ready_2.png" id="3_6t8i5"]

@@ -8,7 +8,7 @@ public partial class LevelTransition : Area2D
 
     private bool _triggered = false;
 
-    private void _on_body_entered(Node body)
+    private async void _on_body_entered(Node body)
     {
         GD.Print("Collision detected with: " + body.Name);
 
@@ -34,9 +34,13 @@ public partial class LevelTransition : Area2D
             }
             GD.Print("About to switch scenes");
 
+            await FadeTransition.Instance.FadeToBlack();
+
             GetTree().Root.AddChild(instance);
             GetTree().CurrentScene.QueueFree();
             GetTree().CurrentScene = instance;
+
+            await FadeTransition.Instance.FadeFromBlack();
 
             GD.Print("Scene transition finished");
         }
