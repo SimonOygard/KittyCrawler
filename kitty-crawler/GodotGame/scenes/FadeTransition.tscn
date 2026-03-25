@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://76kwr2ik27yy"]
 
-[ext_resource type="Script" uid="uid://dcse6mqv2cmgd" path="res://scripts/FadeTransition.cs" id="1_eq2db"]
+[ext_resource type="Script" uid="uid://dcse6mqv2cmgd" path="res://scripts/singletons/FadeTransition.cs" id="1_eq2db"]
 
 [sub_resource type="Animation" id="Animation_eq2db"]
 resource_name = "FadeFromBlack"
