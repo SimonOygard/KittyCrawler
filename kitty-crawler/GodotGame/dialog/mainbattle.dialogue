@@ -1,0 +1,16 @@
+~ start
+Skeleton: ...
+Unsurprisingly Skeletons can't talk. Don't have the bits. You still get the sense as if you can understand what the Skeleton is thinking as it stares at you with it's empty eyesockets.
+Skeleton: What are you doing here? 
+Skeleton: You should be back in your cell!
+
+- Try to talk your way out of it 
+	Kitty: Oh no! Actually I was just here as a cell inspector. Big boss wanted me to check everything was in order.
+	Skeleton: I don't think so! 
+	=> END
+- Fight! 
+	Kitty: You are going down evil skelly!
+	You draw your weapon and try to hit it but it fails 
+	=> END
+- End the conversation 
+=> END
