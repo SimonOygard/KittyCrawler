@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://76kwr2ik27yy"]
+
+[ext_resource type="Script" uid="uid://dcse6mqv2cmgd" path="res://scripts/singletons/FadeTransition.cs" id="1_eq2db"]
+
+[sub_resource type="Animation" id="Animation_eq2db"]
+resource_name = "FadeFromBlack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40000004, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.03137255, 0.03137255, 0.03137255, 0), Color(0.03137255, 0.03137255, 0.03137255, 1), Color(0.03137255, 0.03137255, 0.03137255, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vp514"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.033265438, 0.033265445, 0.033265438, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5j0pd"]
+resource_name = "scene_transition"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.033265438, 0.033265445, 0.033265438, 1), Color(0.033265438, 0.033265445, 0.033265438, 1), Color(0.03137255, 0.03137255, 0.03137255, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cbf33"]
+_data = {
+&"FadeFromBlack": SubResource("Animation_eq2db"),
+&"RESET": SubResource("Animation_vp514"),
+&"scene_transition": SubResource("Animation_5j0pd")
+}
+
+[node name="FadeTransition" type="Node" unique_id=1540957216]
+script = ExtResource("1_eq2db")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1982873021]
+layer = 20
+
+[node name="FadeToBlack" type="ColorRect" parent="CanvasLayer" unique_id=2057906233]
+offset_left = -1.0
+offset_right = 639.0
+offset_bottom = 365.0
+color = Color(0.033265438, 0.033265445, 0.033265438, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=149653827]
+libraries/ = SubResource("AnimationLibrary_cbf33")
