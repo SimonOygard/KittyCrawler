@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bc6xgm2bqw5hi"
+path="res://.godot/imported/mainbattle.dialogue-5a889c3041fe792222d2ac690d1db291.tres"
+
+[deps]
+
+source_file="res://dungeon_floor_1/dialog/mainbattle.dialogue"
+dest_files=["res://.godot/imported/mainbattle.dialogue-5a889c3041fe792222d2ac690d1db291.tres"]
+
+[params]
+
+defaults=true
