@@ -1031,4 +1031,4 @@ process_material = SubResource("ParticleProcessMaterial_o1y66")
 script = ExtResource("19_sywol")
 
 [node name="Player" parent="Tiles" unique_id=826612475 instance=ExtResource("20_38dnf")]
-position = Vector2(1147, 854)
+position = Vector2(1209, 828)
