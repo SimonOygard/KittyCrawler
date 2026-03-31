@@ -10,6 +10,9 @@ public partial class BattleScene : Node2D
     {
         GD.Print($"Entering battle with {EnemyName}!");
         GD.Print("Return scene: " + ReturnScenePath);
+
+        int result = DiceRoll.Instance.RollDice(20);
+        GD.Print($"Player rolled a {result} on a d20.");
     }
 
     private async void EndBattle()

@@ -44,7 +44,7 @@ frame_progress = 0.6390774
 [node name="Area2D Scene trigger" type="Area2D" parent="." unique_id=31746336]
 collision_layer = 0
 script = ExtResource("5_epg4t")
-ScenePath = "res://scenes/battle.tscn"
+ScenePath = "res://dungeon_floor_1/scenes/battle.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D Scene trigger" unique_id=241487541]
 shape = SubResource("RectangleShape2D_dxifv")
