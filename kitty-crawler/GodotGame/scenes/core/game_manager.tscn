@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://capevq4ol2tuv"]
 
-[ext_resource type="Texture2D" uid="uid://cdfrhd2ulickr" path="res://icon.svg" id="1_k3ko1"]
-
 [node name="GameManager" type="Node" unique_id=828155573]
 
 [node name="Control" type="Control" parent="." unique_id=307428524]
@@ -29,7 +27,3 @@ size = Vector2i(1152, 648)
 size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true
 render_target_update_mode = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="Control/SubViewportContainer/SubViewport" unique_id=1599265889]
-position = Vector2(50, 50)
-texture = ExtResource("1_k3ko1")

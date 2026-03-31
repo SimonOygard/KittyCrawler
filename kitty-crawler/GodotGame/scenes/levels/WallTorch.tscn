@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://clkiba86jn5fi"]
+
+[ext_resource type="Texture2D" uid="uid://f0k77dq7iusq" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/torch_2.png" id="1_bd85p"]
+[ext_resource type="Texture2D" uid="uid://d08wwle8bkbl7" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/torch_3.png" id="2_eb1y3"]
+[ext_resource type="Texture2D" uid="uid://bw30wb6qvjvfj" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/torch_1.png" id="3_m767y"]
+[ext_resource type="Texture2D" uid="uid://cmeq0mdn7p7re" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/torch_4.png" id="4_v6trc"]
+[ext_resource type="Texture2D" uid="uid://dnvqqqyrd2sbi" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/side_torch_1.png" id="5_anjf0"]
+[ext_resource type="Texture2D" uid="uid://0r64x7axhykd" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/side_torch_2.png" id="6_vmbqo"]
+[ext_resource type="Texture2D" uid="uid://pvhigmvfommj" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/side_torch_3.png" id="7_lhb43"]
+[ext_resource type="Texture2D" uid="uid://kwwk8vs6v2a8" path="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/side_torch_4.png" id="8_rcil7"]
+[ext_resource type="Script" uid="uid://dd3ei8v7toi8u" path="res://scripts/Components/FlameLight.cs" id="9_topde"]
+[ext_resource type="Script" uid="uid://cpqhc6ye4aaww" path="res://scripts/Components/LightParticles.cs" id="10_hgtn8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqs2c"]
+atlas = ExtResource("5_anjf0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i8n26"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bd85p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eb1y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m767y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v6trc")
+}],
+"loop": true,
+"name": &"Torch 1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqs2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vmbqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lhb43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rcil7")
+}],
+"loop": true,
+"name": &"Torch 2",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_oonl0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nli7i"]
+gradient = SubResource("Gradient_oonl0")
+fill = 1
+fill_from = Vector2(0.54347825, 0.42608696)
+fill_to = Vector2(0.5652174, 0.9391304)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_372t6"]
+particle_flag_disable_z = true
+angle_min = 0.5000107
+angle_max = 1.5000107
+direction = Vector3(0, -1, 0)
+spread = 15.352
+initial_velocity_min = 0.19999999
+initial_velocity_max = 0.5
+gravity = Vector3(0, -20, 0)
+scale_min = 0.5
+scale_max = 1.5
+
+[node name="WallTorch" type="Node2D" unique_id=263306025]
+
+[node name="WallTorch" type="AnimatedSprite2D" parent="." unique_id=2026574358]
+position = Vector2(7.9999995, 7.9999995)
+sprite_frames = SubResource("SpriteFrames_i8n26")
+animation = &"Torch 1"
+autoplay = "Torch 1"
+frame_progress = 0.6168799
+
+[node name="PointLight2D" type="PointLight2D" parent="WallTorch" unique_id=312410940]
+position = Vector2(4.6253204e-05, 5.333272)
+scale = Vector2(0.9230708, 0.57083505)
+color = Color(0.69158024, 0.4728611, 0, 1)
+energy = 0.86
+texture = SubResource("GradientTexture2D_nli7i")
+script = ExtResource("9_topde")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="WallTorch" unique_id=943240726]
+modulate = Color(0.71418923, 0.5768823, 0.5523021, 1)
+self_modulate = Color(0.41834834, 0.31770107, 0.3318543, 1)
+show_behind_parent = true
+position = Vector2(-1.1920929e-07, -3.4093857e-05)
+amount = 3
+amount_ratio = 0.3178
+lifetime = 0.65
+fixed_fps = 2
+process_material = SubResource("ParticleProcessMaterial_372t6")
+script = ExtResource("10_hgtn8")
