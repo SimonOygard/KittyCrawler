@@ -5,11 +5,29 @@ public partial class BattleScene : Node2D
 {
     public string EnemyName;
     public string ReturnScenePath;
+    private Label _diceLabel;
 
     public override void _Ready()
     {
         GD.Print($"Entering battle with {EnemyName}!");
         GD.Print("Return scene: " + ReturnScenePath);
+
+        int result = DiceRoll.Instance.RollDice(20);
+        GD.Print($"Player rolled a {result} on a d20.");
+        _diceLabel = GetNode<Label>("DiceResultLabel");
+        UpdateLabelText($"Player rolled a {result} on a d20.");
+    }
+
+    public void UpdateLabelText(string text)
+    {
+        if (_diceLabel != null)
+        {
+            _diceLabel.Text = text;
+        }
+        else
+        {
+            GD.PrintErr("DiceResultLabel not found. Cannot update label text.");
+        }
     }
 
     private async void EndBattle()

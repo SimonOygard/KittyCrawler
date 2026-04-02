@@ -65,4 +65,11 @@ offset_bottom = 180.0
 theme_override_fonts/font = ExtResource("6_6vh42")
 text = "Press S to continue"
 
+[node name="DiceResultLabel" type="Label" parent="." unique_id=1932372806]
+offset_left = 298.0
+offset_top = 122.0
+offset_right = 386.0
+offset_bottom = 145.0
+theme_override_fonts/font = ExtResource("6_6vh42")
+
 [connection signal="pressed" from="Control UI/Button" to="." method="OnRunDownButtonPressed"]

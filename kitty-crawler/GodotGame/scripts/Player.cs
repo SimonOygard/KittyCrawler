@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 namespace PlayerBody;
+
 public partial class Player : CharacterBody2D
 {
     [Export] public float Speed = 300f;
@@ -56,8 +57,7 @@ public partial class Player : CharacterBody2D
             {
                 _sprite.Play("RunUp");
             }
-    
+
         }
     }
 }
-
