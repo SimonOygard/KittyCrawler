@@ -15,16 +15,15 @@ script = ExtResource("4_e5kpr")
 [node name="Testmap" parent="." unique_id=2145394548 instance=ExtResource("1_sbslj")]
 
 [node name="PlayerCharacter" parent="." unique_id=1948828453 instance=ExtResource("2_qr8fx")]
-position = Vector2(295, 45)
+position = Vector2(344, 60)
 TurnThreshold = 0.08
 
 [node name="PhantomCamera2D" type="Node2D" parent="." unique_id=2119823174 node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(295, 45)
+position = Vector2(344, 60)
 script = ExtResource("3_4kmpq")
 follow_mode = 5
 follow_target = NodePath("../PlayerCharacter")
-zoom = Vector2(1.1, 1.1)
 tween_resource = SubResource("Resource_ts4jt")
 follow_damping = true
 dead_zone_width = 0.243
@@ -34,8 +33,7 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=488610955]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(295, 45)
-zoom = Vector2(1.1, 1.1)
+position = Vector2(344, 60)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=300732971]
 process_priority = 300
