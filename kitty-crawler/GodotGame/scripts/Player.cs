@@ -3,6 +3,9 @@ using System;
 
 
 namespace PlayerBody
+
+#region Gammal Movement
+
 /*
 public partial class Player : CharacterBody2D
 {
@@ -71,6 +74,9 @@ using Logger = Game.Core.Logger;
 
 namespace Game.Gameplay
 */
+
+
+#endregion
 {
     public partial class Player : CharacterBody2D
     {
@@ -117,10 +123,10 @@ namespace Game.Gameplay
         {
             Vector2 input = Vector2.Zero;
 
-            if (Input.IsActionPressed("ui_up")) input = Vector2.Up;
-            else if (Input.IsActionPressed("ui_down")) input = Vector2.Down;
-            else if (Input.IsActionPressed("ui_left")) input = Vector2.Left;
-            else if (Input.IsActionPressed("ui_right")) input = Vector2.Right;
+            if (Input.IsActionPressed("up")) input = Vector2.Up;
+            else if (Input.IsActionPressed("down")) input = Vector2.Down;
+            else if (Input.IsActionPressed("left")) input = Vector2.Left;
+            else if (Input.IsActionPressed("right")) input = Vector2.Right;
 
             if (input != Vector2.Zero)
             {

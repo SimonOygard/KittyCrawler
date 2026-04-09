@@ -501,7 +501,9 @@ shape = SubResource("RectangleShape2D_ij6vw")
 texture_filter = 1
 position = Vector2(8, 0)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"turn_up"
+animation = &"walk_down"
+frame = 5
+frame_progress = 0.67899376
 speed_scale = 0.685
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2075060550]
