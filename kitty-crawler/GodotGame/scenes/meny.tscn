@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://o5o87oq8csjq"]
+
+[ext_resource type="Texture2D" uid="uid://ds5xjy7vs75ey" path="res://dungeon_floor_1/Stone_Tiles_08012015_320x192_.png" id="1_jy0cn"]
+[ext_resource type="FontFile" uid="uid://b0b5y1ystn251" path="res://assets/Fonts/Pixelmax-Regular.otf" id="2_7b4qh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy0cn"]
+bg_color = Color(0.1695298, 0.1695298, 0.1695297, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 0.125)
+
+[node name="MarginContainer" type="MarginContainer" unique_id=696742828]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="StoneTiles08012015320x192" type="Sprite2D" parent="." unique_id=1445429765]
+position = Vector2(320, 180)
+scale = Vector2(2, 1.875)
+texture = ExtResource("1_jy0cn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1699828135]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=897433867]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7b4qh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jy0cn")
+text = "Start"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1266180486]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7b4qh")
+text = "Load"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=645276378]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7b4qh")
+text = "Options"
+
+[node name="Button4" type="Button" parent="VBoxContainer" unique_id=1626389090]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7b4qh")
+text = "Exit"
+
+[node name="Label" type="Label" parent="." unique_id=392217595]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=827686343]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.65242535, 0.62050164, 0.0031427455, 1)
+theme_override_fonts/normal_font = ExtResource("2_7b4qh")
+theme_override_font_sizes/normal_font_size = 31
+text = "GAME LOGO"
+horizontal_alignment = 1
