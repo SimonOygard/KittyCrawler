@@ -5,6 +5,7 @@ public partial class LevelTransition : Area2D
 {
     [Export] public string ScenePath { get; set; } = string.Empty;
 
+    // Setting the type of transition allows for specific logic to be executed based on the transition type, such as setting up battle parameters or teleportation targets
     [Export] public TransitionType Type { get; set; } = TransitionType.Battle;
 
     // Battlespecific transition
@@ -43,6 +44,7 @@ public partial class LevelTransition : Area2D
         }
     }
 
+    // Method for scenechange based on type, allowing for specific logic to be executed based on the transition type
     private void SetScene(Node instance)
     {
         GD.Print("About to load scene: " + ScenePath);
@@ -83,6 +85,7 @@ public partial class LevelTransition : Area2D
     }
 }
 
+// Enum to define different types of transitions, allowing for specific logic based on the transition type
 public enum TransitionType
 {
     Battle,
