@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lv1ch11ej5xt"
-path="res://.godot/imported/flasks_4_3.png-6e2b1f4d25bbc7d0b32868dbb46c0029.ctex"
+path="res://.godot/imported/flasks_4_3.png-29ca71ee99c75da48ce21aa34287fdfb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/flasks/flasks_4_3.png"
-dest_files=["res://.godot/imported/flasks_4_3.png-6e2b1f4d25bbc7d0b32868dbb46c0029.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/Potions/flasks_4_3.png"
+dest_files=["res://.godot/imported/flasks_4_3.png-29ca71ee99c75da48ce21aa34287fdfb.ctex"]
 
 [params]
 

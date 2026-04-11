@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsyggaiaonisx"
-path="res://.godot/imported/priest3_v1_3.png-6685541762865f42b740e0ee3a3c96bd.ctex"
+path="res://.godot/imported/priest3_v1_3.png-0eb32a5363032c80b1c6e06d051863f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/Character_animation/priests_idle/priest3/v1/priest3_v1_3.png"
-dest_files=["res://.godot/imported/priest3_v1_3.png-6685541762865f42b740e0ee3a3c96bd.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/Enemy animation/priests_idle/priest3/v1/priest3_v1_3.png"
+dest_files=["res://.godot/imported/priest3_v1_3.png-0eb32a5363032c80b1c6e06d051863f1.ctex"]
 
 [params]
 

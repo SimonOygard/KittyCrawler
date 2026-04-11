@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_e5kpr"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_e5kpr"]
 [ext_resource type="PackedScene" uid="uid://bl2i18wvtuxsi" path="res://dungeon_floor_1/scenes/enemy.tscn" id="6_pcal6"]
+[ext_resource type="PackedScene" uid="uid://dpdkrj5crf60u" path="res://Dungeon_floor_2/scenes/Traps/SpikeTrap.tscn" id="7_nqurg"]
 
 [sub_resource type="Resource" id="Resource_ts4jt"]
 script = ExtResource("4_e5kpr")
@@ -43,3 +44,6 @@ script = ExtResource("5_e5kpr")
 [node name="Skeleton" parent="." unique_id=544271468 instance=ExtResource("6_pcal6")]
 position = Vector2(293, 294)
 scale = Vector2(3, 3)
+
+[node name="SpikeTrap" parent="." unique_id=1177708245 instance=ExtResource("7_nqurg")]
+position = Vector2(296, 104)

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c682r7b1k0j1w"
-path="res://.godot/imported/chest_4.png-c97c7b8b57fcfd4dccd29567bd81493d.ctex"
+path="res://.godot/imported/chest_4.png-084ba761c966988170ac96ddf0cde301.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/chest/chest_4.png"
-dest_files=["res://.godot/imported/chest_4.png-c97c7b8b57fcfd4dccd29567bd81493d.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/chest/chest_4.png"
+dest_files=["res://.godot/imported/chest_4.png-084ba761c966988170ac96ddf0cde301.ctex"]
 
 [params]
 

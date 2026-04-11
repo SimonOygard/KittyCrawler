@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://benwnjcr50pli"
-path="res://.godot/imported/Pile_sculls_shadow1.png-db64795f967310681250a858c2309d4a.ctex"
+path="res://.godot/imported/Pile_sculls_shadow1.png-27ed894b9cc7e3d5b0b85c47eeda4e33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Objects_separately/Pile_sculls_shadow1.png"
-dest_files=["res://.godot/imported/Pile_sculls_shadow1.png-db64795f967310681250a858c2309d4a.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Objects_separately/Pile_sculls_shadow1.png"
+dest_files=["res://.godot/imported/Pile_sculls_shadow1.png-27ed894b9cc7e3d5b0b85c47eeda4e33.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bk4amlevdo0vq"
-path="res://.godot/imported/flag_3.png-96dfb8283f675b35d2fdc81f1a2bccf9.ctex"
+path="res://.godot/imported/flag_3.png-eb9c77359c556ca140dff3c6004e4cb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/flag/flag_3.png"
-dest_files=["res://.godot/imported/flag_3.png-96dfb8283f675b35d2fdc81f1a2bccf9.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/flag/flag_3.png"
+dest_files=["res://.godot/imported/flag_3.png-eb9c77359c556ca140dff3c6004e4cb8.ctex"]
 
 [params]
 

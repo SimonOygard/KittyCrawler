@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pbc5q7u7xq3"
-path="res://.godot/imported/water_coasts.png-86c79cca94d57eabb03a9d518b11f8b7.ctex"
+path="res://.godot/imported/water_coasts.png-2c53800c45fa7b113efc8fbb699c964a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/Tiled_files/water_coasts.png"
-dest_files=["res://.godot/imported/water_coasts.png-86c79cca94d57eabb03a9d518b11f8b7.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/Tiled_files/water_coasts.png"
+dest_files=["res://.godot/imported/water_coasts.png-2c53800c45fa7b113efc8fbb699c964a.ctex"]
 
 [params]
 

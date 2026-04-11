@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://33pa8yh6ekul" path="res://assets/Characters/NPC/monsters_idle/skeleton2/v2/skeleton2_v2_2.png" id="2_epg4t"]
 [ext_resource type="Texture2D" uid="uid://ei0fo51rfd30" path="res://assets/Characters/NPC/monsters_idle/skeleton2/v2/skeleton2_v2_3.png" id="3_3yqyl"]
 [ext_resource type="Texture2D" uid="uid://ehvcil5q7bll" path="res://assets/Characters/NPC/monsters_idle/skeleton2/v2/skeleton2_v2_4.png" id="4_wujgv"]
-[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="5_epg4t"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/singletons/LevelTransition.cs" id="5_epg4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb8ge"]
 

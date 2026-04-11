@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cwa2l337nqmm3" path="res://assets/levels/Tilesets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_7dw40"]
 [ext_resource type="Texture2D" uid="uid://bp64rg7y5babm" path="res://assets/levels/Tilesets/RF_Catacombs_v1.0/decorative.png" id="2_c2w44"]
-[ext_resource type="Texture2D" uid="uid://ouqryos6cyxq" path="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Water_coasts.png" id="3_vxbbc"]
-[ext_resource type="Texture2D" uid="uid://dgfvc2p73jg82" path="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Details.png" id="4_j5we3"]
-[ext_resource type="Texture2D" uid="uid://dqlhv7ilxfs4" path="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Ground_rocks.png" id="5_scrn2"]
-[ext_resource type="Texture2D" uid="uid://c3oelao88gjrx" path="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/water_detilazation.png" id="6_7dvfw"]
+[ext_resource type="Texture2D" uid="uid://ouqryos6cyxq" path="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Water_coasts.png" id="3_vxbbc"]
+[ext_resource type="Texture2D" uid="uid://dgfvc2p73jg82" path="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Details.png" id="4_j5we3"]
+[ext_resource type="Texture2D" uid="uid://dqlhv7ilxfs4" path="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Ground_rocks.png" id="5_scrn2"]
+[ext_resource type="Texture2D" uid="uid://c3oelao88gjrx" path="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/water_detilazation.png" id="6_7dvfw"]
 [ext_resource type="Texture2D" uid="uid://c1u15i75p3vsa" path="res://assets/levels/Tilesets/Dungeon_Tileset.png" id="7_vxbbc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axgwx"]

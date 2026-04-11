@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1pblgjgtpw7q"
-path="res://.godot/imported/Crystal_shadow1_1.png-d232fababa3b7c0a7f0dd6c4dfdcf8eb.ctex"
+path="res://.godot/imported/Crystal_shadow1_1.png-3c00eb69153dc82d0159df6667f90ea5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Objects_separately/Crystal_shadow1_1.png"
-dest_files=["res://.godot/imported/Crystal_shadow1_1.png-d232fababa3b7c0a7f0dd6c4dfdcf8eb.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Objects_separately/Crystal_shadow1_1.png"
+dest_files=["res://.godot/imported/Crystal_shadow1_1.png-3c00eb69153dc82d0159df6667f90ea5.ctex"]
 
 [params]
 
