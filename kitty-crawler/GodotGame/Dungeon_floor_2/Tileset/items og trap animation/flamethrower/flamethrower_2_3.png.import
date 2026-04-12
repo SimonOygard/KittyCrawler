@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bge3y0hvho7hk"
-path="res://.godot/imported/flamethrower_2_3.png-2c5704c8ac2d876cf7ccf33656d6afe6.ctex"
+path="res://.godot/imported/flamethrower_2_3.png-98df174c821ceff3d39a1ecfefee989d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/flamethrower/flamethrower_2_3.png"
-dest_files=["res://.godot/imported/flamethrower_2_3.png-2c5704c8ac2d876cf7ccf33656d6afe6.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/flamethrower/flamethrower_2_3.png"
+dest_files=["res://.godot/imported/flamethrower_2_3.png-98df174c821ceff3d39a1ecfefee989d.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cw01cbn1yq7w"
-path="res://.godot/imported/arrow_4.png-1fd825243ca0779d8afae929110ca154.ctex"
+path="res://.godot/imported/arrow_4.png-195c337748b1ab8b43c7ad11a7d2b67a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/arrow/arrow_4.png"
-dest_files=["res://.godot/imported/arrow_4.png-1fd825243ca0779d8afae929110ca154.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/arrow/arrow_4.png"
+dest_files=["res://.godot/imported/arrow_4.png-195c337748b1ab8b43c7ad11a7d2b67a.ctex"]
 
 [params]
 

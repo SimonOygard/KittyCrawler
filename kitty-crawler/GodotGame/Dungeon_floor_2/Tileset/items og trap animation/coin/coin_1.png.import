@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjfb7qbe6cgpc"
-path="res://.godot/imported/coin_1.png-20b2b449408e7d651eeb30bf5bf4cbe9.ctex"
+path="res://.godot/imported/coin_1.png-bf26fefe7da1d6bd58d1c4d0741b8349.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/coin/coin_1.png"
-dest_files=["res://.godot/imported/coin_1.png-20b2b449408e7d651eeb30bf5bf4cbe9.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/coin/coin_1.png"
+dest_files=["res://.godot/imported/coin_1.png-bf26fefe7da1d6bd58d1c4d0741b8349.ctex"]
 
 [params]
 

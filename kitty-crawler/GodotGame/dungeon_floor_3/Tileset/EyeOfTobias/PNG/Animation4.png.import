@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bckabjdswpf05"
-path="res://.godot/imported/Animation4.png-65773b6c79b39a168e64a6abe6bd8664.ctex"
+path="res://.godot/imported/Animation4.png-3638627d4066cd52067aead3ff315dd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Animation4.png"
-dest_files=["res://.godot/imported/Animation4.png-65773b6c79b39a168e64a6abe6bd8664.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Animation4.png"
+dest_files=["res://.godot/imported/Animation4.png-3638627d4066cd52067aead3ff315dd3.ctex"]
 
 [params]
 

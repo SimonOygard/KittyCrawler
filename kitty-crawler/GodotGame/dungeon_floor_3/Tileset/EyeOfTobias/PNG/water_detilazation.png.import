@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3oelao88gjrx"
-path="res://.godot/imported/water_detilazation.png-adf8fa210bb95d37cae55e4ff031f99d.ctex"
+path="res://.godot/imported/water_detilazation.png-f2863d9b9eac4cf6dd977f93da3a126b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/water_detilazation.png"
-dest_files=["res://.godot/imported/water_detilazation.png-adf8fa210bb95d37cae55e4ff031f99d.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/water_detilazation.png"
+dest_files=["res://.godot/imported/water_detilazation.png-f2863d9b9eac4cf6dd977f93da3a126b.ctex"]
 
 [params]
 

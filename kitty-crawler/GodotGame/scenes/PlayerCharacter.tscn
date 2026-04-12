@@ -126,10 +126,6 @@ region = Rect2(64, 64, 32, 32)
 atlas = ExtResource("2_ghijl")
 region = Rect2(96, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2u5n8"]
-atlas = ExtResource("2_ghijl")
-region = Rect2(128, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_73nau"]
 atlas = ExtResource("2_ghijl")
 region = Rect2(160, 64, 32, 32)
@@ -158,9 +154,9 @@ region = Rect2(64, 96, 32, 32)
 atlas = ExtResource("2_ghijl")
 region = Rect2(96, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_el80s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u5n8"]
 atlas = ExtResource("2_ghijl")
-region = Rect2(128, 96, 32, 32)
+region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxcm1"]
 atlas = ExtResource("2_ghijl")
@@ -189,6 +185,10 @@ region = Rect2(64, 128, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uyxa"]
 atlas = ExtResource("2_ghijl")
 region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el80s"]
+atlas = ExtResource("2_ghijl")
+region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61y8d"]
 atlas = ExtResource("2_ghijl")
@@ -394,9 +394,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2u5n8")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_73nau")
 }, {
 "duration": 1.0,
@@ -416,15 +413,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jsgy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u5n8")
 }],
 "loop": true,
 "name": &"walk_left",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_el80s")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oxcm1")
 }, {
@@ -445,6 +442,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3uyxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el80s")
 }],
 "loop": true,
 "name": &"walk_right",
@@ -480,14 +480,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_ij6vw"]
-resource_name = "idle"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghijl"]
-_data = {
-&"idle": SubResource("Animation_ij6vw")
-}
-
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1948828453 groups=["player"]]
 texture_filter = 1
 script = ExtResource("1_ij6vw")
@@ -501,14 +493,14 @@ shape = SubResource("RectangleShape2D_ij6vw")
 texture_filter = 1
 position = Vector2(8, 0)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"walk_down"
-frame = 5
-frame_progress = 0.67899376
+animation = &"walk_up"
 speed_scale = 0.685
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2075060550]
-libraries/ = SubResource("AnimationLibrary_ghijl")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1345113855]
 position = Vector2(8, 8)
 target_position = Vector2(0, 16)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1730084776]
+position = Vector2(8, 8)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true

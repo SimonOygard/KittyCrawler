@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l5lm3gyqsx14"
-path="res://.godot/imported/Scull_door_shadow2.png-b639fa062afa126da9594a96869cf9ba.ctex"
+path="res://.godot/imported/Scull_door_shadow2.png-1852600c64c3228c13764980d6553afb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Objects_separately/Scull_door_shadow2.png"
-dest_files=["res://.godot/imported/Scull_door_shadow2.png-b639fa062afa126da9594a96869cf9ba.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Objects_separately/Scull_door_shadow2.png"
+dest_files=["res://.godot/imported/Scull_door_shadow2.png-1852600c64c3228c13764980d6553afb.ctex"]
 
 [params]
 
