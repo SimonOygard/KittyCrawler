@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmtars2njv486"
-path="res://.godot/imported/Grave_shadow3_11.png-9828a387088ec719dbb089f55099ab83.ctex"
+path="res://.godot/imported/Grave_shadow3_11.png-5112576c8b10c1c8f79f87834ef0a6ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Objects_separately/Grave_shadow3_11.png"
-dest_files=["res://.godot/imported/Grave_shadow3_11.png-9828a387088ec719dbb089f55099ab83.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Objects_separately/Grave_shadow3_11.png"
+dest_files=["res://.godot/imported/Grave_shadow3_11.png-5112576c8b10c1c8f79f87834ef0a6ef.ctex"]
 
 [params]
 

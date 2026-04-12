@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0r64x7axhykd"
-path="res://.godot/imported/side_torch_2.png-1128ac14eccce26ebf3bb226a091f6f3.ctex"
+path="res://.godot/imported/side_torch_2.png-6658c602b55878c14f17cd547e7a2390.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/torch/side_torch_2.png"
-dest_files=["res://.godot/imported/side_torch_2.png-1128ac14eccce26ebf3bb226a091f6f3.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/torch/side_torch_2.png"
+dest_files=["res://.godot/imported/side_torch_2.png-6658c602b55878c14f17cd547e7a2390.ctex"]
 
 [params]
 

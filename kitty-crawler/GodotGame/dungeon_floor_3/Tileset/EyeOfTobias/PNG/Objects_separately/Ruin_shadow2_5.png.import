@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l6laar7uexex"
-path="res://.godot/imported/Ruin_shadow2_5.png-f708f86b64a6cf6ef4e9087096b8446f.ctex"
+path="res://.godot/imported/Ruin_shadow2_5.png-cac49b4804e3790eb4ab434fa00e8edc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Objects_separately/Ruin_shadow2_5.png"
-dest_files=["res://.godot/imported/Ruin_shadow2_5.png-f708f86b64a6cf6ef4e9087096b8446f.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Objects_separately/Ruin_shadow2_5.png"
+dest_files=["res://.godot/imported/Ruin_shadow2_5.png-cac49b4804e3790eb4ab434fa00e8edc.ctex"]
 
 [params]
 

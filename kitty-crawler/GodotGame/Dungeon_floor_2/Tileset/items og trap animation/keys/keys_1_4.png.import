@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lfbsnaiqipb4"
-path="res://.godot/imported/keys_1_4.png-3f6759bdf368898f580c3196b2d35825.ctex"
+path="res://.godot/imported/keys_1_4.png-b06846a54e1a6b9f6cdd01b61cfcb7a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/Dungeon_floor_2/items and trap_animation/keys/keys_1_4.png"
-dest_files=["res://.godot/imported/keys_1_4.png-3f6759bdf368898f580c3196b2d35825.ctex"]
+source_file="res://Dungeon_floor_2/Tileset/items og trap animation/keys/keys_1_4.png"
+dest_files=["res://.godot/imported/keys_1_4.png-b06846a54e1a6b9f6cdd01b61cfcb7a7.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf60fo3gio55q"
-path="res://.godot/imported/Rock_shadow2_5.png-f98043a47a1e974ccc7fe671741a8e5e.ctex"
+path="res://.godot/imported/Rock_shadow2_5.png-bdc2da927cca5477a118156d8812baaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/Tilesets/craftpix-net-695666-free-undead-tileset-top-down-pixel-art (1)/PNG/Objects_separately/Rock_shadow2_5.png"
-dest_files=["res://.godot/imported/Rock_shadow2_5.png-f98043a47a1e974ccc7fe671741a8e5e.ctex"]
+source_file="res://dungeon_floor_3/Tileset/EyeOfTobias/PNG/Objects_separately/Rock_shadow2_5.png"
+dest_files=["res://.godot/imported/Rock_shadow2_5.png-bdc2da927cca5477a118156d8812baaa.ctex"]
 
 [params]
 
