@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+using Interaction;
 
 namespace PlayerBody
 
@@ -121,12 +121,50 @@ namespace Game.Gameplay
 
         private void HandleInput(float delta)
         {
+            // check if movement input if so -> move if not interaction input
+            if (Input.IsActionPressed("up") || Input.IsActionPressed("down") || Input.IsActionPressed("left") || Input.IsActionPressed("right"))
+            {
+                MovePlayer(delta);
+            }
+            else if(Input.IsActionJustPressed("interact"))
+            {
+                PlayerInteract();
+                GD.Print("Interaction input detected");
+            }
+        }
+        #region interaction
+        private void PlayerInteract()
+        {
+            var collider = _ray.GetCollider();
+            
+            if (_ray.IsColliding())
+            {
+                if (collider is IInteractable interactable)
+                {
+                    interactable.Interact();
+                    GD.Print("Player interaction logic executed");
+                }
+                GD.Print("Collided with non interactable item");
+            }
+
+            if (!_ray.IsColliding())
+            {
+                GD.Print("No interactable object in range");
+                return;
+            }
+        }
+        #endregion interaction
+
+        #region movement
+        private void MovePlayer(float delta)
+        {
             Vector2 input = Vector2.Zero;
 
             if (Input.IsActionPressed("up")) input = Vector2.Up;
             else if (Input.IsActionPressed("down")) input = Vector2.Down;
             else if (Input.IsActionPressed("left")) input = Vector2.Left;
             else if (Input.IsActionPressed("right")) input = Vector2.Right;
+
 
             if (input != Vector2.Zero)
             {
@@ -160,7 +198,6 @@ namespace Game.Gameplay
                 UpdateIdleAnimation();
             }
         }
-
 
         private void MoveTowardTarget(double delta)
         {
@@ -213,5 +250,7 @@ namespace Game.Gameplay
                     _sprite.Play(walkAnim);
             }
         }
+
+        #endregion movement
     }
 }
