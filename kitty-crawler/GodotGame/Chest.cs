@@ -17,7 +17,7 @@ public partial class Chest : CharacterBody2D, IInteractable
             _sprite.Play("idle");
         }
 
-        _isMimic = new Random().Next(1, 11) == 10; // 10% chance to be a mimic
+        _isMimic = true; // new Random().Next(1, 11) == 10; // 10% chance to be a mimic
         GD.Print("Chest " + Name + " is a mimic: " + _isMimic);
 
     }
