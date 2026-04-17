@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c0ybu1oovtg11"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_svmm7"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_h0roq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_svmm7")
+region = Rect2(0, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_h0roq")
+CardName = "Imp"
+Damage = 3
+Texture = SubResource("AtlasTexture_f6qwu")
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

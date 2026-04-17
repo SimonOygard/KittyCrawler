@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ck3o4wvt56ffh"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_saqo2"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_otdj1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_saqo2")
+region = Rect2(128, 192, 64, 96)
+
+[resource]
+script = ExtResource("2_otdj1")
+CardName = "Croxy"
+Damage = 4
+CardRarity = 2
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "Discard a card, gain its stats (cannot exceed 9)"
+Ability = 9
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

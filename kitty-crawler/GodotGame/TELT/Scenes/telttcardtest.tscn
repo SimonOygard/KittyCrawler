@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bx3xdqxugmra0"]
+
+[sub_resource type="TileSet" id="TileSet_b6btb"]
+
+[node name="TELTcardtest" type="Node2D" unique_id=1187937876]
+
+[node name="TestCard" type="Node2D" parent="." unique_id=1060333142]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TestCard" unique_id=1826810617]
+tile_set = SubResource("TileSet_b6btb")

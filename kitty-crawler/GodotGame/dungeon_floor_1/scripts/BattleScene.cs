@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using KittyCrawler.scripts;
 
 public partial class BattleScene : Node2D
 {
