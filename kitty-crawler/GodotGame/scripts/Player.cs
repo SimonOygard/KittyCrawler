@@ -104,6 +104,7 @@ namespace Game.Gameplay
             _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
             _ray = GetNode<RayCast2D>("RayCast2D");
             _ray.Enabled = true;
+            UpdateRayDirection();
         }
 
 
@@ -135,23 +136,39 @@ namespace Game.Gameplay
         #region interaction
         private void PlayerInteract()
         {
-            var collider = _ray.GetCollider();
-            
-            if (_ray.IsColliding())
-            {
-                if (collider is IInteractable interactable)
-                {
-                    interactable.Interact();
-                    GD.Print("Player interaction logic executed");
-                }
-                GD.Print("Collided with non interactable item");
-            }
+            _ray.ForceRaycastUpdate();
+            GD.Print("Facing direction: ", _direction);
+            GD.Print("Ray target: ", _ray.TargetPosition);
+            GD.Print("Ray local position: ", _ray.Position);
+            GD.Print("Ray global position: ", _ray.GlobalPosition);
+            GD.Print("Ray is colliding: ", _ray.IsColliding());
 
             if (!_ray.IsColliding())
             {
                 GD.Print("No interactable object in range");
                 return;
             }
+
+            var collider = _ray.GetCollider() as Node;
+            GD.Print($"Raycast hit: {collider}");
+            GD.Print(collider?.GetType().Name);
+
+            if (collider is IInteractable interactable)
+            {
+                GD.Print("Interacting with: " + collider.Name);
+                interactable.Interact();
+            }
+            else if (collider?.GetParent() is IInteractable parentInteractable)
+             {
+                GD.Print("Interacting with parent: " + collider.GetParent().Name);
+                parentInteractable.Interact();
+            }
+             else
+            {
+                GD.Print("Object is not interactable: " + collider.Name);
+            }
+
+
         }
         #endregion interaction
 
@@ -172,7 +189,9 @@ namespace Game.Gameplay
                 {
                     _direction = input;
                     _inputHoldTime = 0f;
+                    UpdateRayDirection();
                     PlayTurnAnimation();
+
                 }
                 else
                 {
@@ -249,6 +268,12 @@ namespace Game.Gameplay
                 if (_sprite.Animation != walkAnim)
                     _sprite.Play(walkAnim);
             }
+        }
+
+        private void UpdateRayDirection()
+        {
+            _ray.TargetPosition = _direction * (GridSize +4);
+            _ray.ForceRaycastUpdate();
         }
 
         #endregion movement
