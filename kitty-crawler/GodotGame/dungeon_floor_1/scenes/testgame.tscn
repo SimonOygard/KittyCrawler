@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_e5kpr"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_e5kpr"]
 [ext_resource type="PackedScene" uid="uid://bl2i18wvtuxsi" path="res://dungeon_floor_1/scenes/enemy.tscn" id="6_pcal6"]
+[ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://Chest.tscn" id="7_nqurg"]
 
 [sub_resource type="Resource" id="Resource_ts4jt"]
 script = ExtResource("4_e5kpr")
@@ -13,6 +14,7 @@ script = ExtResource("4_e5kpr")
 [node name="Game" type="Node2D" unique_id=612895247]
 
 [node name="Testmap" parent="." unique_id=2145394548 instance=ExtResource("1_sbslj")]
+position = Vector2(829, 745)
 
 [node name="PlayerCharacter" parent="." unique_id=1948828453 instance=ExtResource("2_qr8fx")]
 position = Vector2(286, 114)
@@ -41,5 +43,8 @@ process_physics_priority = 300
 script = ExtResource("5_e5kpr")
 
 [node name="Skeleton" parent="." unique_id=544271468 instance=ExtResource("6_pcal6")]
-position = Vector2(293, 294)
+position = Vector2(336, 448)
 scale = Vector2(3, 3)
+
+[node name="CharacterBody2D" parent="." unique_id=494573170 instance=ExtResource("7_nqurg")]
+position = Vector2(336, 352)
