@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dts7nj7f55lk0"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_b6vxy"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_cqa6u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_b6vxy")
+region = Rect2(256, 192, 64, 96)
+
+[resource]
+script = ExtResource("2_cqa6u")
+CardName = "Skester"
+CardRarity = 2
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "Can be put in any empty slot"
+Ability = 7
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

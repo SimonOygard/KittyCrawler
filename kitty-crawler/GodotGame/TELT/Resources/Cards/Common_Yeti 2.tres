@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://2cp2kxdq8m60"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_sk287"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_a8gda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_sk287")
+region = Rect2(192, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_a8gda")
+CardName = "Yeti"
+Damage = 6
+Texture = SubResource("AtlasTexture_f6qwu")
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

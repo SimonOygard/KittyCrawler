@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://v0cw3rwg7xtc"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_doyx7"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_3twju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_doyx7")
+region = Rect2(192, 192, 64, 96)
+
+[resource]
+script = ExtResource("2_3twju")
+CardName = "Eve"
+Damage = 7
+CardRarity = 2
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "All enemy units gets -2 stats"
+Ability = 8
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"
