@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b45apbi55l6qx"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_hoynu"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_8qe1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_hoynu")
+region = Rect2(256, 96, 64, 96)
+
+[resource]
+script = ExtResource("2_8qe1d")
+CardName = "Golem"
+Damage = 6
+CardRarity = 1
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "Draw a card"
+Ability = 5
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

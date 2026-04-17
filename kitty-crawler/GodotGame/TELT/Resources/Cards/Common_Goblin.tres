@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dk8hy7bni03c7"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_c8tci"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_lpycp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_c8tci")
+region = Rect2(64, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_lpycp")
+CardName = "Goblin"
+Damage = 2
+Texture = SubResource("AtlasTexture_f6qwu")
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

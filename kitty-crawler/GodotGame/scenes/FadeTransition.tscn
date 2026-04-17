@@ -67,6 +67,7 @@ layer = 20
 offset_left = -1.0
 offset_right = 639.0
 offset_bottom = 365.0
+mouse_filter = 2
 color = Color(0.033265438, 0.033265445, 0.033265438, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=149653827]
