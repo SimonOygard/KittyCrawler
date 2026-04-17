@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://8uyis3nubmb5"]
+[gd_scene format=3 uid="uid://c7br45l32sxsb"]
 
 [ext_resource type="Script" uid="uid://b5yroq2as0v6d" path="res://TELT/Scripts/Battle/TeltBattle.cs" id="1_fqpg2"]
 [ext_resource type="PackedScene" uid="uid://b7wu35ib6ov37" path="res://TELT/Scenes/CardVisual.tscn" id="2_nncip"]

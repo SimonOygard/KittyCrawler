@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b7wu35ib6ov37"]
+[gd_scene format=3 uid="uid://c6t4tqjct133h"]
 
 [ext_resource type="Script" uid="uid://dcamjv4rr3ttp" path="res://TELT/Scripts/Cards/CardVisual.cs" id="1_s23e2"]
 [ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="2_o8aor"]

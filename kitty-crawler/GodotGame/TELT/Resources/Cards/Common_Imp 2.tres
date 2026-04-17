@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c0ybu1oovtg11"]
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b2dp24mp7quxv"]
 
 [ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_svmm7"]
 [ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_h0roq"]
