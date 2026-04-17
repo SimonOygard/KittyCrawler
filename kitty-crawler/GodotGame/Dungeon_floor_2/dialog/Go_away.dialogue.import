@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ln63we7xucq8"
+path="res://.godot/imported/Go_away.dialogue-90ae93e1c79b45578473b52da08731b7.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/Go_away.dialogue"
+dest_files=["res://.godot/imported/Go_away.dialogue-90ae93e1c79b45578473b52da08731b7.tres"]
+
+[params]
+
+defaults=true

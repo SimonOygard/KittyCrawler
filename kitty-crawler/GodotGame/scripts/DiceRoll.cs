@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace KittyCrawler.scripts;
+
 public partial class DiceRoll : Node
 {
     public static DiceRoll Instance { get; private set; }
@@ -17,7 +19,7 @@ public partial class DiceRoll : Node
         return rng.RandiRange(1, sides);
     }
 
-    // når klasser/items har modifiers kan denne brukes for å rulle en dice og legge til modifikatoren 
+    // når klasser/items har modifiers kan denne brukes for å rulle en dice og legge til modifikatoren
     public int DiceModifier(int sides, int modifier)
     {
         return RollDice(sides) + modifier;
