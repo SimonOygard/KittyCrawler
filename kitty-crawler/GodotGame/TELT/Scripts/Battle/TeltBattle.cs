@@ -52,7 +52,16 @@ public partial class TeltBattle : Node2D
         _gameManager.TurnChanged += OnTurnChanged;
         _gameManager.MatchEnded += OnMatchEnded;
         _gameManager.GameOver += OnGameOver;
-        _gameManager.ReadyForCombat += () => _combatButton.Visible = true;
+        _gameManager.ReadyForCombat += () =>
+        {
+            if (!_waitingForTarget && !_waitingForHandTarget)
+                _combatButton.Visible = true;
+        };
+        _gameManager.BoardUpdated += () =>  // ← her
+        {
+            UpdateSlotVisuals();
+            UpdateUI();
+        };
 
         GD.Print("Signals koblet!");
 
@@ -86,42 +95,35 @@ public partial class TeltBattle : Node2D
 
     // ── Deck-oppsett ──────────────────────────────────────────────────
     private void SetupDecks()
-{
-    var startDeck = new List<CardData>
     {
-        // 2x Yeti
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Yeti.tres")).Duplicate() as CardData,
-        // 2x Watcher
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Watcher.tres")).Duplicate() as CardData,
-        // 2x Goblin
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Goblin.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Goblin.tres")).Duplicate() as CardData,
-        // 2x Imp
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
-        // 2x Snake
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
-        // 3x Skeleton
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
-        // 2x Tortoise
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
-        // 1x Skester (jordbær på kaka! 🍓)
-        (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Skester.tres")).Duplicate() as CardData,
-    };
+        var startDeck = new List<CardData>
+        {
+            // Commons (2x hver)
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Yeti.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Yeti.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Watcher.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Watcher.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Goblin.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Goblin.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
+            // 1x Skester 🍓
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Skester.tres")).Duplicate() as CardData,
+        };
 
-    _player.SetDeck(startDeck);
-    _player.ShuffleDeck();
+        _player.SetDeck(startDeck);
+        _player.ShuffleDeck();
 
-    var enemyDeck = startDeck.ConvertAll(c => c.Duplicate() as CardData);
-    _enemy.SetDeck(enemyDeck);
-    _enemy.ShuffleDeck();
-}
+        var enemyDeck = startDeck.ConvertAll(c => c.Duplicate() as CardData);
+        _enemy.SetDeck(enemyDeck);
+        _enemy.ShuffleDeck();
+    }
 
     // ── Terningkast ───────────────────────────────────────────────────
     private void OnDiceChoice(bool pickedOdd)
@@ -157,9 +159,18 @@ public partial class TeltBattle : Node2D
             _waitingForHandTarget = false;
             _pendingAbilityCard = null;
             _gameManager.HoldTurn = false;
-            _gameManager.SwitchTurnPublic();
             RefreshHandVisuals();
+            UpdateSlotVisuals();
             UpdateUI();
+
+            // Sjekk krigsfase FØR vi bytter tur
+            if (_gameManager.CheckWarPhase())
+            {
+                _combatButton.Visible = true;
+                return;
+            }
+
+            _gameManager.SwitchTurnPublic();
             return;
         }
 
@@ -315,6 +326,7 @@ public partial class TeltBattle : Node2D
                     _pendingAbilityCard = _selectedCard.CardData;
                     _pendingCardPosition = position;
                     _phaseLabel.Text = "Velg et kort fra hånden!";
+                    _combatButton.Visible = false; // ← legg til denne
                     RemoveCardFromHand(_selectedCard);
                     _selectedCard = null;
                     UpdateSlotVisuals();
@@ -327,6 +339,7 @@ public partial class TeltBattle : Node2D
                 _pendingAbilityCard = _selectedCard.CardData;
                 _pendingCardPosition = position;
                 _phaseLabel.Text = "Velg et mål!";
+                _combatButton.Visible = false; // ← legg til denne
                 RemoveCardFromHand(_selectedCard);
                 _selectedCard = null;
                 UpdateSlotVisuals();
@@ -385,11 +398,8 @@ public partial class TeltBattle : Node2D
         UpdateSlotVisuals();
         UpdateUI();
 
-        if (_gameManager.CheckWarPhase())
-        {
+        if (_gameManager.CheckWarPhase() && !_waitingForTarget && !_waitingForHandTarget)
             _combatButton.Visible = true;
-            return;
-        }
 
         _gameManager.SwitchTurnPublic();
     }

@@ -51,6 +51,7 @@ public partial class CardVisual : Control
         _originalPosition = Position;
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
+
     }
 
     // ── Klikk ─────────────────────────────────────────────────────────

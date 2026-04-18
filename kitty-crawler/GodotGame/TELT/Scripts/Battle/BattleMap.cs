@@ -61,18 +61,16 @@ public partial class BattleMap : Node
         if (AllPlayerSlotsFilled && AllEnemySlotsFilled)
             return true;
 
-        // Spiller har ledige slots OG ingen kort på hånd
-        // Men bare hvis motstander også har fylt sine slots
-        if (!AllPlayerSlotsFilled && !playerHasCards && AllEnemySlotsFilled)
-            return true;
-
-        // Fiende har ledige slots OG ingen kort på hånd
-        // Men bare hvis spiller også har fylt sine slots
-        if (!AllEnemySlotsFilled && !enemyHasCards && AllPlayerSlotsFilled)
-            return true;
-
-        // Begge har ingen kort på hånd
+        // Begge har ingen kort på hånd OG ingen ledige slots å fylle
         if (!playerHasCards && !enemyHasCards)
+            return true;
+
+        // Spiller har ingen kort på hånd OG enemy slots er fylt
+        if (!playerHasCards && AllEnemySlotsFilled)
+            return true;
+
+        // Enemy har ingen kort på hånd OG player slots er fylt
+        if (!enemyHasCards && AllPlayerSlotsFilled)
             return true;
 
         return false;
