@@ -9,7 +9,7 @@ region = Rect2(128, 0, 64, 96)
 
 [resource]
 script = ExtResource("2_fgpy2")
-CardName = "Tortiose"
+CardName = "Tortoise"
 Damage = 1
 Texture = SubResource("AtlasTexture_f6qwu")
 AbilityDescription = "No damage exceeds tortoise"
