@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://o8lxesi16f1"]
+
+[node name="Node" type="Node" unique_id=514386276]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1129239945]

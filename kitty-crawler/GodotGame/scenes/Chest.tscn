@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cosh0ap1plum3"]
 
 [ext_resource type="Texture2D" uid="uid://cp305sbpf4xei" path="res://assets/Items/Items/Mimic/mimic_chest2.png" id="1_4gslm"]
-[ext_resource type="Script" uid="uid://ddwq403e5i2qd" path="res://Chest.cs" id="1_5udua"]
+[ext_resource type="Script" uid="uid://ddwq403e5i2qd" path="res://scripts/Chest.cs" id="1_5udua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5udua"]
 atlas = ExtResource("1_4gslm")
