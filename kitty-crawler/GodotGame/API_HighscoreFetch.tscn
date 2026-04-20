@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://c4c4afacn4qt"]
-
-[ext_resource type="Script" path="res://scripts/HTTPKall.cs" id="1_5twdo"]
-
-[node name="Node" type="Node" unique_id=61945090]
-script = ExtResource("1_5twdo")
-
-[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=128028110]
