@@ -154,6 +154,7 @@ public partial class GameManager : Node
 
         _player.ReceiveDamage(playerDamage);
         _enemy.ReceiveDamage(enemyDamage);
+        PlayerData.AddDamageDealt(enemyDamage);
 
         GD.Print($"Spiller tar {playerDamage} damage (totalt: {_player.TotalDamageReceived})");
         GD.Print($"Fiende tar {enemyDamage} damage (totalt: {_enemy.TotalDamageReceived})");
