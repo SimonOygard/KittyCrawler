@@ -12,7 +12,7 @@ public partial class Leaderboard : Node
     public override void _Ready()
 	{
         // connect to API
-        _button = GetNode<Button>("SubmitButton").Pressed += OnSubmitPressed;
+        // _button = GetNode<Button>("SubmitButton").Pressed += _OnSubmitPressed;
 
 
         GetNode<HttpRequest>("LeaderboardFetch").RequestCompleted += _OnLeaderboardRequest;
@@ -47,5 +47,10 @@ public partial class Leaderboard : Node
             // Optionally, refresh the leaderboard after posting a new score
             GetNode<HttpRequest>("LeaderboardFetch").Request("https://jsonplaceholder.typicode.com/posts/1");
         }
+    }
+
+    private void _OnSubmitPressed()
+    {
+        return;
     }
 }
