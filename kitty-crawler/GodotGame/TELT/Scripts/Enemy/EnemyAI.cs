@@ -164,7 +164,7 @@ public partial class EnemyAI : Node
         if (_gameManager.CurrentTurn == GameManager.TurnOwner.Enemy)
         {
             GD.Print("[AI] Fortsatt AI sin tur — tar ny tur");
-            var timer = GetTree().CreateTimer(0.5f);
+            var timer = GetTree().CreateTimer(0.8f);
             timer.Timeout += TakeTurn;
             return;
         }

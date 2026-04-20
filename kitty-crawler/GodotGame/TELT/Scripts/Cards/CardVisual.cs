@@ -119,5 +119,42 @@ public partial class CardVisual : Control
             .SetEase(Tween.EaseType.Out);
     }
 
+    //Deaktiver card visul i grid view discard pile
+    public void SetStatic()
+    {
+        MouseFilter = MouseFilterEnum.Ignore;
+    }
+
+
+    //Highlight under targeting
+    public void SetHighlighted(bool highlighted)
+    {
+        var existing = GetNodeOrNull<Panel>("HighlightBorder");
+        if (existing != null) existing.QueueFree();
+
+        if (!highlighted)
+        {
+            Modulate = Colors.White;
+            return;
+        }
+
+        Modulate = new Color(1.12f, 1.12f, 1.12f, 1f); // ← lysere
+
+        var border = new Panel();
+        border.Name = "HighlightBorder";
+        border.Position = Vector2.Zero;
+        border.Size = new Vector2(128, 192);
+        border.MouseFilter = MouseFilterEnum.Ignore;
+        border.ZIndex = 10;
+
+        var styleBox = new StyleBoxFlat();
+        styleBox.BgColor = new Color(0, 0, 0, 0);
+        styleBox.BorderColor = new Color(0.9f, 0.5f, 0.1f, 0.6f);
+        styleBox.SetBorderWidthAll(4);
+        border.AddThemeStyleboxOverride("panel", styleBox);
+
+        AddChild(border);
+    }
+
 
 }
