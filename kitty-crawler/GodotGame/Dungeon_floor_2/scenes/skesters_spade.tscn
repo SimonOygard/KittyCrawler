@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bao4jykmd4cg0" path="res://eve.tscn" id="2_c28uc"]
 [ext_resource type="TileSet" uid="uid://cxqwdml0cduy5" path="res://Dungeon_floor_2/resources/SkestersTileset.tres" id="2_pw4uv"]
 [ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://scenes/Chest.tscn" id="4_c28uc"]
+[ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="5_3b0b0"]
 
 [node name="SkestersSpade" type="Node2D" unique_id=1768466649]
 position = Vector2(0, 224)
@@ -65,3 +66,10 @@ scale = Vector2(1.5, 1.5)
 [node name="Chest3" parent="." unique_id=96483464 instance=ExtResource("4_c28uc")]
 position = Vector2(223.99998, 160.00003)
 scale = Vector2(1.5, 1.5)
+
+[node name="Destination1" type="Marker2D" parent="." unique_id=764793771]
+position = Vector2(232.00002, 234.00003)
+
+[node name="TeleportA" parent="." unique_id=1798430977 node_paths=PackedStringArray("_destination") instance=ExtResource("5_3b0b0")]
+position = Vector2(400.99994, 272.00006)
+_destination = NodePath("../Destination1")

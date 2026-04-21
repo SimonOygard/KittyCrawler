@@ -1,55 +1,18 @@
 using Godot;
 using Interaction;
-using System;
+using PlayerBody;
 
-public partial class Teleport : CharacterBody2D, IInteractable
+public partial class Teleport : Node2D, IInteractable
 {
-    private AnimatedSprite2D _sprite;
-    private bool _hasBeenInteractedWith = false;
-
-    [Export] private LevelTransition _levelTransition;
-
-    public override void _Ready()
-    {
-        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        _levelTransition = GetNode<LevelTransition>("LevelTransition");
-
-        if (_sprite != null)
-        {
-            _sprite.Play("default");
-        }
-
-    }
+    [Export] private Node2D _destination;
 
     public void Interact()
     {
-        if (_hasBeenInteractedWith)
-        {
+        var player = GetTree().CurrentScene.GetNodeOrNull<Player>("Player");
+
+        if (player == null || _destination == null)
             return;
-        }
 
-        _hasBeenInteractedWith = true;
-
-        TriggerTeleport();
-        GD.Print("Teleport has been interacted with " + Name);
-
-    }
-
-    private void TriggerTeleport()
-    {
-        if (_sprite != null)
-        {
-            // change scene
-            GD.Print("Teleport triggered. Changing position");
-        }
-
-        if (_levelTransition != null)
-        {
-            _levelTransition.TriggerTransition();
-        }
-        else
-        {
-            GD.PrintErr("LevelTransition node is not assigned for Teleport: " + Name);
-        }
+        player.SnapToPosition(_destination.GlobalPosition);
     }
 }

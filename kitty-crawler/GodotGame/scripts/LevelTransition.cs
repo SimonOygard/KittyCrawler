@@ -5,7 +5,7 @@ public partial class LevelTransition : Node
 {
     [Export] public string ScenePath { get; set; } = string.Empty;
     [Export] public TransitionType Type { get; set; } = TransitionType.Battle;
-    [Export] public string EnemyName { get; set; } = "Skeleton";
+    [Export] public string ObjectName { get; set; } = "Skeleton";
 
     private bool _triggered = false;
 
@@ -54,7 +54,7 @@ public partial class LevelTransition : Node
             case TransitionType.Battle:
                 if (instance is BattleScene battle)
                 {
-                    battle.EnemyName = EnemyName;
+                    battle.EnemyName = ObjectName;
                     battle.ReturnScenePath = GetTree().CurrentScene.SceneFilePath;
                     GD.Print("Enemy name assigned");
                 }
@@ -64,9 +64,6 @@ public partial class LevelTransition : Node
                 }
                 break;
 
-            case TransitionType.Teleport:
-                // Teleport-specific logic can be added here
-                break;
             case TransitionType.Puzzle:
                 // Puzzle-specific logic can be added here
                 break;
@@ -90,7 +87,6 @@ public partial class LevelTransition : Node
 public enum TransitionType
 {
     Battle,
-    Teleport,
     Puzzle,
     Trap,
     Dialogue,

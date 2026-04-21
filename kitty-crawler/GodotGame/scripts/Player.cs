@@ -276,6 +276,15 @@ namespace Game.Gameplay
             _ray.ForceRaycastUpdate();
         }
 
+        public void SnapToPosition(Vector2 newPosition)
+        {
+            Position = new Vector2(
+                Mathf.Round(newPosition.X / GridSize) * GridSize,
+                Mathf.Round(newPosition.Y / GridSize) * GridSize
+            );
+            _targetPosition = Position;
+            _isMoving = false;
+        }
         #endregion movement
     }
 }
