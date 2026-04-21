@@ -1,8 +1,7 @@
-[gd_scene format=3 uid="uid://b7wu35ib6ov37"]
+[gd_scene format=3 uid="uid://c6t4tqjct133h"]
 
 [ext_resource type="Script" uid="uid://dcamjv4rr3ttp" path="res://TELT/Scripts/Cards/CardVisual.cs" id="1_s23e2"]
 [ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="2_o8aor"]
-[ext_resource type="FontFile" uid="uid://b0b5y1ystn251" path="res://assets/Fonts/Pixelmax-Regular.otf" id="3_kc40a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kc40a"]
 atlas = ExtResource("2_o8aor")
@@ -10,16 +9,15 @@ region = Rect2(64, 96, 64, 96)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8aor"]
 bg_color = Color(0.92939955, 0.8299407, 0.7885973, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color(0.0076186024, 0.0076186024, 0.0076186024, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
-corner_detail = 6
 
 [node name="CardVisual" type="Control" unique_id=2145380633 node_paths=PackedStringArray("_cardTexture", "_cardNameLabel", "_statsContainer", "_statsLabel", "_abilityLabel")]
 layout_mode = 3
@@ -42,12 +40,11 @@ expand_mode = 1
 [node name="CardNameLabel" type="Label" parent="." unique_id=1455350897]
 layout_mode = 0
 offset_left = 18.0
-offset_top = 105.0
+offset_top = 104.0
 offset_right = 110.0
 offset_bottom = 118.0
 theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
-theme_override_fonts/font = ExtResource("3_kc40a")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -58,7 +55,6 @@ offset_top = 119.0
 offset_right = 111.0
 offset_bottom = 173.0
 theme_override_colors/font_color = Color(0.011764706, 0.011764706, 0.011764706, 1)
-theme_override_fonts/font = ExtResource("3_kc40a")
 theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -69,17 +65,15 @@ layout_mode = 0
 offset_left = 101.0
 offset_top = 7.0
 offset_right = 122.0
-offset_bottom = 34.0
+offset_bottom = 35.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_o8aor")
 
 [node name="DamageLabel" type="Label" parent="StatsContainer" unique_id=1275811352]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 5.0
-offset_right = 18.0
-offset_bottom = 25.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 20.0
+offset_bottom = 27.0
 theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
-theme_override_fonts/font = ExtResource("3_kc40a")
-theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1

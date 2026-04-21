@@ -30,6 +30,12 @@ public partial class PlayerData : Node
     }
 
     // ── Trekking ──────────────────────────────────────────────────────
+    public CardData LastDrawnCard { get; private set; } = null;
+
+    private List<CardData> _newlyDrawnCards = new();
+
+    public List<CardData> NewlyDrawnCards => new(_newlyDrawnCards);
+
     public bool TryDrawCard()
     {
         if (_deck.Count == 0) return false;
@@ -37,7 +43,15 @@ public partial class PlayerData : Node
         var card = _deck[0];
         _deck.RemoveAt(0);
         _hand.Add(card);
+        LastDrawnCard = card;
+        _newlyDrawnCards.Add(card); // ← legg til
         return true;
+    }
+
+    public void ClearLastDrawnCard()
+    {
+        LastDrawnCard = null;
+        _newlyDrawnCards.Clear(); // ← tøm listen
     }
 
     public void DrawCards(int amount)
@@ -86,6 +100,70 @@ public partial class PlayerData : Node
     // ── Debug ─────────────────────────────────────────────────────────
     public void PrintState()
     {
-        GD.Print($"[{PlayerName}] Deck: {_deck.Count} | Hånd: {_hand.Count} | Discard: {_discardPile.Count} | Damage: {TotalDamageReceived}");
+        GD.Print(
+            $"[{PlayerName}] Deck: {_deck.Count} | Hånd: {_hand.Count} | Discard: {_discardPile.Count} | Damage: {TotalDamageReceived}");
     }
+
+    public int DeckCount => _deck.Count;
+    public List<CardData> GetDiscardPile() => new(_discardPile);
+
+    // ── Score ──────────────────────────────────────────────────────────
+    private static int _totalDamageDealt = 0;
+    private const string SavePath = "user://telt_score.json";
+
+    public static int TotalDamageDealt
+    {
+        get => _totalDamageDealt;
+        private set => _totalDamageDealt = value;
+    }
+
+
+    private static HashSet<string> _defeatedNpcs = new();
+
+    public static bool HasDefeatedNpc(string npcId)
+    {
+        return _defeatedNpcs.Contains(npcId);
+    }
+
+    public static void DefeatNpc(string npcId, int damageDealt)
+    {
+        if (_defeatedNpcs.Contains(npcId)) return; // Allerede beseiret
+
+        _defeatedNpcs.Add(npcId);
+        AddDamageDealt(damageDealt);
+        SaveScore();
+    }
+
+    public static void AddDamageDealt(int amount)
+    {
+        _totalDamageDealt += amount;
+        SaveScore();
+    }
+
+    public static void SaveScore()
+    {
+        using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
+        var data = new Godot.Collections.Dictionary
+        {
+            ["damageDealt"] = _totalDamageDealt,
+            ["defeatedNpcs"] = string.Join(",", _defeatedNpcs)
+        };
+        file.StoreString(Json.Stringify(data));
+    }
+
+    public static void LoadScore()
+    {
+        if (!FileAccess.FileExists(SavePath)) return;
+        using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
+        var json = file.GetAsText();
+        var data = Json.ParseString(json).AsGodotDictionary();
+        _totalDamageDealt = data["damageDealt"].AsInt32();
+
+        if (data.ContainsKey("defeatedNpcs") && data["defeatedNpcs"].AsString() != "")
+        {
+            foreach (var npc in data["defeatedNpcs"].AsString().Split(","))
+                _defeatedNpcs.Add(npc);
+        }
+    }
+
 }

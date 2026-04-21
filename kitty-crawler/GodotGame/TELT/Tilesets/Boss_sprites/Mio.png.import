@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://544ylhhyikrd"
-path="res://.godot/imported/TeltBackside.png-d746d448d26a09bf22347fda88b6855a.ctex"
+uid="uid://cx1noglo6nk3w"
+path="res://.godot/imported/Mio.png-9e094857860b0df6de6288443cc85830.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TELT/Tilesets/TeltBackside.png"
-dest_files=["res://.godot/imported/TeltBackside.png-d746d448d26a09bf22347fda88b6855a.ctex"]
+source_file="res://TELT/Tilesets/Boss_sprites/Mio.png"
+dest_files=["res://.godot/imported/Mio.png-9e094857860b0df6de6288443cc85830.ctex"]
 
 [params]
 

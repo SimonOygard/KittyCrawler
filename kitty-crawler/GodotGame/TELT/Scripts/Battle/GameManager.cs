@@ -37,6 +37,7 @@ public partial class GameManager : Node
     [Signal] public delegate void MatchEndedEventHandler(int matchNumber, int playerDamage, int enemyDamage);
     [Signal] public delegate void GameOverEventHandler(TurnOwner winner, int playerDamage, int enemyDamage);
     [Signal] public delegate void ReadyForCombatEventHandler();
+    [Signal] public delegate void BoardUpdatedEventHandler();
 
     // ── Init ──────────────────────────────────────────────────────────
     public void Initialize(PlayerData player, PlayerData enemy, BattleMap battleMap)
@@ -99,12 +100,14 @@ public partial class GameManager : Node
 
         GD.Print($"{owner} spilte {card.CardName} i {position}-slot");
         _battleMap.PrintState();
+        EmitSignal(SignalName.BoardUpdated);
+
 
         // Sjekk om krigsfase skal starte
         if (_battleMap.ShouldStartWarPhase(_player.HasCardsInHand, _enemy.HasCardsInHand))
         {
             EmitSignal(SignalName.ReadyForCombat);
-            return true; // Vent på spilleren
+            return true;
         }
 
         // Regel 3.3: Hvis motstander har fylt sine slots, får aktiv spiller ny tur
@@ -151,6 +154,7 @@ public partial class GameManager : Node
 
         _player.ReceiveDamage(playerDamage);
         _enemy.ReceiveDamage(enemyDamage);
+        PlayerData.AddDamageDealt(enemyDamage);
 
         GD.Print($"Spiller tar {playerDamage} damage (totalt: {_player.TotalDamageReceived})");
         GD.Print($"Fiende tar {enemyDamage} damage (totalt: {_enemy.TotalDamageReceived})");
