@@ -8,9 +8,14 @@ public partial class Chest : CharacterBody2D, IInteractable
     private bool _hasBeenInteractedWith = false;
     private bool _isMimic = false;
 
+    [Export]
+    private LevelTransition _levelTransition;
+
     public override void _Ready()
     {
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _levelTransition = GetNode<LevelTransition>("LevelTransition");
+
 
         if (_sprite != null)
         {
