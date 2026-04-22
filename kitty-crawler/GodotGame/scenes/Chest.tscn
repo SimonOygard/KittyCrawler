@@ -163,14 +163,12 @@ collision_layer = 2
 script = ExtResource("1_5udua")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=909317890]
-position = Vector2(9, 7)
 sprite_frames = SubResource("SpriteFrames_6rute")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.8062108
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1872239390]
-position = Vector2(9, 8)
 shape = SubResource("RectangleShape2D_5udua")
 
 [node name="Node" type="Node" parent="." unique_id=497189803]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bao4jykmd4cg0"]
 
 [ext_resource type="Texture2D" uid="uid://dgh41rk3e4r4d" path="res://TELT/Tilesets/Boss_sprites/Eve.png" id="1_6va78"]
-[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://Boss.cs" id="1_ohdim"]
+[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://Dungeon_floor_2/scripts/Boss.cs" id="1_ohdim"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="2_4cgun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xkcc4"]
@@ -59,4 +59,3 @@ frame_progress = 0.4628865
 [node name="LevelTransition" type="Node" parent="." unique_id=811000798]
 script = ExtResource("2_4cgun")
 ScenePath = "res://TELT/Scenes/TeltBattle.tscn"
-EnemyName = "Boss"

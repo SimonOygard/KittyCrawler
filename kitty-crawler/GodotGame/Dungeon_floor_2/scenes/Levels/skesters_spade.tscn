@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dl6y4p2nygwmy"]
+
+[ext_resource type="PackedScene" uid="uid://d44dlueljh4h" path="res://Dungeon_floor_2/scenes/Maps/spade_map.tscn" id="1_uur3i"]
+[ext_resource type="PackedScene" uid="uid://bao4jykmd4cg0" path="res://scenes/eve.tscn" id="2_ik45p"]
+[ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="3_umt08"]
+[ext_resource type="Script" uid="uid://bw6ou6msfjtmo" path="res://scripts/MimicManager.cs" id="4_2ouvy"]
+[ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://scenes/Chest.tscn" id="5_e6egn"]
+[ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="6_xqt5p"]
+
+[node name="SkestersSpadeLevel" type="Node2D" unique_id=1768466649]
+position = Vector2(0, 224)
+rotation = -6.2831855
+
+[node name="SpadeMap" parent="." unique_id=2121739106 instance=ExtResource("1_uur3i")]
+
+[node name="Eve" parent="." unique_id=672527403 instance=ExtResource("2_ik45p")]
+position = Vector2(400, -95.99993)
+rotation = 0.012246307
+scale = Vector2(1.5, 1.5)
+
+[node name="CharacterBody2D" parent="." unique_id=1493943995 instance=ExtResource("3_umt08")]
+position = Vector2(399.9999, 384.00006)
+rotation = 0.012245905
+
+[node name="Chests" type="Node2D" parent="." unique_id=2144331154]
+position = Vector2(175.99998, 160.00003)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_2ouvy")
+
+[node name="Chests" parent="Chests" unique_id=494573170 groups=["Chests"] instance=ExtResource("5_e6egn")]
+position = Vector2(10.666658, -5.329868e-06)
+
+[node name="Chests2" parent="Chests" unique_id=1610935740 groups=["Chests"] instance=ExtResource("5_e6egn")]
+position = Vector2(42.666653, 1.2355436e-05)
+
+[node name="Chests3" parent="Chests" unique_id=96483464 groups=["Chests"] instance=ExtResource("5_e6egn")]
+position = Vector2(74.66666, 2.336502e-05)
+
+[node name="Teleporters" type="Node" parent="." unique_id=1267682154]
+
+[node name="Destination1" type="Marker2D" parent="Teleporters" unique_id=764793771]
+position = Vector2(240, 464)
+
+[node name="Destination2" type="Marker2D" parent="Teleporters" unique_id=1500733093]
+position = Vector2(548.99994, 464)
+
+[node name="Destination3" type="Marker2D" parent="Teleporters" unique_id=495696849]
+position = Vector2(400, 208)
+
+[node name="TeleportA" parent="Teleporters" unique_id=1798430977 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
+position = Vector2(397, 500)
+_destination = NodePath("../Destination1")
+
+[node name="TeleportB" parent="Teleporters" unique_id=1401978691 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
+position = Vector2(240, 288)
+_destination = NodePath("../Destination2")
+
+[node name="TeleportC" parent="Teleporters" unique_id=1103823302 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
+position = Vector2(550, 288)
+_destination = NodePath("../Destination3")

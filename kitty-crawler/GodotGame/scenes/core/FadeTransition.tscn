@@ -65,8 +65,8 @@ layer = 20
 
 [node name="FadeToBlack" type="ColorRect" parent="CanvasLayer" unique_id=2057906233]
 offset_left = -1.0
-offset_right = 639.0
-offset_bottom = 365.0
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0.033265438, 0.033265445, 0.033265438, 1)
 

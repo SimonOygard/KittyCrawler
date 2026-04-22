@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3dhhvcsjt4v6"]
 
-[ext_resource type="Script" uid="uid://bctcwfbbcn1vf" path="res://Teleport.cs" id="1_kyeu7"]
+[ext_resource type="Script" uid="uid://bctcwfbbcn1vf" path="res://scripts/singletons/Teleport.cs" id="1_kyeu7"]
 [ext_resource type="Texture2D" uid="uid://ldtsgea5ab0j" path="res://assets/levels/Dimensional_Portal.png" id="2_jfydb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vm8s4"]
@@ -56,7 +56,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyeu7"]
 radius = 32.0
 
-[node name="Teleport" type="CharacterBody2D" unique_id=1798430977]
+[node name="Teleport" type="Area2D" unique_id=1633862423]
 collision_layer = 2
 script = ExtResource("1_kyeu7")
 
