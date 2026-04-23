@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="6_xqt5p"]
 
 [node name="SkestersSpadeLevel" type="Node2D" unique_id=1768466649]
-position = Vector2(0, 224)
+position = Vector2(-5, 222)
 rotation = -6.2831855
 
 [node name="SpadeMap" parent="." unique_id=2121739106 instance=ExtResource("1_uur3i")]
@@ -39,22 +39,22 @@ position = Vector2(74.66666, 2.336502e-05)
 [node name="Teleporters" type="Node" parent="." unique_id=1267682154]
 
 [node name="Destination1" type="Marker2D" parent="Teleporters" unique_id=764793771]
-position = Vector2(240, 464)
+position = Vector2(235, 462)
 
 [node name="Destination2" type="Marker2D" parent="Teleporters" unique_id=1500733093]
-position = Vector2(548.99994, 464)
+position = Vector2(543.99994, 462)
 
 [node name="Destination3" type="Marker2D" parent="Teleporters" unique_id=495696849]
-position = Vector2(400, 208)
+position = Vector2(395, 206)
 
 [node name="TeleportA" parent="Teleporters" unique_id=1798430977 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
-position = Vector2(397, 500)
+position = Vector2(392, 498)
 _destination = NodePath("../Destination1")
 
 [node name="TeleportB" parent="Teleporters" unique_id=1401978691 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
-position = Vector2(240, 288)
+position = Vector2(235, 286)
 _destination = NodePath("../Destination2")
 
 [node name="TeleportC" parent="Teleporters" unique_id=1103823302 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
-position = Vector2(550, 288)
+position = Vector2(545, 286)
 _destination = NodePath("../Destination3")

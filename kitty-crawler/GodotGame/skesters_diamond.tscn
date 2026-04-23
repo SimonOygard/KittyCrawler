@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://b1uolw1r1ly30"]
+
+[ext_resource type="PackedScene" uid="uid://gyjij1tvv1f0" path="res://diamond_map.tscn" id="1_o6i6l"]
+[ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="2_ote1w"]
+[ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://WallTorch.tscn" id="3_wmx2x"]
+
+[node name="Node2D" type="Node2D" unique_id=774304775]
+
+[node name="DiamondMap" parent="." unique_id=468101747 instance=ExtResource("1_o6i6l")]
+
+[node name="CharacterBody2D" parent="DiamondMap" unique_id=1948828453 instance=ExtResource("2_ote1w")]
+position = Vector2(0, 256)
+
+[node name="Torches" type="Node" parent="." unique_id=1667361278]
+
+[node name="WallTorchR1" parent="Torches" unique_id=2319029 instance=ExtResource("3_wmx2x")]
+position = Vector2(45, 218)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR2" parent="Torches" unique_id=1672855142 instance=ExtResource("3_wmx2x")]
+position = Vector2(78.99999, 174)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR3" parent="Torches" unique_id=1257550644 instance=ExtResource("3_wmx2x")]
+position = Vector2(122.99999, 116)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR4" parent="Torches" unique_id=371206042 instance=ExtResource("3_wmx2x")]
+position = Vector2(157, 72)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR5" parent="Torches" unique_id=1084748706 instance=ExtResource("3_wmx2x")]
+position = Vector2(189.99998, 28.000008)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR6" parent="Torches" unique_id=805902917 instance=ExtResource("3_wmx2x")]
+position = Vector2(179, -44.999985)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR7" parent="Torches" unique_id=2105743748 instance=ExtResource("3_wmx2x")]
+position = Vector2(145, -89.999985)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR8" parent="Torches" unique_id=522678124 instance=ExtResource("3_wmx2x")]
+position = Vector2(112, -135.99998)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR9" parent="Torches" unique_id=263306025 instance=ExtResource("3_wmx2x")]
+position = Vector2(67.00001, -190.99998)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchR10" parent="Torches" unique_id=297580259 instance=ExtResource("3_wmx2x")]
+position = Vector2(33.00001, -237.00002)
+scale = Vector2(0.7, 0.7)
+Direction = 2
+
+[node name="WallTorchL" parent="Torches" unique_id=1249451626 instance=ExtResource("3_wmx2x")]
+position = Vector2(-56.000008, 218.99998)
+scale = Vector2(0.7, 0.7)
+Direction = 1
+
+[node name="WallTorchL2" parent="Torches" unique_id=874747683 instance=ExtResource("3_wmx2x")]
+position = Vector2(-89.99999, 173)
+scale = Vector2(0.7, 0.7)
+Direction = 1
+
+[node name="WallTorchL3" parent="Torches" unique_id=400722250 instance=ExtResource("3_wmx2x")]
+position = Vector2(-135, 117.00002)
+scale = Vector2(0.7, 0.7)
+Direction = 1
+
+[node name="WallTorchL4" parent="Torches" unique_id=1283653528 instance=ExtResource("3_wmx2x")]
+position = Vector2(-166.99995, 73)
+scale = Vector2(0.6999998, 0.6999998)
+Direction = 1
+
+[node name="WallTorchL5" parent="Torches" unique_id=2124758288 instance=ExtResource("3_wmx2x")]
+position = Vector2(-201, 27.999998)
+scale = Vector2(0.6999998, 0.6999998)
+Direction = 1
+
+[node name="WallTorchL6" parent="Torches" unique_id=1702110314 instance=ExtResource("3_wmx2x")]
+position = Vector2(-191, -45)
+scale = Vector2(0.6999998, 0.6999998)
+Direction = 1
+
+[node name="WallTorchL7" parent="Torches" unique_id=803795746 instance=ExtResource("3_wmx2x")]
+position = Vector2(-157, -89)
+scale = Vector2(0.6999998, 0.6999998)
+Direction = 1
+
+[node name="WallTorchL8" parent="Torches" unique_id=1158031502 instance=ExtResource("3_wmx2x")]
+position = Vector2(-123, -134)
+scale = Vector2(0.6999998, 0.6999998)
+Direction = 1
+
+[node name="WallTorchL9" parent="Torches" unique_id=658529703 instance=ExtResource("3_wmx2x")]
+position = Vector2(-79.00001, -190)
+scale = Vector2(0.6999998, 0.6999998)
+Direction = 1
+
+[node name="WallTorchL10" parent="Torches" unique_id=1303912209 instance=ExtResource("3_wmx2x")]
+position = Vector2(-45, -235)
+scale = Vector2(0.6999998, 0.6999998)
+Direction = 1
+
+[node name="WallTorchD" parent="Torches" unique_id=1620829293 instance=ExtResource("3_wmx2x")]
+position = Vector2(-6, -280)
+scale = Vector2(0.6999998, 0.6999998)
