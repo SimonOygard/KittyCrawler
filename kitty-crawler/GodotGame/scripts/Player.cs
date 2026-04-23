@@ -208,7 +208,7 @@ namespace PlayerBody
 
         private void UpdateRayDirection()
         {
-            _ray.TargetPosition = _direction * (GridSize +4);
+            _ray.TargetPosition = _direction * (GridSize);
             _ray.ForceRaycastUpdate();
         }
 

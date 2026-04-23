@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d322tcvp3rnq7"]
 
 [ext_resource type="Texture2D" uid="uid://f0k77dq7iusq" path="res://Dungeon_floor_2/Tileset/items og trap animation/torch/torch_2.png" id="1_bd85p"]
-[ext_resource type="Script" uid="uid://ncuv4cc82373" path="res://WallTorch.cs" id="1_esc52"]
+[ext_resource type="Script" uid="uid://ncuv4cc82373" path="res://scripts/WallTorch.cs" id="1_esc52"]
 [ext_resource type="Texture2D" uid="uid://d08wwle8bkbl7" path="res://Dungeon_floor_2/Tileset/items og trap animation/torch/torch_3.png" id="2_eb1y3"]
 [ext_resource type="Texture2D" uid="uid://bw30wb6qvjvfj" path="res://Dungeon_floor_2/Tileset/items og trap animation/torch/torch_1.png" id="3_m767y"]
 [ext_resource type="Texture2D" uid="uid://cmeq0mdn7p7re" path="res://Dungeon_floor_2/Tileset/items og trap animation/torch/torch_4.png" id="4_v6trc"]
@@ -82,7 +82,7 @@ position = Vector2(7.9999995, 7.9999995)
 sprite_frames = SubResource("SpriteFrames_i8n26")
 animation = &"Default"
 autoplay = "Default"
-frame_progress = 0.61433023
+frame_progress = 0.30490464
 
 [node name="PointLight2D" type="PointLight2D" parent="WallTorchSprite" unique_id=312410940]
 position = Vector2(4.6253204e-05, 5.333272)

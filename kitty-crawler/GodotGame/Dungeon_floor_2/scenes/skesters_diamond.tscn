@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b1uolw1r1ly30"]
 
-[ext_resource type="PackedScene" uid="uid://gyjij1tvv1f0" path="res://diamond_map.tscn" id="1_o6i6l"]
+[ext_resource type="PackedScene" uid="uid://gyjij1tvv1f0" path="res://Dungeon_floor_2/scenes/Maps/diamond_map.tscn" id="1_o6i6l"]
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="2_ote1w"]
-[ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://WallTorch.tscn" id="3_wmx2x"]
+[ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://scenes/WallTorch.tscn" id="3_wmx2x"]
 
 [node name="Node2D" type="Node2D" unique_id=774304775]
 
@@ -69,7 +69,7 @@ scale = Vector2(0.7, 0.7)
 Direction = 1
 
 [node name="WallTorchL2" parent="Torches" unique_id=874747683 instance=ExtResource("3_wmx2x")]
-position = Vector2(-89.99999, 173)
+position = Vector2(-88.999985, 173.00002)
 scale = Vector2(0.7, 0.7)
 Direction = 1
 
