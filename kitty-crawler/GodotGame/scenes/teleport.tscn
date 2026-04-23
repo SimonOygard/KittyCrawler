@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://3dhhvcsjt4v6"]
+
+[ext_resource type="Script" uid="uid://bctcwfbbcn1vf" path="res://scripts/singletons/Teleport.cs" id="1_kyeu7"]
+[ext_resource type="Texture2D" uid="uid://ldtsgea5ab0j" path="res://assets/levels/Dimensional_Portal.png" id="2_jfydb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm8s4"]
+atlas = ExtResource("2_jfydb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg2k5"]
+atlas = ExtResource("2_jfydb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o8a4"]
+atlas = ExtResource("2_jfydb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsplj"]
+atlas = ExtResource("2_jfydb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxlc7"]
+atlas = ExtResource("2_jfydb")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i4nc"]
+atlas = ExtResource("2_jfydb")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_df5pm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vm8s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg2k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o8a4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsplj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxlc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i4nc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kyeu7"]
+radius = 32.0
+
+[node name="Teleport" type="Area2D" unique_id=1633862423]
+collision_layer = 2
+script = ExtResource("1_kyeu7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=38162720]
+scale = Vector2(2.28125, 1)
+sprite_frames = SubResource("SpriteFrames_df5pm")
+frame_progress = 0.73934776
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219501005]
+position = Vector2(2, 0)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_kyeu7")
+
+[node name="Node" type="Node" parent="." unique_id=1553621324]

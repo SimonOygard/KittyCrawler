@@ -4,79 +4,6 @@ using Interaction;
 
 namespace PlayerBody
 
-#region Gammal Movement
-
-/*
-public partial class Player : CharacterBody2D
-{
-    [Export] public float Speed = 300f;
-    [Export] public float Acceleration = 10f;
-    [Export] public float Friction = 8f;
-
-    public Vector2 velocity = Vector2.Zero;
-
-    private AnimatedSprite2D _sprite;
-
-    public override void _Ready()
-    {
-        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector2 direction = Input.GetVector("left", "right", "up", "down");
-        velocity = direction * Speed;
-        Velocity = velocity;
-        MoveAndSlide();
-
-        UpdateAnimation(direction);
-    }
-
-    private void UpdateAnimation(Vector2 direction)
-    {
-        if (direction == Vector2.Zero)
-        {
-            _sprite.Play("Idle");
-            return;
-        }
-
-        if (Math.Abs(direction.X) > Math.Abs(direction.Y))
-        {
-            if (direction.X > 0)
-            {
-                _sprite.Play("RunRight");
-            }
-            else
-            {
-                _sprite.Play("RunLeft");
-            }
-        }
-        else
-        {
-            if (direction.Y > 0)
-            {
-                _sprite.Play("RunDown");
-            }
-            else
-            {
-                _sprite.Play("RunUp");
-            }
-
-        }
-    }
-}
-
-*/
-/*
-using Godot;
-using Game.Core;
-using Logger = Game.Core.Logger;
-
-namespace Game.Gameplay
-*/
-
-
-#endregion
 {
     public partial class Player : CharacterBody2D
     {
@@ -133,6 +60,8 @@ namespace Game.Gameplay
                 GD.Print("Interaction input detected");
             }
         }
+
+
         #region interaction
         private void PlayerInteract()
         {
@@ -167,10 +96,18 @@ namespace Game.Gameplay
             {
                 GD.Print("Object is not interactable: " + collider.Name);
             }
-
-
         }
         #endregion interaction
+
+        #region teleport
+        public void TeleportTo(Vector2 newPosition)
+        {
+            GlobalPosition = newPosition;
+            _targetPosition = Position;
+            _isMoving = false;
+        }
+
+        #endregion teleport
 
         #region movement
         private void MovePlayer(float delta)
@@ -199,8 +136,7 @@ namespace Game.Gameplay
 
                     if (_inputHoldTime >= TurnThreshold)
                     {
-                        _ray.TargetPosition = input * GridSize;
-                        _ray.ForceRaycastUpdate();
+                        UpdateRayDirection();
 
                         if (!_ray.IsColliding())
                         {
@@ -276,6 +212,81 @@ namespace Game.Gameplay
             _ray.ForceRaycastUpdate();
         }
 
+        
         #endregion movement
+
+        #region Gammal Movement
+
+        /*
+        public partial class Player : CharacterBody2D
+        {
+            [Export] public float Speed = 300f;
+            [Export] public float Acceleration = 10f;
+            [Export] public float Friction = 8f;
+
+            public Vector2 velocity = Vector2.Zero;
+
+            private AnimatedSprite2D _sprite;
+
+            public override void _Ready()
+            {
+                _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                Vector2 direction = Input.GetVector("left", "right", "up", "down");
+                velocity = direction * Speed;
+                Velocity = velocity;
+                MoveAndSlide();
+
+                UpdateAnimation(direction);
+            }
+
+            private void UpdateAnimation(Vector2 direction)
+            {
+                if (direction == Vector2.Zero)
+                {
+                    _sprite.Play("Idle");
+                    return;
+                }
+
+                if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+                {
+                    if (direction.X > 0)
+                    {
+                        _sprite.Play("RunRight");
+                    }
+                    else
+                    {
+                        _sprite.Play("RunLeft");
+                    }
+                }
+                else
+                {
+                    if (direction.Y > 0)
+                    {
+                        _sprite.Play("RunDown");
+                    }
+                    else
+                    {
+                        _sprite.Play("RunUp");
+                    }
+
+                }
+            }
+        }
+
+        */
+        /*
+        using Godot;
+        using Game.Core;
+        using Logger = Game.Core.Logger;
+
+        namespace Game.Gameplay
+        */
+
+
+        #endregion
     }
 }

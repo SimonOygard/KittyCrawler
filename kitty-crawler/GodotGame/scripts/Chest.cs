@@ -2,23 +2,27 @@ using Godot;
 using Interaction;
 using System;
 
+namespace ChestInteractions;
+
 public partial class Chest : CharacterBody2D, IInteractable
 {
     private AnimatedSprite2D _sprite;
     private bool _hasBeenInteractedWith = false;
-    private bool _isMimic = false;
+    public bool IsMimic { get; set; } = false;
 
+    [Export]
+    private LevelTransition _levelTransition;
+    
     public override void _Ready()
     {
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _levelTransition = GetNode<LevelTransition>("LevelTransition");
+
 
         if (_sprite != null)
         {
             _sprite.Play("idle");
         }
-
-        _isMimic = new Random().Next(1, 11) == 10; // 10% chance to be a mimic
-        GD.Print("Chest " + Name + " is a mimic: " + _isMimic);
 
     }
 
@@ -31,7 +35,7 @@ public partial class Chest : CharacterBody2D, IInteractable
 
         _hasBeenInteractedWith = true;
 
-        if (_isMimic)
+        if (IsMimic)
         {
             TriggerMimic();
             GD.Print("Mimic has been interacted with " + Name);

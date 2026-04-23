@@ -487,22 +487,19 @@ script = ExtResource("1_ij6vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2130984860]
 texture_filter = 1
-position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_ij6vw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=824392712]
 texture_filter = 1
-position = Vector2(8, 0)
 sprite_frames = SubResource("SpriteFrames_186t8")
 animation = &"walk_up"
 speed_scale = 0.685
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1345113855]
-position = Vector2(8, 8)
-target_position = Vector2(0, 16)
+target_position = Vector2(0, 8)
 collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1730084776]
 position = Vector2(8, 8)
-zoom = Vector2(4, 4)
+zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
