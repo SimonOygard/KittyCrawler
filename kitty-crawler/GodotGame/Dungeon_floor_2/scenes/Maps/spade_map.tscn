@@ -3,7 +3,6 @@
 [ext_resource type="TileSet" uid="uid://cxqwdml0cduy5" path="res://Dungeon_floor_2/resources/SkestersTileset.tres" id="1_3h87t"]
 
 [node name="SpadeMap" type="Node2D" unique_id=2121739106]
-position = Vector2(0, 224)
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=2104011133]
 position = Vector2(806.00006, 426.99994)
