@@ -249,7 +249,7 @@ scale = Vector2(0.7, 0.7)
 Direction = 2
 
 [node name="WallTorchR11" parent="Torches/TorchesRight" unique_id=985882343 instance=ExtResource("7_ik45p")]
-position = Vector2(448, 320)
+position = Vector2(454.99997, 324)
 scale = Vector2(0.7, 0.7)
 Direction = 2
 

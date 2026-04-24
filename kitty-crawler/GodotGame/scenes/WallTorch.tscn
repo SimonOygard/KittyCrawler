@@ -30,12 +30,36 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_v6trc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_bd85p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eb1y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m767y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v6trc")
 }],
 "loop": true,
 "name": &"Default",
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqs2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vmbqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lhb43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rcil7")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vqs2c")
 }, {
@@ -63,13 +87,14 @@ fill_from = Vector2(0.54347825, 0.42608696)
 fill_to = Vector2(0.5652174, 0.9391304)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_372t6"]
+lifetime_randomness = 0.6
 particle_flag_disable_z = true
-angle_min = 0.5000107
-angle_max = 1.5000107
+angle_min = -39.99999
+angle_max = 40.00001
 direction = Vector3(0, -1, 0)
 spread = 15.352
-initial_velocity_min = 0.19999999
-initial_velocity_max = 0.5
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
 gravity = Vector3(0, -20, 0)
 scale_min = 0.5
 scale_max = 1.5
@@ -81,7 +106,7 @@ script = ExtResource("1_esc52")
 sprite_frames = SubResource("SpriteFrames_i8n26")
 animation = &"Default"
 autoplay = "Default"
-frame_progress = 0.2265017
+frame_progress = 0.56973356
 
 [node name="PointLight2D" type="PointLight2D" parent="WallTorchSprite" unique_id=312410940]
 scale = Vector2(0.9230708, 0.57083505)
@@ -98,10 +123,10 @@ modulate = Color(0.71418923, 0.5768823, 0.5523021, 1)
 self_modulate = Color(0.41834834, 0.31770107, 0.3318543, 1)
 show_behind_parent = true
 position = Vector2(0, -8)
-amount = 3
-amount_ratio = 0.3178
-lifetime = 0.65
-speed_scale = 0.43
-fixed_fps = 2
+amount = 16
+lifetime = 0.8
+speed_scale = 0.15
+randomness = 0.6
+fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_372t6")
 script = ExtResource("10_hgtn8")

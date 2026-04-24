@@ -2,10 +2,10 @@ using Godot;
 
 public partial class FlameLight : PointLight2D
 {
-    [Export] public float FlickerSpeed = 10.0f;
-    [Export] public float EnergyMin = 0.8f;
-    [Export] public float EnergyMax = 1.3f;
-    [Export] public float RadiusVariation = 0.1f;
+    [Export] public float FlickerSpeed = 2.0f;
+    [Export] public float EnergyMin = 0.9f;
+    [Export] public float EnergyMax = 1.1f;
+    [Export] public float RadiusVariation = 0.05f;
 
     private float _baseEnergy;
     private float _baseTextureScale;
@@ -25,7 +25,9 @@ public partial class FlameLight : PointLight2D
                       * Mathf.Sin(_time * 2.3f)
                       * Mathf.Sin(_time * 0.9f);
 
-        Energy = Mathf.Lerp(EnergyMin, EnergyMax, (noise + 1.0f) / 2.0f);
-        TextureScale = _baseTextureScale + GD.Randf() * RadiusVariation * 2 - RadiusVariation;
+        float t = (noise + 1.0f) / 2.0f; 
+
+        Energy = Mathf.Lerp(EnergyMin, EnergyMax, t);
+        TextureScale = _baseTextureScale + Mathf.Lerp(-RadiusVariation, RadiusVariation, t);
     }
 }
