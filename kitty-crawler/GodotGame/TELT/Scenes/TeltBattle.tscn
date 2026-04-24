@@ -842,10 +842,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RematchButton" type="Button" parent="GameOverScreen" unique_id=1779116948]
-offset_left = 534.0
-offset_top = 518.0
-offset_right = 772.0
-offset_bottom = 639.0
+offset_left = 504.0
+offset_top = 490.0
+offset_right = 774.0
+offset_bottom = 584.0
 theme_override_constants/outline_size = 0
 theme_override_constants/h_separation = 4
 theme_override_constants/align_to_largest_stylebox = 0
