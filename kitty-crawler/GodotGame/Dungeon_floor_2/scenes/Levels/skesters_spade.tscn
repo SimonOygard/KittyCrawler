@@ -27,224 +27,197 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("4_2ouvy")
 
 [node name="Chests" parent="Chests" unique_id=494573170 groups=["Chests"] instance=ExtResource("5_e6egn")]
-position = Vector2(10.666658, -5.329868e-06)
+position = Vector2(114.66668, -11.333349)
 
 [node name="Chests2" parent="Chests" unique_id=1610935740 groups=["Chests"] instance=ExtResource("5_e6egn")]
-position = Vector2(42.666653, 1.2355436e-05)
+position = Vector2(146.66667, -11.333331)
 
 [node name="Chests3" parent="Chests" unique_id=96483464 groups=["Chests"] instance=ExtResource("5_e6egn")]
-position = Vector2(74.66666, 2.336502e-05)
+position = Vector2(178.66669, -11.333321)
 
 [node name="Teleporters" type="Node" parent="." unique_id=1267682154]
 
-[node name="Destination1" type="Marker2D" parent="Teleporters" unique_id=764793771]
-position = Vector2(239, 228)
+[node name="DestinationA" type="Marker2D" parent="Teleporters" unique_id=764793771]
+position = Vector2(397, 188)
 
-[node name="Destination2" type="Marker2D" parent="Teleporters" unique_id=1500733093]
-position = Vector2(553, 222)
-
-[node name="Destination3" type="Marker2D" parent="Teleporters" unique_id=495696849]
-position = Vector2(398, -21)
+[node name="DestinationB" type="Marker2D" parent="Teleporters" unique_id=495696849]
+position = Vector2(399, -22)
 
 [node name="TeleportA" parent="Teleporters" unique_id=1798430977 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
 position = Vector2(397, 288)
-_destination = NodePath("../Destination1")
+_destination = NodePath("../DestinationA")
 
-[node name="TeleportB" parent="Teleporters" unique_id=1401978691 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
-position = Vector2(240, 64)
-_destination = NodePath("../Destination2")
-
-[node name="TeleportC" parent="Teleporters" unique_id=1103823302 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
-position = Vector2(544, 48)
-_destination = NodePath("../Destination3")
+[node name="TeleportB" parent="Teleporters" unique_id=1103823302 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
+position = Vector2(396, 58)
+_destination = NodePath("../DestinationB")
 
 [node name="Torches" type="Node" parent="." unique_id=796786807]
 
 [node name="TorchesLeft" type="Node" parent="Torches" unique_id=1058032053]
 
 [node name="WallTorch1L" parent="Torches/TorchesLeft" unique_id=503909927 instance=ExtResource("7_ik45p")]
-position = Vector2(388, 368)
+position = Vector2(342, 326)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorch2L" parent="Torches/TorchesLeft" unique_id=229251900 instance=ExtResource("7_ik45p")]
-position = Vector2(269, -81)
+position = Vector2(274.00003, -76)
 scale = Vector2(0.7, 0.7)
 Direction = 1
 
 [node name="WallTorchL3" parent="Torches/TorchesLeft" unique_id=675434846 instance=ExtResource("7_ik45p")]
-position = Vector2(313, -125)
+position = Vector2(319, -122.99999)
 scale = Vector2(0.7, 0.7)
 Direction = 1
 
 [node name="WallTorchL4" parent="Torches/TorchesLeft" unique_id=945719381 instance=ExtResource("7_ik45p")]
-position = Vector2(347, -159)
+position = Vector2(353, -156)
 scale = Vector2(0.7, 0.7)
 Direction = 1
 
 [node name="WallTorchL5" parent="Torches/TorchesLeft" unique_id=1673685647 instance=ExtResource("7_ik45p")]
-position = Vector2(291, 367)
+position = Vector2(298, 372)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorchL6" parent="Torches/TorchesLeft" unique_id=999889791 instance=ExtResource("7_ik45p")]
-position = Vector2(247, 410)
+position = Vector2(253, 416)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorchL7" parent="Torches/TorchesLeft" unique_id=1195700475 instance=ExtResource("7_ik45p")]
-position = Vector2(134, 53)
+position = Vector2(140, 58)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorchL8" parent="Torches/TorchesLeft" unique_id=1382252780 instance=ExtResource("7_ik45p")]
-position = Vector2(101.00001, 105)
+position = Vector2(107, 107)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorchL9" parent="Torches/TorchesLeft" unique_id=2069434658 instance=ExtResource("7_ik45p")]
-position = Vector2(180, 9)
+position = Vector2(185, 15)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorchL10" parent="Torches/TorchesLeft" unique_id=1578075912 instance=ExtResource("7_ik45p")]
-position = Vector2(90, 145)
+position = Vector2(95, 151)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorchL11" parent="Torches/TorchesLeft" unique_id=1569741950 instance=ExtResource("7_ik45p")]
-position = Vector2(90, 196)
+position = Vector2(95, 196)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="WallTorchL12" parent="Torches/TorchesLeft" unique_id=1046374251 instance=ExtResource("7_ik45p")]
-position = Vector2(112, 252)
-scale = Vector2(0.6999999, 0.6999999)
-Direction = 1
-
-[node name="WallTorchL13" parent="Torches/TorchesLeft" unique_id=263306025 instance=ExtResource("7_ik45p")]
-position = Vector2(407.99997, 47)
-scale = Vector2(0.6999999, 0.6999999)
-Direction = 1
-
-[node name="WallTorchL14" parent="Torches/TorchesLeft" unique_id=1797089691 instance=ExtResource("7_ik45p")]
-position = Vector2(407.99997, 129)
-scale = Vector2(0.6999999, 0.6999999)
-Direction = 1
-
-[node name="WallTorchL15" parent="Torches/TorchesLeft" unique_id=1877635259 instance=ExtResource("7_ik45p")]
-position = Vector2(408, 205)
+position = Vector2(118, 257)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 1
 
 [node name="TorchesDefault" type="Node" parent="Torches" unique_id=1548487927]
 
-[node name="WallTorchD" parent="Torches/TorchesDefault" unique_id=572801199 instance=ExtResource("7_ik45p")]
-position = Vector2(376.00003, 246)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch2D" parent="Torches/TorchesDefault" unique_id=1405566275 instance=ExtResource("7_ik45p")]
-position = Vector2(411.00003, 246)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch3D" parent="Torches/TorchesDefault" unique_id=536227304 instance=ExtResource("7_ik45p")]
-position = Vector2(326, 11)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch4D" parent="Torches/TorchesDefault" unique_id=2063016597 instance=ExtResource("7_ik45p")]
-position = Vector2(369, 11)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch5D" parent="Torches/TorchesDefault" unique_id=2037812684 instance=ExtResource("7_ik45p")]
-position = Vector2(258, -10)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch6D" parent="Torches/TorchesDefault" unique_id=310567583 instance=ExtResource("7_ik45p")]
-position = Vector2(292, 4.7683716e-07)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch7D" parent="Torches/TorchesDefault" unique_id=32986802 instance=ExtResource("7_ik45p")]
-position = Vector2(492, 3.8146973e-06)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch9D" parent="Torches/TorchesDefault" unique_id=1023855462 instance=ExtResource("7_ik45p")]
-position = Vector2(415, 11.000002)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch10D" parent="Torches/TorchesDefault" unique_id=707651761 instance=ExtResource("7_ik45p")]
-position = Vector2(458.99997, 11.000004)
-scale = Vector2(0.7, 0.7)
-
-[node name="WallTorch11D" parent="Torches/TorchesDefault" unique_id=830587684 instance=ExtResource("7_ik45p")]
-position = Vector2(525.99994, -10.999992)
-scale = Vector2(0.7, 0.7)
-
 [node name="WallTorch15D" parent="Torches/TorchesDefault" unique_id=361278630 instance=ExtResource("7_ik45p")]
-position = Vector2(392, -212.99998)
+position = Vector2(396.99997, -207)
 scale = Vector2(0.7, 0.7)
 
 [node name="WallTorch18D" parent="Torches/TorchesDefault" unique_id=937211211 instance=ExtResource("7_ik45p")]
-position = Vector2(200, 320)
+position = Vector2(209, 320)
 scale = Vector2(0.6999999, 0.6999999)
 
 [node name="WallTorchL19D" parent="Torches/TorchesDefault" unique_id=223192969 instance=ExtResource("7_ik45p")]
-position = Vector2(246, 320)
+position = Vector2(252.00002, 321)
 scale = Vector2(0.6999999, 0.6999999)
 
 [node name="WallTorchL20D" parent="Torches/TorchesDefault" unique_id=430817325 instance=ExtResource("7_ik45p")]
-position = Vector2(404, 363)
+position = Vector2(382.00003, 253)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL20D2" parent="Torches/TorchesDefault" unique_id=263306025 instance=ExtResource("7_ik45p")]
+position = Vector2(414.00003, 252.00002)
 scale = Vector2(0.6999999, 0.6999999)
 
 [node name="WallTorchL21D" parent="Torches/TorchesDefault" unique_id=85443040 instance=ExtResource("7_ik45p")]
-position = Vector2(585, 315)
+position = Vector2(587, 320)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL21D2" parent="Torches/TorchesDefault" unique_id=457430381 instance=ExtResource("7_ik45p")]
+position = Vector2(544, 320)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL21D3" parent="Torches/TorchesDefault" unique_id=1945212455 instance=ExtResource("7_ik45p")]
+position = Vector2(432, 18)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL21D4" parent="Torches/TorchesDefault" unique_id=1211479471 instance=ExtResource("7_ik45p")]
+position = Vector2(365, 17)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL21D6" parent="Torches/TorchesDefault" unique_id=767088787 instance=ExtResource("7_ik45p")]
+position = Vector2(500, 7)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL21D7" parent="Torches/TorchesDefault" unique_id=1631040741 instance=ExtResource("7_ik45p")]
+position = Vector2(297, 6)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL21D8" parent="Torches/TorchesDefault" unique_id=896220894 instance=ExtResource("7_ik45p")]
+position = Vector2(236, -15)
+scale = Vector2(0.6999999, 0.6999999)
+
+[node name="WallTorchL21D10" parent="Torches/TorchesDefault" unique_id=749525118 instance=ExtResource("7_ik45p")]
+position = Vector2(561, -16)
 scale = Vector2(0.6999999, 0.6999999)
 
 [node name="TorchesRight" type="Node" parent="Torches" unique_id=145019642]
 
 [node name="WallTorchR1" parent="Torches/TorchesRight" unique_id=989042346 instance=ExtResource("7_ik45p")]
-position = Vector2(673, 254)
+position = Vector2(679, 256)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 2
 
 [node name="WallTorchR2" parent="Torches/TorchesRight" unique_id=953478753 instance=ExtResource("7_ik45p")]
-position = Vector2(695, 191)
+position = Vector2(701, 195.99998)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 2
 
 [node name="WallTorchR3" parent="Torches/TorchesRight" unique_id=1888626080 instance=ExtResource("7_ik45p")]
-position = Vector2(695, 144)
+position = Vector2(701, 152)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 2
 
 [node name="WallTorchR4" parent="Torches/TorchesRight" unique_id=88871281 instance=ExtResource("7_ik45p")]
-position = Vector2(683, 106)
+position = Vector2(689, 111)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 2
 
 [node name="WallTorchR5" parent="Torches/TorchesRight" unique_id=1221397664 instance=ExtResource("7_ik45p")]
-position = Vector2(651, 53)
+position = Vector2(656, 59)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 2
 
 [node name="WallTorchR6" parent="Torches/TorchesRight" unique_id=1551173115 instance=ExtResource("7_ik45p")]
-position = Vector2(605, 7)
+position = Vector2(611, 13)
 scale = Vector2(0.6999999, 0.6999999)
 Direction = 2
 
 [node name="WallTorchR7" parent="Torches/TorchesRight" unique_id=1075686004 instance=ExtResource("7_ik45p")]
-position = Vector2(516, -88.999985)
+position = Vector2(477, -120)
 scale = Vector2(0.7, 0.7)
+Direction = 2
 
 [node name="WallTorchR8" parent="Torches/TorchesRight" unique_id=289370827 instance=ExtResource("7_ik45p")]
-position = Vector2(438, -168)
+position = Vector2(443, -155)
 scale = Vector2(0.7, 0.7)
+Direction = 2
 
 [node name="WallTorchR9" parent="Torches/TorchesRight" unique_id=1353407972 instance=ExtResource("7_ik45p")]
-position = Vector2(471, -134)
+position = Vector2(520.99994, -76)
 scale = Vector2(0.7, 0.7)
+Direction = 2
 
 [node name="WallTorchR10" parent="Torches/TorchesRight" unique_id=2137602683 instance=ExtResource("7_ik45p")]
-position = Vector2(538, 413)
+position = Vector2(533, 405)
 scale = Vector2(0.7, 0.7)
 Direction = 2
 
@@ -254,21 +227,6 @@ scale = Vector2(0.7, 0.7)
 Direction = 2
 
 [node name="WallTorchR12" parent="Torches/TorchesRight" unique_id=1754754584 instance=ExtResource("7_ik45p")]
-position = Vector2(420.99997, 368.00003)
-scale = Vector2(0.7, 0.7)
-Direction = 2
-
-[node name="WallTorchR13" parent="Torches/TorchesRight" unique_id=1255396001 instance=ExtResource("7_ik45p")]
-position = Vector2(377, 205)
-scale = Vector2(0.7, 0.7)
-Direction = 2
-
-[node name="WallTorchR14" parent="Torches/TorchesRight" unique_id=1209981529 instance=ExtResource("7_ik45p")]
-position = Vector2(376, 129)
-scale = Vector2(0.7, 0.7)
-Direction = 2
-
-[node name="WallTorchR15" parent="Torches/TorchesRight" unique_id=1136441199 instance=ExtResource("7_ik45p")]
-position = Vector2(376, 47.000008)
+position = Vector2(498.99997, 373)
 scale = Vector2(0.7, 0.7)
 Direction = 2
