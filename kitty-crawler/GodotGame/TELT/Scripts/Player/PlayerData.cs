@@ -87,7 +87,12 @@ public partial class PlayerData : Node
     public void CollectBattlemapCards(List<CardData> cardsFromBattlemap)
     {
         foreach (var card in cardsFromBattlemap)
-            card.ResetCurrentDamage(); // ← nullstill stats
+        {
+            card.ResetCurrentDamage();
+            card.IsPoisoned = false; // ← legg til
+            card.IsEnraged = false; // ← legg til
+        }
+
         _discardPile.AddRange(cardsFromBattlemap);
     }
 

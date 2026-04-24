@@ -13,5 +13,5 @@ CardName = "Skester"
 CardRarity = 2
 Texture = SubResource("AtlasTexture_f6qwu")
 AbilityDescription = "Can be put in any empty slot"
-Ability = 7
+Ability = 12
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

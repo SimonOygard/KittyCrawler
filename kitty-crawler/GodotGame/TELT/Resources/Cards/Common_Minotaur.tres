@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ch05md6gs7vi2"]
+
+[ext_resource type="Texture2D" uid="uid://bxsu5dvwyw5ym" path="res://TELT/Tilesets/BaseCardsPack2.png" id="1_8bqo8"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_c5gnx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2mt8"]
+atlas = ExtResource("1_8bqo8")
+region = Rect2(128, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_c5gnx")
+CardName = "Minotaur"
+Damage = 3
+Texture = SubResource("AtlasTexture_y2mt8")
+AbilityDescription = "Give a unit      RAGE"
+Ability = 19
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

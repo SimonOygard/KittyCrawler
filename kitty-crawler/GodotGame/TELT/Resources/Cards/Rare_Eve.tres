@@ -14,5 +14,5 @@ Damage = 7
 CardRarity = 2
 Texture = SubResource("AtlasTexture_f6qwu")
 AbilityDescription = "All enemy units gets -2 stats"
-Ability = 8
+Ability = 13
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

@@ -10,9 +10,7 @@ region = Rect2(256, 96, 64, 96)
 [resource]
 script = ExtResource("2_8qe1d")
 CardName = "Golem"
-Damage = 6
+Damage = 9
 CardRarity = 1
 Texture = SubResource("AtlasTexture_f6qwu")
-AbilityDescription = "Draw a card"
-Ability = 5
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

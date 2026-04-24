@@ -26,12 +26,9 @@ public partial class EnemyAI : Node
     // ── Hovedmetode: AI velger kort og slot ───────────────────────────
     public void TakeTurn()
     {
-        GD.Print($"[AI] TakeTurn: Kort på hånd={_enemyData.HandCount}, CurrentTurn={_gameManager.CurrentTurn}");
         if (_gameManager.CurrentTurn != GameManager.TurnOwner.Enemy) return;
         if (!_enemyData.HasCardsInHand)
         {
-            GD.Print("[AI] Ingen kort på hånd!");
-            // Bytt til spiller hvis det fortsatt er AI sin tur
             if (_gameManager.CurrentTurn == GameManager.TurnOwner.Enemy)
                 _gameManager.SwitchTurnPublic();
             return;
@@ -39,21 +36,19 @@ public partial class EnemyAI : Node
 
         var hand = _enemyData.GetHand();
 
-        // Skester-logikk: legg på motstander hvis de har ledige slots
+        // Skester-logikk
         var skester = hand.FirstOrDefault(c => c.Ability == CardData.AbilityType.AnySlot);
         if (skester != null)
         {
             var playerEmptySlots = GetPlayerEmptySlots();
             if (playerEmptySlots.Count > 0)
             {
-                // Legg Skester på motstanderens ledige slot
                 var targetSlot = playerEmptySlots.First();
                 bool placed = _battleMap.TryPlacePlayerCard(skester, targetSlot);
                 if (placed)
                 {
                     _enemyData.TryPlayCard(skester);
                     GD.Print($"[AI] Skester plassert på spillerens {targetSlot}-slot!");
-
                     if (_gameManager.CheckWarPhase()) return;
                     _gameManager.SwitchTurnPublic();
                     return;
@@ -61,22 +56,18 @@ public partial class EnemyAI : Node
             }
             else if (hand.Count == 1)
             {
-                // Siste kort på hånd, legg Skester på egne ledige slots
                 var availableSlots = GetAvailableSlots();
                 if (availableSlots.Count > 0)
                 {
                     _gameManager.TryPlayCard(skester, availableSlots.First(), GameManager.TurnOwner.Enemy);
-                    GD.Print("[AI] Skester lagt på egne slots — siste kort");
                     return;
                 }
             }
         }
 
         var availableSlots2 = GetAvailableSlots();
-        GD.Print($"[AI] Ledige slots: {availableSlots2.Count}");
         if (availableSlots2.Count == 0)
         {
-            GD.Print("[AI] Ingen ledige slots!");
             _gameManager.SwitchTurnPublic();
             return;
         }
@@ -91,45 +82,14 @@ public partial class EnemyAI : Node
         else
         {
             var targetType = _abilityResolver.GetTargetType(chosenCard);
-
-            if (chosenCard.Ability == CardData.AbilityType.SwitchSlots)
-            {
-                // Hilda: bytt eget svakeste med motstanderens sterkeste
-                Slot weakestOwn = null;
-                int lowestDamage = int.MaxValue;
-                for (int i = 0; i < 3; i++)
-                {
-                    var slot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
-                    if (slot.IsOccupied && slot.GetDamage() < lowestDamage)
-                    {
-                        lowestDamage = slot.GetDamage();
-                        weakestOwn = slot;
-                    }
-                }
-
-                Slot strongestPlayer = null;
-                int highestDamage = -1;
-                for (int i = 0; i < 3; i++)
-                {
-                    var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
-                    if (slot.IsOccupied && slot.GetDamage() > highestDamage)
-                    {
-                        highestDamage = slot.GetDamage();
-                        strongestPlayer = slot;
-                    }
-                }
-
-                if (weakestOwn != null && strongestPlayer != null)
-                    _abilityResolver.ResolveSwitchSlots(weakestOwn, strongestPlayer);
-            }
-            else if (targetType == AbilityResolver.TargetType.HandCard)
+            if (targetType == AbilityResolver.TargetType.HandCard)
             {
                 var currentHand = _enemyData.GetHand();
                 if (currentHand.Count > 0)
                 {
                     var weakest = currentHand
                         .Where(c => c.Ability != CardData.AbilityType.NoExceedTortoise
-                                    && c.Ability != CardData.AbilityType.AnySlot)
+                                 && c.Ability != CardData.AbilityType.AnySlot)
                         .OrderBy(c => c.GetCurrentDamage())
                         .FirstOrDefault();
                     weakest ??= currentHand.OrderBy(c => c.GetCurrentDamage()).First();
@@ -150,27 +110,17 @@ public partial class EnemyAI : Node
             return;
         }
 
-// Re-sjekk regel 3.3 etter ability — ability kan ha frigjort spillers slot
-        if (_gameManager.CurrentTurn == GameManager.TurnOwner.Enemy
-            && _battleMap.PlayerEmptySlotCount > 0
-            && _playerData.HasCardsInHand)
-        {
-            GD.Print("[AI] Ability frigjorde spillers slot — gir tur tilbake");
-            _gameManager.SwitchTurnPublic();
-            return;
-        }
-
-// Hvis det fortsatt er AI sin tur (regel 3.3), ta en ny tur
         if (_gameManager.CurrentTurn == GameManager.TurnOwner.Enemy)
         {
-            GD.Print("[AI] Fortsatt AI sin tur — tar ny tur");
-            var timer = GetTree().CreateTimer(0.8f);
+            var timer = GetTree().CreateTimer(0.5f);
             timer.Timeout += TakeTurn;
-            return;
         }
 
+
         GD.Print($"[AI] Spilte {chosenCard.CardName} i {chosenSlot}");
-    }
+        }
+
+
 
 // ── Hjelpemetode: spillerens ledige slots ─────────────────────────
         private List<Slot.SlotPosition> GetPlayerEmptySlots()
@@ -273,11 +223,11 @@ public partial class EnemyAI : Node
         {
             switch (card.Ability)
             {
-                case CardData.AbilityType.GiveMinusStat:
-                    // Skeleton: velg spillerens sterkeste kort (ikke seg selv)
+                case CardData.AbilityType.GiveMinusOneStat:
+                case CardData.AbilityType.GiveMinusTwoStats:
                     Slot bestPlayerSlot = null;
                     int highestDamage = -1;
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
                         if (slot.IsOccupied && slot.GetDamage() > highestDamage)
@@ -286,14 +236,14 @@ public partial class EnemyAI : Node
                             bestPlayerSlot = slot;
                         }
                     }
-
                     return bestPlayerSlot;
 
-                case CardData.AbilityType.GivePlusStat:
-                    // Drake: velg egne sterkeste kort
+                case CardData.AbilityType.GivePlusOneStat:
+                case CardData.AbilityType.GivePlusTwoStats:
+                    // velg egne sterkeste kort
                     Slot bestEnemySlot = null;
                     int highest = -1;
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         var slot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
                         if (slot.IsOccupied && slot.GetDamage() > highest)
@@ -305,9 +255,39 @@ public partial class EnemyAI : Node
 
                     return bestEnemySlot;
 
+                case CardData.AbilityType.ResetStat:
+                    // Wraith: reset spillerens sterkeste kort
+                    Slot resetTarget = null;
+                    int resetHighest = -1;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                        if (slot.IsOccupied && slot.GetDamage() > resetHighest)
+                        {
+                            resetHighest = slot.GetDamage();
+                            resetTarget = slot;
+                        }
+                    }
+                    return resetTarget;
+
+                case CardData.AbilityType.CopyStat:
+                    // Cat: kopier fra spillerens sterkeste kort
+                    Slot copyTarget = null;
+                    int copyHighest = -1;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                        if (slot.IsOccupied && slot.GetDamage() > copyHighest)
+                        {
+                            copyHighest = slot.GetDamage();
+                            copyTarget = slot;
+                        }
+                    }
+                    return copyTarget;
+
                 case CardData.AbilityType.RemoveUnit:
                     // Druid: sjekk først om Skester er på eget brett
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         var slot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
                         if (slot.IsOccupied && slot.Card.Ability == CardData.AbilityType.AnySlot)
@@ -316,7 +296,7 @@ public partial class EnemyAI : Node
                     // Ellers fjern spillerens sterkeste kort
                     Slot strongestPlayer = null;
                     int strongestDamage = -1;
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
                         if (slot.IsOccupied && slot.GetDamage() > strongestDamage)
@@ -331,7 +311,7 @@ public partial class EnemyAI : Node
                     // Mio: fjern spillerens sterkeste kort
                     Slot mioTarget = null;
                     int mioBest = -1;
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
                         if (slot.IsOccupied && slot.GetDamage() > mioBest)
@@ -342,6 +322,27 @@ public partial class EnemyAI : Node
                     }
 
                     return mioTarget;
+
+                case CardData.AbilityType.ApplyPoison:
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                        if (slot.IsOccupied && !slot.Card.HasStatus)
+                            return slot;
+                    }
+                    return null;
+
+                case CardData.AbilityType.ApplyRage:
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var slot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
+                        if (slot.IsOccupied && !slot.Card.HasStatus)
+                            return slot;
+                    }
+                    return null;
+
+                case CardData.AbilityType.SwitchSlots:
+                    return null;
 
                 default:
                     return null;

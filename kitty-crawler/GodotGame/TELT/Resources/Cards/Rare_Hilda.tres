@@ -14,5 +14,5 @@ Damage = 6
 CardRarity = 2
 Texture = SubResource("AtlasTexture_f6qwu")
 AbilityDescription = "Swap two units"
-Ability = 10
+Ability = 20
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

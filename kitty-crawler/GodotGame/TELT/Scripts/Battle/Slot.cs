@@ -4,8 +4,7 @@ namespace KittyCrawler.TELT;
 
 public partial class Slot : Node
 {
-    public enum SlotPosition { Left, Middle, Right }
-    public enum SlotOwner { Player, Enemy }
+    public enum SlotPosition { Left, MidLeft, MidRight, Right }    public enum SlotOwner { Player, Enemy }
 
     public SlotPosition Position { get; set; }
     public SlotOwner Owner { get; set; }

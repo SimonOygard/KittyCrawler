@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cm1bg71whb43d"]
+
+[ext_resource type="Texture2D" uid="uid://bxsu5dvwyw5ym" path="res://TELT/Tilesets/BaseCardsPack2.png" id="1_6spt3"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_7834s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2mt8"]
+atlas = ExtResource("1_6spt3")
+region = Rect2(0, 192, 64, 96)
+
+[resource]
+script = ExtResource("2_7834s")
+CardName = "Horror"
+Damage = 4
+CardRarity = 1
+Texture = SubResource("AtlasTexture_y2mt8")
+AbilityDescription = "Remove a unit"
+Ability = 7
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"
