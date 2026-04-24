@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://gyjij1tvv1f0"]
 
 [ext_resource type="TileSet" uid="uid://cxqwdml0cduy5" path="res://Dungeon_floor_2/resources/SkestersTileset.tres" id="1_lnjdb"]
+[ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://scenes/WallTorch.tscn" id="2_13hhd"]
 
 [node name="DiamondMap" type="Node2D" unique_id=468101747]
 
@@ -21,3 +22,88 @@ rotation = -0.0013631361
 scale = Vector2(0.7, 0.7)
 tile_map_data = PackedByteArray("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")
 tile_set = ExtResource("1_lnjdb")
+
+[node name="Torches" type="Node" parent="." unique_id=2072176872]
+
+[node name="WallTorchR1" parent="Torches" unique_id=263306025 instance=ExtResource("2_13hhd")]
+position = Vector2(48, 224)
+Direction = 2
+
+[node name="WallTorchR2" parent="Torches" unique_id=1027132612 instance=ExtResource("2_13hhd")]
+position = Vector2(82, 179)
+Direction = 2
+
+[node name="WallTorchR3" parent="Torches" unique_id=1825574622 instance=ExtResource("2_13hhd")]
+position = Vector2(126, 122)
+Direction = 2
+
+[node name="WallTorchR4" parent="Torches" unique_id=626553722 instance=ExtResource("2_13hhd")]
+position = Vector2(160, 78)
+Direction = 2
+
+[node name="WallTorchR5" parent="Torches" unique_id=1807726661 instance=ExtResource("2_13hhd")]
+position = Vector2(192.99998, 32)
+Direction = 2
+
+[node name="WallTorchR6" parent="Torches" unique_id=400789803 instance=ExtResource("2_13hhd")]
+position = Vector2(194, -21)
+Direction = 2
+
+[node name="WallTorchR7" parent="Torches" unique_id=1572475447 instance=ExtResource("2_13hhd")]
+position = Vector2(160, -65)
+Direction = 2
+
+[node name="WallTorchR8" parent="Torches" unique_id=797655055 instance=ExtResource("2_13hhd")]
+position = Vector2(127, -110)
+Direction = 2
+
+[node name="WallTorchR9" parent="Torches" unique_id=1833594057 instance=ExtResource("2_13hhd")]
+position = Vector2(93, -154)
+Direction = 2
+
+[node name="WallTorchR10" parent="Torches" unique_id=1821530755 instance=ExtResource("2_13hhd")]
+position = Vector2(48, -210)
+Direction = 2
+
+[node name="WallTorchL" parent="Torches" unique_id=762542848 instance=ExtResource("2_13hhd")]
+position = Vector2(-48, 224)
+Direction = 1
+
+[node name="WallTorchL2" parent="Torches" unique_id=790441274 instance=ExtResource("2_13hhd")]
+position = Vector2(-82, 179.00002)
+Direction = 1
+
+[node name="WallTorchL3" parent="Torches" unique_id=651194207 instance=ExtResource("2_13hhd")]
+position = Vector2(-126, 123)
+Direction = 1
+
+[node name="WallTorchL4" parent="Torches" unique_id=797258380 instance=ExtResource("2_13hhd")]
+position = Vector2(-160, 78)
+Direction = 1
+
+[node name="WallTorchL5" parent="Torches" unique_id=1632125793 instance=ExtResource("2_13hhd")]
+position = Vector2(-194, 33)
+Direction = 1
+
+[node name="WallTorchL6" parent="Torches" unique_id=1094793259 instance=ExtResource("2_13hhd")]
+position = Vector2(-194, -20)
+Direction = 1
+
+[node name="WallTorchL7" parent="Torches" unique_id=695530086 instance=ExtResource("2_13hhd")]
+position = Vector2(-160, -67)
+Direction = 1
+
+[node name="WallTorchL8" parent="Torches" unique_id=63464843 instance=ExtResource("2_13hhd")]
+position = Vector2(-127, -111)
+Direction = 1
+
+[node name="WallTorchL9" parent="Torches" unique_id=475289721 instance=ExtResource("2_13hhd")]
+position = Vector2(-93, -156)
+Direction = 1
+
+[node name="WallTorchL10" parent="Torches" unique_id=53007409 instance=ExtResource("2_13hhd")]
+position = Vector2(-48, -212)
+Direction = 1
+
+[node name="WallTorchD" parent="Torches" unique_id=916680640 instance=ExtResource("2_13hhd")]
+position = Vector2(0, -274)

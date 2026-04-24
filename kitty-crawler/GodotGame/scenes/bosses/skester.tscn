@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="4_n4t4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xkcc4"]
-size = Vector2(48, 32)
+size = Vector2(40, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkcc4"]
 atlas = ExtResource("1_xkcc4")
@@ -320,13 +320,12 @@ animations = [{
 script = ExtResource("1_63bc8")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1172461793]
-position = Vector2(24, 16)
+position = Vector2(-4, 4)
 shape = SubResource("RectangleShape2D_xkcc4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=931010363]
 z_index = 10
 texture_filter = 1
-position = Vector2(24, -8)
 sprite_frames = SubResource("SpriteFrames_fon13")
 animation = &"skester_idle"
 autoplay = "skester_idle"

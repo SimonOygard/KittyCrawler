@@ -2,6 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://gyjij1tvv1f0" path="res://Dungeon_floor_2/scenes/Maps/diamond_map.tscn" id="1_o6i6l"]
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="2_ote1w"]
+[ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="3_jgnmv"]
+
+[node name="Skesters_diamond" type="Node2D" unique_id=774304775]
+
+[node name="Teleport" parent="." unique_id=1633862423 instance=ExtResource("3_jgnmv")]
+position = Vector2(-2, 250)
+
+[node name="CharacterBody2D" parent="." unique_id=1948828453 instance=ExtResource("2_ote1w")]
+position = Vector2(0, 211)
+
 [ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://scenes/WallTorch.tscn" id="3_wmx2x"]
 [ext_resource type="PackedScene" uid="uid://ck2usy1jd16s1" path="res://scenes/bosses/hilda.tscn" id="4_1cviu"]
 

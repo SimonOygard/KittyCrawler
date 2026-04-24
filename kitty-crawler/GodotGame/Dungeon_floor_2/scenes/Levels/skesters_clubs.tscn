@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://binv34qqcx0bs"]
+
+[ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="1_amg3y"]
+[ext_resource type="PackedScene" uid="uid://dwnty2f5qflas" path="res://Dungeon_floor_2/scenes/Maps/club_map.tscn" id="2_hbsyy"]
+[ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="3_hbsyy"]
+[ext_resource type="Script" uid="uid://dyu3nh0duuk4c" path="res://scripts/TrapManager.cs" id="4_jo1e4"]
+[ext_resource type="PackedScene" uid="uid://bvcuyo3i27qgs" path="res://scenes/spike_trap.tscn" id="5_cq0kg"]
+
+[node name="SkestersClubs" type="Node2D" unique_id=1914724191]
+
+[node name="club_map" parent="." unique_id=695859663 instance=ExtResource("2_hbsyy")]
+
+[node name="Diamond" type="Node" parent="." unique_id=711189205 groups=["traps"]]
+script = ExtResource("4_jo1e4")
+
+[node name="SpikeTrap" parent="Diamond" unique_id=1085106574 instance=ExtResource("5_cq0kg")]
+position = Vector2(-64, 0)
+BossTrapType = 3
+
+[node name="SpikeTrap2" parent="Diamond" unique_id=354323559 instance=ExtResource("5_cq0kg")]
+position = Vector2(-80, 14)
+BossTrapType = 3
+
+[node name="SpikeTrap3" parent="Diamond" unique_id=840928637 instance=ExtResource("5_cq0kg")]
+position = Vector2(-64, 14)
+BossTrapType = 3
+
+[node name="SpikeTrap4" parent="Diamond" unique_id=81566544 instance=ExtResource("5_cq0kg")]
+position = Vector2(-80, -15)
+BossTrapType = 3
+
+[node name="SpikeTrap5" parent="Diamond" unique_id=792836946 instance=ExtResource("5_cq0kg")]
+position = Vector2(-64, -15)
+BossTrapType = 3
+
+[node name="SpikeTrap6" parent="Diamond" unique_id=766822721 instance=ExtResource("5_cq0kg")]
+position = Vector2(-80, 0)
+BossTrapType = 3
+
+[node name="Spade" type="Node" parent="." unique_id=1244702134 groups=["traps"]]
+script = ExtResource("4_jo1e4")
+
+[node name="SpikeTrap7" parent="Spade" unique_id=1871622409 instance=ExtResource("5_cq0kg")]
+position = Vector2(80, 0)
+
+[node name="SpikeTrap8" parent="Spade" unique_id=687878347 instance=ExtResource("5_cq0kg")]
+position = Vector2(64, 14)
+
+[node name="SpikeTrap9" parent="Spade" unique_id=516746978 instance=ExtResource("5_cq0kg")]
+position = Vector2(80, 14)
+
+[node name="SpikeTrap10" parent="Spade" unique_id=1908486625 instance=ExtResource("5_cq0kg")]
+position = Vector2(64, -15)
+
+[node name="SpikeTrap11" parent="Spade" unique_id=20890576 instance=ExtResource("5_cq0kg")]
+position = Vector2(80, -15)
+
+[node name="SpikeTrap12" parent="Spade" unique_id=1383904909 instance=ExtResource("5_cq0kg")]
+position = Vector2(64, 0)
+
+[node name="Hearts" type="Node" parent="." unique_id=541777736 groups=["traps"]]
+script = ExtResource("4_jo1e4")
+
+[node name="SpikeTrap13" parent="Hearts" unique_id=977205698 instance=ExtResource("5_cq0kg")]
+position = Vector2(0, -49)
+BossTrapType = 1
+
+[node name="SpikeTrap14" parent="Hearts" unique_id=1146126219 instance=ExtResource("5_cq0kg")]
+position = Vector2(-15, -35)
+BossTrapType = 1
+
+[node name="SpikeTrap15" parent="Hearts" unique_id=1386198192 instance=ExtResource("5_cq0kg")]
+position = Vector2(0, -35)
+BossTrapType = 1
+
+[node name="SpikeTrap16" parent="Hearts" unique_id=592416846 instance=ExtResource("5_cq0kg")]
+position = Vector2(16, -49)
+BossTrapType = 1
+
+[node name="SpikeTrap17" parent="Hearts" unique_id=379415566 instance=ExtResource("5_cq0kg")]
+position = Vector2(16, -35)
+BossTrapType = 1
+
+[node name="SpikeTrap18" parent="Hearts" unique_id=955789179 instance=ExtResource("5_cq0kg")]
+position = Vector2(-15, -49)
+BossTrapType = 1
+
+[node name="CharacterBody2D" parent="." unique_id=1948828453 instance=ExtResource("1_amg3y")]
+z_index = 10
+position = Vector2(0, 256)
+
+[node name="TeleportDiamond" parent="." unique_id=1633862423 instance=ExtResource("3_hbsyy")]
+position = Vector2(-224, 0)
+
+[node name="TeleportSpade" parent="." unique_id=116535690 instance=ExtResource("3_hbsyy")]
+position = Vector2(224, 0)
+
+[node name="TeleportHeart" parent="." unique_id=1210872165 instance=ExtResource("3_hbsyy")]
+position = Vector2(0, -288)
