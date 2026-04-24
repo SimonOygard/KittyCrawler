@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl6y4p2nygwmy"]
 
 [ext_resource type="PackedScene" uid="uid://d44dlueljh4h" path="res://Dungeon_floor_2/scenes/Maps/spade_map.tscn" id="1_uur3i"]
-[ext_resource type="PackedScene" uid="uid://bao4jykmd4cg0" path="res://scenes/eve.tscn" id="2_ik45p"]
+[ext_resource type="PackedScene" uid="uid://bao4jykmd4cg0" path="res://scenes/bosses/eve.tscn" id="2_ik45p"]
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="3_umt08"]
 [ext_resource type="Script" uid="uid://bw6ou6msfjtmo" path="res://scripts/MimicManager.cs" id="4_2ouvy"]
 [ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://scenes/Chest.tscn" id="5_e6egn"]

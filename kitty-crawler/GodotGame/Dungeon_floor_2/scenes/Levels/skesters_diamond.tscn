@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://gyjij1tvv1f0" path="res://Dungeon_floor_2/scenes/Maps/diamond_map.tscn" id="1_o6i6l"]
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="2_ote1w"]
 [ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://scenes/WallTorch.tscn" id="3_wmx2x"]
+[ext_resource type="PackedScene" uid="uid://ck2usy1jd16s1" path="res://scenes/bosses/hilda.tscn" id="4_1cviu"]
 
 [node name="Node2D" type="Node2D" unique_id=774304775]
 
@@ -96,3 +97,6 @@ Direction = 1
 
 [node name="WallTorchD" parent="Torches" unique_id=1620829293 instance=ExtResource("3_wmx2x")]
 position = Vector2(-23, -462)
+
+[node name="Hilda" parent="." unique_id=399574412 instance=ExtResource("4_1cviu")]
+position = Vector2(-27, -192)

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bv8yy45rumixn"]
 
+[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_63bc8"]
 [ext_resource type="Texture2D" uid="uid://dmqge75mn5xu0" path="res://Dungeon_floor_2/Tileset/Skester/Skester_sprite.png" id="1_xkcc4"]
 [ext_resource type="Texture2D" uid="uid://ulyjlcnp5l5v" path="res://Dungeon_floor_2/Tileset/Skester/Skester_spawning.png" id="2_xkcc4"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="4_n4t4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xkcc4"]
 size = Vector2(48, 32)
@@ -315,6 +317,7 @@ animations = [{
 }]
 
 [node name="Skester" type="CharacterBody2D" unique_id=672527403]
+script = ExtResource("1_63bc8")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1172461793]
 position = Vector2(24, 16)
@@ -328,3 +331,7 @@ sprite_frames = SubResource("SpriteFrames_fon13")
 animation = &"skester_idle"
 autoplay = "skester_idle"
 frame_progress = 0.5056898
+
+[node name="LevelTransition" type="Node" parent="." unique_id=1346115759]
+script = ExtResource("4_n4t4o")
+ScenePath = "res://TELT/Scenes/TeltBattle.tscn"

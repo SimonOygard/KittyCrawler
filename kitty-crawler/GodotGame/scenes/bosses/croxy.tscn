@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bemuii73nkcr2"]
+
+[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_inhgv"]
+[ext_resource type="Texture2D" uid="uid://dd0latslnvti4" path="res://TELT/Tilesets/Boss_sprites/Croxy.png" id="1_ph5y1"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_o2mid"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edssa"]
+size = Vector2(45, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inhgv"]
+atlas = ExtResource("1_ph5y1")
+region = Rect2(0, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2mid"]
+atlas = ExtResource("1_ph5y1")
+region = Rect2(84, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deovg"]
+atlas = ExtResource("1_ph5y1")
+region = Rect2(0, 84, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfj1e"]
+atlas = ExtResource("1_ph5y1")
+region = Rect2(84, 84, 84, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvm0y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inhgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2mid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deovg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfj1e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Croxy" type="CharacterBody2D" unique_id=1371494723]
+script = ExtResource("1_inhgv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1694059120]
+position = Vector2(-6.5, 9.5)
+shape = SubResource("RectangleShape2D_edssa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1244331014]
+sprite_frames = SubResource("SpriteFrames_kvm0y")
+autoplay = "default"
+frame_progress = 0.5606372
+
+[node name="LevelTransition" type="Node" parent="." unique_id=321863808]
+script = ExtResource("3_o2mid")
+ScenePath = "res://TELT/Scenes/TeltBattle.tscn"
