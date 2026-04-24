@@ -6,10 +6,107 @@
 
 [node name="Skesters_diamond" type="Node2D" unique_id=774304775]
 
-[node name="DiamondMap" parent="." unique_id=468101747 instance=ExtResource("1_o6i6l")]
-
 [node name="Teleport" parent="." unique_id=1633862423 instance=ExtResource("3_jgnmv")]
 position = Vector2(-2, 250)
 
 [node name="CharacterBody2D" parent="." unique_id=1948828453 instance=ExtResource("2_ote1w")]
 position = Vector2(0, 211)
+
+[ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://scenes/WallTorch.tscn" id="3_wmx2x"]
+[ext_resource type="PackedScene" uid="uid://ck2usy1jd16s1" path="res://scenes/bosses/hilda.tscn" id="4_1cviu"]
+
+[node name="Node2D" type="Node2D" unique_id=774304775]
+
+[node name="DiamondMap" parent="." unique_id=468101747 instance=ExtResource("1_o6i6l")]
+position = Vector2(-24, -187)
+
+[node name="CharacterBody2D" parent="DiamondMap" unique_id=1948828453 instance=ExtResource("2_ote1w")]
+position = Vector2(0, 256)
+
+[node name="Torches" type="Node" parent="." unique_id=1667361278]
+
+[node name="WallTorchR1" parent="Torches" unique_id=2319029 instance=ExtResource("3_wmx2x")]
+position = Vector2(25, 36)
+Direction = 2
+
+[node name="WallTorchR2" parent="Torches" unique_id=1672855142 instance=ExtResource("3_wmx2x")]
+position = Vector2(58, -9)
+Direction = 2
+
+[node name="WallTorchR3" parent="Torches" unique_id=1257550644 instance=ExtResource("3_wmx2x")]
+position = Vector2(103, -66)
+Direction = 2
+
+[node name="WallTorchR4" parent="Torches" unique_id=371206042 instance=ExtResource("3_wmx2x")]
+position = Vector2(137, -110)
+Direction = 2
+
+[node name="WallTorchR5" parent="Torches" unique_id=1084748706 instance=ExtResource("3_wmx2x")]
+position = Vector2(172.99998, -154)
+Direction = 2
+
+[node name="WallTorchR6" parent="Torches" unique_id=805902917 instance=ExtResource("3_wmx2x")]
+position = Vector2(171, -209)
+Direction = 2
+
+[node name="WallTorchR7" parent="Torches" unique_id=2105743748 instance=ExtResource("3_wmx2x")]
+position = Vector2(136, -253)
+Direction = 2
+
+[node name="WallTorchR8" parent="Torches" unique_id=522678124 instance=ExtResource("3_wmx2x")]
+position = Vector2(103, -299)
+Direction = 2
+
+[node name="WallTorchR9" parent="Torches" unique_id=263306025 instance=ExtResource("3_wmx2x")]
+position = Vector2(69, -344)
+Direction = 2
+
+[node name="WallTorchR10" parent="Torches" unique_id=297580259 instance=ExtResource("3_wmx2x")]
+position = Vector2(24, -398)
+Direction = 2
+
+[node name="WallTorchL" parent="Torches" unique_id=1249451626 instance=ExtResource("3_wmx2x")]
+position = Vector2(-71, 36)
+Direction = 1
+
+[node name="WallTorchL2" parent="Torches" unique_id=874747683 instance=ExtResource("3_wmx2x")]
+position = Vector2(-105.999985, -8.999985)
+Direction = 1
+
+[node name="WallTorchL3" parent="Torches" unique_id=400722250 instance=ExtResource("3_wmx2x")]
+position = Vector2(-150, -65)
+Direction = 1
+
+[node name="WallTorchL4" parent="Torches" unique_id=1283653528 instance=ExtResource("3_wmx2x")]
+position = Vector2(-184, -110)
+Direction = 1
+
+[node name="WallTorchL5" parent="Torches" unique_id=2124758288 instance=ExtResource("3_wmx2x")]
+position = Vector2(-218, -154)
+Direction = 1
+
+[node name="WallTorchL6" parent="Torches" unique_id=1702110314 instance=ExtResource("3_wmx2x")]
+position = Vector2(-218, -207)
+Direction = 1
+
+[node name="WallTorchL7" parent="Torches" unique_id=803795746 instance=ExtResource("3_wmx2x")]
+position = Vector2(-184, -256)
+Direction = 1
+
+[node name="WallTorchL8" parent="Torches" unique_id=1158031502 instance=ExtResource("3_wmx2x")]
+position = Vector2(-151, -298)
+Direction = 1
+
+[node name="WallTorchL9" parent="Torches" unique_id=658529703 instance=ExtResource("3_wmx2x")]
+position = Vector2(-117, -344)
+Direction = 1
+
+[node name="WallTorchL10" parent="Torches" unique_id=1303912209 instance=ExtResource("3_wmx2x")]
+position = Vector2(-73, -399)
+Direction = 1
+
+[node name="WallTorchD" parent="Torches" unique_id=1620829293 instance=ExtResource("3_wmx2x")]
+position = Vector2(-23, -462)
+
+[node name="Hilda" parent="." unique_id=399574412 instance=ExtResource("4_1cviu")]
+position = Vector2(-27, -192)

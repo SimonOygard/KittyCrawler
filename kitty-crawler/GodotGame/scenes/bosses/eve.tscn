@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://bao4jykmd4cg0"]
 
-[ext_resource type="Texture2D" uid="uid://dgh41rk3e4r4d" path="res://TELT/Tilesets/Boss_sprites/Eve.png" id="1_6va78"]
-[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://Dungeon_floor_2/scripts/Boss.cs" id="1_ohdim"]
-[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="2_4cgun"]
+[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_lt3x8"]
+[ext_resource type="Texture2D" uid="uid://dgh41rk3e4r4d" path="res://TELT/Tilesets/Boss_sprites/Eve.png" id="2_grp7u"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_66vof"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xkcc4"]
 size = Vector2(40, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cgun"]
-atlas = ExtResource("1_6va78")
+atlas = ExtResource("2_grp7u")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohdim"]
-atlas = ExtResource("1_6va78")
+atlas = ExtResource("2_grp7u")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw4yl"]
-atlas = ExtResource("1_6va78")
+atlas = ExtResource("2_grp7u")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rf07"]
-atlas = ExtResource("1_6va78")
+atlas = ExtResource("2_grp7u")
 region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vjf08"]
@@ -45,7 +45,7 @@ animations = [{
 
 [node name="Eve" type="CharacterBody2D" unique_id=672527403]
 collision_layer = 2
-script = ExtResource("1_ohdim")
+script = ExtResource("1_lt3x8")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1172461793]
 shape = SubResource("RectangleShape2D_xkcc4")
@@ -57,5 +57,5 @@ autoplay = "default"
 frame_progress = 0.4628865
 
 [node name="LevelTransition" type="Node" parent="." unique_id=811000798]
-script = ExtResource("2_4cgun")
+script = ExtResource("3_66vof")
 ScenePath = "res://TELT/Scenes/TeltBattle.tscn"

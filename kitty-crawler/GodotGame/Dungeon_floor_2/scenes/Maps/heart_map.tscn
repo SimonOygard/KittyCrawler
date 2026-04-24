@@ -2,6 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://cxqwdml0cduy5" path="res://Dungeon_floor_2/resources/SkestersTileset.tres" id="1_v3qyc"]
 [ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://scenes/WallTorch.tscn" id="2_aqgel"]
+[ext_resource type="PackedScene" uid="uid://bv8yy45rumixn" path="res://scenes/bosses/skester.tscn" id="2_pgi8c"]
+[ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="3_grm1s"]
 
 [node name="heart_map" type="Node2D" unique_id=1337333643]
 
