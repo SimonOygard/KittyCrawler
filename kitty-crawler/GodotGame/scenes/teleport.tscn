@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3dhhvcsjt4v6"]
 
-[ext_resource type="Script" uid="uid://bctcwfbbcn1vf" path="res://scripts/singletons/Teleport.cs" id="1_kyeu7"]
+[ext_resource type="Script" uid="uid://bctcwfbbcn1vf" path="res://scripts/Teleport.cs" id="1_kyeu7"]
 [ext_resource type="Texture2D" uid="uid://ldtsgea5ab0j" path="res://assets/levels/Dimensional_Portal.png" id="2_jfydb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vm8s4"]
