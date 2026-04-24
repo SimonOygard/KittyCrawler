@@ -10,6 +10,6 @@ region = Rect2(192, 0, 64, 96)
 [resource]
 script = ExtResource("2_a8gda")
 CardName = "Yeti"
-Damage = 6
+Damage = 7
 Texture = SubResource("AtlasTexture_f6qwu")
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

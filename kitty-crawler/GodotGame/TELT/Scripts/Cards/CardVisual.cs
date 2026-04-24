@@ -156,5 +156,38 @@ public partial class CardVisual : Control
         AddChild(border);
     }
 
+    // Farge for stat-change
+    public async void FlashStatColor(Color color)
+    {
+        GD.Print($"FlashStatColor kalt på {_cardData?.CardName}");
+        if (_statsLabel == null) return;
+        _statsLabel.AddThemeColorOverride("font_color", color);
+        await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+        _statsLabel.AddThemeColorOverride("font_color", Colors.Black);
+    }
+
+    public void ApplyStatusVisual()
+    {
+        if (_cardData == null) return;
+        if (!_cardData.IsPoisoned && !_cardData.IsEnraged) return;
+
+        var border = new Panel();
+        border.Name = "StatusBorder";
+        border.Position = Vector2.Zero;
+        border.Size = new Vector2(128, 192);
+        border.MouseFilter = MouseFilterEnum.Ignore;
+        border.ZIndex = 10;
+
+        var styleBox = new StyleBoxFlat();
+        styleBox.BgColor = new Color(0, 0, 0, 0);
+        styleBox.BorderColor = _cardData.IsPoisoned
+            ? new Color(0.2f, 1f, 0.2f, 0.4f)  // grønn = poison
+            : new Color(1f, 0.75f, 0.3f, 0.9f); // rød = rage
+        styleBox.SetBorderWidthAll(4);
+        border.AddThemeStyleboxOverride("panel", styleBox);
+
+        AddChild(border);
+    }
+
 
 }

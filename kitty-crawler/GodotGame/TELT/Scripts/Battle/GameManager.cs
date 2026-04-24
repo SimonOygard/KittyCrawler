@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using KittyCrawler.scripts;
 using System.Collections.Generic;
 
@@ -24,7 +25,7 @@ public partial class GameManager : Node
     public TurnOwner CurrentTurn { get; private set; } = TurnOwner.Player;
     public TurnOwner MatchStarter { get; private set; } = TurnOwner.Player;
     public int CurrentMatch { get; private set; } = 1;
-    private const int TotalMatches = 3;
+    private const int TotalMatches = 4;
 
     // ── Referanser ────────────────────────────────────────────────────
     private PlayerData _player;
@@ -38,6 +39,7 @@ public partial class GameManager : Node
     [Signal] public delegate void GameOverEventHandler(TurnOwner winner, int playerDamage, int enemyDamage);
     [Signal] public delegate void ReadyForCombatEventHandler();
     [Signal] public delegate void BoardUpdatedEventHandler();
+    [Signal] public delegate void StatTickedEventHandler(int slotIndex, bool isPlayerSlot, bool isPositive);
 
     // ── Init ──────────────────────────────────────────────────────────
     public void Initialize(PlayerData player, PlayerData enemy, BattleMap battleMap)
@@ -68,7 +70,7 @@ public partial class GameManager : Node
     // ── Trekk-fase ────────────────────────────────────────────────────
     private void ExecuteDrawPhase()
     {
-        int cardsToDraw = CurrentMatch == 1 ? 5 : 3;
+        int cardsToDraw = CurrentMatch == 1 ? 5 : 4;
 
         _player.DrawCards(cardsToDraw);
         _enemy.DrawCards(cardsToDraw);
@@ -212,14 +214,20 @@ public partial class GameManager : Node
     // ── Game Over ─────────────────────────────────────────────────────
     private void ExecuteGameOver()
     {
-        TurnOwner winner = _player.TotalDamageReceived <= _enemy.TotalDamageReceived
-            ? TurnOwner.Player
-            : TurnOwner.Enemy;
+        TurnOwner winner;
+        bool isDraw = _player.TotalDamageReceived == _enemy.TotalDamageReceived;
+
+        if (isDraw)
+            winner = TurnOwner.Player; // spiller vinner ved uavgjort
+        else
+            winner = _player.TotalDamageReceived < _enemy.TotalDamageReceived
+                ? TurnOwner.Player
+                : TurnOwner.Enemy;
 
         GD.Print($"=== SPILLET ER FERDIG ===");
         GD.Print($"Spiller: {_player.TotalDamageReceived} damage");
         GD.Print($"Fiende:  {_enemy.TotalDamageReceived} damage");
-        GD.Print($"Vinner: {winner}");
+        GD.Print(isDraw ? "Uavgjort — spiller vinner!" : $"Vinner: {winner}");
 
         EmitSignal(SignalName.GameOver, (int)winner, _player.TotalDamageReceived, _enemy.TotalDamageReceived);
     }
@@ -236,7 +244,8 @@ public partial class GameManager : Node
             ? TurnOwner.Enemy
             : TurnOwner.Player;
 
-        EmitSignal(SignalName.TurnChanged, (int)CurrentTurn);
+        EmitSignal(SignalName.TurnChanged, (int)CurrentTurn); // ← først, trigger UpdateSlotVisuals
+        TickPoisonAndRage(); // ← så tick, nye noder er nå klare
         GD.Print($"Tur: {CurrentTurn}");
     }
 
@@ -245,5 +254,47 @@ public partial class GameManager : Node
         CurrentPhase = phase;
         EmitSignal(SignalName.PhaseChanged, (int)phase);
         GD.Print($"Fase: {phase}");
+    }
+
+    // Tick buff/debuff
+    public void TickPoisonAndRage()
+    {
+        GD.Print($"Emitter StatTicked: slot {"i"}, isPlayer={true}, positive={false}");
+        // Tick kun på aktiv spillers egne kort
+        for (int i = 0; i < 4; i++)
+        {
+            if (CurrentTurn == TurnOwner.Player)
+            {
+                var playerSlot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                if (playerSlot.IsOccupied && playerSlot.Card.IsPoisoned)
+                {
+                    playerSlot.Card.CurrentDamage = Mathf.Max(0, playerSlot.Card.GetCurrentDamage() - 1);
+                    EmitSignal(SignalName.StatTicked, i, true, false);
+                    GD.Print($"[Poison] {playerSlot.Card.CardName} tikket ned til {playerSlot.Card.CurrentDamage}");
+                }
+                if (playerSlot.IsOccupied && playerSlot.Card.IsEnraged)
+                {
+                    playerSlot.Card.CurrentDamage = Mathf.Min(9, playerSlot.Card.GetCurrentDamage() + 1);
+                    EmitSignal(SignalName.StatTicked, i, true, true);
+                    GD.Print($"[Rage] {playerSlot.Card.CardName} tikket opp til {playerSlot.Card.CurrentDamage}");
+                }
+            }
+            else
+            {
+                var enemySlot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
+                if (enemySlot.IsOccupied && enemySlot.Card.IsPoisoned)
+                {
+                    enemySlot.Card.CurrentDamage = Mathf.Max(0, enemySlot.Card.GetCurrentDamage() - 1);
+                    EmitSignal(SignalName.StatTicked, i, false, false);
+                    GD.Print($"[Poison] {enemySlot.Card.CardName} tikket ned til {enemySlot.Card.CurrentDamage}");
+                }
+                if (enemySlot.IsOccupied && enemySlot.Card.IsEnraged)
+                {
+                    enemySlot.Card.CurrentDamage = Mathf.Min(9, enemySlot.Card.GetCurrentDamage() + 1);
+                    EmitSignal(SignalName.StatTicked, i, false, true);
+                    GD.Print($"[Rage] {enemySlot.Card.CardName} tikket opp til {enemySlot.Card.CurrentDamage}");
+                }
+            }
+        }
     }
 }

@@ -10,9 +10,9 @@ region = Rect2(128, 96, 64, 96)
 [resource]
 script = ExtResource("2_xucmv")
 CardName = "Drake"
-Damage = 6
+Damage = 3
 CardRarity = 1
 Texture = SubResource("AtlasTexture_f6qwu")
-AbilityDescription = "Give a unit +2 stats"
-Ability = 4
+AbilityDescription = "All damage exceeds (Except tortoise)"
+Ability = 15
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

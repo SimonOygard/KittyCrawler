@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpxekket8jbik"
-path="res://.godot/imported/TELT_BG2.png-3cf6723664cf4ae63fc44e2efc1a1e2f.ctex"
+uid="uid://bxsu5dvwyw5ym"
+path="res://.godot/imported/BaseCardsPack2.png-5973b8d2c893c4604ae91489eb426126.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TELT/Tilesets/TELT_BG2.png"
-dest_files=["res://.godot/imported/TELT_BG2.png-3cf6723664cf4ae63fc44e2efc1a1e2f.ctex"]
+source_file="res://TELT/Tilesets/BaseCardsPack2.png"
+dest_files=["res://.godot/imported/BaseCardsPack2.png-5973b8d2c893c4604ae91489eb426126.ctex"]
 
 [params]
 

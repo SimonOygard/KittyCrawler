@@ -7,8 +7,8 @@ namespace KittyCrawler.TELT;
 
 public partial class DeckEditor : Node
 {
-    private const int RequiredDeckSize = 15;
-    private const int MaxCopiesCommon = 3;
+    private const int RequiredDeckSize = 25;
+    private const int MaxCopiesCommon = 2;
     private const int MaxCopiesUncommon = 2;
     private const int MaxCopiesRare = 1;
 

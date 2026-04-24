@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7l34ncuffg4o"
-path="res://.godot/imported/Temp_background.png-00e905945548ab3d6cc816719c144675.ctex"
+uid="uid://2ag8sjbncfh8"
+path="res://.godot/imported/Basic_map_new.png-1e51b16704778a8d6ef439fbed6cc466.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TELT/Tilesets/Temp_background.png"
-dest_files=["res://.godot/imported/Temp_background.png-00e905945548ab3d6cc816719c144675.ctex"]
+source_file="res://TELT/Tilesets/Maps/Basic_map_new.png"
+dest_files=["res://.godot/imported/Basic_map_new.png-1e51b16704778a8d6ef439fbed6cc466.ctex"]
 
 [params]
 

@@ -10,8 +10,8 @@ region = Rect2(0, 96, 64, 96)
 [resource]
 script = ExtResource("2_1ybxh")
 CardName = "Skeleton"
-Damage = 3
+Damage = 2
 Texture = SubResource("AtlasTexture_f6qwu")
-AbilityDescription = "Give another unit -1 stat"
-Ability = 2
+AbilityDescription = "Give another unit -2 stat"
+Ability = 3
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

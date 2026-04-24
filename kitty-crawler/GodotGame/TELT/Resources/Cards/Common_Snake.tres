@@ -10,6 +10,8 @@ region = Rect2(256, 0, 64, 96)
 [resource]
 script = ExtResource("2_lm5al")
 CardName = "Snake"
-Damage = 5
+Damage = 3
 Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "Give a unit POISON"
+Ability = 18
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

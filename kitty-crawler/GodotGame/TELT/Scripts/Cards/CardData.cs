@@ -12,6 +12,11 @@ public partial class CardData : Resource
     [Export] public string AbilityDescription { get; set; } = "";
     [Export] public AbilityType Ability { get; set; } = AbilityType.None;
 
+    // buff/debuff
+    public bool IsPoisoned { get; set; } = false;
+    public bool IsEnraged { get; set; } = false;
+    public bool HasStatus => IsPoisoned || IsEnraged;
+
     public enum Rarity
     {
         Common,
@@ -22,17 +27,27 @@ public partial class CardData : Resource
     public enum AbilityType
     {
         None,
-        NoExceedTortoise,    // Tortoise
-        GiveMinusStat,       // Skeleton
-        RemoveUnit,          // Druid
-        GivePlusStat,        // Drake
-        DrawCard,            // Golem
-        DiscardDraw,         // Watcher
-        AnySlot,             // Skester
-        AllEnemyMinusStat,   // Eve
-        DiscardGainStats,    // Croxy
-        SwitchSlots,         // Hilda
-        RemoveGainStats,     // Mio
+        NoExceedTortoise,       // Tortoise
+        GiveMinusOneStat,       // Skeleton
+        GiveMinusTwoStats,      // common
+        GivePlusOneStat,        //
+        GivePlusTwoStats,       // common (+2)
+        GivePlusMinusThree,     // Druid (velg +3 eller -3)
+        RemoveUnit,             // Horror (kan ikke targete seg selv)
+        DrawCard,               // Elemental
+        DrawTwoCards,           // Dryad
+        DiscardDraw,            // Watcher
+        DiscardGainStats,       // Sludge
+        AnySlot,                // Skester
+        AllEnemyMinusStat,      // Eve
+        AllAllyPlusStat,        // Croxy
+        AllDamageExceeds,       // Drake
+        CopyStat,               // Cat
+        ResetStat,              // Wraith
+        ApplyPoison,            // Snake
+        ApplyRage,              // Minotaur
+        SwitchSlots,            // Hilda
+        RemoveGainStats,        // Mio
     }
 
     public int CurrentDamage { get; set; } = -1;

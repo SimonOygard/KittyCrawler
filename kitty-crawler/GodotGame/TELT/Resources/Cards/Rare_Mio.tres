@@ -10,9 +10,9 @@ region = Rect2(0, 192, 64, 96)
 [resource]
 script = ExtResource("2_srp8u")
 CardName = "Mio"
-Damage = 3
+Damage = 1
 CardRarity = 2
 Texture = SubResource("AtlasTexture_f6qwu")
 AbilityDescription = "Remove a unit, gain its stats. (Cannot exceed 9)"
-Ability = 11
+Ability = 21
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

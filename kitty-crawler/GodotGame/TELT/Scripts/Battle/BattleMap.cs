@@ -7,13 +7,13 @@ namespace KittyCrawler.TELT;
 public partial class BattleMap : Node
 {
     // Alle 6 slots
-    private Slot[] _playerSlots = new Slot[3];
-    private Slot[] _enemySlots = new Slot[3];
+    private Slot[] _playerSlots = new Slot[4];
+    private Slot[] _enemySlots = new Slot[4];
 
     public override void _Ready()
     {
         // Opprett player slots
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             _playerSlots[i] = new Slot
             {
@@ -23,7 +23,7 @@ public partial class BattleMap : Node
         }
 
         // Opprett enemy slots
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             _enemySlots[i] = new Slot
             {
@@ -57,6 +57,7 @@ public partial class BattleMap : Node
     // ── Krigsfase-trigger (regel 3, 3.3, 3.4) ────────────────────────
     public bool ShouldStartWarPhase(bool playerHasCards, bool enemyHasCards)
     {
+        GD.Print($"ShouldStartWarPhase: AllPlayer={AllPlayerSlotsFilled}, AllEnemy={AllEnemySlotsFilled}, playerHasCards={playerHasCards}, enemyHasCards={enemyHasCards}");
         // Alle 6 slots fylt
         if (AllPlayerSlotsFilled && AllEnemySlotsFilled)
             return true;
@@ -82,7 +83,7 @@ public partial class BattleMap : Node
         int playerDamage = 0;
         int enemyDamage = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             int playerPower = _playerSlots[i].GetDamage();
             int enemyPower = _enemySlots[i].GetDamage();
@@ -90,9 +91,14 @@ public partial class BattleMap : Node
             // Tortoise: ingen damage overstiger dette kortets stats
             if (_playerSlots[i].IsOccupied && _playerSlots[i].Card.Ability == CardData.AbilityType.NoExceedTortoise)
                 enemyPower = Mathf.Min(enemyPower, playerPower);
-
             if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.NoExceedTortoise)
                 playerPower = Mathf.Min(playerPower, enemyPower);
+
+            // Drake: alltid går damage gjennom uansett
+            if (_playerSlots[i].IsOccupied && _playerSlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
+                enemyDamage += playerPower;
+            else if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
+                playerDamage += enemyPower;
 
             int diff = playerPower - enemyPower;
 
