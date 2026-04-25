@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_63bc8"]
 [ext_resource type="Texture2D" uid="uid://dmqge75mn5xu0" path="res://Dungeon_floor_2/Tileset/Skester/Skester_sprite.png" id="1_xkcc4"]
+[ext_resource type="Resource" uid="uid://c00o2vat4dkkh" path="res://TELT/Resources/Bosses/skester.tres" id="2_n4t4o"]
 [ext_resource type="Texture2D" uid="uid://ulyjlcnp5l5v" path="res://Dungeon_floor_2/Tileset/Skester/Skester_spawning.png" id="2_xkcc4"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="4_n4t4o"]
 
@@ -318,6 +319,7 @@ animations = [{
 
 [node name="Skester" type="CharacterBody2D" unique_id=672527403]
 script = ExtResource("1_63bc8")
+_bossData = ExtResource("2_n4t4o")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1172461793]
 position = Vector2(-4, 4)

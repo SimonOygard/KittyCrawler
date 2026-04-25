@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="BossData" format=3 uid="uid://djpov3oce0ck6"]
+
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="1_6a78q"]
+[ext_resource type="Resource" uid="uid://bsdrdrn4m2uig" path="res://TELT/Resources/Cards/Common_Spider.tres" id="2_nm8lo"]
+[ext_resource type="Resource" uid="uid://q7gwi26susg6" path="res://TELT/Resources/Cards/Common_Snake.tres" id="3_pj0mj"]
+[ext_resource type="Resource" uid="uid://dk8hy7bni03c7" path="res://TELT/Resources/Cards/Common_Goblin.tres" id="4_7nml5"]
+[ext_resource type="Resource" uid="uid://bbjpsi1og3lje" path="res://TELT/Resources/Cards/Common_Bat.tres" id="5_7fj06"]
+[ext_resource type="Resource" uid="uid://dmikcccglhcfo" path="res://TELT/Resources/Cards/Common_Watcher.tres" id="6_0mfbm"]
+[ext_resource type="Resource" uid="uid://brxvt3x7w7m6p" path="res://TELT/Resources/Cards/Uncommon_Sludge.tres" id="6_qb1lf"]
+[ext_resource type="Resource" uid="uid://dwbxempbuv8fd" path="res://TELT/Resources/Cards/Uncommon_Dryad.tres" id="7_gyuog"]
+[ext_resource type="Resource" uid="uid://b0blolq32skeh" path="res://TELT/Resources/Cards/Uncommon_Druid.tres" id="8_gbtc2"]
+[ext_resource type="Resource" uid="uid://dpb5wbt4fo4nt" path="res://TELT/Resources/Cards/Uncommon_Cat.tres" id="9_1dt6s"]
+[ext_resource type="Resource" uid="uid://dlghulvg0oxjr" path="res://TELT/Resources/Cards/Uncommon_Drake.tres" id="10_pdy12"]
+[ext_resource type="Resource" uid="uid://boqidqeaykju1" path="res://TELT/Resources/Cards/Rare_Hilda.tres" id="11_l02ju"]
+[ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="12_7w2lb"]
+
+[resource]
+script = ExtResource("12_7w2lb")
+BossName = "Hilda"
+NpcId = "hilda"
+Deck = Array[ExtResource("1_6a78q")]([ExtResource("11_l02ju"), ExtResource("11_l02ju"), ExtResource("2_nm8lo"), ExtResource("2_nm8lo"), ExtResource("2_nm8lo"), ExtResource("3_pj0mj"), ExtResource("3_pj0mj"), ExtResource("3_pj0mj"), ExtResource("3_pj0mj"), ExtResource("4_7nml5"), ExtResource("4_7nml5"), ExtResource("4_7nml5"), ExtResource("6_0mfbm"), ExtResource("6_0mfbm"), ExtResource("5_7fj06"), ExtResource("6_qb1lf"), ExtResource("6_qb1lf"), ExtResource("6_qb1lf"), ExtResource("7_gyuog"), ExtResource("7_gyuog"), ExtResource("8_gbtc2"), ExtResource("8_gbtc2"), ExtResource("9_1dt6s"), ExtResource("10_pdy12"), ExtResource("10_pdy12")])
+RewardCard = ExtResource("11_l02ju")
+metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"

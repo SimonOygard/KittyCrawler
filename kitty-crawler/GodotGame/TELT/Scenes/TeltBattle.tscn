@@ -367,7 +367,49 @@ corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 corner_detail = 5
 
-[node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_background")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1aukk"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynnem"]
+content_margin_top = 6.0
+bg_color = Color(0.33955696, 0.26325625, 0.18702373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gddi0"]
+content_margin_top = 6.0
+bg_color = Color(0.67218465, 0.5438142, 0.42684504, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_continueButton", "_background")]
 script = ExtResource("1_fqpg2")
 _gameManager = NodePath("GameManager")
 _battleMap = NodePath("BattleMap")
@@ -412,6 +454,7 @@ _gameOverScreen = NodePath("GameOverScreen")
 _gameOverResultLabel = NodePath("GameOverScreen/ResultLabel")
 _gameOverScoreLabel = NodePath("GameOverScreen/ScoreLabel")
 _rematchButton = NodePath("GameOverScreen/RematchButton")
+_continueButton = NodePath("GameOverScreen/ContinueButton")
 _cardVisualScene = ExtResource("2_nncip")
 _background = NodePath("Background")
 _basicBackground = ExtResource("4_1gpw6")
@@ -846,12 +889,21 @@ offset_left = 504.0
 offset_top = 490.0
 offset_right = 774.0
 offset_bottom = 584.0
-theme_override_constants/outline_size = 0
-theme_override_constants/h_separation = 4
-theme_override_constants/align_to_largest_stylebox = 0
 theme_override_fonts/font = ExtResource("9_do6nv")
 theme_override_font_sizes/font_size = 41
 theme_override_styles/normal = SubResource("StyleBoxFlat_8xrjg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4b55q")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3omoa")
 text = "Rematch?"
+
+[node name="ContinueButton" type="Button" parent="GameOverScreen" unique_id=1172741071]
+offset_left = 504.0
+offset_top = 490.0
+offset_right = 774.0
+offset_bottom = 584.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxFlat_1aukk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ynnem")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gddi0")
+text = "Continue"

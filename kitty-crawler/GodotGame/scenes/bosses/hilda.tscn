@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_fobe0"]
 [ext_resource type="Texture2D" uid="uid://03aga4i27eo7" path="res://TELT/Tilesets/Boss_sprites/Hilda.png" id="1_srft1"]
+[ext_resource type="Resource" uid="uid://djpov3oce0ck6" path="res://TELT/Resources/Bosses/hilda.tres" id="2_e2efe"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_e2efe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4g7b"]
@@ -45,6 +46,7 @@ size = Vector2(44, 42)
 
 [node name="Hilda" type="CharacterBody2D" unique_id=399574412]
 script = ExtResource("1_fobe0")
+_bossData = ExtResource("2_e2efe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1474759555]
 sprite_frames = SubResource("SpriteFrames_87vvc")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_inhgv"]
 [ext_resource type="Texture2D" uid="uid://dd0latslnvti4" path="res://TELT/Tilesets/Boss_sprites/Croxy.png" id="1_ph5y1"]
+[ext_resource type="Resource" uid="uid://4jbpiisyg8y6" path="res://TELT/Resources/Bosses/croxy.tres" id="2_o2mid"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_o2mid"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edssa"]
@@ -45,6 +46,7 @@ animations = [{
 
 [node name="Croxy" type="CharacterBody2D" unique_id=1371494723]
 script = ExtResource("1_inhgv")
+_bossData = ExtResource("2_o2mid")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1694059120]
 position = Vector2(-6.5, 9.5)

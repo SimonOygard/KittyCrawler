@@ -53,6 +53,7 @@ public partial class TeltBattle : Node2D
     [Export] private Label _gameOverResultLabel;
     [Export] private Label _gameOverScoreLabel;
     [Export] private Button _rematchButton;
+    [Export] private Button _continueButton;
 
 
     // ── Kortscene ─────────────────────────────────────────────────────
@@ -68,6 +69,9 @@ public partial class TeltBattle : Node2D
     [Export] private Texture2D _hildaBackground;
     [Export] private Texture2D _mioBackground;
     [Export] private Texture2D _skesterBackground;
+
+    // Boss
+    //var boss = TeltBattleConfig.Instance.CurrentBoss;
 
     public void SetBackground(Texture2D texture)
     {
@@ -133,6 +137,15 @@ public partial class TeltBattle : Node2D
         {
             GD.Print("Even trykket!");
             OnDiceChoice(false);
+        };
+
+        _continueButton.Pressed += () =>
+        {
+            var returnPath = TeltBattleConfig.Instance.ReturnScenePath;
+            if (!string.IsNullOrEmpty(returnPath))
+                GetTree().ChangeSceneToFile(returnPath);
+            else
+                GD.PrintErr("[TELT] Ingen ReturnScenePath satt!");
         };
 
         _gameOverScreen.Visible = false;
@@ -240,6 +253,8 @@ public partial class TeltBattle : Node2D
 // ── Deck-oppsett ──────────────────────────────────────────────────
         private void SetupDecks()
         {
+            var boss = TeltBattleConfig.Instance?.CurrentBoss;
+
             var startDeck = new List<CardData>
             {
                 // Eksisterende commons (1x hver for å få plass til alle)
@@ -269,8 +284,19 @@ public partial class TeltBattle : Node2D
             _player.SetDeck(startDeck);
             _player.ShuffleDeck();
 
-            var enemyDeck = startDeck.ConvertAll(c => c.Duplicate() as CardData);
-            _enemy.SetDeck(enemyDeck);
+            if (boss != null && boss.Deck.Count > 0)
+            {
+                var enemyDeck = new List<CardData>();
+                foreach (var card in boss.Deck)
+                    enemyDeck.Add(card.Duplicate() as CardData);
+                _enemy.SetDeck(enemyDeck);
+            }
+            else
+            {
+                var enemyDeck = startDeck.ConvertAll(c => c.Duplicate() as CardData);
+                _enemy.SetDeck(enemyDeck);
+            }
+
             _enemy.ShuffleDeck();
         }
 
@@ -891,7 +917,7 @@ public partial class TeltBattle : Node2D
 
 
 
-    private void OnMatchEnded(int match, int playerDamage, int enemyDamage)
+        private void OnMatchEnded(int match, int playerDamage, int enemyDamage)
         {
             _resultLabel.Text = $"Match {match}:\nYou take {playerDamage} damage\n— Enemy take {enemyDamage}";
             UpdateSlotVisuals();
@@ -900,16 +926,32 @@ public partial class TeltBattle : Node2D
             FlashDamageLabel(_enemyDamageLabel, enemyDamage);
         }
 
-    private void OnGameOver(GameManager.TurnOwner winner, int playerDamage, int enemyDamage)
-    {
-        foreach (var visual in _handVisuals)
-            visual.QueueFree();
-        _handVisuals.Clear();
+        private void OnGameOver(GameManager.TurnOwner winner, int playerDamage, int enemyDamage)
+        {
+            foreach (var visual in _handVisuals)
+                visual.QueueFree();
+            _handVisuals.Clear();
 
-        UpdateSlotVisuals();
-        PlayerData.DefeatNpc("npc_goblin_king", _enemy.TotalDamageReceived);
-        ShowGameOverScreen(winner, playerDamage, enemyDamage);
-    }
+            UpdateSlotVisuals();
+
+            var boss = TeltBattleConfig.Instance?.CurrentBoss;
+            bool playerWon = winner == GameManager.TurnOwner.Player;
+
+            if (boss != null)
+            {
+                PlayerData.DefeatNpc(boss.NpcId, _enemy.TotalDamageReceived);
+
+                if (playerWon && !PlayerData.HasReceivedCard(boss.NpcId))
+                    PlayerData.GiveRewardCard(boss.NpcId);
+            }
+            else
+            {
+                // Fallback for testing uten config
+                PlayerData.DefeatNpc("npc_goblin_king", _enemy.TotalDamageReceived);
+            }
+
+            ShowGameOverScreen(winner, playerDamage, enemyDamage);
+        }
 
         private async void FlashDamageLabel(Label label, int damageTaken)
         {
@@ -1256,7 +1298,7 @@ public partial class TeltBattle : Node2D
             bool isDraw = playerDamage == enemyDamage;
             bool playerWon = winner == GameManager.TurnOwner.Player;
 
-            _gameOverResultLabel.Text = isDraw ? "DRAW — You win!" :
+            _gameOverResultLabel.Text = isDraw ? "DRAW" :
                 playerWon ? "VICTORY!" : "DEFEAT";
 
             _gameOverScoreLabel.Text = $"You: {playerDamage} — Opponent: {enemyDamage}";

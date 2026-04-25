@@ -122,7 +122,6 @@ public partial class PlayerData : Node
         private set => _totalDamageDealt = value;
     }
 
-
     private static HashSet<string> _defeatedNpcs = new();
 
     public static bool HasDefeatedNpc(string npcId)
@@ -145,13 +144,28 @@ public partial class PlayerData : Node
         SaveScore();
     }
 
+    private static HashSet<string> _receivedCards = new();
+
+    public static bool HasReceivedCard(string npcId)
+    {
+        return _receivedCards.Contains(npcId);
+    }
+
+    public static void GiveRewardCard(string npcId)
+    {
+        if (_receivedCards.Contains(npcId)) return;
+        _receivedCards.Add(npcId);
+        SaveScore();
+    }
+
     public static void SaveScore()
     {
         using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
         var data = new Godot.Collections.Dictionary
         {
             ["damageDealt"] = _totalDamageDealt,
-            ["defeatedNpcs"] = string.Join(",", _defeatedNpcs)
+            ["defeatedNpcs"] = string.Join(",", _defeatedNpcs),
+            ["receivedCards"] = string.Join(",", _receivedCards)
         };
         file.StoreString(Json.Stringify(data));
     }
@@ -169,6 +183,10 @@ public partial class PlayerData : Node
             foreach (var npc in data["defeatedNpcs"].AsString().Split(","))
                 _defeatedNpcs.Add(npc);
         }
+
+        if (data.ContainsKey("receivedCards") && data["receivedCards"].AsString() != "")  // ← legg til
+            foreach (var card in data["receivedCards"].AsString().Split(","))
+                _receivedCards.Add(card);
     }
 
 }
