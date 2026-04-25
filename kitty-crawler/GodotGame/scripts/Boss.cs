@@ -2,12 +2,14 @@ using Godot;
 using Interaction;
 using System;
 
+
 public partial class Boss : CharacterBody2D, IInteractable
 {
     private AnimatedSprite2D _sprite;
     private bool _hasBeenInteractedWith = false;
 
     [Export] private LevelTransition _levelTransition;
+    [Export] private KittyCrawler.TELT.BossData _bossData;
 
     public override void _Ready()
     {
@@ -32,24 +34,22 @@ public partial class Boss : CharacterBody2D, IInteractable
 
         TriggerCardbattle();
         GD.Print("Boss has been interacted with " + Name);
-        
+
     }
 
     private void TriggerCardbattle()
     {
-        if (_sprite != null)
+        if (_bossData != null)
         {
-            // change scene
-            GD.Print("Boss battle triggered switching to Telt");
-        }
-
-        if (_levelTransition != null)
-        {
-            _levelTransition.TriggerTransition();
+            TeltBattleConfig.Instance.CurrentBoss = _bossData;
+            TeltBattleConfig.Instance.ReturnScenePath = GetTree().CurrentScene.SceneFilePath;
         }
         else
-        {
+            GD.PrintErr("BossData ikke satt på Boss: " + Name);
+
+        if (_levelTransition != null)
+            _levelTransition.TriggerTransition();
+        else
             GD.PrintErr("LevelTransition node is not assigned for Boss: " + Name);
-        }
     }
 }

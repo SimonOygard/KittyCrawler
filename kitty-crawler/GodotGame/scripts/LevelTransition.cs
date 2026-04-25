@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using KittyCrawler.TELT;
 
 public partial class LevelTransition : Node
 {
@@ -43,7 +44,7 @@ public partial class LevelTransition : Node
         await FadeTransition.Instance.FadeFromBlack();
         GD.Print("Scene transition finished");
     }
-    
+
 
     // Method for scenechange based on type, allowing for specific logic to be executed based on the transition type
     private void SetScene(Node instance)
@@ -79,6 +80,7 @@ public partial class LevelTransition : Node
             case TransitionType.Generic:
                 // Generic transition logic can be added here
                 break;
+
         }
     }
 }

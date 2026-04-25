@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bao4jykmd4cg0"]
 
 [ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_lt3x8"]
+[ext_resource type="Resource" uid="uid://dm4cp2mc13ruc" path="res://TELT/Resources/Bosses/eve.tres" id="2_66vof"]
 [ext_resource type="Texture2D" uid="uid://dgh41rk3e4r4d" path="res://TELT/Tilesets/Boss_sprites/Eve.png" id="2_grp7u"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_66vof"]
 
@@ -46,6 +47,7 @@ animations = [{
 [node name="Eve" type="CharacterBody2D" unique_id=672527403]
 collision_layer = 2
 script = ExtResource("1_lt3x8")
+_bossData = ExtResource("2_66vof")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1172461793]
 shape = SubResource("RectangleShape2D_xkcc4")

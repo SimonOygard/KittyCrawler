@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="3_hbsyy"]
 [ext_resource type="Script" uid="uid://dyu3nh0duuk4c" path="res://scripts/TrapManager.cs" id="4_jo1e4"]
 [ext_resource type="PackedScene" uid="uid://bvcuyo3i27qgs" path="res://scenes/spike_trap.tscn" id="5_cq0kg"]
+[ext_resource type="PackedScene" uid="uid://ck2usy1jd16s1" path="res://scenes/bosses/hilda.tscn" id="6_2ymp2"]
+[ext_resource type="PackedScene" uid="uid://c8isxjwrw8ktg" path="res://scenes/bosses/mio.tscn" id="7_t8wbb"]
 
 [node name="SkestersClubs" type="Node2D" unique_id=1914724191]
 
@@ -97,3 +99,9 @@ position = Vector2(224, 0)
 
 [node name="TeleportHeart" parent="." unique_id=1210872165 instance=ExtResource("3_hbsyy")]
 position = Vector2(0, -288)
+
+[node name="Hilda" parent="." unique_id=399574412 instance=ExtResource("6_2ymp2")]
+position = Vector2(0, -256)
+
+[node name="Mio" parent="." unique_id=1343359438 instance=ExtResource("7_t8wbb")]
+position = Vector2(-1, 190)

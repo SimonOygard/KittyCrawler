@@ -18,7 +18,7 @@ rotation = 0.012246307
 scale = Vector2(1.5, 1.5)
 
 [node name="CharacterBody2D" parent="." unique_id=1493943995 instance=ExtResource("3_umt08")]
-position = Vector2(403, 386.99997)
+position = Vector2(398, -34)
 rotation = 0.012245905
 
 [node name="Chests" type="Node2D" parent="." unique_id=2144331154]
