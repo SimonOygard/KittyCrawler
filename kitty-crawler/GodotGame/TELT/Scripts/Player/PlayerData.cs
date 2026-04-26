@@ -116,6 +116,12 @@ public partial class PlayerData : Node
     private static int _totalDamageDealt = 0;
     private const string SavePath = "user://telt_score.json";
 
+    // dersom loss/draw, reset score
+    public static void ResetSessionDamage()
+    {
+        _totalDamageDealt = 0;
+    }
+
     public static int TotalDamageDealt
     {
         get => _totalDamageDealt;

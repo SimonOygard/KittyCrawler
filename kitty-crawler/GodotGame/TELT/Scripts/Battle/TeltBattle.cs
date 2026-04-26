@@ -151,6 +151,7 @@ public partial class TeltBattle : Node2D
         _gameOverScreen.Visible = false;
         _rematchButton.Pressed += () =>
         {
+            PlayerData.ResetSessionDamage();
             GetTree().ReloadCurrentScene();
         };
         _combatButton.Pressed += OnCombatPressed;
@@ -1300,9 +1301,11 @@ public partial class TeltBattle : Node2D
 
             _gameOverResultLabel.Text = isDraw ? "DRAW" :
                 playerWon ? "VICTORY!" : "DEFEAT";
+            _gameOverScoreLabel.Text =
+                $"You: {playerDamage} — Opponent: {enemyDamage}";
 
-            _gameOverScoreLabel.Text = $"You: {playerDamage} — Opponent: {enemyDamage}";
-            _rematchButton.Visible = !playerWon || isDraw; // kun ved tap eller draw
+            _rematchButton.Visible = !playerWon;
+            _continueButton.Visible = playerWon;
 
             foreach (Node child in _playerSlotsContainer.GetChildren())
                 if (child is Panel panel)
