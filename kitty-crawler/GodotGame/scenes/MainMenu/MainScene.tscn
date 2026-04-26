@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c40whu3mqsp60"]
+
+[ext_resource type="Script" uid="uid://dntewkh46v1eq" path="res://scenes/MainMenu/MainGame.cs" id="1_3mqji"]
+[ext_resource type="PackedScene" uid="uid://d1er7d64hex5w" path="res://scenes/MainMenu/main_menu.tscn" id="2_x4av3"]
+
+[node name="Game" type="Node2D" unique_id=192401284]
+script = ExtResource("1_3mqji")
+
+[node name="MainMenu" parent="." unique_id=1330075507 instance=ExtResource("2_x4av3")]
+size_flags_horizontal = 0
