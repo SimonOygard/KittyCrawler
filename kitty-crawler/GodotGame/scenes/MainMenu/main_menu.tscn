@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1er7d64hex5w"]
 
-[ext_resource type="Script" uid="uid://csxpwevbxv4q8" path="res://MainMenu.cs" id="1_fu7sn"]
-[ext_resource type="Texture2D" uid="uid://s1ujm8vbd2xn" path="res://Kitty Crawler (1).png" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://csxpwevbxv4q8" path="res://scenes/MainMenu/MainMenu.cs" id="1_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://s1ujm8vbd2xn" path="res://scenes/MainMenu/Kitty Crawler (1).png" id="3_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://6wujeh83jui8" path="res://assets/Backgrounds/jesterartwip-6 (1).png" id="4_glbon"]
 
 [node name="MainMenu" type="Control" unique_id=1330075507]
