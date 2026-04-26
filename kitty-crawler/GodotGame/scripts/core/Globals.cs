@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using KittyCrawler.TELT;
 
 namespace Game.Core
 {
@@ -16,6 +17,7 @@ namespace Game.Core
             Instance = this;
 
             Logger.Info("Loading Globals ...");
+            PlayerData.LoadScore();
         }
     }
 }

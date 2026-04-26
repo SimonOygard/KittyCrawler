@@ -156,7 +156,6 @@ public partial class GameManager : Node
 
         _player.ReceiveDamage(playerDamage);
         _enemy.ReceiveDamage(enemyDamage);
-        PlayerData.AddDamageDealt(enemyDamage);
 
         GD.Print($"Spiller tar {playerDamage} damage (totalt: {_player.TotalDamageReceived})");
         GD.Print($"Fiende tar {enemyDamage} damage (totalt: {_enemy.TotalDamageReceived})");
@@ -214,21 +213,23 @@ public partial class GameManager : Node
     // ── Game Over ─────────────────────────────────────────────────────
     private void ExecuteGameOver()
     {
-        TurnOwner winner;
         bool isDraw = _player.TotalDamageReceived == _enemy.TotalDamageReceived;
 
+        TurnOwner winner;
         if (isDraw)
-            winner = TurnOwner.Player; // spiller vinner ved uavgjort
+            winner = TurnOwner.Enemy;
         else
             winner = _player.TotalDamageReceived < _enemy.TotalDamageReceived
                 ? TurnOwner.Player
                 : TurnOwner.Enemy;
 
+        if (winner == TurnOwner.Player)
+            PlayerData.AddDamageDealt(_enemy.TotalDamageReceived);
+
         GD.Print($"=== SPILLET ER FERDIG ===");
         GD.Print($"Spiller: {_player.TotalDamageReceived} damage");
         GD.Print($"Fiende:  {_enemy.TotalDamageReceived} damage");
         GD.Print(isDraw ? "Uavgjort — spiller vinner!" : $"Vinner: {winner}");
-
         EmitSignal(SignalName.GameOver, (int)winner, _player.TotalDamageReceived, _enemy.TotalDamageReceived);
     }
 
