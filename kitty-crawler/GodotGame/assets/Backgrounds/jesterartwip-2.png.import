@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2dfel2k8l5vq"
-path="res://.godot/imported/jesterartwip-7.png-31ee74b9f40f8bd78e1938b2d665692f.ctex"
+uid="uid://creux4a2ebiup"
+path="res://.godot/imported/jesterartwip-2.png-5e3aadbfb3e80ca37558b374d76a5a3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Backgrounds/jesterartwip-7.png"
-dest_files=["res://.godot/imported/jesterartwip-7.png-31ee74b9f40f8bd78e1938b2d665692f.ctex"]
+source_file="res://assets/Backgrounds/jesterartwip-2.png"
+dest_files=["res://.godot/imported/jesterartwip-2.png-5e3aadbfb3e80ca37558b374d76a5a3e.ctex"]
 
 [params]
 
