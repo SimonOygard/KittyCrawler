@@ -140,4 +140,31 @@ public partial class BattleMap : Node
         GD.Print("  ──────────────");
         foreach (var slot in _playerSlots) GD.Print($"  {slot}");
     }
+
+    // Animation
+    public (int playerDamage, int enemyDamage)[] GetLaneResults()
+    {
+        var results = new (int playerDamage, int enemyDamage)[4];
+        for (int i = 0; i < 4; i++)
+        {
+            int playerPower = _playerSlots[i].GetDamage();
+            int enemyPower = _enemySlots[i].GetDamage();
+
+            if (_playerSlots[i].IsOccupied && _playerSlots[i].Card.Ability == CardData.AbilityType.NoExceedTortoise)
+                enemyPower = Mathf.Min(enemyPower, playerPower);
+            if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.NoExceedTortoise)
+                playerPower = Mathf.Min(playerPower, enemyPower);
+
+            if (_playerSlots[i].IsOccupied && _playerSlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
+                results[i] = (0, playerPower);
+            else if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
+                results[i] = (enemyPower, 0);
+            else
+            {
+                int diff = playerPower - enemyPower;
+                results[i] = diff > 0 ? (0, diff) : diff < 0 ? (-diff, 0) : (0, 0);
+            }
+        }
+        return results;
+    }
 }

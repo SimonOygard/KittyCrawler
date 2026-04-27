@@ -161,48 +161,40 @@ public partial class GameManager : Node
         GD.Print($"Fiende tar {enemyDamage} damage (totalt: {_enemy.TotalDamageReceived})");
 
         EmitSignal(SignalName.MatchEnded, CurrentMatch, playerDamage, enemyDamage);
-
-        SetPhase(GamePhase.CleanupPhase);
-        ExecuteCleanup();
     }
 
     // ── Opprydding ────────────────────────────────────────────────────
     private void ExecuteCleanup()
     {
-        // Alle kort fra battlemap går i discard
+        GD.Print("ExecuteCleanup starter");
         var playerCards = _battleMap.CollectPlayerCards();
         var enemyCards = _battleMap.CollectEnemyCards();
+        GD.Print("Kort samlet");
 
         _player.CollectBattlemapCards(playerCards);
         _enemy.CollectBattlemapCards(enemyCards);
-
         GD.Print($"Opprydding fullført etter match {CurrentMatch}");
 
         if (CurrentMatch >= TotalMatches)
         {
-            GD.Print($"Spiller hånd før discard: {_player.HandCount}");
+            GD.Print("GameOver trigges");
             _player.DiscardHand();
             _enemy.DiscardHand();
-            GD.Print($"Spiller hånd etter discard: {_player.HandCount}");
             SetPhase(GamePhase.GameOver);
             ExecuteGameOver();
             return;
         }
 
-        // Neste match
         CurrentMatch++;
-
-        // Bytt startspiller
-        MatchStarter = MatchStarter == TurnOwner.Player
-            ? TurnOwner.Enemy
-            : TurnOwner.Player;
+        MatchStarter = MatchStarter == TurnOwner.Player ? TurnOwner.Enemy : TurnOwner.Player;
         CurrentTurn = MatchStarter;
 
         GD.Print($"=== MATCH {CurrentMatch} starter ===");
+        GD.Print("Setter DrawPhase...");
         SetPhase(GamePhase.DrawPhase);
+        GD.Print("DrawPhase satt, starter ExecuteDrawPhase");
         ExecuteDrawPhase();
-
-
+        GD.Print("ExecuteDrawPhase ferdig");
     }
     //---bytt tur--
     public void SwitchTurnPublic()
@@ -297,5 +289,10 @@ public partial class GameManager : Node
                 }
             }
         }
+    }
+
+    public void EmitReadyForCombat()
+    {
+        EmitSignal(SignalName.ReadyForCombat);
     }
 }

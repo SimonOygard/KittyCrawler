@@ -104,13 +104,9 @@ public partial class EnemyAI : Node
             }
         }
 
-        if (_gameManager.CheckWarPhase())
-        {
-            GD.Print("[AI] Krigsfase klar etter ability!");
-            return;
-        }
-
-        if (_gameManager.CurrentTurn == GameManager.TurnOwner.Enemy)
+        if (!_gameManager.CheckWarPhase()
+            && _battleMap.AllPlayerSlotsFilled
+            && _gameManager.CurrentTurn == GameManager.TurnOwner.Enemy)
         {
             var timer = GetTree().CreateTimer(0.5f);
             timer.Timeout += TakeTurn;
