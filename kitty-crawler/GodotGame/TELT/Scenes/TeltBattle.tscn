@@ -652,10 +652,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_2ufvv")
 text = "Next Match"
 
 [node name="PlayerDamageLabel" type="Label" parent="UI" unique_id=1113909651]
-offset_left = 1000.0
-offset_top = 450.0
-offset_right = 1096.0
-offset_bottom = 528.0
+offset_left = 990.0
+offset_top = 455.0
+offset_right = 1086.0
+offset_bottom = 533.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_do6nv")
 theme_override_font_sizes/font_size = 64
@@ -664,10 +664,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnemyDamageLabel" type="Label" parent="UI" unique_id=596582083]
-offset_left = 1000.0
-offset_top = 145.0
-offset_right = 1096.0
-offset_bottom = 223.0
+offset_left = 990.0
+offset_top = 150.0
+offset_right = 1086.0
+offset_bottom = 228.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_do6nv")
 theme_override_font_sizes/font_size = 64
