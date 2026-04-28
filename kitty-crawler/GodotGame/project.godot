@@ -24,6 +24,7 @@ FadeTransition="*uid://76kwr2ik27yy"
 DialogueManager="*uid://c3rodes2l3gxb"
 DiceRoll="*uid://imvucr5hlgbd"
 TeltBattleConfig="*uid://r5t3asunglou"
+WorldStateManager="*uid://dl4kbgvq2xgip"
 
 [dialogue_manager]
 

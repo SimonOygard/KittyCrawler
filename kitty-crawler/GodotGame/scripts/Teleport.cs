@@ -9,6 +9,9 @@ public partial class Teleport : Area2D
     [Export]
     private Marker2D _destination;
 
+    [Export]
+    public string ScenePath { get; set; } = string.Empty;
+
     public override void _Ready()
     {
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -26,7 +29,15 @@ public partial class Teleport : Area2D
     {
         if (body is Player player)
         {
-            
+            if (!string.IsNullOrEmpty(ScenePath))
+            {
+                var transition = GetNode<LevelTransition>("LevelTransition");
+                transition.ScenePath = ScenePath;
+
+                transition.TriggerTransition();
+                return;
+            }
+
             if (_destination == null)
             {
                 GD.PrintErr("TeleportTarget not found!");

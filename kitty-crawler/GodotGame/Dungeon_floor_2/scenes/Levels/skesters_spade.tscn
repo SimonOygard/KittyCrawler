@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bw6ou6msfjtmo" path="res://scripts/MimicManager.cs" id="4_2ouvy"]
 [ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://scenes/Chest.tscn" id="5_e6egn"]
 [ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="6_xqt5p"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="7_ik45p"]
 
 [node name="SkestersSpadeLevel" type="Node2D" unique_id=1768466649]
 
@@ -50,6 +51,12 @@ _destination = NodePath("../DestinationA")
 position = Vector2(396, 58)
 _destination = NodePath("../DestinationB")
 
-[node name="TeleportEnd" parent="Teleporters" unique_id=1633862423 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
+[node name="TeleportEnd" parent="Teleporters" unique_id=1633862423 instance=ExtResource("6_xqt5p")]
 position = Vector2(399, -160)
-_destination = NodePath("../DestinationB")
+ScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_clubs.tscn"
+
+[node name="LevelTransition" type="Node" parent="Teleporters/TeleportEnd" unique_id=1001504914]
+script = ExtResource("7_ik45p")
+ScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_clubs.tscn"
+Type = 5
+ObjectName = "Clubs"

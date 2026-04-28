@@ -12,6 +12,7 @@ public partial class PlayerData : Node
     private List<CardData> _hand = new();
     private List<CardData> _discardPile = new();
 
+
     // ── Deck ──────────────────────────────────────────────────────────
     public void SetDeck(List<CardData> deck)
     {
@@ -173,6 +174,7 @@ public partial class PlayerData : Node
             ["defeatedNpcs"] = string.Join(",", _defeatedNpcs),
             ["receivedCards"] = string.Join(",", _receivedCards)
         };
+
         file.StoreString(Json.Stringify(data));
     }
 

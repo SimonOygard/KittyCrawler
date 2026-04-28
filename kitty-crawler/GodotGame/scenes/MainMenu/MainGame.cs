@@ -5,9 +5,12 @@ public partial class MainGame : Node2D
 {
     private MainMenu mainMenu;
 
+    private LevelTransition _levelTransition;
+
     public override void _Ready()
     {
-        mainMenu = GetNodeOrNull<MainMenu>("MainMenu");
+        mainMenu = GetNodeOrNull<MainMenu>("UI/MainMenu");
+        _levelTransition = GetNode<LevelTransition>("UI/LevelTransition");
 
         mainMenu.StartGameRequested += StartGame;
     }
@@ -18,8 +21,12 @@ public partial class MainGame : Node2D
 
         if (newGame)
         {
-            // Start a new game
-            GD.Print("Starting a new game...");
+            if (!string.IsNullOrEmpty(_levelTransition.ScenePath))
+            {
+                _levelTransition.TriggerTransition();
+                GD.Print("Starting a new game...");
+                return;
+            }
         }
         else
         {

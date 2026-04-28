@@ -28,6 +28,7 @@ offset_bottom = 704.0
 layout_mode = 2
 
 [node name="Continue" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1777096882]
+visible = false
 layout_mode = 2
 text = "Continue"
 

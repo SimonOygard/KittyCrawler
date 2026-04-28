@@ -74,6 +74,13 @@ public partial class TeltBattle : Node2D
     // Boss
     //var boss = TeltBattleConfig.Instance.CurrentBoss;
 
+
+    // ── Signals ─────────────────────────────────────────────────────
+    [Signal] public delegate void ScoreUpdatedEventHandler(int newTotalDamage);
+    [Signal] public delegate void NpcDefeatedEventHandler(string npcId);
+    [Signal] public delegate void CardReceivedEventHandler(string cardId);
+
+
     public void SetBackground(Texture2D texture)
     {
         if (_background != null)
@@ -100,6 +107,9 @@ public partial class TeltBattle : Node2D
         GD.Print($"OddButton er null: {_oddButton == null}");
         GD.Print($"EvenButton er null: {_evenButton == null}");
         GD.Print($"GameManager er null: {_gameManager == null}");
+
+        var stateManager = GetNode<WorldStateManager>("/root/WorldStateManager");
+        stateManager.RegisterSaveEvents(this);
 
         _deckCountLabel.Visible = false;
         // Koble GameManager signals
@@ -1016,14 +1026,19 @@ public partial class TeltBattle : Node2D
             PlayerData.DefeatNpc(boss.NpcId, _enemy.TotalDamageReceived);
 
             if (playerWon && !PlayerData.HasReceivedCard(boss.NpcId))
+                {
                 PlayerData.GiveRewardCard(boss.NpcId);
+                EmitSignal(SignalName.CardReceived, boss.NpcId);
+            }
         }
         else
         {
             // Fallback for testing uten config
             PlayerData.DefeatNpc("npc_goblin_king", _enemy.TotalDamageReceived);
         }
-
+        EmitSignal(SignalName.ScoreUpdated, _enemy.TotalDamageReceived); 
+        EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? "npc_goblin_king"); 
+        
         ShowGameOverScreen(winner, playerDamage, enemyDamage);
     }
 
