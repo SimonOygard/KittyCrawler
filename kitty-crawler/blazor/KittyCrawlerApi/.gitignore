@@ -1,0 +1,14 @@
+# Build
+bin/
+obj/
+
+# Publish
+publish/
+*.zip
+
+# IDE
+.vs/
+.vscode/
+
+# Config (viktig!)
+appsettings.Development.json
