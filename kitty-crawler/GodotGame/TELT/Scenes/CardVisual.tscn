@@ -75,9 +75,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_o8aor")
 [node name="DamageLabel" type="Label" parent="StatsContainer" unique_id=1275811352]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 5.0
+offset_top = 3.0
 offset_right = 18.0
-offset_bottom = 25.0
+offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 theme_override_fonts/font = ExtResource("3_kc40a")
 theme_override_font_sizes/font_size = 18
