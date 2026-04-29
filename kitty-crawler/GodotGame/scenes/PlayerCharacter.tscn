@@ -501,5 +501,5 @@ collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1730084776]
 position = Vector2(8, 8)
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true

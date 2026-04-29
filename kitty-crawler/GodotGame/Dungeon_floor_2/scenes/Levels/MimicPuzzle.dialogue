@@ -1,0 +1,44 @@
+~ start
+PuzzleMaster: Greetings.
+PuzzleMaster: I am the guardian of Eve. To be allowed an audience with her you must first get through me.
+PuzzleMaster: ...
+PuzzleMaster: What about the chests you might be thinking? One of these contains something you need for your journey.
+PuzzleMaster: The others... Well... They contain your [wave]death.[/wave]
+PuzzleMaster: Go ahead and choose a chest. Choose Wisely.
+
+- The Chest on the left.
+	do SelectChest("Left")
+	PuzzleMaster: So you have chosen the Left chest. 
+- The Chest in the middle.
+	do SelectChest("Middle")
+	PuzzleMaster: So you have chosen the Middle chest. 
+- The Chest on the right.
+	do SelectChest("Right")
+	PuzzleMaster: So you have chosen the Right chest. 
+
+PuzzleMaster: Wait! Do not open it yet.
+PuzzleMaster: I will let you make another choice, but first, let me open this one.
+
+do OpenUnselectedChestMimic()
+
+PuzzleMaster: Will you change your decision?
+- Change your decision.
+	do SelectNewChest(true)
+
+	if _chosenChest.IsMimic
+		PuzzleMaster: Hmm... You were unlucky this time.
+		
+	else:
+		PuzzleMaster: You have made the correct choice. Good luck, traveller.
+		
+
+- Stick with your decision.
+	do SelectNewChest(false)
+	
+	if _chosenChest.IsMimic
+		PuzzleMaster: Haha! Wrong choice!
+	else:
+		PuzzleMaster: You got lucky!
+		
+do EndGame()
+=> END

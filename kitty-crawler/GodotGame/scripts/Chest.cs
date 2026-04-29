@@ -69,4 +69,14 @@ public partial class Chest : CharacterBody2D, IInteractable
         }
     }
 
+
+    public void ResetAnimations()
+    {
+        if (_sprite != null)
+        {
+            _sprite.Play("idle");
+            GD.Print("Chest animation reset to idle for " + Name);
+            _hasBeenInteractedWith = false;
+        }
+    }
 }

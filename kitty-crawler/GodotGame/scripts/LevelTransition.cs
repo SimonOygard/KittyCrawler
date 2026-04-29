@@ -37,11 +37,10 @@ public partial class LevelTransition : Node
 
         await FadeTransition.Instance.FadeToBlack();
 
-        GetTree().Root.AddChild(instance);
-        GetTree().CurrentScene.QueueFree();
-        GetTree().CurrentScene = instance;
+        GetTree().ChangeSceneToFile(ScenePath);
 
         await FadeTransition.Instance.FadeFromBlack();
+
         GD.Print("Scene transition finished");
     }
 
@@ -74,8 +73,8 @@ public partial class LevelTransition : Node
             case TransitionType.Dialogue:
                 // Dialogue-specific logic can be added here
                 break;
-            case TransitionType.Door:
-                // Door-specific logic can be added here
+            case TransitionType.Teleport:
+                // Teleport-specific logic can be added here
                 break;
             case TransitionType.Generic:
                 // Generic transition logic can be added here
@@ -92,6 +91,6 @@ public enum TransitionType
     Puzzle,
     Trap,
     Dialogue,
-    Door,
+    Teleport,
     Generic
 }
