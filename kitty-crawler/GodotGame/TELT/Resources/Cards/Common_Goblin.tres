@@ -12,6 +12,4 @@ script = ExtResource("2_lpycp")
 CardName = "Goblin"
 Damage = 1
 Texture = SubResource("AtlasTexture_f6qwu")
-AbilityDescription = "Give a unit +2 stats"
-Ability = 5
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

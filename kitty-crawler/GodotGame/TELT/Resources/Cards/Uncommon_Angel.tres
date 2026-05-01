@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://5s8sks5iwt1x"]
+
+[ext_resource type="Texture2D" uid="uid://rrpof80cap5k" path="res://TELT/Tilesets/AngelDemon.png" id="1_a2s7o"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_3wonx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mand4"]
+atlas = ExtResource("1_a2s7o")
+region = Rect2(0, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_3wonx")
+CardName = "Angel"
+Damage = 5
+CardRarity = 1
+Texture = SubResource("AtlasTexture_mand4")
+AbilityDescription = "Heal 3"
+Ability = 23
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

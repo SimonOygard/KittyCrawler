@@ -94,12 +94,6 @@ public partial class BattleMap : Node
             if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.NoExceedTortoise)
                 playerPower = Mathf.Min(playerPower, enemyPower);
 
-            // Drake: alltid går damage gjennom uansett
-            if (_playerSlots[i].IsOccupied && _playerSlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
-                enemyDamage += playerPower;
-            else if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
-                playerDamage += enemyPower;
-
             int diff = playerPower - enemyPower;
 
             if (diff > 0) enemyDamage += diff;
@@ -155,10 +149,6 @@ public partial class BattleMap : Node
             if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.NoExceedTortoise)
                 playerPower = Mathf.Min(playerPower, enemyPower);
 
-            if (_playerSlots[i].IsOccupied && _playerSlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
-                results[i] = (0, playerPower);
-            else if (_enemySlots[i].IsOccupied && _enemySlots[i].Card.Ability == CardData.AbilityType.AllDamageExceeds)
-                results[i] = (enemyPower, 0);
             else
             {
                 int diff = playerPower - enemyPower;

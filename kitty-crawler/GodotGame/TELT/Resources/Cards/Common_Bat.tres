@@ -12,6 +12,4 @@ script = ExtResource("2_bcywt")
 CardName = "Bat"
 Damage = 2
 Texture = SubResource("AtlasTexture_y2mt8")
-AbilityDescription = "Give a unit -1 stat"
-Ability = 2
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

@@ -10,8 +10,8 @@ region = Rect2(192, 0, 64, 96)
 [resource]
 script = ExtResource("2_ks8p1")
 CardName = "Elemental"
-Damage = 4
+Damage = 3
 Texture = SubResource("AtlasTexture_y2mt8")
-AbilityDescription = "Draw a Card"
+AbilityDescription = "Draw a card"
 Ability = 8
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

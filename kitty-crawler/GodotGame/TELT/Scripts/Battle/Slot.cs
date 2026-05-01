@@ -7,8 +7,9 @@ public partial class Slot : Node
     public enum SlotPosition { Left, MidLeft, MidRight, Right }    public enum SlotOwner { Player, Enemy }
 
     public SlotPosition Position { get; set; }
-    public SlotOwner Owner { get; set; }
+    public new SlotOwner Owner { get; set; }
     public CardData Card { get; private set; } = null;
+
 
     public bool IsOccupied => Card != null;
     public bool IsEmpty => Card == null;
