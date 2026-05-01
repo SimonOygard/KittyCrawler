@@ -12,6 +12,6 @@ script = ExtResource("2_lm5al")
 CardName = "Snake"
 Damage = 3
 Texture = SubResource("AtlasTexture_f6qwu")
-AbilityDescription = "Give a unit POISON"
+AbilityDescription = "Give an enemy unit POISON"
 Ability = 18
 metadata/_custom_type_script = "uid://bic8u8tbeisc8"

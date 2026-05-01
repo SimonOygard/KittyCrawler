@@ -99,6 +99,8 @@ public partial class TeltBattle : Node2D
     private Slot.SlotPosition _pendingCardPosition;
     private bool _waitingForHandTarget = false;
     private Slot _hildaFirstTarget = null;
+    private bool _waitingForForcedDiscard = false;
+
 
     // ── Ready ─────────────────────────────────────────────────────────
     public override void _Ready()
@@ -117,6 +119,37 @@ public partial class TeltBattle : Node2D
         _gameManager.TurnChanged += OnTurnChanged;
         _gameManager.MatchEnded += OnMatchEnded;
         _gameManager.GameOver += OnGameOver;
+        _gameManager.OpponentDiscardRequested += (isPlayer) =>
+        {
+            if (isPlayer) // Spiller spilte kortet → motstander discader
+            {
+                GetTree().CreateTimer(0.4f).Timeout += () => // ← delay
+                {
+                    var hand = _enemy.GetHand();
+                    if (hand.Count > 0)
+                    {
+                        var weakest = hand.OrderBy(c => c.GetCurrentDamage()).First();
+                        _enemy.DiscardCard(weakest);
+                        UpdateEnemyHandDisplay();
+                        UpdateEnemyDiscardPile();
+                    }
+                };
+            }
+            else // Motstander spilte kortet → spiller discader
+            {
+                if (!_player.HasCardsInHand)
+                {
+                    if (_gameManager.CheckWarPhase())
+                        _combatButton.Visible = true;
+                    return;
+                }
+                _combatButton.Visible = false;
+                _waitingForHandTarget = true;
+                _waitingForForcedDiscard = true;
+                _phaseLabel.Text = "Choose a card to discard";
+                HighlightHandCards();
+            }
+        };
         _gameManager.ReadyForCombat += () =>
         {
             if (!_waitingForTarget && !_waitingForHandTarget)
@@ -183,7 +216,7 @@ public partial class TeltBattle : Node2D
 
         // Init GameManager
         _gameManager.Initialize(_player, _enemy, _battleMap);
-        _enemyAI.Initialize(_enemy, _player, _battleMap, _gameManager, _abilityResolver);
+        _enemyAI.Initialize(_enemy, _player, _battleMap, _gameManager, _abilityResolver, this);
         _abilityResolver.Initialize(_battleMap, _player, _enemy, _gameManager);
         SetBackground(_basicBackground);
 
@@ -269,31 +302,36 @@ public partial class TeltBattle : Node2D
 
         var startDeck = new List<CardData>
         {
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Yeti.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Watcher.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Bat.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Elemental.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Goblin.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Minotaur.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Wraith.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Spider.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Bat.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Minotaur.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Elemental.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Golem.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Druid.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Drake.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Dryad.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Watcher.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Wraith.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Angel.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Cat.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Sludge.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Demon.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Drake.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Druid.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Dryad.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_EyeofHope.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_EyeofDespair.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Golem.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Horror.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Skester.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Eve.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Hilda.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Sludge.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Croxy.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_PuzzleMaster.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Hilda.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Eve.tres")).Duplicate() as CardData,
+            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Skester.tres")).Duplicate() as CardData,
             (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Mio.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Minotaur.tres")).Duplicate() as CardData,
+
+
         };
 
         _player.SetDeck(startDeck);
@@ -326,7 +364,7 @@ public partial class TeltBattle : Node2D
 
         // Vis resultat
         bool playerStarts = _gameManager.MatchStarter == GameManager.TurnOwner.Player;
-        _diceResultLabel.Text = playerStarts ? "You go first!" : "Opponent starts.";
+        _diceResultLabel.Text = playerStarts ? "You go first" : "Opponent starts";
         _diceResultLabel.Visible = true;
 
         // Vent 1 sekund så start spillet
@@ -380,11 +418,28 @@ public partial class TeltBattle : Node2D
             _isProcessingAction = true;
 
             card.SetSelected(false);
+
+            if (_waitingForForcedDiscard)
+            {
+                _player.DiscardCard(card.CardData);
+                RemoveCardFromHand(card);
+                _waitingForHandTarget = false;
+                _waitingForForcedDiscard = false;
+                _isProcessingAction = false;
+                RefreshHandVisuals();
+                UpdateDeckDisplay();
+                UpdateDiscardPile();
+                if (_gameManager.CheckWarPhase())
+                    _combatButton.Visible = true;
+                return;
+            }
+
             var abilityCard = _pendingAbilityCard;
             _abilityResolver.ResolveWithHandTarget(_pendingAbilityCard, card.CardData, true);
             RemoveCardFromHand(card);
             _waitingForTarget = false;
             _waitingForHandTarget = false;
+            _waitingForForcedDiscard = false;
             _pendingAbilityCard = null;
             _gameManager.HoldTurn = false;
             RefreshHandVisuals();
@@ -523,145 +578,359 @@ public partial class TeltBattle : Node2D
     }
 
     private void OnSlotClicked(InputEvent inputEvent, Slot.SlotPosition position)
-{
-    if (_selectedCard == null || _selectedCard.IsQueuedForDeletion() || _selectedCard.CardData == null) return;
-    if (inputEvent is not InputEventMouseButton mouseEvent) return;
-    if (!mouseEvent.Pressed || mouseEvent.ButtonIndex != MouseButton.Left) return;
-    if (_isProcessingAction) return;
-    _isProcessingAction = true;
-
-    var cardToPlay = _selectedCard;
-    var cardData   = _selectedCard.CardData;
-
-    if (_abilityResolver.NeedsTarget(cardData))
-        _gameManager.HoldTurn = true;
-
-    bool success = _gameManager.TryPlayCard(cardData, position, GameManager.TurnOwner.Player);
-
-    if (success)
     {
-        if (!_abilityResolver.NeedsTarget(cardData))
-        {
-            var ability = cardData.Ability;
-            _abilityResolver.ResolveNoTarget(cardData, position, true);
-            RemoveCardFromHand(cardToPlay);
-            _selectedCard = null;
 
-            // Bug 3-fix: DrawCard/DrawTwoCards - legg til nye kort enkeltvis
-            // i stedet for full RefreshHandVisuals (forhindrer hopping)
-            if (ability == CardData.AbilityType.DrawCard ||
-                ability == CardData.AbilityType.DrawTwoCards)
-            {
-                foreach (var newCard in _player.NewlyDrawnCards)
-                    AddCardToHandAnimated(newCard);
-                _player.ClearLastDrawnCard();
-            }
-            else
-            {
-                RefreshHandVisuals();
-            }
-
-            UpdateSlotVisuals();
-
-            GetTree().CreateTimer(0.05f).Timeout += () =>
-            {
-                switch (ability)
-                {
-                    case CardData.AbilityType.AllEnemyMinusStat:
-                        FlashAllOccupiedSlots(false, new Color(1f, 0.2f, 0.2f, 1f));
-                        break;
-                    case CardData.AbilityType.AllAllyPlusStat:
-                        FlashAllOccupiedSlots(true, new Color(0.2f, 1f, 0.2f, 1f));
-                        break;
-                }
-            };
-
-            UpdateUI();
-            UpdateEnemyHandDisplay();
-            UpdateDeckDisplay();
-            UpdateDiscardPile();
-            UpdateEnemyDeckDisplay();
-            UpdateEnemyDiscardPile();
-
-            if (_gameManager.CheckWarPhase())
-            {
-                _combatButton.Visible = true;
-                _isProcessingAction = false;
-                return;
-            }
-        }
-        else
-        {
-            var targetType = _abilityResolver.GetTargetType(cardData);
-
-            if (targetType == AbilityResolver.TargetType.HandCard)
-            {
-                if (!_player.HasCardsInHand)
-                {
-                    GD.Print($"[Ability] {cardData.CardName} fizzlet — ingen kort på hånd");
-                    _gameManager.HoldTurn = false;
-                    RemoveCardFromHand(cardToPlay);
-                    _selectedCard = null;
-                    UpdateSlotVisuals();
-                    UpdateUI();
-                    UpdateEnemyHandDisplay();
-                    UpdateDeckDisplay();
-                    UpdateDiscardPile();
-                    UpdateEnemyDeckDisplay();
-                    UpdateEnemyDiscardPile();
-                    _isProcessingAction = false;
-                    _gameManager.SwitchTurnPublic();
-                    return;
-                }
-                else
-                {
-                    _waitingForTarget     = true;
-                    _waitingForHandTarget = true;
-                    _pendingAbilityCard   = cardData;
-                    _pendingCardPosition  = position;
-                    _phaseLabel.Text      = "Discard a card";
-                    _combatButton.Visible = false;
-                    RemoveCardFromHand(cardToPlay);
-                    _selectedCard = null;
-                    UpdateSlotVisuals();
-                    HighlightHandCards();
-                }
-            }
-            else
-            {
-                _waitingForTarget     = true;
-                _waitingForHandTarget = false;
-                _pendingAbilityCard   = cardData;
-                _pendingCardPosition  = position;
-                _phaseLabel.Text      = "Select target";
-                _combatButton.Visible = false;
-                RemoveCardFromHand(cardToPlay);
-                _selectedCard = null;
-                UpdateSlotVisuals();
-                HighlightLegalTargets(_pendingAbilityCard);
-            }
-        }
-    }
-    else
-    {
-        _gameManager.HoldTurn = false;
-    }
-
-    _isProcessingAction = false;
-}
-
-    private void OnTargetSlotClicked(InputEvent inputEvent, Slot.SlotPosition position, bool isPlayerSlot)
-    {
-        if (_waitingForHandTarget) return;
-
+        if (_selectedCard == null || _selectedCard.IsQueuedForDeletion() || _selectedCard.CardData == null) return;
         if (inputEvent is not InputEventMouseButton mouseEvent) return;
         if (!mouseEvent.Pressed || mouseEvent.ButtonIndex != MouseButton.Left) return;
 
-        var targetSlot = isPlayerSlot
-            ? _battleMap.GetPlayerSlot(position)
-            : _battleMap.GetEnemySlot(position);
+        GD.Print($"OnSlotClicked: selectedCard={_selectedCard?.CardData?.CardName}, isProcessing={_isProcessingAction}, waitingTarget={_waitingForTarget}");
 
-        if (targetSlot.IsEmpty) return;
+        if (_isProcessingAction) return;
+        _isProcessingAction = true;
+
+        var cardToPlay = _selectedCard;
+        var cardData = _selectedCard.CardData;
+
+        if (_abilityResolver.NeedsTarget(cardData))
+            _gameManager.HoldTurn = true;
+
+        bool success = _gameManager.TryPlayCard(cardData, position, GameManager.TurnOwner.Player);
+
+        if (success)
+        {
+            if (!_abilityResolver.NeedsTarget(cardData))
+            {
+                var ability = cardData.Ability;
+                _abilityResolver.ResolveNoTarget(cardData, position, true);
+                RemoveCardFromHand(cardToPlay);
+                _selectedCard = null;
+
+                // Bug 3-fix: DrawCard/DrawTwoCards - legg til nye kort enkeltvis
+                // i stedet for full RefreshHandVisuals (forhindrer hopping)
+                if (ability == CardData.AbilityType.DrawCard ||
+                    ability == CardData.AbilityType.DrawTwoCards)
+                {
+                    foreach (var newCard in _player.NewlyDrawnCards)
+                        AddCardToHandAnimated(newCard);
+                    _player.ClearLastDrawnCard();
+                }
+                else
+                {
+                    RefreshHandVisuals();
+                }
+
+                UpdateSlotVisuals();
+                _isProcessingAction = false;
+
+                GetTree().CreateTimer(0.05f).Timeout += () =>
+                {
+                    switch (ability)
+                    {
+                        case CardData.AbilityType.AllEnemyMinusStat:
+                            FlashAllOccupiedSlots(false, new Color(1f, 0.2f, 0.2f, 1f));
+                            break;
+                        case CardData.AbilityType.AllAllyPlusStat:
+                            FlashAllOccupiedSlots(true, new Color(0.2f, 1f, 0.2f, 1f));
+                            break;
+                        case CardData.AbilityType.DealThreeDamage:
+                            FlashDamageLabel(_enemyDamageLabel, 3);
+                            break;
+                        case CardData.AbilityType.HealThree:
+                            FlashHealLabel(_playerDamageLabel);
+                            break;
+                    }
+                };
+
+                UpdateUI();
+                UpdateEnemyHandDisplay();
+                UpdateDeckDisplay();
+                UpdateDiscardPile();
+                UpdateEnemyDeckDisplay();
+                UpdateEnemyDiscardPile();
+
+                if (_gameManager.CheckWarPhase())
+                {
+                    _combatButton.Visible = true;
+                    _isProcessingAction = false;
+                    return;
+                }
+            }
+            else
+            {
+                var targetType = _abilityResolver.GetTargetType(cardData);
+
+                if (targetType == AbilityResolver.TargetType.HandCard)
+                {
+                    if (!_player.HasCardsInHand)
+                    {
+                        GD.Print($"[Ability] {cardData.CardName} fizzlet — ingen kort på hånd");
+                        _gameManager.HoldTurn = false;
+                        RemoveCardFromHand(cardToPlay);
+                        _selectedCard = null;
+                        UpdateSlotVisuals();
+                        UpdateUI();
+                        UpdateEnemyHandDisplay();
+                        UpdateDeckDisplay();
+                        UpdateDiscardPile();
+                        UpdateEnemyDeckDisplay();
+                        UpdateEnemyDiscardPile();
+                        _isProcessingAction = false;
+                        _gameManager.SwitchTurnPublic();
+                        return;
+                    }
+
+                    else
+                    {
+                        _waitingForTarget = true;
+                        _waitingForHandTarget = true;
+                        _pendingAbilityCard = cardData;
+                        _pendingCardPosition = position;
+                        _phaseLabel.Text = "Discard a card";
+                        _combatButton.Visible = false;
+                        RemoveCardFromHand(cardToPlay);
+                        _selectedCard = null;
+                        _isProcessingAction = false;
+                        UpdateSlotVisuals();
+                        HighlightHandCards();
+                    }
+                }
+                else
+                {
+                    // fizzle-sjekker
+
+                    // Copy stat fizzle
+                    if (cardData.Ability == CardData.AbilityType.CopyStat
+                        && !_abilityResolver.HasLegalCopyStatTarget(true))
+                    {
+                        GD.Print("[Ability] Cat fizzlet — ingen targets");
+                        _gameManager.HoldTurn = false;
+                        RemoveCardFromHand(cardToPlay);
+                        _selectedCard = null;
+                        UpdateSlotVisuals();
+                        UpdateUI();
+                        _isProcessingAction = false;
+                        _gameManager.SwitchTurnPublic();
+                        return;
+                    }
+
+                    // Switch slots fizzle
+                    if (cardData.Ability == CardData.AbilityType.SwitchSlots)
+                    {
+                        int occupiedCount = 0;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (_battleMap.GetPlayerSlot((Slot.SlotPosition)i).IsOccupied) occupiedCount++;
+                            if (_battleMap.GetEnemySlot((Slot.SlotPosition)i).IsOccupied) occupiedCount++;
+                        }
+                        if (occupiedCount <= 2)
+                        {
+                            GD.Print("[Ability] Hilda fizzlet — for få targets");
+                            _gameManager.HoldTurn = false;
+                            RemoveCardFromHand(cardToPlay);
+                            _selectedCard = null;
+                            UpdateSlotVisuals();
+                            UpdateUI();
+                            _isProcessingAction = false;
+                            _gameManager.SwitchTurnPublic();
+                            return;
+                        }
+                    }
+
+
+                    // Remove, gain stats fizzle
+                    if (cardData.Ability == CardData.AbilityType.RemoveGainStats)
+                    {
+                        int targetCount = 0;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (_battleMap.GetPlayerSlot((Slot.SlotPosition)i).IsOccupied) targetCount++;
+                            if (_battleMap.GetEnemySlot((Slot.SlotPosition)i).IsOccupied) targetCount++;
+                        }
+                        if (targetCount <= 1)
+                        {
+                            GD.Print("[Ability] Mio fizzlet — ingen andre targets");
+                            _gameManager.HoldTurn = false;
+                            RemoveCardFromHand(cardToPlay);
+                            _selectedCard = null;
+                            UpdateSlotVisuals();
+                            UpdateUI();
+                            _isProcessingAction = false;
+                            _gameManager.SwitchTurnPublic();
+                            return;
+                        }
+                    }
+
+                    // + stat fizzle
+                    if ((cardData.Ability == CardData.AbilityType.GivePlusOneStat ||
+                         cardData.Ability == CardData.AbilityType.GivePlusTwoStats))
+                    {
+                        bool hasLegalTarget = false;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                            if (slot.IsOccupied && (Slot.SlotPosition)i != _pendingCardPosition)
+                            {
+                                hasLegalTarget = true;
+                                break;
+                            }
+                        }
+                        if (!hasLegalTarget)
+                        {
+                            GD.Print("[Ability] +stat fizzlet — ingen legal targets");
+                            _gameManager.HoldTurn = false;
+                            RemoveCardFromHand(cardToPlay);
+                            _selectedCard = null;
+                            UpdateSlotVisuals();
+                            UpdateUI();
+                            _isProcessingAction = false;
+                            _gameManager.SwitchTurnPublic();
+                            return;
+                        }
+                    }
+
+                    // - stat fizzle
+                    if (cardData.Ability == CardData.AbilityType.GiveMinusOneStat ||
+                        cardData.Ability == CardData.AbilityType.GiveMinusTwoStats)
+                    {
+                        bool hasLegalTarget = false;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (_battleMap.GetEnemySlot((Slot.SlotPosition)i).IsOccupied)
+                            {
+                                hasLegalTarget = true;
+                                break;
+                            }
+                        }
+                        if (!hasLegalTarget)
+                        {
+                            GD.Print("[Ability] -stat fizzlet — ingen enemy targets");
+                            _gameManager.HoldTurn = false;
+                            RemoveCardFromHand(cardToPlay);
+                            _selectedCard = null;
+                            UpdateSlotVisuals();
+                            UpdateUI();
+                            _isProcessingAction = false;
+                            _gameManager.SwitchTurnPublic();
+                            return;
+                        }
+                    }
+                    // Apply rage/poison
+                    if (cardData.Ability == CardData.AbilityType.ApplyPoison)
+                    {
+                        bool hasLegalTarget = false;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var slot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
+                            if (slot.IsOccupied && !slot.Card.HasStatus)
+                            {
+                                hasLegalTarget = true;
+                                break;
+                            }
+                        }
+                        if (!hasLegalTarget)
+                        {
+                            GD.Print("[Ability] Poison fizzlet — ingen legal targets");
+                            _gameManager.HoldTurn = false;
+                            RemoveCardFromHand(cardToPlay);
+                            _selectedCard = null;
+                            UpdateSlotVisuals();
+                            UpdateUI();
+                            _isProcessingAction = false;
+                            _gameManager.SwitchTurnPublic();
+                            return;
+                        }
+                    }
+
+                    if (cardData.Ability == CardData.AbilityType.ApplyRage)
+                    {
+                        bool hasLegalTarget = false;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                            if (slot.IsOccupied && !slot.Card.HasStatus)
+                            {
+                                hasLegalTarget = true;
+                                break;
+                            }
+                        }
+                        if (!hasLegalTarget)
+                        {
+                            GD.Print("[Ability] Rage fizzlet — ingen legal targets");
+                            _gameManager.HoldTurn = false;
+                            RemoveCardFromHand(cardToPlay);
+                            _selectedCard = null;
+                            UpdateSlotVisuals();
+                            UpdateUI();
+                            _isProcessingAction = false;
+                            _gameManager.SwitchTurnPublic();
+                            return;
+                        }
+                    }
+
+                    _waitingForTarget = true;
+                    _waitingForHandTarget = false;
+                    _pendingAbilityCard = cardData;
+                    _pendingCardPosition = position;
+                    _phaseLabel.Text = "Select target";
+                    _combatButton.Visible = false;
+                    RemoveCardFromHand(cardToPlay);
+                    _selectedCard = null;
+                    _isProcessingAction = false;
+                    UpdateSlotVisuals();
+                    HighlightLegalTargets(_pendingAbilityCard);
+
+                }
+
+                _gameManager.HoldTurn = false;
+
+                _isProcessingAction = false;
+            }
+        }
+    }
+
+
+        private void OnTargetSlotClicked(InputEvent inputEvent, Slot.SlotPosition position, bool isPlayerSlot)
+        {
+            if (_waitingForHandTarget) return;
+            if (inputEvent is not InputEventMouseButton mouseEvent) return;
+            if (!mouseEvent.Pressed || mouseEvent.ButtonIndex != MouseButton.Left) return;
+
+            GD.Print($"OnTargetSlotClicked: position={position}, isPlayer={isPlayerSlot}, pendingAbility={_pendingAbilityCard?.Ability}");
+
+            var targetSlot = isPlayerSlot
+                ? _battleMap.GetPlayerSlot(position)
+                : _battleMap.GetEnemySlot(position);
+
+            if (targetSlot.IsEmpty) return;
+
+            // Guard: blokkér targetting av ikke-legale mål
+            switch (_pendingAbilityCard?.Ability)
+            {
+                case CardData.AbilityType.GiveMinusOneStat:
+                case CardData.AbilityType.GiveMinusTwoStats:
+                    if (isPlayerSlot) return; // kun enemy
+                    break;
+                case CardData.AbilityType.GivePlusOneStat:
+                case CardData.AbilityType.GivePlusTwoStats:
+                    if (!isPlayerSlot) return; // kun egne
+                    if (position == _pendingCardPosition) return; // ikke seg selv
+                    break;
+                case CardData.AbilityType.ApplyPoison:
+                    if (isPlayerSlot) return; // kun enemy
+                    if (targetSlot.Card.HasStatus) return;
+                    break;
+                case CardData.AbilityType.ApplyRage:
+                    if (!isPlayerSlot) return; // kun egne
+                    if (targetSlot.Card.HasStatus) return;
+                    break;
+                case CardData.AbilityType.CopyStat:
+                    if (isPlayerSlot && position == _pendingCardPosition) return; // ikke seg selv
+                    break;
+                case CardData.AbilityType.RemoveGainStats:
+                    if (isPlayerSlot && position == _pendingCardPosition) return; // Mio ikke seg selv
+                    break;
+            }
 
         if (_pendingAbilityCard.Ability == CardData.AbilityType.GiveMinusOneStat
             && isPlayerSlot
@@ -704,24 +973,30 @@ public partial class TeltBattle : Node2D
         {
             if (_hildaFirstTarget == null)
             {
+                GD.Print($"[Hilda] Første target valgt: {targetSlot.Position}");
                 _hildaFirstTarget = targetSlot;
                 _phaseLabel.Text = "Choose a card\nto swap";
                 return;
             }
             else
             {
+                if (_hildaFirstTarget == targetSlot)
+                {
+                    GD.Print("[Ability] Hilda kan ikke velge samme slot!");
+                    return;
+                }
+                GD.Print($"[Hilda] Andre target valgt: {targetSlot.Position}, resolver nå");
                 _abilityResolver.ResolveSwitchSlots(_hildaFirstTarget, targetSlot);
                 _hildaFirstTarget = null;
             }
         }
-        else
-        {
-            _abilityResolver.ResolveWithSlotTarget(_pendingAbilityCard, targetSlot, true);
-        }
+        _abilityResolver.ResolveWithSlotTarget(_pendingAbilityCard, targetSlot, true);
+
 
         var resolvedAbility = _pendingAbilityCard?.Ability;
         var resolvedTarget = targetSlot;
 
+        GD.Print($"[Target] Resolver ferdig, waitingForTarget={_waitingForTarget}, pendingAbility={_pendingAbilityCard?.Ability}");
         _waitingForTarget = false;
         _pendingAbilityCard = null;
         _gameManager.HoldTurn = false;
@@ -912,7 +1187,7 @@ public partial class TeltBattle : Node2D
         if (phase == GameManager.GamePhase.WarPhase)
         {
             _combatButton.Visible = false;
-            _nextMatchButton.Text = _gameManager.CurrentMatch >= 4 ? "Finish" : "Next Match";
+            _nextMatchButton.Text = _gameManager.CurrentMatch >= 4 ? "End Game" : "Next Match";
             _nextMatchButton.Visible = true;
         }
 
@@ -922,6 +1197,7 @@ public partial class TeltBattle : Node2D
 
     private void OnTurnChanged(GameManager.TurnOwner turn)
     {
+        _isProcessingAction = false;
         GD.Print($"OnTurnChanged: {turn}");
         UpdateUI();
         UpdateEnemyHandDisplay();
@@ -932,18 +1208,23 @@ public partial class TeltBattle : Node2D
 
         if (turn == GameManager.TurnOwner.Player)
         {
-            bool hasSkester = _player.GetHand().Any(c => c.Ability == CardData.AbilityType.AnySlot);
-            bool noLegalMoves = !_player.HasCardsInHand
-                                || (_battleMap.PlayerEmptySlotCount == 0 && (!hasSkester || _battleMap.EnemyEmptySlotCount == 0));
-
-            if (noLegalMoves)
+            GetTree().CreateTimer(0.05f).Timeout += () =>
             {
-                if (_gameManager.CheckWarPhase())
-                    _combatButton.Visible = true;
-                else
-                    _gameManager.SwitchTurnPublic();
-                return;
-            }
+                if (_waitingForForcedDiscard) return;
+
+                bool hasSkester = _player.GetHand().Any(c => c.Ability == CardData.AbilityType.AnySlot);
+                bool noLegalMoves = !_player.HasCardsInHand
+                                    || (_battleMap.PlayerEmptySlotCount == 0 &&
+                                        (!hasSkester || _battleMap.EnemyEmptySlotCount == 0));
+
+                if (noLegalMoves)
+                {
+                    if (_gameManager.CheckWarPhase())
+                        _combatButton.Visible = true;
+                    else
+                        _gameManager.SwitchTurnPublic();
+                }
+            };
         }
 
         if (turn == GameManager.TurnOwner.Enemy)
@@ -968,7 +1249,20 @@ public partial class TeltBattle : Node2D
                     _enemyAI.TakeTurn();
                     UpdateSlotVisuals();
 
-                    // Flash AI target highlight
+                    GetTree().CreateTimer(0.05f).Timeout += () =>
+                    {
+                        switch (_lastAIAbility)
+                        {
+                            case CardData.AbilityType.DealThreeDamage:
+                                FlashDamageLabel(_playerDamageLabel, 3);
+                                break;
+                            case CardData.AbilityType.HealThree:
+                                FlashHealLabel(_enemyDamageLabel);
+                                break;
+                        }
+                        _lastAIAbility = CardData.AbilityType.None;
+                    };
+
                     if (_lastAITargetSlot >= 0)
                     {
                         int slot = _lastAITargetSlot;
@@ -1026,7 +1320,7 @@ public partial class TeltBattle : Node2D
             PlayerData.DefeatNpc(boss.NpcId, _enemy.TotalDamageReceived);
 
             if (playerWon && !PlayerData.HasReceivedCard(boss.NpcId))
-                {
+            {
                 PlayerData.GiveRewardCard(boss.NpcId);
                 EmitSignal(SignalName.CardReceived, boss.NpcId);
             }
@@ -1036,9 +1330,9 @@ public partial class TeltBattle : Node2D
             // Fallback for testing uten config
             PlayerData.DefeatNpc("npc_goblin_king", _enemy.TotalDamageReceived);
         }
-        EmitSignal(SignalName.ScoreUpdated, _enemy.TotalDamageReceived); 
-        EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? "npc_goblin_king"); 
-        
+        EmitSignal(SignalName.ScoreUpdated, _enemy.TotalDamageReceived);
+        EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? "npc_goblin_king");
+
         ShowGameOverScreen(winner, playerDamage, enemyDamage);
     }
 
@@ -1157,7 +1451,11 @@ public partial class TeltBattle : Node2D
 
     private int _lastAITargetSlot = -1;
     private bool _lastAITargetIsPlayer = false;
-
+    private CardData.AbilityType _lastAIAbility = CardData.AbilityType.None;
+    public void SetLastAIAbility(CardData.AbilityType ability)
+    {
+        _lastAIAbility = ability;
+    }
 
     private void HighlightLegalTargets(CardData card)
     {
@@ -1183,13 +1481,13 @@ public partial class TeltBattle : Node2D
             {
                 case CardData.AbilityType.GiveMinusOneStat:
                 case CardData.AbilityType.GiveMinusTwoStats:
+                    highlightPlayer = false;
                     highlightEnemy = enemySlot.IsOccupied;
-                    highlightPlayer = playerSlot.IsOccupied && positions[i] != _pendingCardPosition;
                     break;
                 case CardData.AbilityType.GivePlusOneStat:
-                case CardData.AbilityType.GivePlusTwoStats: // Drake
-                    highlightPlayer = playerSlot.IsOccupied;
-                    highlightEnemy = enemySlot.IsOccupied;
+                case CardData.AbilityType.GivePlusTwoStats:
+                    highlightPlayer = playerSlot.IsOccupied && positions[i] != _pendingCardPosition;
+                    highlightEnemy = false;
                     break;
                 case CardData.AbilityType.RemoveUnit: // Druid
                     highlightPlayer = playerSlot.IsOccupied;
@@ -1200,7 +1498,7 @@ public partial class TeltBattle : Node2D
                     highlightEnemy = enemySlot.IsOccupied;
                     break;
                 case CardData.AbilityType.SwitchSlots: // Hilda
-                    highlightPlayer = playerSlot.IsOccupied;
+                    highlightPlayer = playerSlot.IsOccupied && positions[i] != _pendingCardPosition;
                     highlightEnemy = enemySlot.IsOccupied;
                     break;
                 case CardData.AbilityType.ResetStat:
@@ -1208,7 +1506,7 @@ public partial class TeltBattle : Node2D
                     highlightEnemy = enemySlot.IsOccupied;
                     break;
                 case CardData.AbilityType.CopyStat:
-                    highlightPlayer = playerSlot.IsOccupied;
+                    highlightPlayer = playerSlot.IsOccupied && positions[i] != _pendingCardPosition;
                     highlightEnemy = enemySlot.IsOccupied;
                     break;
                 case CardData.AbilityType.GivePlusMinusThree: // Druid
@@ -1216,9 +1514,14 @@ public partial class TeltBattle : Node2D
                     highlightEnemy = enemySlot.IsOccupied;
                     break;
                 case CardData.AbilityType.ApplyPoison:
-                case CardData.AbilityType.ApplyRage:
-                    highlightPlayer = playerSlot.IsOccupied && !playerSlot.Card.HasStatus;
+                    // Kun enemy uten status
+                    highlightPlayer = false;
                     highlightEnemy = enemySlot.IsOccupied && !enemySlot.Card.HasStatus;
+                    break;
+                case CardData.AbilityType.ApplyRage:
+                    // Kun egne uten status
+                    highlightPlayer = playerSlot.IsOccupied && !playerSlot.Card.HasStatus;
+                    highlightEnemy = false;
                     break;
             }
 
@@ -1268,6 +1571,7 @@ public partial class TeltBattle : Node2D
     }
 
 
+    // Highlighting og Flash
     private void SetSlotHighlight(Panel panel, bool highlight)
     {
         panel.Modulate = highlight
@@ -1388,6 +1692,13 @@ public partial class TeltBattle : Node2D
                 return;
             }
         }
+    }
+
+    private async void FlashHealLabel(Label label)
+    {
+        label.AddThemeColorOverride("font_color", new Color(0.2f, 1f, 0.2f, 1f));
+        await ToSignal(GetTree().CreateTimer(0.35f), "timeout");
+        label.AddThemeColorOverride("font_color", Colors.Black);
     }
 
     // Game over screens

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cru35mgvv1jxr"]
+
+[ext_resource type="Texture2D" uid="uid://m1hnrqg7r17w" path="res://TELT/Tilesets/Eyes_of.png" id="1_ca1tf"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_44w63"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d43hk"]
+atlas = ExtResource("1_ca1tf")
+region = Rect2(0, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_44w63")
+CardName = "Eye of Hope"
+Damage = 6
+CardRarity = 1
+Texture = SubResource("AtlasTexture_d43hk")
+AbilityDescription = "Draw a card"
+Ability = 8
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

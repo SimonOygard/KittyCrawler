@@ -45,7 +45,6 @@ public partial class AbilityResolver : Node
         {
             CardData.AbilityType.None             => false,
             CardData.AbilityType.NoExceedTortoise => false,
-            CardData.AbilityType.AllDamageExceeds => false,
             CardData.AbilityType.GivePlusOneStat => true,
             CardData.AbilityType.GivePlusTwoStats => true,
             CardData.AbilityType.GiveMinusOneStat => true,
@@ -61,6 +60,9 @@ public partial class AbilityResolver : Node
             CardData.AbilityType.ApplyRage => true,
             CardData.AbilityType.GivePlusMinusThree => true,
             CardData.AbilityType.AnySlot          => false,
+            CardData.AbilityType.DealThreeDamage => false,
+            CardData.AbilityType.HealThree => false,
+            CardData.AbilityType.OpponentDiscards => false,
             _                                     => true
         };
     }
@@ -86,7 +88,7 @@ public partial class AbilityResolver : Node
         };
     }
 
-    // ── Resolve uten mål ─────────────────────────────────────────────
+    // ── Resolve uten target ─────────────────────────────────────────────
     public void ResolveNoTarget(CardData card, Slot.SlotPosition placedAt, bool isPlayer)
     {
         switch (card.Ability)
@@ -103,15 +105,25 @@ public partial class AbilityResolver : Node
             case CardData.AbilityType.AllAllyPlusStat:
                 ResolveAllAllyPlusStat(isPlayer);
                 break;
-            case CardData.AbilityType.None:
+            case CardData.AbilityType.DealThreeDamage:
+                ResolveDealThreeDamage(isPlayer);
+                break;
+            case CardData.AbilityType.HealThree:
+                ResolveHealThree(isPlayer);
+                break;
+            case CardData.AbilityType.OpponentDiscards:
+                ResolveOpponentDiscards(isPlayer);
+                break;
             case CardData.AbilityType.AnySlot:
+            case CardData.AbilityType.None:
+
                 break;
         }
 
         EmitSignal(SignalName.AbilityResolved, card);
     }
 
-    // ── Resolve med mål ───────────────────────────────────────────────
+    // ── Resolve med target ───────────────────────────────────────────────
     public void ResolveWithSlotTarget(CardData card, Slot targetSlot, bool isPlayer)
     {
         for (int i = 0; i < 4; i++)
@@ -217,7 +229,7 @@ public partial class AbilityResolver : Node
         }
     }
 
-    // Croxy: Give allies +2 stats
+    // Give allies +2 stats
     private void ResolveAllAllyPlusStat(bool isPlayer)
     {
         for (int i = 0; i < 4; i++)
@@ -234,7 +246,7 @@ public partial class AbilityResolver : Node
         }
     }
 
-    // Goblin: Give +1 stat
+    // Give +1 stat
     private void ResolveGivePlusOneStat(Slot targetSlot)
     {
         if (targetSlot.IsEmpty) return;
@@ -242,7 +254,7 @@ public partial class AbilityResolver : Node
         GD.Print($"[Ability] Drake: +1 stats → {targetSlot.Card.CardName} er nå {targetSlot.Card.CurrentDamage}");
     }
 
-    //  ??? : Give a unit +2 stats (maks 9)
+    // Give a unit +2 stats
     private void ResolveGivePlusTwoStats(Slot targetSlot)
     {
         if (targetSlot.IsEmpty) return;
@@ -250,7 +262,7 @@ public partial class AbilityResolver : Node
         GD.Print($"[Ability] +2 stats → {targetSlot.Card.CardName} is now {targetSlot.Card.CurrentDamage}");
     }
 
-    // Bat: give unit -1 stat
+    // Give a unit -1 stat
     private void ResolveGiveMinusOneStat(Slot targetSlot)
     {
         if (targetSlot.IsEmpty) return;
@@ -258,7 +270,7 @@ public partial class AbilityResolver : Node
         GD.Print($"[Ability] -1 stat → {targetSlot.Card.CardName} is now {targetSlot.Card.CurrentDamage}");
     }
 
-    // Skeleton: give -2 stats
+    // Give -2 stats
     private void ResolveGiveMinusTwoStats(Slot targetSlot)
     {
         if (targetSlot.IsEmpty) return;
@@ -266,7 +278,7 @@ public partial class AbilityResolver : Node
         GD.Print($"[Ability] -2 stats → {targetSlot.Card.CardName} is now {targetSlot.Card.CurrentDamage}");
     }
 
-    // Elemental: Draw a card
+    // Draw a card
     private void ResolveDrawCard(bool isPlayer)
     {
         var data = isPlayer ? _player : _enemy;
@@ -274,7 +286,7 @@ public partial class AbilityResolver : Node
         GD.Print($"[Ability] Drew a card");
     }
 
-    // Dryad: Draw two cards
+    // Draw two cards
     private void ResolveDrawTwoCards(bool isPlayer)
     {
         var data = isPlayer ? _player : _enemy;
@@ -284,8 +296,7 @@ public partial class AbilityResolver : Node
     }
 
 
-
-    // Horror: Remove a unit
+    // Remove a unit
     private void ResolveRemoveUnit(Slot targetSlot)
     {
         if (targetSlot.IsEmpty) return;
@@ -293,7 +304,7 @@ public partial class AbilityResolver : Node
         targetSlot.RemoveCard();
     }
 
-    // Mio: remove unit, gain its stats (maks 9)
+    // Remove unit, gain its stats (maks 9)
     private void ResolveRemoveGainStats(Slot targetSlot, bool isPlayer)
     {
         if (targetSlot.IsEmpty) return;
@@ -317,7 +328,27 @@ public partial class AbilityResolver : Node
         }
     }
 
-    // Cat: Copy stat
+    // + or - 3 stats
+    public void ResolveDruid(Slot targetSlot, int amount)
+    {
+        if (targetSlot == null || targetSlot.IsEmpty) return;
+        int newStat = Mathf.Clamp(targetSlot.Card.GetCurrentDamage() + amount, 0, 9);
+        targetSlot.Card.CurrentDamage = newStat;
+        GD.Print($"[Ability] Druid: {targetSlot.Card.CardName} er nå {newStat}");
+        EmitSignal(SignalName.AbilityResolved, targetSlot.Card);
+    }
+
+    // Copy stat
+    public bool HasLegalCopyStatTarget(bool isPlayer)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            var playerSlot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+            var enemySlot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
+            if (playerSlot.IsOccupied || enemySlot.IsOccupied) return true;
+        }
+        return false;
+    }
 
     private void ResolveCopyStat(CardData card, Slot targetSlot, bool isPlayer)
     {
@@ -340,7 +371,7 @@ public partial class AbilityResolver : Node
         }
     }
 
-    // Wraith: Reset stats
+    // Reset stats
     private void ResolveResetStat(Slot targetSlot)
     {
         if (targetSlot.IsEmpty) return;
@@ -363,7 +394,7 @@ public partial class AbilityResolver : Node
         targetSlot.Card.ResetCurrentDamage();
     }
 
-    // Watcher: Discard, draw
+    // Discard, draw
     private void ResolveDiscardDraw(CardData targetCard, bool isPlayer)
     {
         var data = isPlayer ? _player : _enemy;
@@ -372,7 +403,7 @@ public partial class AbilityResolver : Node
         GD.Print($"[Ability] Watcher: discarded {targetCard.CardName}, drew a card");
     }
 
-    // Sludge: kast et kort, få dens stats (maks 9)
+    // kast et kort, få dens stats (maks 9)
     private void ResolveDiscardGainStats(CardData Sludge, CardData targetCard, bool isPlayer)
     {
         var data = isPlayer ? _player : _enemy;
@@ -396,5 +427,38 @@ public partial class AbilityResolver : Node
         if (targetSlot.Card.HasStatus) return;
         targetSlot.Card.IsEnraged = true;
         GD.Print($"[Ability] Rage: {targetSlot.Card.CardName} er nå enraged");
+    }
+
+    // Deal 3 damage
+    private void ResolveDealThreeDamage(bool isPlayer)
+    {
+        var target = isPlayer ? _enemy : _player;
+        target.ReceiveDamage(3);
+        GD.Print($"[Ability] DealThreeDamage: {target.PlayerName} tar 3 skade");
+    }
+
+    // Heal 3 damage
+
+    private void ResolveHealThree(bool isPlayer)
+    {
+        var target = isPlayer ? _player : _enemy;
+        target.TotalDamageReceived = Mathf.Max(0, target.TotalDamageReceived - 3);
+        GD.Print($"[Ability] HealThree: {target.PlayerName} healer 3");
+    }
+
+    // Opponent discards
+
+    private void ResolveOpponentDiscards(bool isPlayer)
+    {
+        GD.Print($"[Ability] ResolveOpponentDiscards: isPlayer={isPlayer}");
+        var opponent = isPlayer ? _enemy : _player;
+        GD.Print($"[Ability] Opponent har {opponent.HandCount} kort");
+        if (!opponent.HasCardsInHand)
+        {
+            GD.Print("[Ability] OpponentDiscards fizzlet — ingen kort på hånd");
+            return; // ← fizzle, turn-switch skjer normalt
+        }
+        _gameManager.TriggerOpponentDiscard(isPlayer);
+        GD.Print($"[Ability] OpponentDiscards trigget");
     }
 }

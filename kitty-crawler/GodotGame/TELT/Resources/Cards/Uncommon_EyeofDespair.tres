@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bgm25fnye48j0"]
+
+[ext_resource type="Texture2D" uid="uid://m1hnrqg7r17w" path="res://TELT/Tilesets/Eyes_of.png" id="1_uphuh"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_jyyv7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d43hk"]
+atlas = ExtResource("1_uphuh")
+region = Rect2(64, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_jyyv7")
+CardName = "Eye of Despair"
+Damage = 6
+CardRarity = 1
+Texture = SubResource("AtlasTexture_d43hk")
+AbilityDescription = "The opponent discards a card"
+Ability = 15
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

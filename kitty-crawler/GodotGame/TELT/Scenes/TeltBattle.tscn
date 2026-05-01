@@ -410,6 +410,7 @@ corner_radius_bottom_left = 60
 corner_detail = 5
 
 [node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_continueButton", "_background")]
+position = Vector2(-1, -2)
 script = ExtResource("1_fqpg2")
 _gameManager = NodePath("GameManager")
 _battleMap = NodePath("BattleMap")

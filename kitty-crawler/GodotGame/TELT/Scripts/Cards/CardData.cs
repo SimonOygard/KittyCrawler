@@ -33,7 +33,7 @@ public partial class CardData : Resource
         GivePlusOneStat,        //
         GivePlusTwoStats,       // common (+2)
         GivePlusMinusThree,     // Druid (velg +3 eller -3)
-        RemoveUnit,             // Horror (kan ikke targete seg selv)
+        RemoveUnit,             // Horror, Puzzle Master
         DrawCard,               // Elemental
         DrawTwoCards,           // Dryad
         DiscardDraw,            // Watcher
@@ -41,13 +41,15 @@ public partial class CardData : Resource
         AnySlot,                // Skester
         AllEnemyMinusStat,      // Eve
         AllAllyPlusStat,        // Croxy
-        AllDamageExceeds,       // Drake
+        OpponentDiscards,       //
         CopyStat,               // Cat
         ResetStat,              // Wraith
         ApplyPoison,            // Snake
         ApplyRage,              // Minotaur
         SwitchSlots,            // Hilda
         RemoveGainStats,        // Mio
+        DealThreeDamage,
+        HealThree,
     }
 
     public int CurrentDamage { get; set; } = -1;

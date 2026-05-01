@@ -40,6 +40,7 @@ public partial class GameManager : Node
     [Signal] public delegate void ReadyForCombatEventHandler();
     [Signal] public delegate void BoardUpdatedEventHandler();
     [Signal] public delegate void StatTickedEventHandler(int slotIndex, bool isPlayerSlot, bool isPositive);
+    [Signal] public delegate void OpponentDiscardRequestedEventHandler(bool isPlayer);
 
     // ── Init ──────────────────────────────────────────────────────────
     public void Initialize(PlayerData player, PlayerData enemy, BattleMap battleMap)
@@ -294,5 +295,16 @@ public partial class GameManager : Node
     public void EmitReadyForCombat()
     {
         EmitSignal(SignalName.ReadyForCombat);
+    }
+
+    public void EmitBoardUpdated()
+    {
+        EmitSignal(SignalName.BoardUpdated);
+    }
+
+    // signal for discard
+    public void TriggerOpponentDiscard(bool isPlayer)
+    {
+        EmitSignal(SignalName.OpponentDiscardRequested, isPlayer);
     }
 }

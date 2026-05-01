@@ -11,16 +11,18 @@ public partial class EnemyAI : Node
     private BattleMap _battleMap;
     private GameManager _gameManager;
     private AbilityResolver _abilityResolver;
+    private TeltBattle _teltBattle;
 
     // ── Init ──────────────────────────────────────────────────────────
     public void Initialize(PlayerData enemyData, PlayerData playerData, BattleMap battleMap, GameManager gameManager,
-        AbilityResolver abilityResolver)
+        AbilityResolver abilityResolver, TeltBattle teltBattle)
     {
         _enemyData = enemyData;
         _playerData = playerData;
         _battleMap = battleMap;
         _gameManager = gameManager;
         _abilityResolver = abilityResolver;
+        _teltBattle = teltBattle;
     }
 
     // ── Hovedmetode: AI velger kort og slot ───────────────────────────
@@ -78,7 +80,16 @@ public partial class EnemyAI : Node
         _gameManager.TryPlayCard(chosenCard, chosenSlot, GameManager.TurnOwner.Enemy);
 
         if (!_abilityResolver.NeedsTarget(chosenCard))
+        {
+            GD.Print($"[AI] ResolveNoTarget for {chosenCard.Ability}");
             _abilityResolver.ResolveNoTarget(chosenCard, chosenSlot, false);
+            _teltBattle.SetLastAIAbility(chosenCard.Ability);
+            _gameManager.EmitBoardUpdated();
+            GD.Print($"[AI] ResolveNoTarget ferdig, CurrentTurn={_gameManager.CurrentTurn}");
+
+            if (chosenCard.Ability == CardData.AbilityType.OpponentDiscards)
+                return; // signal håndterer turn-switch
+        }
         else
         {
             var targetType = _abilityResolver.GetTargetType(chosenCard);
@@ -89,33 +100,85 @@ public partial class EnemyAI : Node
                 {
                     var weakest = currentHand
                         .Where(c => c.Ability != CardData.AbilityType.NoExceedTortoise
-                                 && c.Ability != CardData.AbilityType.AnySlot)
+                                    && c.Ability != CardData.AbilityType.AnySlot)
                         .OrderBy(c => c.GetCurrentDamage())
                         .FirstOrDefault();
                     weakest ??= currentHand.OrderBy(c => c.GetCurrentDamage()).First();
                     _abilityResolver.ResolveWithHandTarget(chosenCard, weakest, false);
+                    _gameManager.EmitBoardUpdated();
                 }
             }
             else
             {
                 Slot targetSlot = ChooseAbilityTarget(chosenCard, chosenSlot);
+                GD.Print($"[AI] ChooseAbilityTarget for {chosenCard.Ability}: target={targetSlot?.Position.ToString() ?? "null"}");
                 if (targetSlot != null)
-                    _abilityResolver.ResolveWithSlotTarget(chosenCard, targetSlot, false);
+                {
+                    GD.Print($"[AI] Kaller resolve for {chosenCard.Ability}");
+                    if (chosenCard.Ability == CardData.AbilityType.GivePlusMinusThree)
+                    {
+                        bool isEnemyTarget = false;
+                        for (int i = 0; i < 4; i++)
+                            if (_battleMap.GetPlayerSlot((Slot.SlotPosition)i) == targetSlot)
+                                isEnemyTarget = true;
+                        int amount = isEnemyTarget ? -3 : 3;
+                        _abilityResolver.ResolveDruid(targetSlot, amount);
+                    }
+                    else if (chosenCard.Ability == CardData.AbilityType.SwitchSlots)
+                    {
+                        // Tell alle units unntatt Hilda selv
+                        int otherUnits = 0;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var eSlot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
+                            var pSlot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                            if (eSlot.IsOccupied && eSlot != targetSlot) otherUnits++;
+                            if (pSlot.IsOccupied) otherUnits++;
+                        }
+                        if (otherUnits < 2)
+                        {
+                            GD.Print("[AI] Hilda fizzlet — for få andre targets");
+                            return;
+                        }
+
+                        Slot slotA = targetSlot;
+                        Slot slotB = null;
+                        int highest = -1;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                            if (slot.IsOccupied && slot.GetDamage() > highest)
+                            {
+                                highest = slot.GetDamage();
+                                slotB = slot;
+                            }
+                        }
+                        if (slotB != null)
+                            _abilityResolver.ResolveSwitchSlots(slotA, slotB);
+                    }
+                    else
+                    {
+                        _abilityResolver.ResolveWithSlotTarget(chosenCard, targetSlot, false);
+                    }
+                }
             }
         }
 
-        if (!_gameManager.CheckWarPhase()
-            && _battleMap.AllPlayerSlotsFilled
-            && _gameManager.CurrentTurn == GameManager.TurnOwner.Enemy)
+        if (_gameManager.CheckWarPhase())
+        {
+            GD.Print("[AI] Krigsfase klar etter ability!");
+            _gameManager.EmitReadyForCombat();
+            return;
+        }
+
+        if (_gameManager.CurrentTurn == GameManager.TurnOwner.Enemy)
         {
             var timer = GetTree().CreateTimer(0.5f);
             timer.Timeout += TakeTurn;
         }
 
-
         GD.Print($"[AI] Spilte {chosenCard.CardName} i {chosenSlot}");
-        }
-
+    }
 
 
 // ── Hjelpemetode: spillerens ledige slots ─────────────────────────
@@ -134,6 +197,20 @@ public partial class EnemyAI : Node
         // ── Velg kort ─────────────────────────────────────────────────────
         private CardData ChooseCard(List<CardData> hand, List<Slot.SlotPosition> availableSlots)
         {
+            bool hasPlayerUnits = false;
+            for (int i = 0; i < 4; i++)
+                if (_battleMap.GetPlayerSlot((Slot.SlotPosition)i).IsOccupied)
+                { hasPlayerUnits = true; break; }
+
+            var playableHand = hand.Where(c =>
+            {
+                if (c.Ability == CardData.AbilityType.RemoveUnit && !hasPlayerUnits)
+                    return false;
+                return true;
+            }).ToList();
+
+            if (playableHand.Count == 0)
+                playableHand = hand;
             // Finn hvilke lanes spilleren allerede har fylt
             var playerCards = availableSlots
                 .Where(s => !_battleMap.IsEnemySlotEmpty(s))
@@ -251,6 +328,38 @@ public partial class EnemyAI : Node
 
                     return bestEnemySlot;
 
+                case CardData.AbilityType.GivePlusMinusThree:
+                    // Finn motstanderens sterkeste
+                    Slot druidEnemyTarget = null;
+                    int druidHighest = -1;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var slot = _battleMap.GetPlayerSlot((Slot.SlotPosition)i);
+                        if (slot.IsOccupied && slot.GetDamage() > druidHighest)
+                        {
+                            druidHighest = slot.GetDamage();
+                            druidEnemyTarget = slot;
+                        }
+                    }
+
+                    // Hvis motstanderens sterkeste har 3+, gi -3
+                    if (druidEnemyTarget != null && druidHighest >= 3)
+                        return druidEnemyTarget;
+
+                    // Ellers gi +3 til eget svakeste
+                    Slot druidAllyTarget = null;
+                    int druidLowest = int.MaxValue;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var slot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
+                        if (slot.IsOccupied && slot.GetDamage() < druidLowest)
+                        {
+                            druidLowest = slot.GetDamage();
+                            druidAllyTarget = slot;
+                        }
+                    }
+                    return druidAllyTarget;
+
                 case CardData.AbilityType.ResetStat:
                     // Wraith: reset spillerens sterkeste kort
                     Slot resetTarget = null;
@@ -265,6 +374,8 @@ public partial class EnemyAI : Node
                         }
                     }
                     return resetTarget;
+
+
 
                 case CardData.AbilityType.CopyStat:
                     // Cat: kopier fra spillerens sterkeste kort
@@ -338,8 +449,20 @@ public partial class EnemyAI : Node
                     return null;
 
                 case CardData.AbilityType.SwitchSlots:
-                    return null;
-
+                    Slot weakestEnemy = null;
+                    int lowestEnemy = int.MaxValue;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var slot = _battleMap.GetEnemySlot((Slot.SlotPosition)i);
+                        if (slot.IsOccupied
+                            && slot.Card.Ability != CardData.AbilityType.SwitchSlots // ← ikke Hilda selv
+                            && slot.GetDamage() < lowestEnemy)
+                        {
+                            lowestEnemy = slot.GetDamage();
+                            weakestEnemy = slot;
+                        }
+                    }
+                    return weakestEnemy;
                 default:
                     return null;
             }
