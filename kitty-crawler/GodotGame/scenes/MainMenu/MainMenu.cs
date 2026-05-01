@@ -6,6 +6,9 @@ public partial class MainMenu : Control
     [Signal]
     public delegate void StartGameRequestedEventHandler(bool newGame);
 
+    [Signal]
+    public delegate void LeaderboardRequestedEventHandler();
+
     private Button[] _buttons;
 
 	// Called when the node enters the scene tree for the first time.
@@ -56,6 +59,7 @@ public partial class MainMenu : Control
 
     public void OnLeaderboardPressed()
     {
+        EmitSignal(SignalName.LeaderboardRequested);
         GD.Print("Leaderboard button pressed");
     }
 

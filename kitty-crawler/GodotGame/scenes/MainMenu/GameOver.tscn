@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://dmcc31u3uiegb"]
+
+[ext_resource type="Script" uid="uid://370mjb1qgfbe" path="res://scripts/core/GameOver.cs" id="1_orapq"]
+[ext_resource type="Texture2D" uid="uid://cklyh2pgcqxxu" path="res://assets/Backgrounds/SleepingCatFree/sleepingcat5.png" id="1_uohd1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orapq"]
+atlas = ExtResource("1_uohd1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3usap"]
+atlas = ExtResource("1_uohd1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgcxp"]
+atlas = ExtResource("1_uohd1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6jrs"]
+atlas = ExtResource("1_uohd1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7eiq"]
+atlas = ExtResource("1_uohd1")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg7mh"]
+atlas = ExtResource("1_uohd1")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tp7nd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orapq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3usap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgcxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6jrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7eiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg7mh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orapq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3usap"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="GameOver" type="Control" unique_id=460128226]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_orapq")
+metadata/_edit_vertical_guides_ = [512.0, 768.0]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=432195245]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect" unique_id=347826485]
+position = Vector2(640, 272)
+scale = Vector2(4.25, 4.25)
+sprite_frames = SubResource("SpriteFrames_tp7nd")
+autoplay = "default"
+frame_progress = 0.19664711
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=331095450]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50600004
+anchor_top = 0.689
+anchor_right = 0.50600004
+anchor_bottom = 0.689
+offset_left = -241.18005
+offset_top = 39.919983
+offset_right = 241.81995
+offset_bottom = 143.91998
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1024516846]
+layout_mode = 2
+
+[node name="NameInput" type="LineEdit" parent="MarginContainer/VBoxContainer" unique_id=42058590]
+layout_mode = 2
+placeholder_text = "Input your name here"
+alignment = 1
+
+[node name="SubmitScore" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1192837359]
+layout_mode = 2
+text = "Submit your score"
+
+[node name="Leaderboard" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1286045072]
+layout_mode = 2
+text = "See the leaderboard"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1260889374]
+layout_mode = 2
+text = "Quit"
+
+[node name="Congratulations" type="Label" parent="." unique_id=320282207]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 160.0
+offset_right = 954.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 21
+text = "Congratulations you have defeated Skester's dungeon."
+
+[node name="Label" type="Label" parent="." unique_id=366248854]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 385.0
+offset_right = 529.0
+offset_bottom = 402.0
+text = "Final score: "
+
+[node name="LineEdit" type="LineEdit" parent="Label" unique_id=392201468]
+layout_mode = 0
+offset_left = 107.0
+offset_top = -8.0
+offset_right = 159.8125
+offset_bottom = 23.0
+theme_override_colors/caret_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/selection_color = Color(0.49803922, 0.49803922, 0.49803922, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_orapq")
+placeholder_text = "0"
+
+[node name="Label2" type="Label" parent="." unique_id=998051815]
+layout_mode = 0
+offset_left = 694.0
+offset_top = 384.0
+offset_right = 784.0
+offset_bottom = 401.0
+text = "Final time:"
+
+[node name="LineEdit" type="LineEdit" parent="Label2" unique_id=797819572]
+layout_mode = 0
+offset_left = 91.0
+offset_top = -7.0
+offset_right = 187.0
+offset_bottom = 24.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3usap")
+placeholder_text = "00:00:00"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SubmitScore" to="." method="OnSubmitPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Leaderboard" to="." method="OnLeaderBoardPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]

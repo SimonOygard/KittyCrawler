@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d2j8ustfnj1rb"]
+
+[ext_resource type="Script" uid="uid://cq4xtxyyk1hum" path="res://scripts/core/TimeLabel.cs" id="1_n5vgj"]
+
+[node name="Timer" type="Control" unique_id=90465843]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLabel" type="Label" parent="." unique_id=336838349]
+layout_mode = 0
+offset_right = 560.0
+offset_bottom = 112.0
+script = ExtResource("1_n5vgj")
+
+[node name="Timer" type="Timer" parent="." unique_id=275404029]

@@ -9,6 +9,8 @@ public partial class WorldStateManager : Node
 {
 	public Vector2 PlayerPosition { get; set; }
 
+    public string UserName { get; set; } = string.Empty;
+
     public Array<string> CardsOwned { get; set; } = new Array<string>();
 
     public Array<string> Deck { get; set; } = new Array<string>();
@@ -17,6 +19,8 @@ public partial class WorldStateManager : Node
     public int Score { get; set; }
 
     public int Health { get; set; }
+
+    public float TimeSeconds { get; set; }
 
     public override void _Ready()
 	{
@@ -34,7 +38,9 @@ public partial class WorldStateManager : Node
             { "deck", Deck },
             { "bossesWon", BossesWon },
             { "score", Score },
-            { "health", Health }
+            { "health", Health },
+            { "timeSeconds", TimeSeconds },
+            { "userName", UserName }
         };
 
         file.StoreString(Json.Stringify(data));
@@ -88,5 +94,11 @@ public partial class WorldStateManager : Node
         battle.NpcDefeated += OnNpcDefeated;
         battle.ScoreUpdated += OnScoreUpdated;
         // battle.HealthUpdated += OnHealthUpdated;
+    }
+
+    public void OnTimeUpdated(float newTimeSeconds)
+    {
+        TimeSeconds = newTimeSeconds;
+        SaveGame();
     }
 }

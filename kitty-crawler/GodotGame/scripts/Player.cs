@@ -19,7 +19,6 @@ namespace PlayerBody
         private float _inputHoldTime = 0f;
         //private const float TurnThreshold = 0.1f;
 
-
         public override void _Ready()
         {
             Position = new Vector2(
@@ -33,7 +32,6 @@ namespace PlayerBody
             _ray.Enabled = true;
             UpdateRayDirection();
         }
-
 
         public override void _Process(double delta)
         {

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://2c68xntn2er3"]
+
+[ext_resource type="Script" uid="uid://lochjyfee6lr" path="res://LeaderboardRow.cs" id="1_7cuad"]
+
+[node name="LeaderboardRow" type="PanelContainer" unique_id=2023261459 node_paths=PackedStringArray("RankLabel", "NameLabel", "ScoreLabel", "TimeLabel")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7cuad")
+RankLabel = NodePath("HBoxContainer/RankLabel")
+NameLabel = NodePath("HBoxContainer/NameLabel")
+ScoreLabel = NodePath("HBoxContainer/ScoreLabel")
+TimeLabel = NodePath("HBoxContainer/TimeLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1520175649]
+layout_mode = 2
+
+[node name="RankLabel" type="Label" parent="HBoxContainer" unique_id=311195052]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="NameLabel" type="Label" parent="HBoxContainer" unique_id=1489046285]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer" unique_id=73216057]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TimeLabel" type="Label" parent="HBoxContainer" unique_id=259014915]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 0
