@@ -1,9 +1,12 @@
 using Godot;
-using System;
 using KittyCrawler.TELT;
+using System;
+using System.Threading.Tasks;
 
 public partial class LevelTransition : Node
 {
+    [Signal]
+    public delegate void LevelLoadedEventHandler(string scenePath);
     [Export] public string ScenePath { get; set; } = string.Empty;
     [Export] public TransitionType Type { get; set; } = TransitionType.Battle;
     [Export] public string ObjectName { get; set; } = "Skeleton";
@@ -37,11 +40,37 @@ public partial class LevelTransition : Node
 
         await FadeTransition.Instance.FadeToBlack();
 
-        GetTree().ChangeSceneToFile(ScenePath);
+        await LoadLevelAsync(ScenePath);
 
         await FadeTransition.Instance.FadeFromBlack();
 
         GD.Print("Scene transition finished");
+    }
+
+    private async Task LoadLevelAsync(string scenePath)
+    {
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+
+        var container = GetParent();
+        var old = container.GetNodeOrNull("CurrentLevel");
+        if (old != null)
+        {
+            container.RemoveChild(old);
+            old.QueueFree();
+        }
+
+        var scene = GD.Load<PackedScene>(scenePath);
+        if (scene == null)
+        {
+            GD.PushError($"LevelLoader: scene not found at '{scenePath}'");
+            return;
+        }
+
+        var instance = scene.Instantiate();
+        instance.Name = "CurrentLevel";
+        container.AddChild(instance);
+
+        EmitSignal(SignalName.LevelLoaded, scenePath);
     }
 
 

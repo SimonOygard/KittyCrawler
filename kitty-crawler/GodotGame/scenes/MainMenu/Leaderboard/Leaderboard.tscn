@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b2n7k163d1tk"]
+
+[ext_resource type="Script" uid="uid://c84jat6bkfwo" path="res://scenes/MainMenu/Leaderboard/LeaderboardPanel.cs" id="1_b1jme"]
+[ext_resource type="PackedScene" uid="uid://cd83huhnjupcg" path="res://API/API.tscn" id="1_p6tqt"]
+[ext_resource type="PackedScene" uid="uid://2c68xntn2er3" path="res://scenes/core/leaderboard_row.tscn" id="2_nn1fl"]
+
+[node name="LeaderboardMenu" type="CanvasLayer" unique_id=595226889]
+
+[node name="LeaderboardUI" type="Control" parent="." unique_id=1467477972]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 592.0
+offset_top = 567.0
+offset_right = 632.0
+offset_bottom = 607.0
+
+[node name="ColorRect" type="ColorRect" parent="LeaderboardUI" unique_id=588786844]
+layout_mode = 0
+offset_left = -592.0
+offset_top = -567.0
+offset_right = 688.0
+offset_bottom = 153.0
+color = Color(0, 0, 0, 1)
+
+[node name="LeaderboardPanel" type="PanelContainer" parent="LeaderboardUI" unique_id=703201068]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -564.0
+offset_top = -555.0
+offset_right = 620.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b1jme")
+LeaderboardRowScene = ExtResource("2_nn1fl")
+
+[node name="MarginContainer" type="MarginContainer" parent="LeaderboardUI/LeaderboardPanel" unique_id=1265861118]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/LeaderboardPanel/MarginContainer" unique_id=1044658015]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="Label" parent="LeaderboardUI/LeaderboardPanel/MarginContainer/VBoxContainer" unique_id=1095920118]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Top 10 Highscores"
+horizontal_alignment = 1
+
+[node name="RowsContainer" type="VBoxContainer" parent="LeaderboardUI/LeaderboardPanel/MarginContainer/VBoxContainer" unique_id=2088009625]
+layout_mode = 2
+
+[node name="SubmitButton" type="Button" parent="LeaderboardUI/LeaderboardPanel/MarginContainer/VBoxContainer" unique_id=1051967136]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Submit Score"
+
+[node name="MainMenu" type="Button" parent="LeaderboardUI/LeaderboardPanel/MarginContainer/VBoxContainer" unique_id=231792648]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Main Menu"
+
+[node name="LeaderboardApi" parent="LeaderboardUI/LeaderboardPanel" unique_id=386077827 instance=ExtResource("1_p6tqt")]
+
+[connection signal="pressed" from="LeaderboardUI/LeaderboardPanel/MarginContainer/VBoxContainer/SubmitButton" to="LeaderboardUI/LeaderboardPanel/LeaderboardApi" method="OnSubmitPressed"]
+[connection signal="pressed" from="LeaderboardUI/LeaderboardPanel/MarginContainer/VBoxContainer/MainMenu" to="LeaderboardUI/LeaderboardPanel" method="OnMainMenuPressed"]
