@@ -40,9 +40,10 @@ public partial class Teleport : Area2D
 
             if (_destination == null)
             {
-                GD.PrintErr("TeleportTarget not found!");
+                GD.Print("TeleportTarget not found!");
                 return;
             }
+
 
             player.TeleportTo(_destination.GlobalPosition + new Vector2(0, 16));
             GD.Print("Teleported!");

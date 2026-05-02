@@ -16,9 +16,10 @@ public partial class GameOver : CanvasLayer
 
     public override void _Ready()
     {
+        NameInput = GetNode<LineEdit>("GameOver/MarginContainer/VBoxContainer/NameInput");
     }
 
-    public void OnLeaderboardPressed()
+    public void OnLeaderBoardPressed()
     {
         EmitSignal(SignalName.LeaderboardRequested);
         GD.Print("Leaderboard button pressed");

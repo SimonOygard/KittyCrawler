@@ -11,6 +11,7 @@ public partial class MainGame : Node2D
     private GameOver endMenu;
     private const string LeaderboardScenePath = "res://scenes/MainMenu/Leaderboard/Leaderboard.tscn";
     private const string GameScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_clubs.tscn";
+    WorldStateManager _worldStateManager;
 
     public override void _Ready()
     {
@@ -33,6 +34,8 @@ public partial class MainGame : Node2D
 
         endMenu.Hide();
         endMenu.LeaderboardRequested += Leaderboard;
+
+        SceneManager.Instance.GameOverRequested += GameOver;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -66,6 +69,15 @@ public partial class MainGame : Node2D
         }
 
     }
+    // --- Game Over -------
+    public void GameOver()
+    {
+        GD.Print("GameOver called. Unloading current level and showing end menu.");
+        SceneManager.Instance.UnloadCurrentLevel();
+        endMenu?.Show();
+        GD.Print("End menu shown.");
+    }
+
     // --- Leaderboard -------
     #region leaderboard
     public void Leaderboard()
@@ -86,13 +98,20 @@ public partial class MainGame : Node2D
         var ui = GetNode("UI");
         var old = ui.GetNodeOrNull("CurrentLevel");
 
+        QueueFree();
+
+        SceneManager.Instance.UnloadCurrentLevel();
+
         if (old != null)
         {
             old.QueueFree();
         }
-        _levelTransition.ScenePath = null;
-        mainMenu?.Show();
 
+        GetTree().ChangeSceneToFile("res://scenes/MainMenu/MainScene.tscn");
+
+        //_levelTransition.ScenePath = null;
+        endMenu?.Hide();
+        mainMenu?.Show();
     }
     #endregion 
 
@@ -135,7 +154,4 @@ public partial class MainGame : Node2D
     }
     #endregion
 
-    // --- Game Over -------
-    
-    
 }

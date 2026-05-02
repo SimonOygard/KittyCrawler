@@ -26,6 +26,7 @@ DiceRoll="*uid://imvucr5hlgbd"
 TeltBattleConfig="*uid://r5t3asunglou"
 WorldStateManager="*uid://dl4kbgvq2xgip"
 GameTimerManager="*uid://cahivhuyhtj3o"
+SceneManager="*uid://dw6ihsncitqor"
 
 [dialogue_manager]
 

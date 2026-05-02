@@ -5,109 +5,13 @@ using System.Threading.Tasks;
 
 public partial class LevelTransition : Node
 {
-    [Signal]
-    public delegate void LevelLoadedEventHandler(string scenePath);
     [Export] public string ScenePath { get; set; } = string.Empty;
     [Export] public TransitionType Type { get; set; } = TransitionType.Battle;
     [Export] public string ObjectName { get; set; } = "Skeleton";
 
-    private bool _triggered = false;
-
-     public async void TriggerTransition()
+    public async void TriggerTransition()
     {
-        if (_triggered) return;
-
-        _triggered = true;
-
-        try
-        {
-            if (string.IsNullOrEmpty(ScenePath))
-            {
-                GD.PrintErr("ScenePath is not set for LevelTransition: " + Name);
-                return;
-            }
-
-
-            var newScene = GD.Load<PackedScene>(ScenePath);
-            if (newScene == null)
-            {
-                GD.PrintErr("Failed to load scene at path: " + ScenePath);
-                return;
-            }
-
-            var instance = newScene.Instantiate();
-            instance.Name = "CurrentLevel";
-            GD.Print("Scene instantiated");
-
-            SetScene(instance);
-
-            await FadeTransition.Instance.FadeToBlack();
-            await LoadLevelAsync(instance);
-            await FadeTransition.Instance.FadeFromBlack();
-
-            GD.Print("Scene transition finished");
-        }
-        finally
-        {
-            _triggered = false;
-        }
-    }
-
-    private async Task LoadLevelAsync(Node instance)
-    {
-        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-
-        var container = GetParent();
-
-        var old = container.GetNodeOrNull("CurrentLevel");
-        if (old != null)
-        {
-            container.RemoveChild(old);
-            old.QueueFree();
-        }
-
-        container.AddChild(instance);
-
-        EmitSignal(SignalName.LevelLoaded, ScenePath);
-    }
-
-
-    // Method for scenechange based on type, allowing for specific logic to be executed based on the transition type
-    private void SetScene(Node instance)
-    {
-        GD.Print("About to load scene: " + ScenePath);
-        switch (Type)
-        {
-            case TransitionType.Battle:
-                if (instance is BattleScene battle)
-                {
-                    battle.EnemyName = ObjectName;
-                    battle.ReturnScenePath = GetTree().CurrentScene.SceneFilePath;
-                    GD.Print("Enemy name assigned");
-                }
-                else
-                {
-                    GD.Print("Transition type is Battle but scene is not a BattleScene");
-                }
-                break;
-
-            case TransitionType.Puzzle:
-                // Puzzle-specific logic can be added here
-                break;
-            case TransitionType.Trap:
-                // Trap-specific logic can be added here
-                break;
-            case TransitionType.Dialogue:
-                // Dialogue-specific logic can be added here
-                break;
-            case TransitionType.Teleport:
-                // Teleport-specific logic can be added here
-                break;
-            case TransitionType.Generic:
-                // Generic transition logic can be added here
-                break;
-
-        }
+        await SceneManager.Instance.ChangeSceneAsync(ScenePath, Type, ObjectName);
     }
 }
 

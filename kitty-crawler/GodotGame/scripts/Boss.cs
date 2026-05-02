@@ -18,7 +18,7 @@ public partial class Boss : CharacterBody2D, IInteractable
 
         if (_sprite != null)
         {
-            _sprite.Play("default");
+            _sprite.Play("skester_idle");
         }
 
     }
@@ -42,6 +42,7 @@ public partial class Boss : CharacterBody2D, IInteractable
         if (_bossData != null)
         {
             TeltBattleConfig.Instance.CurrentBoss = _bossData;
+            GD.Print("Telt battle triggered for boss: " + GetTree().CurrentScene.SceneFilePath);
             TeltBattleConfig.Instance.ReturnScenePath = GetTree().CurrentScene.SceneFilePath;
         }
         else
