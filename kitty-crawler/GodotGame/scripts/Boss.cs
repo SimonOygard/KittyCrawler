@@ -10,7 +10,7 @@ public partial class Boss : CharacterBody2D, IInteractable
 
     [Export] private LevelTransition _levelTransition;
     [Export] private KittyCrawler.TELT.BossData _bossData;
-
+    
     public override void _Ready()
     {
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");

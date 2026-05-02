@@ -19,39 +19,46 @@ public partial class LevelTransition : Node
 
         _triggered = true;
 
-        if (string.IsNullOrEmpty(ScenePath))
+        try
         {
-            GD.PrintErr("ScenePath is not set for LevelTransition: " + Name);
-            return;
+            if (string.IsNullOrEmpty(ScenePath))
+            {
+                GD.PrintErr("ScenePath is not set for LevelTransition: " + Name);
+                return;
+            }
+
+
+            var newScene = GD.Load<PackedScene>(ScenePath);
+            if (newScene == null)
+            {
+                GD.PrintErr("Failed to load scene at path: " + ScenePath);
+                return;
+            }
+
+            var instance = newScene.Instantiate();
+            instance.Name = "CurrentLevel";
+            GD.Print("Scene instantiated");
+
+            SetScene(instance);
+
+            await FadeTransition.Instance.FadeToBlack();
+            await LoadLevelAsync(instance);
+            await FadeTransition.Instance.FadeFromBlack();
+
+            GD.Print("Scene transition finished");
         }
-
-
-        var newScene = GD.Load<PackedScene>(ScenePath);
-        if (newScene == null)
+        finally
         {
-            GD.PrintErr("Failed to load scene at path: " + ScenePath);
-            return;
+            _triggered = false;
         }
-
-        var instance = newScene.Instantiate();
-        GD.Print("Scene instantiated");
-
-        SetScene(instance);
-
-        await FadeTransition.Instance.FadeToBlack();
-
-        await LoadLevelAsync(ScenePath);
-
-        await FadeTransition.Instance.FadeFromBlack();
-
-        GD.Print("Scene transition finished");
     }
 
-    private async Task LoadLevelAsync(string scenePath)
+    private async Task LoadLevelAsync(Node instance)
     {
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
         var container = GetParent();
+
         var old = container.GetNodeOrNull("CurrentLevel");
         if (old != null)
         {
@@ -59,18 +66,9 @@ public partial class LevelTransition : Node
             old.QueueFree();
         }
 
-        var scene = GD.Load<PackedScene>(scenePath);
-        if (scene == null)
-        {
-            GD.PushError($"LevelLoader: scene not found at '{scenePath}'");
-            return;
-        }
-
-        var instance = scene.Instantiate();
-        instance.Name = "CurrentLevel";
         container.AddChild(instance);
 
-        EmitSignal(SignalName.LevelLoaded, scenePath);
+        EmitSignal(SignalName.LevelLoaded, ScenePath);
     }
 
 

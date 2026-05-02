@@ -8,7 +8,9 @@ public partial class MainGame : Node2D
     private LevelTransition _levelTransition;
     private GameTimerManager _gameTimer;
     private PauseMenu pauseMenu;
-
+    private GameOver endMenu;
+    private const string LeaderboardScenePath = "res://scenes/MainMenu/Leaderboard/Leaderboard.tscn";
+    private const string GameScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_clubs.tscn";
 
     public override void _Ready()
     {
@@ -16,6 +18,7 @@ public partial class MainGame : Node2D
         ProcessMode = ProcessModeEnum.Always;
 
         mainMenu = GetNodeOrNull<MainMenu>("UI/MainMenu");
+        endMenu = GetNodeOrNull<GameOver>("UI/GameOver");
         _levelTransition = GetNode<LevelTransition>("UI/LevelTransition");
         pauseMenu = GetNodeOrNull<PauseMenu>("UI/PauseMenu");
 
@@ -27,6 +30,9 @@ public partial class MainGame : Node2D
 
         pauseMenu.Hide();
         pauseMenu.ResumeGameRequested += OnPausedContinueGame;
+
+        endMenu.Hide();
+        endMenu.LeaderboardRequested += Leaderboard;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -37,7 +43,8 @@ public partial class MainGame : Node2D
         }
     }
 
-    public async void StartGame(bool newGame)
+    // --- Start and Load game -------
+    public void StartGame(bool newGame)
     {
         GD.Print($"[MainGame] StartGame called | newGame = {newGame}");
 
@@ -45,13 +52,11 @@ public partial class MainGame : Node2D
 
         if (newGame)
         {
-            if (!string.IsNullOrEmpty(_levelTransition.ScenePath))
-            {
-                _levelTransition.TriggerTransition();
-                GD.Print("Starting a new game...");
-                _gameTimer.StartTimer();
-                return;
-            }
+            _levelTransition.ScenePath = GameScenePath;
+            _levelTransition.TriggerTransition();
+
+            GD.Print("Starting a new game...");
+            _gameTimer.StartTimer();
         }
         else
         {
@@ -61,7 +66,38 @@ public partial class MainGame : Node2D
         }
 
     }
+    // --- Leaderboard -------
+    #region leaderboard
+    public void Leaderboard()
+    {
+        GD.Print("Leaderboard button pressed");
+        mainMenu?.Hide();
 
+        _levelTransition.ScenePath = LeaderboardScenePath;
+        _levelTransition.TriggerTransition();
+    }
+
+    public void OnMainMenuReturnPressed()
+    {
+        GD.Print("Main Menu button pressed");
+
+        GetTree().Paused = false;
+
+        var ui = GetNode("UI");
+        var old = ui.GetNodeOrNull("CurrentLevel");
+
+        if (old != null)
+        {
+            old.QueueFree();
+        }
+        _levelTransition.ScenePath = null;
+        mainMenu?.Show();
+
+    }
+    #endregion 
+
+    // --- PauseMenu -------
+    #region pause menu
     public void OnPausedContinueGame()
     {
         GD.Print("Continue button pressed");
@@ -69,27 +105,6 @@ public partial class MainGame : Node2D
         GetTree().Paused = false;
         pauseMenu?.Hide();
         _gameTimer.ContinueTimer();
-    }
-
-    public async void Leaderboard()
-    {
-        GD.Print("Leaderboard button pressed");
-        mainMenu?.Hide();
-
-        _levelTransition.ScenePath = "res://scenes/MainMenu/Leaderboard/Leaderboard.tscn";
-        _levelTransition.TriggerTransition();
-    }
-
-    public async void OnMainMenuReturnPressed()
-    {
-        GD.Print("Main Menu button pressed 2");
-        var container = GetNode("UI");
-        var old = container.GetNodeOrNull("CurrentLevel");
-        if (old != null)
-        {
-            old.QueueFree();
-        }
-        mainMenu.Show();
     }
     private void OnPausePressed()
     {
@@ -118,4 +133,9 @@ public partial class MainGame : Node2D
             _gameTimer.ContinueTimer();
         }
     }
+    #endregion
+
+    // --- Game Over -------
+    
+    
 }

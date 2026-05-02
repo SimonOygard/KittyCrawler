@@ -1,21 +1,27 @@
 using Godot;
 using System;
 
-public partial class GameOver : Control
+public partial class GameOver : CanvasLayer
 {
-    private LineEdit NameInput;
-    private Button SubmitButton;
+    [Signal]
+    public delegate void NameInputSubmittedEventHandler(string playerName);
+    [Signal]
+    public delegate void LeaderboardSubmitRequestedEventHandler();
+    [Signal]
+    public delegate void LeaderboardRequestedEventHandler();
 
+
+    private LineEdit NameInput;
     private WorldStateManager _worldState;
 
     public override void _Ready()
     {
-        NameInput = GetNode<LineEdit>("NameInput");
-        SubmitButton = GetNode<Button>("SubmitScore");
+    }
 
-        _worldState = GetNode<WorldStateManager>("/root/WorldStateManager");
-
-        SubmitButton.Pressed += OnSubmitPressed;
+    public void OnLeaderboardPressed()
+    {
+        EmitSignal(SignalName.LeaderboardRequested);
+        GD.Print("Leaderboard button pressed");
     }
 
     private void OnSubmitPressed()
@@ -32,12 +38,6 @@ public partial class GameOver : Control
         _worldState.SaveGame();
 
         GD.Print($"Submitting score for player: {playerName} with time: {_worldState.TimeSeconds} seconds");
-
-        GetTree().ChangeSceneToFile("res://scenes/MainMenu/MainMenu.tscn");
-    }
-    private void OnLeaderBoardPressed()
-    {
-        GetTree().ChangeSceneToFile("res://scenes/core/Leaderboard.tscn");
     }
 
     private void OnQuitPressed()
