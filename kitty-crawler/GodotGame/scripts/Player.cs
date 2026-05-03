@@ -160,6 +160,7 @@ namespace PlayerBody
             {
                 Position = _targetPosition;
                 _isMoving = false;
+                GetNode<AudioManager>("/root/AudioManager").PlayFootsteps(GlobalPosition);
             }
         }
 

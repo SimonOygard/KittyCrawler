@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3ffiem5mg0wq"
+path="res://.godot/imported/21 - Final Battle - For Love.wav-949fdcfdfce1e4c919209f6e286138a2.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Music/wav/21 - Final Battle - For Love.wav"
+dest_files=["res://.godot/imported/21 - Final Battle - For Love.wav-949fdcfdfce1e4c919209f6e286138a2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

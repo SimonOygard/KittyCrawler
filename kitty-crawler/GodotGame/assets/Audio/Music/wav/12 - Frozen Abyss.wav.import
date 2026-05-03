@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cu3t2a6c346dk"
+path="res://.godot/imported/12 - Frozen Abyss.wav-fe8494412e13454b7ec835216da73aa2.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Music/wav/12 - Frozen Abyss.wav"
+dest_files=["res://.godot/imported/12 - Frozen Abyss.wav-fe8494412e13454b7ec835216da73aa2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

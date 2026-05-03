@@ -1,9 +1,11 @@
 [gd_scene format=4 uid="uid://d44dlueljh4h"]
 
 [ext_resource type="TileSet" uid="uid://cxqwdml0cduy5" path="res://Dungeon_floor_2/resources/SkestersTileset.tres" id="1_3h87t"]
+[ext_resource type="Script" uid="uid://ilal850hq5d5" path="res://Dungeon_floor_2/scenes/Maps/SpadeMap.cs" id="1_cm7ec"]
 [ext_resource type="PackedScene" uid="uid://d322tcvp3rnq7" path="res://scenes/WallTorch.tscn" id="2_7fwcl"]
 
 [node name="SpadeMap" type="Node2D" unique_id=2121739106]
+script = ExtResource("1_cm7ec")
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=2104011133]
 position = Vector2(806.00006, 426.99994)
