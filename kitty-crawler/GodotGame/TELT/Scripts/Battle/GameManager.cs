@@ -51,11 +51,14 @@ public partial class GameManager : Node
     }
 
     // ── Terningkast ───────────────────────────────────────────────────
+    public int LastDiceRoll { get; private set; }
+
     public void RollDice(bool playerPickedOdd)
     {
         if (CurrentPhase != GamePhase.DiceRoll) return;
 
         int roll = DiceRoll.Instance.RollDice(6);
+        LastDiceRoll = roll;
         bool isOdd = roll % 2 != 0;
         bool playerWins = playerPickedOdd == isOdd;
 

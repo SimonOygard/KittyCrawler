@@ -16,84 +16,85 @@
 [ext_resource type="Texture2D" uid="uid://d3yhxhvciry63" path="res://TELT/Tilesets/Maps/Mio_map.png" id="7_3rd10"]
 [ext_resource type="Texture2D" uid="uid://c5blo1wr704kg" path="res://TELT/Tilesets/Maps/Skester_map.png" id="8_2fdk5"]
 [ext_resource type="FontFile" uid="uid://b0b5y1ystn251" path="res://assets/Fonts/Pixelmax-Regular.otf" id="9_do6nv"]
+[ext_resource type="PackedScene" uid="uid://cnd1erk0wljls" path="res://scenes/dice_visual.tscn" id="11_upegj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8w6e"]
 content_margin_top = 6.0
 bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52qys"]
 content_margin_top = 6.0
 bg_color = Color(0.36429623, 0.28675535, 0.21430561, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rd10"]
 content_margin_top = 6.0
 bg_color = Color(0.5881782, 0.478219, 0.37825602, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do6nv"]
 content_margin_top = 6.0
 bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1yuv"]
 content_margin_top = 6.0
 bg_color = Color(0.36429623, 0.28675535, 0.21430561, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fdk5"]
 content_margin_top = 6.0
 bg_color = Color(0.5881782, 0.478219, 0.37825602, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gpw6"]
 content_margin_top = 6.0
@@ -409,7 +410,7 @@ corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 corner_detail = 5
 
-[node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_continueButton", "_background")]
+[node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_continueButton", "_diceVisual", "_diceOddEvenLabel", "_background")]
 script = ExtResource("1_fqpg2")
 _gameManager = NodePath("GameManager")
 _battleMap = NodePath("BattleMap")
@@ -455,8 +456,10 @@ _gameOverResultLabel = NodePath("GameOverScreen/ResultLabel")
 _gameOverScoreLabel = NodePath("GameOverScreen/ScoreLabel")
 _rematchButton = NodePath("GameOverScreen/RematchButton")
 _continueButton = NodePath("GameOverScreen/ContinueButton")
+_diceVisual = NodePath("DiceRollOverlay/DiceVisual")
+_diceOddEvenLabel = NodePath("DiceRollOverlay/DiceOddEvenLabel")
 _cardVisualScene = ExtResource("2_nncip")
-_background = NodePath("DiceRollOverlay/Background")
+_background = NodePath("Background")
 _basicBackground = ExtResource("4_1gpw6")
 _croxBackground = ExtResource("4_do6nv")
 _eveBackground = ExtResource("5_1gpw6")
@@ -464,13 +467,13 @@ _hildaBackground = ExtResource("6_upegj")
 _mioBackground = ExtResource("7_3rd10")
 _skesterBackground = ExtResource("8_2fdk5")
 
-[node name="DiceRollOverlay" type="CanvasLayer" parent="." unique_id=1562141442]
-
-[node name="Background" type="TextureRect" parent="DiceRollOverlay" unique_id=63247513]
+[node name="Background" type="TextureRect" parent="." unique_id=63247513]
 offset_left = -1.0
 offset_top = -2.0
 offset_right = 1279.0
 offset_bottom = 718.0
+
+[node name="DiceRollOverlay" type="CanvasLayer" parent="." unique_id=1562141442]
 
 [node name="DimRect" type="ColorRect" parent="DiceRollOverlay" unique_id=1663160870]
 anchors_preset = 15
@@ -514,6 +517,20 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_do6nv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_n1yuv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2fdk5")
 text = "EVEN"
+
+[node name="DiceVisual" parent="DiceRollOverlay" unique_id=361873701 instance=ExtResource("11_upegj")]
+position = Vector2(642, 497)
+scale = Vector2(8, 7.439)
+animation = &"DiceIdle"
+
+[node name="DiceOddEvenLabel" type="Label" parent="DiceRollOverlay" unique_id=888252090]
+offset_left = 443.0
+offset_top = 524.0
+offset_right = 831.0
+offset_bottom = 679.0
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DiceResultLabel" type="Label" parent="DiceRollOverlay" unique_id=1625707931]
 offset_left = 308.0

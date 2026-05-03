@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dcamjv4rr3ttp" path="res://TELT/Scripts/Cards/CardVisual.cs" id="1_s23e2"]
 [ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="2_o8aor"]
 [ext_resource type="FontFile" uid="uid://b0b5y1ystn251" path="res://assets/Fonts/Pixelmax-Regular.otf" id="3_kc40a"]
+[ext_resource type="FontFile" uid="uid://ble6iakf8aybq" path="res://assets/Fonts/JMH Cthulhumbus Arcade.otf" id="4_180p4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kc40a"]
 atlas = ExtResource("2_o8aor")
@@ -79,7 +80,7 @@ offset_top = 3.0
 offset_right = 18.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
-theme_override_fonts/font = ExtResource("3_kc40a")
+theme_override_fonts/font = ExtResource("4_180p4")
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1

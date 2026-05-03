@@ -55,6 +55,8 @@ public partial class TeltBattle : Node2D
     [Export] private Label _gameOverScoreLabel;
     [Export] private Button _rematchButton;
     [Export] private Button _continueButton;
+    [Export] private AnimatedSprite2D _diceVisual;
+    [Export] private Label _diceOddEvenLabel;
 
 
     // ── Kortscene ─────────────────────────────────────────────────────
@@ -170,6 +172,8 @@ public partial class TeltBattle : Node2D
 
         // Skjul vanlig UI til terningkast er gjort
         _diceRollOverlay.Visible = true;
+        _diceOddEvenLabel.Visible = false;
+        _diceVisual.Play("DiceIdle");
 
         // Koble knapper
         _oddButton.Pressed += () =>
@@ -361,22 +365,43 @@ public partial class TeltBattle : Node2D
         _diceTitle.Visible = false;
 
         _gameManager.RollDice(pickedOdd);
-
-        // Vis resultat
+        int result = _gameManager.LastDiceRoll;
         bool playerStarts = _gameManager.MatchStarter == GameManager.TurnOwner.Player;
-        _diceResultLabel.Text = playerStarts ? "You go first" : "Opponent starts";
-        _diceResultLabel.Visible = true;
 
-        // Vent 1 sekund så start spillet
-        GetTree().CreateTimer(1.3f).Timeout += () =>
+        _diceVisual.Play("DiceRolling");
+        _diceVisual.AnimationFinished += OnRollingDone;
+
+        void OnRollingDone()
         {
-            _diceRollOverlay.Visible = false;
-            _ui.Visible = true;
-            SetBackground(_basicBackground);
-            _oddButton.Disabled = true;
-            _evenButton.Disabled = true;
-        };
+            _diceVisual.AnimationFinished -= OnRollingDone;
+            _diceVisual.Play($"Dice{result}");
+            _diceVisual.AnimationFinished += OnResultDone;
+        }
+
+
+
+        void OnResultDone()
+        {
+            _diceVisual.AnimationFinished -= OnResultDone;
+
+            int roll = _gameManager.LastDiceRoll;
+            _diceOddEvenLabel.Text = roll % 2 != 0 ? "Odd" : "Even";
+            _diceOddEvenLabel.Visible = true;
+
+            _diceResultLabel.Text = playerStarts ? "You go first!" : "Opponent starts.";
+            _diceResultLabel.Visible = true;
+
+            GetTree().CreateTimer(3f).Timeout += () =>
+            {
+                _diceRollOverlay.Visible = false;
+                _ui.Visible = true;
+                SetBackground(_basicBackground);
+                _oddButton.Disabled = true;
+                _evenButton.Disabled = true;
+            };
+        }
     }
+
 
     // --"videre" knapper
     private async void OnCombatPressed()
@@ -1239,7 +1264,7 @@ public partial class TeltBattle : Node2D
                                    && _battleMap.PlayerEmptySlotCount == 4
                                    && _battleMap.EnemyEmptySlotCount == 4;
 
-            float delay = isVeryFirstTurn ? 3.7f : 0.5f;
+            float delay = isVeryFirstTurn ? 8f : 0.5f;
 
             Callable.From(() =>
             {
