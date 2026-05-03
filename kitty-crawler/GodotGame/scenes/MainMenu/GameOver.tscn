@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://370mjb1qgfbe" path="res://scripts/core/GameOver.cs" id="1_orapq"]
 [ext_resource type="Texture2D" uid="uid://cklyh2pgcqxxu" path="res://assets/Backgrounds/SleepingCatFree/sleepingcat5.png" id="1_uohd1"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_u538a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orapq"]
 atlas = ExtResource("1_uohd1")
@@ -81,64 +82,64 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="GameOver" type="Control" unique_id=460128226]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GameOver" type="CanvasLayer" unique_id=1640230564]
 script = ExtResource("1_orapq")
 metadata/_edit_vertical_guides_ = [512.0, 768.0]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=432195245]
+[node name="GameOver" type="Control" parent="." unique_id=2126445621]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=432195245]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect" unique_id=347826485]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameOver/ColorRect" unique_id=347826485]
 position = Vector2(640, 272)
 scale = Vector2(4.25, 4.25)
 sprite_frames = SubResource("SpriteFrames_tp7nd")
 autoplay = "default"
 frame_progress = 0.19664711
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=331095450]
+[node name="MarginContainer" type="MarginContainer" parent="GameOver" unique_id=331095450]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.50600004
 anchor_top = 0.689
 anchor_right = 0.50600004
 anchor_bottom = 0.689
-offset_left = -241.18005
-offset_top = 39.919983
-offset_right = 241.81995
-offset_bottom = 143.91998
+offset_left = 386.26
+offset_top = 504.44
+offset_right = 869.26
+offset_bottom = 616.44
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1024516846]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/MarginContainer" unique_id=1024516846]
 layout_mode = 2
 
-[node name="NameInput" type="LineEdit" parent="MarginContainer/VBoxContainer" unique_id=42058590]
+[node name="NameInput" type="LineEdit" parent="GameOver/MarginContainer/VBoxContainer" unique_id=42058590]
 layout_mode = 2
 placeholder_text = "Input your name here"
 alignment = 1
 
-[node name="SubmitScore" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1192837359]
+[node name="SubmitScore" type="Button" parent="GameOver/MarginContainer/VBoxContainer" unique_id=1192837359]
 layout_mode = 2
 text = "Submit your score"
 
-[node name="Leaderboard" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1286045072]
+[node name="Leaderboard" type="Button" parent="GameOver/MarginContainer/VBoxContainer" unique_id=1286045072]
 layout_mode = 2
 text = "See the leaderboard"
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1260889374]
+[node name="Quit" type="Button" parent="GameOver/MarginContainer/VBoxContainer" unique_id=1260889374]
 layout_mode = 2
 text = "Quit"
 
-[node name="Congratulations" type="Label" parent="." unique_id=320282207]
+[node name="Congratulations" type="Label" parent="GameOver" unique_id=320282207]
 layout_mode = 0
 offset_left = 320.0
 offset_top = 160.0
@@ -147,7 +148,7 @@ offset_bottom = 183.0
 theme_override_font_sizes/font_size = 21
 text = "Congratulations you have defeated Skester's dungeon."
 
-[node name="Label" type="Label" parent="." unique_id=366248854]
+[node name="Label" type="Label" parent="GameOver" unique_id=366248854]
 layout_mode = 0
 offset_left = 424.0
 offset_top = 385.0
@@ -155,7 +156,7 @@ offset_right = 529.0
 offset_bottom = 402.0
 text = "Final score: "
 
-[node name="LineEdit" type="LineEdit" parent="Label" unique_id=392201468]
+[node name="LineEdit" type="LineEdit" parent="GameOver/Label" unique_id=392201468]
 layout_mode = 0
 offset_left = 107.0
 offset_top = -8.0
@@ -166,7 +167,7 @@ theme_override_colors/selection_color = Color(0.49803922, 0.49803922, 0.49803922
 theme_override_styles/normal = SubResource("StyleBoxFlat_orapq")
 placeholder_text = "0"
 
-[node name="Label2" type="Label" parent="." unique_id=998051815]
+[node name="Label2" type="Label" parent="GameOver" unique_id=998051815]
 layout_mode = 0
 offset_left = 694.0
 offset_top = 384.0
@@ -174,7 +175,7 @@ offset_right = 784.0
 offset_bottom = 401.0
 text = "Final time:"
 
-[node name="LineEdit" type="LineEdit" parent="Label2" unique_id=797819572]
+[node name="LineEdit" type="LineEdit" parent="GameOver/Label2" unique_id=797819572]
 layout_mode = 0
 offset_left = 91.0
 offset_top = -7.0
@@ -184,6 +185,9 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3usap")
 placeholder_text = "00:00:00"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/SubmitScore" to="." method="OnSubmitPressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Leaderboard" to="." method="OnLeaderBoardPressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]
+[node name="LevelTransition" type="Node" parent="GameOver" unique_id=646538655]
+script = ExtResource("3_u538a")
+
+[connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/SubmitScore" to="." method="OnSubmitPressed"]
+[connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Leaderboard" to="." method="OnLeaderBoardPressed"]
+[connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]

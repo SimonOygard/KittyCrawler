@@ -187,7 +187,7 @@ public partial class TeltBattle : Node2D
         {
             var returnPath = TeltBattleConfig.Instance.ReturnScenePath;
             if (!string.IsNullOrEmpty(returnPath))
-                GetTree().ChangeSceneToFile(returnPath);
+                SceneManager.Instance?.ChangeSceneAsync(returnPath);
             else
                 GD.PrintErr("[TELT] Ingen ReturnScenePath satt!");
         };

@@ -32,7 +32,7 @@ public partial class LeaderboardPanel : PanelContainer
     private void OnMainMenuPressed()
     {
         GD.Print("Main Menu button pressed");
-        GetTree().CallGroup("MainGame", "OnMainMenuReturnPressed");
+        _ = SceneManager.Instance.ChangeSceneAsync("res://scenes/MainMenu/MainScene.tscn");
     }
 
     private void Populate(Array entries)

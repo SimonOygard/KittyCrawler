@@ -7,7 +7,9 @@ using System.Text.Json;
 
 public partial class WorldStateManager : Node
 {
-	public Vector2 PlayerPosition { get; set; }
+    public WorldStateManager? Instance { get; private set; }
+
+    public Vector2 PlayerPosition { get; set; }
 
     public string UserName { get; set; } = string.Empty;
 
@@ -24,8 +26,9 @@ public partial class WorldStateManager : Node
 
     public override void _Ready()
 	{
-        
+        Instance = this;
     }
+
     public void SaveGame()
     {
         var savePath = "user://savegame.json";
@@ -82,7 +85,7 @@ public partial class WorldStateManager : Node
         SaveGame(); // Lagre spilltilstanden etter at poengsummen har blitt oppdatert
     }
 
-     public void OnHealthUpdated(int newHealth)
+    public void OnHealthUpdated(int newHealth)
     {
         Health = newHealth;
         SaveGame(); // Lagre spilltilstanden etter at helsen har blitt oppdatert
@@ -100,5 +103,11 @@ public partial class WorldStateManager : Node
     {
         TimeSeconds = newTimeSeconds;
         SaveGame();
+    }
+
+    public override void _ExitTree()
+    {
+        Instance = null;
+        base._ExitTree();
     }
 }

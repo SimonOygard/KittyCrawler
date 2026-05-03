@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://d1er7d64hex5w" path="res://scenes/MainMenu/main_menu.tscn" id="2_x4av3"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_mqgqa"]
 [ext_resource type="PackedScene" uid="uid://daf3h1asgsbgk" path="res://scenes/MainMenu/PauseMenu.tscn" id="4_ekp1i"]
+[ext_resource type="PackedScene" uid="uid://dmcc31u3uiegb" path="res://scenes/MainMenu/GameOver.tscn" id="4_kh4vm"]
 
-[node name="Game" type="Node2D" unique_id=192401284]
+[node name="Game" type="Node2D" unique_id=192401284 groups=["MainGame"]]
 script = ExtResource("1_3mqji")
 
 [node name="UI" type="Control" parent="." unique_id=2071561589]
@@ -19,6 +20,9 @@ layout_mode = 1
 size_flags_horizontal = 0
 
 [node name="PauseMenu" parent="UI" unique_id=1593139559 instance=ExtResource("4_ekp1i")]
+
+[node name="GameOver" parent="UI" unique_id=460128226 instance=ExtResource("4_kh4vm")]
+visible = false
 
 [node name="LevelTransition" type="Node" parent="UI" unique_id=490599130]
 script = ExtResource("3_mqgqa")
