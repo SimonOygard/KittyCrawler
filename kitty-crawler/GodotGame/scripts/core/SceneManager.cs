@@ -13,12 +13,17 @@ public partial class SceneManager : Node
     [Signal]
     public delegate void GameOverRequestedEventHandler();
 
+    [Signal]
+    public delegate void MainMenuLoadedEventHandler();
+
     public static SceneManager Instance { get; private set; }
     public string CurrentLevelPath { get; private set; } = "";
     public string PreviousLevelPath { get; private set; } = "";
     public string CurrentBossName { get; private set; } = "";
 
     private bool _isChangingScene = false;
+
+    private const string _mainGameScenePath = "res://scenes/MainMenu/MainScene.tscn";
 
     public override void _Ready()
 	{
@@ -63,9 +68,13 @@ public partial class SceneManager : Node
             await FadeTransition.Instance.FadeToBlack();
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
-            ReplaceCurrentScene(instance, scenePath);
+            await ReplaceCurrentScene(instance);
 
             await FadeTransition.Instance.FadeFromBlack();
+
+            if (scenePath == _mainGameScenePath)
+                EmitSignal(SignalName.MainMenuLoaded);
+
             EmitSignal(SignalName.LevelLoaded, scenePath);
             GD.Print("Scene transition finished: " + scenePath);
         }
@@ -92,11 +101,13 @@ public partial class SceneManager : Node
             GD.PrintErr("No previous level to load.");
             return;
         }
-        PreviousLevelPath = CurrentLevelPath;
-        await ChangeSceneAsync(PreviousLevelPath);
+
+        var pathToLoad = PreviousLevelPath;
+        CurrentLevelPath = PreviousLevelPath;
+        await ChangeSceneAsync(pathToLoad);
     }
 
-    private void ReplaceCurrentScene(Node newScene, string scenePath)
+    private async Task ReplaceCurrentScene(Node newScene)
     {
         var currentScene = GetTree().CurrentScene;
         
@@ -104,13 +115,14 @@ public partial class SceneManager : Node
         {
             PreviousLevelPath = currentScene.SceneFilePath;
             currentScene.QueueFree();
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             GD.Print("Current scene freed");
         }
 
         GetTree().Root.AddChild(newScene);
         GetTree().CurrentScene = newScene;
 
-        CurrentLevelPath = scenePath;
+        CurrentLevelPath = newScene.SceneFilePath;
 
         GD.Print("New scene set as current");
     }

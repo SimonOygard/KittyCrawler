@@ -1,6 +1,7 @@
 using Godot;
 using PlayerBody;
 using System;
+using System.Threading.Tasks;
 
 public partial class SkestersHearts : Node2D
 {
@@ -19,16 +20,16 @@ public partial class SkestersHearts : Node2D
 
         _endTeleport.BodyEntered += OnEndTeleportEntered;
         _endTeleport.Hide();
-        AlterLevel();
+        _ = AlterLevel();
     }
 
 
-    private void AlterLevel()
+    private async Task AlterLevel()
     {
-        if (_worldStateManager.BossesWon.Contains("skester") && true)
+        if (_worldStateManager.BossesWon.Contains("skester"))
         {
-            if (IsInstanceValid(_skester))
-                _skester.QueueFree();
+            _skester.QueueFree();
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
             _endTeleport.Show();
 

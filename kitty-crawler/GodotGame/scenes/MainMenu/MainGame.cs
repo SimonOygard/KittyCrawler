@@ -35,7 +35,7 @@ public partial class MainGame : Node2D
         endMenu.LeaderboardRequested += Leaderboard;
 
         SceneManager.Instance.GameOverRequested += GameOver;
-        SceneManager.Instance.LevelLoaded += OnMainMenuReturnPressed;
+        SceneManager.Instance.MainMenuLoaded += OnMainMenuReturnPressed;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -91,14 +91,11 @@ public partial class MainGame : Node2D
         _levelTransition.TriggerTransition();
     }
 
-    public void OnMainMenuReturnPressed(string scenePath)
+    public void OnMainMenuReturnPressed()
     {
-        GD.Print("Main Menu button pressed");
-        if (scenePath == "res://scenes/MainMenu/MainScene.tscn")
-        {
-            endMenu?.Hide();
-            mainMenu?.Show();
-        }
+        GD.Print("Reloading main menu");
+        endMenu?.Hide();
+        mainMenu?.Show();
     }
     #endregion 
 
