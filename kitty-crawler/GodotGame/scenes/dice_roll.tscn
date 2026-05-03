@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://crco76g6drv7u"]
+
+[ext_resource type="PackedScene" uid="uid://cnd1erk0wljls" path="res://scenes/dice_visual.tscn" id="1_0ean5"]
+
+[node name="DiceRoll" type="CharacterBody2D" unique_id=544424585]
+
+[node name="DiceVisual" parent="." unique_id=361873701 instance=ExtResource("1_0ean5")]

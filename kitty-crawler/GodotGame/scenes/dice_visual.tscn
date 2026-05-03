@@ -1,0 +1,206 @@
+[gd_scene format=3 uid="uid://cnd1erk0wljls"]
+
+[ext_resource type="Texture2D" uid="uid://cjrasy6f2s5q4" path="res://TELT/Tilesets/Dice.png" id="1_xux7s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5ybm"]
+atlas = ExtResource("1_xux7s")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa3nt"]
+atlas = ExtResource("1_xux7s")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlobq"]
+atlas = ExtResource("1_xux7s")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlgop"]
+atlas = ExtResource("1_xux7s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bkdw"]
+atlas = ExtResource("1_xux7s")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htc68"]
+atlas = ExtResource("1_xux7s")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a0lsd"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_wa3nt")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_nlobq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlgop")
+}],
+"loop": false,
+"name": &"Dice1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_0bkdw")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_htc68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa3nt")
+}],
+"loop": false,
+"name": &"Dice2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_wa3nt")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_dlgop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlobq")
+}],
+"loop": false,
+"name": &"Dice3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_wa3nt")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_0bkdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htc68")
+}],
+"loop": false,
+"name": &"Dice4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_wa3nt")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_nlobq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bkdw")
+}],
+"loop": false,
+"name": &"Dice5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_0bkdw")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_nlobq")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_htc68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5ybm")
+}],
+"loop": false,
+"name": &"Dice6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlgop")
+}],
+"loop": false,
+"name": &"DiceIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_dlgop")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_htc68")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_nlobq")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_wa3nt")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_dlgop")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_htc68")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_0bkdw")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_dlgop")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_wa3nt")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_0bkdw")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_htc68")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_wa3nt")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_c5ybm")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_nlobq")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_htc68")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_dlgop")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_wa3nt")
+}],
+"loop": false,
+"name": &"DiceRolling",
+"speed": 5.0
+}]
+
+[node name="DiceVisual" type="AnimatedSprite2D" unique_id=361873701]
+sprite_frames = SubResource("SpriteFrames_a0lsd")
+animation = &"Dice1"
