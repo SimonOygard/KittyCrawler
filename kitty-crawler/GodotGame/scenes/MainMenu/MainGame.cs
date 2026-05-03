@@ -15,7 +15,6 @@ public partial class MainGame : Node2D
 
     public override void _Ready()
     {
-        AddToGroup("MainGame");
         ProcessMode = ProcessModeEnum.Always;
 
         mainMenu = GetNodeOrNull<MainMenu>("UI/MainMenu");
@@ -36,6 +35,7 @@ public partial class MainGame : Node2D
         endMenu.LeaderboardRequested += Leaderboard;
 
         SceneManager.Instance.GameOverRequested += GameOver;
+        SceneManager.Instance.LevelLoaded += OnMainMenuReturnPressed;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -73,7 +73,9 @@ public partial class MainGame : Node2D
     public void GameOver()
     {
         GD.Print("GameOver called. Unloading current level and showing end menu.");
+
         SceneManager.Instance.UnloadCurrentLevel();
+        
         endMenu?.Show();
         GD.Print("End menu shown.");
     }
@@ -89,29 +91,14 @@ public partial class MainGame : Node2D
         _levelTransition.TriggerTransition();
     }
 
-    public void OnMainMenuReturnPressed()
+    public void OnMainMenuReturnPressed(string scenePath)
     {
         GD.Print("Main Menu button pressed");
-
-        GetTree().Paused = false;
-
-        var ui = GetNode("UI");
-        var old = ui.GetNodeOrNull("CurrentLevel");
-
-        QueueFree();
-
-        SceneManager.Instance.UnloadCurrentLevel();
-
-        if (old != null)
+        if (scenePath == "res://scenes/MainMenu/MainScene.tscn")
         {
-            old.QueueFree();
+            endMenu?.Hide();
+            mainMenu?.Show();
         }
-
-        GetTree().ChangeSceneToFile("res://scenes/MainMenu/MainScene.tscn");
-
-        //_levelTransition.ScenePath = null;
-        endMenu?.Hide();
-        mainMenu?.Show();
     }
     #endregion 
 

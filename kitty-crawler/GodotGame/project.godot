@@ -53,6 +53,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://add
 player="playercharacters"
 Chests="Chests and mimics"
 traps="trapsstates"
+MainGame="Main game node"
 
 [gui]
 

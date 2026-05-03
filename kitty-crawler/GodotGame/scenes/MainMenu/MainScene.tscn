@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://daf3h1asgsbgk" path="res://scenes/MainMenu/PauseMenu.tscn" id="4_ekp1i"]
 [ext_resource type="PackedScene" uid="uid://dmcc31u3uiegb" path="res://scenes/MainMenu/GameOver.tscn" id="4_kh4vm"]
 
-[node name="Game" type="Node2D" unique_id=192401284]
+[node name="Game" type="Node2D" unique_id=192401284 groups=["MainGame"]]
 script = ExtResource("1_3mqji")
 
 [node name="UI" type="Control" parent="." unique_id=2071561589]

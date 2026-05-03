@@ -18,10 +18,7 @@ public partial class SceneManager : Node
     public string PreviousLevelPath { get; private set; } = "";
     public string CurrentBossName { get; private set; } = "";
 
-    
-    private readonly HashSet<string> _defeatedBosses = new();
     private bool _isChangingScene = false;
-
 
     public override void _Ready()
 	{
@@ -31,36 +28,6 @@ public partial class SceneManager : Node
     {
         EmitSignal(SignalName.GameOverRequested);
     }
-
-    //public async Task StartTeltGame(string cardGameScenePath, string bossName)
-    //{
-    //    PreviousLevelPath = GetTree().CurrentScene.SceneFilePath;
-    //    CurrentBossName = bossName;
-
-    //    await ChangeSceneAsync(cardGameScenePath, TransitionType.Battle, bossName);
-    //}
-
-    //public async Task CompleteTeltGame() //use signal from telt?
-    //{
-    //    if (!string.IsNullOrEmpty(CurrentBossName))
-    //    {
-    //        _defeatedBosses.Add(CurrentBossName);
-    //        GD.Print("Boss defeated: " + CurrentBossName);
-    //    }
-    //    else
-    //    {
-    //        GD.PrintErr("Current boss name is empty. Cannot mark boss as defeated.");
-    //    }
-    //    if (!string.IsNullOrEmpty(PreviousLevelPath))
-    //    {
-    //        await ChangeSceneAsync(PreviousLevelPath, TransitionType.Generic);
-    //    }
-    //    else
-    //    {
-    //        GD.PrintErr("Previous level path is empty. Cannot return to previous scene.");
-    //    }
-    //}
-
 
     public async Task ChangeSceneAsync(string scenePath, TransitionType type = TransitionType.Generic, string objectName = "")
     {
@@ -96,7 +63,7 @@ public partial class SceneManager : Node
             await FadeTransition.Instance.FadeToBlack();
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
-            ReplaceCurrentScene(instance);
+            ReplaceCurrentScene(instance, scenePath);
 
             await FadeTransition.Instance.FadeFromBlack();
             EmitSignal(SignalName.LevelLoaded, scenePath);
@@ -110,11 +77,9 @@ public partial class SceneManager : Node
    
     public void UnloadCurrentLevel()
     {
-        var container = GetParent();
-        var old = container.GetNodeOrNull("CurrentLevel");
+        var old = GetTree().CurrentScene;
         if (old != null)
         {
-            container.CallDeferred(Node.MethodName.RemoveChild, old);
             old.QueueFree();
         }
         CurrentLevelPath = "";
@@ -131,19 +96,22 @@ public partial class SceneManager : Node
         await ChangeSceneAsync(PreviousLevelPath);
     }
 
-    private void ReplaceCurrentScene(Node newScene)
+    private void ReplaceCurrentScene(Node newScene, string scenePath)
     {
         var currentScene = GetTree().CurrentScene;
-        PreviousLevelPath = currentScene.SceneFilePath;
+        
         if (currentScene != null && currentScene.Name == "CurrentLevel")
         {
+            PreviousLevelPath = currentScene.SceneFilePath;
             currentScene.QueueFree();
             GD.Print("Current scene freed");
         }
 
         GetTree().Root.AddChild(newScene);
         GetTree().CurrentScene = newScene;
-        CurrentLevelPath = newScene.SceneFilePath;
+
+        CurrentLevelPath = scenePath;
+
         GD.Print("New scene set as current");
     }
 
