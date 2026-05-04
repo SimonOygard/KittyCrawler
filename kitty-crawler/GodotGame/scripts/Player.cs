@@ -10,6 +10,17 @@ namespace PlayerBody
         [Export] public int GridSize = 16;
         [Export] public float TurnThreshold = 0.1f;
 
+        public Vector2 PlayerPosition
+        {
+            get => GlobalPosition;
+            set
+            {
+                GlobalPosition = value;
+                _targetPosition = Position;
+                _isMoving = false;
+            }
+        }
+
         private Vector2 _targetPosition;
         private bool _isMoving = false;
         private Vector2 _direction = Vector2.Down;
@@ -31,6 +42,12 @@ namespace PlayerBody
             _ray = GetNode<RayCast2D>("RayCast2D");
             _ray.Enabled = true;
             UpdateRayDirection();
+            
+            if (WorldStateManager.Instance != null &&
+                WorldStateManager.Instance.TryConsumeReturnPlayerPosition(out Vector2 returnPosition))
+            {
+                TeleportTo(returnPosition);
+            }
         }
 
         public override void _Process(double delta)
@@ -38,11 +55,17 @@ namespace PlayerBody
             if (_isMoving)
             {
                 MoveTowardTarget(delta);
+                return;
             }
-            else
+
+            if (WorldStateManager.Instance == null || !WorldStateManager.Instance.PlayerCanAct)
             {
-                HandleInput((float)delta);
+                _inputHoldTime = 0f;
+                UpdateIdleAnimation();
+                return;
             }
+
+            HandleInput((float)delta);
         }
 
         private void HandleInput(float delta)

@@ -54,20 +54,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orapq"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0)
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3usap"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -148,7 +134,7 @@ offset_bottom = 183.0
 theme_override_font_sizes/font_size = 21
 text = "Congratulations you have defeated Skester's dungeon."
 
-[node name="Label" type="Label" parent="GameOver" unique_id=366248854]
+[node name="FinalScore" type="Label" parent="GameOver" unique_id=366248854]
 layout_mode = 0
 offset_left = 424.0
 offset_top = 385.0
@@ -156,18 +142,14 @@ offset_right = 529.0
 offset_bottom = 402.0
 text = "Final score: "
 
-[node name="LineEdit" type="LineEdit" parent="GameOver/Label" unique_id=392201468]
+[node name="Score" type="Label" parent="GameOver/FinalScore" unique_id=2011006283]
 layout_mode = 0
-offset_left = 107.0
-offset_top = -8.0
-offset_right = 159.8125
-offset_bottom = 23.0
-theme_override_colors/caret_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
-theme_override_colors/selection_color = Color(0.49803922, 0.49803922, 0.49803922, 0)
-theme_override_styles/normal = SubResource("StyleBoxFlat_orapq")
-placeholder_text = "0"
+offset_left = 104.0
+offset_top = -1.0
+offset_right = 144.0
+offset_bottom = 16.0
 
-[node name="Label2" type="Label" parent="GameOver" unique_id=998051815]
+[node name="FinalTime" type="Label" parent="GameOver" unique_id=998051815]
 layout_mode = 0
 offset_left = 694.0
 offset_top = 384.0
@@ -175,7 +157,7 @@ offset_right = 784.0
 offset_bottom = 401.0
 text = "Final time:"
 
-[node name="LineEdit" type="LineEdit" parent="GameOver/Label2" unique_id=797819572]
+[node name="Timer" type="Label" parent="GameOver/FinalTime" unique_id=2083343362]
 layout_mode = 0
 offset_left = 91.0
 offset_top = -7.0
@@ -183,7 +165,6 @@ offset_right = 187.0
 offset_bottom = 24.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3usap")
-placeholder_text = "00:00:00"
 
 [node name="LevelTransition" type="Node" parent="GameOver" unique_id=646538655]
 script = ExtResource("3_u538a")

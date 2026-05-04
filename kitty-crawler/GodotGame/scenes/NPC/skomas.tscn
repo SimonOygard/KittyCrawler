@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="5_p5ikq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxsnv"]
-size = Vector2(16, 16)
+size = Vector2(20.5, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nd0mj"]
 atlas = ExtResource("4_c1wnb")
@@ -66,10 +66,10 @@ script = ExtResource("1_2660u")
 _npcData = ExtResource("2_nn5to")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1592896962]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_sxsnv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=341589047]
-position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_dpo8j")
 animation = &"Skomas_Idle"
 autoplay = "Skomas_Idle"
