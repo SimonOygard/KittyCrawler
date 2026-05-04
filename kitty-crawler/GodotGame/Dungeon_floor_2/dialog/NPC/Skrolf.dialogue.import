@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bty6oil0ui0me"
+path="res://.godot/imported/Skrolf.dialogue-89f09fb81279972723a718436ae07822.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/NPC/Skrolf.dialogue"
+dest_files=["res://.godot/imported/Skrolf.dialogue-89f09fb81279972723a718436ae07822.tres"]
+
+[params]
+
+defaults=true

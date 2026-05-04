@@ -1,0 +1,8 @@
+~ start
+Skara: Hey kitty kitty. Want to throw some cards?
+- Yes
+    do StartBattle()
+    => END
+- No
+    Skara: Oh...
+    => END

@@ -1,0 +1,8 @@
+~ start
+Skomas: Hello there Tiny Paws! Wanna play some TELT? throw some cards?
+- Yes
+    do StartBattle()
+    => END
+- No
+    Skomas: Ah maan...
+    => END

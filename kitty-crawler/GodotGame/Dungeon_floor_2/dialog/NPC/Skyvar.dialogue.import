@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://puta6iykxqgs"
+path="res://.godot/imported/Skyvar.dialogue-54bc2d5933943d5920ed5d35ea51a312.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/NPC/Skyvar.dialogue"
+dest_files=["res://.godot/imported/Skyvar.dialogue-54bc2d5933943d5920ed5d35ea51a312.tres"]
+
+[params]
+
+defaults=true

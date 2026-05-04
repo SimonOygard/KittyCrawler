@@ -4,6 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="2_ote1w"]
 [ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="3_jgnmv"]
 [ext_resource type="PackedScene" uid="uid://bemuii73nkcr2" path="res://scenes/bosses/croxy.tscn" id="4_1cviu"]
+[ext_resource type="PackedScene" uid="uid://dpqnxbrl5fx5l" path="res://scenes/NPC/NPCSkeleton.tscn" id="5_vehe6"]
+[ext_resource type="Resource" uid="uid://djg32m6l8w0b5" path="res://TELT/Resources/NPCs/skara.tres" id="6_kp8p4"]
+[ext_resource type="Resource" uid="uid://dkrfrlolxmauo" path="res://Dungeon_floor_2/dialog/NPC/Skara.dialogue" id="7_d1oxb"]
+[ext_resource type="Resource" uid="uid://puta6iykxqgs" path="res://Dungeon_floor_2/dialog/NPC/Skyvar.dialogue" id="9_1ptqp"]
+[ext_resource type="Resource" uid="uid://bty6oil0ui0me" path="res://Dungeon_floor_2/dialog/NPC/Skrolf.dialogue" id="11_p3cfe"]
+[ext_resource type="Resource" uid="uid://bp38w8bpyxbqp" path="res://TELT/Resources/NPCs/skrolf.tres" id="11_pi670"]
+[ext_resource type="Resource" uid="uid://di6bgf640to0d" path="res://TELT/Resources/NPCs/skyvar.tres" id="13_dle3b"]
 
 [node name="Skesters_diamond" type="Node2D" unique_id=774304775]
 
@@ -20,3 +27,20 @@ position = Vector2(0, 211)
 
 [node name="Croxy" parent="." unique_id=1371494723 instance=ExtResource("4_1cviu")]
 position = Vector2(0, -32)
+
+[node name="NPC Manager" type="Node" parent="." unique_id=1785919046]
+
+[node name="Skara" parent="NPC Manager" unique_id=1202304320 instance=ExtResource("5_vehe6")]
+position = Vector2(-1, 169)
+_npcData = ExtResource("6_kp8p4")
+_dialogueResource = ExtResource("7_d1oxb")
+
+[node name="Skyvar" parent="NPC Manager" unique_id=790474174 instance=ExtResource("5_vehe6")]
+position = Vector2(-34, 48)
+_npcData = ExtResource("13_dle3b")
+_dialogueResource = ExtResource("9_1ptqp")
+
+[node name="Skrolf" parent="NPC Manager" unique_id=402810278 instance=ExtResource("5_vehe6")]
+position = Vector2(16, 46)
+_npcData = ExtResource("11_pi670")
+_dialogueResource = ExtResource("11_p3cfe")
