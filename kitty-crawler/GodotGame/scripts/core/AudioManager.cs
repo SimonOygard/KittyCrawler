@@ -1,15 +1,21 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 public partial class AudioManager : Node
 {
+    public static AudioManager Instance { get; private set; }
+
     // Background music
+    private AudioStreamPlayer _backgroundMusicPlayer;
     private static readonly AudioStream MainMenu = GD.Load<AudioStream>("res://assets/Audio/Music/wav/02-TitleTheme.wav");
+    private static readonly AudioStream MainGame = GD.Load<AudioStream>("res://assets/Audio/Music/wav/12-FrozenAbyss.wav");
+    private static readonly AudioStream EndGame = GD.Load<AudioStream>("res://assets/Audio/Music/wav/22-TheFinalofTheFantasy.wav");
+    
 
     // Step sounds
     private TileMapLayer _currentFloorLayer;
-    private static readonly AudioStream FootStep = GD.Load<AudioStream>("res://assets/Audio/SoundFX/08_Step_rock_02.wav");
     private static readonly AudioStream[] Footsteps =
     {
         GD.Load<AudioStream>("res://assets/Audio/SoundFX/FootSteps/FootstepsConcrete1.wav"),
@@ -18,14 +24,140 @@ public partial class AudioManager : Node
         GD.Load<AudioStream>("res://assets/Audio/SoundFX/FootSteps/FootstepsConcrete4.wav"),
     };
 
+    // Constants
+    private const string Main_Menu= "res://scenes/MainMenu/MainScene.tscn";
+    private const string Telt = "res://TELT/Scenes/TeltBattle.tscn";
+    private const string End_Menu= "res://scenes/MainMenu/GameOver.tscn";
+    private const string LeaderBoard = "res://scenes/MainMenu/Leaderboard/Leaderboard.tscn";
+
+    private const float MusicVolumeDb = -10f;
+    private const float SilentVolumeDb = -40f;
+    private bool _isChangingMusic = false;
+
+
+
+    public override void _Ready()
+    {
+        Instance = this;
+        var sceneManager = GetNode<SceneManager>("/root/SceneManager");
+        sceneManager.LevelLoaded += OnLevelLoaded;
+
+        var currentScene = GetTree().CurrentScene;
+        if (currentScene != null)
+        {
+            OnLevelLoaded(currentScene.SceneFilePath);
+        }
+    }
+
+    private void OnLevelLoaded(string scenePath)
+    {
+        GD.Print("AudioManager received scenePath: " + scenePath);
+
+        switch (scenePath)
+        {
+            case Main_Menu:
+                PlayMainMenuTheme();
+                break;
+
+            case Telt:
+                PlayTeltBackgroundMusic();
+                break;
+
+            case End_Menu:
+                PlayEndGameTheme();
+                break;
+
+            case LeaderBoard:
+                break;
+
+            default:
+                PlayMainGameTheme();
+                break;
+        }
+    }
+
+    public void PlayMainMenuTheme()
+    {
+        PlayBackgroundMusic(MainMenu);
+    }
+
+    public void PlayMainGameTheme()
+    {
+        PlayBackgroundMusic(MainGame);
+    }
+
+    public void PlayEndGameTheme()
+    {
+        PlayBackgroundMusic(EndGame);
+    }
+    private void PlayBackgroundMusic(AudioStream stream)
+    {
+        ChangeBackgroundMusic(stream);
+    }
+
+
+    private async void ChangeBackgroundMusic(AudioStream stream)
+    {
+        if (_isChangingMusic)
+            return;
+
+        if (_backgroundMusicPlayer != null && _backgroundMusicPlayer.Stream == stream)
+            return;
+
+        _isChangingMusic = true;
+
+        if (_backgroundMusicPlayer != null)
+        {
+            await FadeVolume(_backgroundMusicPlayer, _backgroundMusicPlayer.VolumeDb, SilentVolumeDb, 0.5f);
+            _backgroundMusicPlayer.QueueFree();
+            _backgroundMusicPlayer = null;
+        }
+
+        _backgroundMusicPlayer = new AudioStreamPlayer();
+        AddChild(_backgroundMusicPlayer);
+
+        _backgroundMusicPlayer.Stream = stream;
+        _backgroundMusicPlayer.VolumeDb = SilentVolumeDb;
+        _backgroundMusicPlayer.Play();
+        _backgroundMusicPlayer.Finished += () => _backgroundMusicPlayer.Play();
+
+        await FadeVolume(_backgroundMusicPlayer, SilentVolumeDb, MusicVolumeDb, 1.5f);
+
+        _isChangingMusic = false;
+    }
+
+    private async Task FadeVolume(AudioStreamPlayer player, float fromDb, float toDb, float duration)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            if (!IsInstanceValid(player))
+                return;
+
+            elapsed += (float)GetProcessDeltaTime();
+            float t = Mathf.Clamp(elapsed / duration, 0f, 1f);
+
+            player.VolumeDb = Mathf.Lerp(fromDb, toDb, t);
+
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+
+        if (IsInstanceValid(player))
+            player.VolumeDb = toDb;
+    }
+
+
+    public void StopBackgroundMusic()
+    {
+        _backgroundMusicPlayer?.QueueFree();
+        _backgroundMusicPlayer = null;
+    }
+
+    // --- FootSteps---
     public void SetFloorLayer(TileMapLayer floorLayer)
     {
         _currentFloorLayer = floorLayer;
-    }
-
-    public void PlayMainTheme()
-    {
-        // if main menu play MainMenu
     }
 
     public void PlayFootsteps(Vector2 globalPosition)
@@ -51,7 +183,6 @@ public partial class AudioManager : Node
 
         var rng = new Random();
         player.Stream = Footsteps[rng.Next(Footsteps.Length)];
-
         player.GlobalPosition = globalPosition;
         // player.Stream = FootStep;
         player.Play();
@@ -60,7 +191,7 @@ public partial class AudioManager : Node
     }
 
 
-    // TELT
+    // -- TELT -----------
 
     // Demp musikk når rare kort spilles
     public async void DuckBackgroundMusic(float duration = 2.4f)
@@ -82,7 +213,7 @@ public partial class AudioManager : Node
     private static readonly AudioStream Draw = GD.Load<AudioStream>("res://assets/Audio/SoundFX/Fantasy UI SFX/Fantasy UI SFX/Skyward Hero/SkywardHero_UI (42).wav");
     private static readonly AudioStream DiceRoll = GD.Load<AudioStream>("res://assets/Audio/SoundFX/Card and Board/dice_roll_1.wav");
     private static readonly AudioStream DiceShake = GD.Load<AudioStream>("res://assets/Audio/SoundFX/Card and Board/dice_shake_2.wav");
-    private static readonly AudioStream BackgroundMusic = GD.Load<AudioStream>("res://assets/Audio/Music/wav/08 - Shop.wav");
+    private static readonly AudioStream TeltBackgroundMusic = GD.Load<AudioStream>("res://assets/Audio/Music/wav/08 - Shop.wav");
     private static readonly AudioStream CleanUp = GD.Load<AudioStream>("res://assets/Audio/SoundFX/Card and Board/card_fan.wav");
 
 
@@ -95,25 +226,11 @@ public partial class AudioManager : Node
         player.Finished += player.QueueFree;
     }
 
-    private AudioStreamPlayer _backgroundMusicPlayer;
-
-    public void PlayBackgroundMusic()
+    public void PlayTeltBackgroundMusic()
     {
-        if (_backgroundMusicPlayer != null) return; // allerede spiller
-
-        _backgroundMusicPlayer = new AudioStreamPlayer();
-        AddChild(_backgroundMusicPlayer);
-        _backgroundMusicPlayer.Stream = BackgroundMusic; // ← din AudioStream
-        _backgroundMusicPlayer.VolumeDb = -10f; // ← lavere volum, juster etter smak
-        _backgroundMusicPlayer.Play();
-        _backgroundMusicPlayer.Finished += () => _backgroundMusicPlayer.Play();
+        PlayBackgroundMusic(TeltBackgroundMusic);
     }
 
-    public void StopBackgroundMusic()
-    {
-        _backgroundMusicPlayer?.QueueFree();
-        _backgroundMusicPlayer = null;
-    }
     public void PlayDiceShake()
     {
         var player = new AudioStreamPlayer();

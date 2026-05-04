@@ -74,6 +74,7 @@ public partial class MainGame : Node2D
     {
         GD.Print("GameOver called. Unloading current level and showing end menu.");
 
+        AudioManager.Instance.PlayEndGameTheme();
         SceneManager.Instance.UnloadCurrentLevel();
         
         endMenu?.Show();
