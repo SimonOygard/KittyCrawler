@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cd83huhnjupcg"]
+
+[ext_resource type="Script" uid="uid://chsi7vomuwnca" path="res://API/LeaderboardApi.cs" id="1_7acxr"]
+
+[node name="LeaderboardApi" type="Node" unique_id=386077827]
+script = ExtResource("1_7acxr")
+
+[node name="LeaderboardFetch" type="HTTPRequest" parent="." unique_id=531609524]
+
+[node name="LeaderboardPost" type="HTTPRequest" parent="." unique_id=925954250]

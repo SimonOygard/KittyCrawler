@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cerwknd4egm36"]
+
+[ext_resource type="Script" uid="uid://cahivhuyhtj3o" path="res://scripts/core/GameTimerManager.cs" id="1_4ouhs"]
+
+[node name="Node" type="Node" unique_id=735394345]
+script = ExtResource("1_4ouhs")

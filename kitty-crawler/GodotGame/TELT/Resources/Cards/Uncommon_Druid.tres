@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b0blolq32skeh"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_mrwi1"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_h3f2d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_mrwi1")
+region = Rect2(192, 96, 64, 96)
+
+[resource]
+script = ExtResource("2_h3f2d")
+CardName = "Druid"
+Damage = 4
+CardRarity = 1
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "Give a unit +3 or -3 stats"
+Ability = 6
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

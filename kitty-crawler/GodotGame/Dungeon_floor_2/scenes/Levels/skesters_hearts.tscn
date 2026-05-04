@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://yuyegt4xa81m"]
+
+[ext_resource type="Script" uid="uid://bnyrhhmkqj8cd" path="res://Dungeon_floor_2/scenes/Levels/SkestersHearts.cs" id="1_21mcq"]
+[ext_resource type="PackedScene" uid="uid://c28mo2vgcekja" path="res://Dungeon_floor_2/scenes/Maps/heart_map.tscn" id="1_mhie7"]
+[ext_resource type="PackedScene" uid="uid://bv8yy45rumixn" path="res://scenes/bosses/skester.tscn" id="2_5q5vi"]
+[ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="3_21mcq"]
+[ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="5_21mcq"]
+
+[node name="SkestersHearts" type="Node2D" unique_id=117296815]
+script = ExtResource("1_21mcq")
+
+[node name="heart_map" parent="." unique_id=1337333643 instance=ExtResource("1_mhie7")]
+
+[node name="Skester" parent="." unique_id=672527403 instance=ExtResource("2_5q5vi")]
+position = Vector2(4.9999995, -83.99999)
+scale = Vector2(1.1, 1.1)
+
+[node name="CharacterBody2D" parent="." unique_id=1948828453 instance=ExtResource("3_21mcq")]
+position = Vector2(0, 224)
+
+[node name="Teleport" parent="." unique_id=1633862423 instance=ExtResource("5_21mcq")]
+position = Vector2(-3, 256)
+scale = Vector2(1.1, 1.1)
+
+[node name="End" parent="." unique_id=1756848564 instance=ExtResource("5_21mcq")]
+position = Vector2(0, -80)

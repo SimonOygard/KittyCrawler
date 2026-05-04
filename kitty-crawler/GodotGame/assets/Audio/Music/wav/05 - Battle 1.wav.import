@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3y3mrmok02qi"
+path="res://.godot/imported/05 - Battle 1.wav-753d43a016281720d9b7b9525269b139.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Music/wav/05 - Battle 1.wav"
+dest_files=["res://.godot/imported/05 - Battle 1.wav-753d43a016281720d9b7b9525269b139.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

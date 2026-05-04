@@ -1,0 +1,13 @@
+~ start
+Kitty: Where... Where am I?
+You look around the dark and damp room, trying to make out anything to give you a clue where you are. 
+Your eyes gradually get used to the darkness and you can make out a doorway just ahead.
+Kitty: Let's get back home. 
+- Get up and go through the doorway
+	Kitty: Proceed.
+- Stay and die lmfao
+	Kitty: you dead hoe
+- Start again => start
+- End the conversation => END
+Kitty: For more information see the online documentation.
+=> END

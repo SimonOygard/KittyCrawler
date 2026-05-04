@@ -1,19 +1,16 @@
-using System;
 using Godot;
+using System;
 
 namespace Game.Core
 {
     public static class Logger
     {
-        public static void Log(LogLevel level, int frame = 2, params object[] message)
+        public static void Log(LogLevel level, params object[] message)
         {
             var dateTime = DateTime.Now;
             string timeStamp = $"[{dateTime:yyyy-MM-dd HH:mm:ss}]";
-            var callingMethod = new System.Diagnostics.StackTrace().GetFrame(frame).GetMethod();
-            string callerType = callingMethod?.DeclaringType?.Name ?? "Unknown";
-            string callerName = callingMethod?.Name ?? "Unknown";
-
-            string logMessage = $"{timeStamp} [{level}] [{callerType}] [{callerName}]";
+            var callingMethod = new System.Diagnostics.StackTrace().GetFrame(2).GetMethod();
+            string logMessage = $"{timeStamp} [{level}] [{callingMethod.DeclaringType.Name}] [{callingMethod.Name}]";
 
             string color = "CYAN";
 
@@ -34,7 +31,6 @@ namespace Game.Core
                 default:
                     break;
 
-
             }
 
             GD.PrintRich([$"[color={color}]{logMessage}[/color]", ..message]);
@@ -42,22 +38,22 @@ namespace Game.Core
 
         public static void Debug(params object[] message)
         {
-            Log(LogLevel.DEBUG, 2, message);
+            Log(LogLevel.DEBUG, message);
         }
 
         public static void Info(params object[] message)
         {
-            Log(LogLevel.INFO, 2, message);
+            Log(LogLevel.INFO, message);
         }
 
         public static void Warning(params object[] message)
         {
-            Log(LogLevel.WARNING, 2, message);
+            Log(LogLevel.WARNING, message);
         }
 
         public static void Error(params object[] message)
         {
-            Log(LogLevel.ERROR, 2, message);
+            Log(LogLevel.ERROR, message);
         }
     }
 }

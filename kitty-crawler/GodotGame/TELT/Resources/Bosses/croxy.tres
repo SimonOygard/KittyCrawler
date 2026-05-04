@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BossData" format=3 uid="uid://4jbpiisyg8y6"]
+
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="1_w3ul2"]
+[ext_resource type="Resource" uid="uid://bvg7uchylhl30" path="res://TELT/Resources/Cards/Common_Elemental.tres" id="2_60kpi"]
+[ext_resource type="Resource" uid="uid://dk8hy7bni03c7" path="res://TELT/Resources/Cards/Common_Goblin.tres" id="3_2hsku"]
+[ext_resource type="Resource" uid="uid://c0ybu1oovtg11" path="res://TELT/Resources/Cards/Common_Imp.tres" id="4_1dtiu"]
+[ext_resource type="Resource" uid="uid://ch05md6gs7vi2" path="res://TELT/Resources/Cards/Common_Minotaur.tres" id="5_g11tu"]
+[ext_resource type="Resource" uid="uid://cnq2f1ospem8p" path="res://TELT/Resources/Cards/Common_Skeleton.tres" id="6_xo2xb"]
+[ext_resource type="Resource" uid="uid://q7gwi26susg6" path="res://TELT/Resources/Cards/Common_Snake.tres" id="7_5vgd7"]
+[ext_resource type="Resource" uid="uid://brxvt3x7w7m6p" path="res://TELT/Resources/Cards/Uncommon_Sludge.tres" id="8_wcuf2"]
+[ext_resource type="Resource" uid="uid://b0blolq32skeh" path="res://TELT/Resources/Cards/Uncommon_Druid.tres" id="9_3hwqs"]
+[ext_resource type="Resource" uid="uid://ck3o4wvt56ffh" path="res://TELT/Resources/Cards/Rare_Croxy.tres" id="10_tkr24"]
+[ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="11_arent"]
+
+[resource]
+script = ExtResource("11_arent")
+BossName = "Croxy"
+NpcId = "croxy"
+Deck = Array[ExtResource("1_w3ul2")]([ExtResource("2_60kpi"), ExtResource("2_60kpi"), ExtResource("2_60kpi"), ExtResource("2_60kpi"), ExtResource("3_2hsku"), ExtResource("3_2hsku"), ExtResource("3_2hsku"), ExtResource("4_1dtiu"), ExtResource("4_1dtiu"), ExtResource("4_1dtiu"), ExtResource("5_g11tu"), ExtResource("5_g11tu"), ExtResource("5_g11tu"), ExtResource("6_xo2xb"), ExtResource("6_xo2xb"), ExtResource("6_xo2xb"), ExtResource("7_5vgd7"), ExtResource("7_5vgd7"), ExtResource("8_wcuf2"), ExtResource("8_wcuf2"), ExtResource("9_3hwqs"), ExtResource("9_3hwqs"), ExtResource("9_3hwqs"), ExtResource("10_tkr24"), ExtResource("10_tkr24")])
+RewardCard = ExtResource("10_tkr24")
+metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"

@@ -1,0 +1,11 @@
+~ start
+Eve: What?
+Eve: .... a cat?
+Eve: Now we battle!
+do start_battle()
+=> END
+
+~ post_battle
+Eve: You have defeated me...
+Eve: "You received Eve's card."
+=> END

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://q7gwi26susg6"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_y3d8g"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_lm5al"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_y3d8g")
+region = Rect2(256, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_lm5al")
+CardName = "Snake"
+Damage = 3
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "Give an enemy unit POISON"
+Ability = 18
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

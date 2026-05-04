@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dl6y4p2nygwmy"]
+
+[ext_resource type="PackedScene" uid="uid://d44dlueljh4h" path="res://Dungeon_floor_2/scenes/Maps/spade_map.tscn" id="1_uur3i"]
+[ext_resource type="PackedScene" uid="uid://bao4jykmd4cg0" path="res://scenes/bosses/eve.tscn" id="2_ik45p"]
+[ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="3_umt08"]
+[ext_resource type="Script" uid="uid://bw6ou6msfjtmo" path="res://scripts/MimicManager.cs" id="4_2ouvy"]
+[ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://scenes/Chest.tscn" id="5_e6egn"]
+[ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="6_xqt5p"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="7_ik45p"]
+[ext_resource type="PackedScene" uid="uid://bxppt2lchtfiy" path="res://Dungeon_floor_2/scenes/PuzzleBoss.tscn" id="8_umt08"]
+
+[node name="SkestersSpadeLevel" type="Node2D" unique_id=1768466649]
+
+[node name="SpadeMap" parent="." unique_id=2121739106 instance=ExtResource("1_uur3i")]
+
+[node name="Eve" parent="." unique_id=672527403 instance=ExtResource("2_ik45p")]
+position = Vector2(400, -96.000015)
+rotation = 0.012246307
+scale = Vector2(1.5, 1.5)
+
+[node name="CharacterBody2D" parent="." unique_id=1493943995 instance=ExtResource("3_umt08")]
+position = Vector2(402, 386)
+rotation = 0.012245905
+
+[node name="Teleporters" type="Node" parent="." unique_id=1267682154]
+
+[node name="DestinationA" type="Marker2D" parent="Teleporters" unique_id=764793771]
+position = Vector2(400, 192)
+
+[node name="DestinationB" type="Marker2D" parent="Teleporters" unique_id=495696849]
+position = Vector2(398, -32)
+
+[node name="TeleportA" parent="Teleporters" unique_id=1798430977 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
+position = Vector2(397, 288)
+_destination = NodePath("../DestinationA")
+
+[node name="TeleportB" parent="Teleporters" unique_id=1103823302 node_paths=PackedStringArray("_destination") instance=ExtResource("6_xqt5p")]
+position = Vector2(400, 80)
+_destination = NodePath("../DestinationB")
+
+[node name="TeleportEnd" parent="Teleporters" unique_id=1633862423 instance=ExtResource("6_xqt5p")]
+position = Vector2(399, -160)
+ScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_clubs.tscn"
+
+[node name="LevelTransition" type="Node" parent="Teleporters/TeleportEnd" unique_id=1001504914]
+script = ExtResource("7_ik45p")
+ScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_clubs.tscn"
+Type = 5
+ObjectName = "Clubs"
+
+[node name="PuzzleBoss" parent="." unique_id=1711632889 node_paths=PackedStringArray("_destination") instance=ExtResource("8_umt08")]
+position = Vector2(394, 112)
+_destination = NodePath("Restart")
+
+[node name="Restart" type="Marker2D" parent="PuzzleBoss" unique_id=1778754558]
+position = Vector2(10, 288)
+
+[node name="Chests" type="Node2D" parent="PuzzleBoss" unique_id=2144331154]
+position = Vector2(-214.00002, 64.00003)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_2ouvy")
+
+[node name="Left" parent="PuzzleBoss/Chests" unique_id=494573170 groups=["Chests"] instance=ExtResource("5_e6egn")]
+position = Vector2(113.33334, -5.333351)
+
+[node name="Middle" parent="PuzzleBoss/Chests" unique_id=1610935740 groups=["Chests"] instance=ExtResource("5_e6egn")]
+position = Vector2(145.33334, -5.333333)
+
+[node name="Right" parent="PuzzleBoss/Chests" unique_id=96483464 groups=["Chests"] instance=ExtResource("5_e6egn")]
+position = Vector2(177.33336, -5.3333225)

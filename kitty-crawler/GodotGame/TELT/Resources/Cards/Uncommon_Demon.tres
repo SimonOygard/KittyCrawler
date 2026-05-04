@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dnvgd3c1a4k0t"]
+
+[ext_resource type="Texture2D" uid="uid://rrpof80cap5k" path="res://TELT/Tilesets/AngelDemon.png" id="1_uujh7"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_rdc6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mand4"]
+atlas = ExtResource("1_uujh7")
+region = Rect2(64, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_rdc6d")
+CardName = "Demon"
+Damage = 5
+CardRarity = 1
+Texture = SubResource("AtlasTexture_mand4")
+AbilityDescription = "Deal 3 damage to the opponent"
+Ability = 22
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

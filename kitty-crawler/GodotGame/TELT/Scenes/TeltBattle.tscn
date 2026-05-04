@@ -1,0 +1,928 @@
+[gd_scene format=3 uid="uid://8uyis3nubmb5"]
+
+[ext_resource type="Script" uid="uid://b5yroq2as0v6d" path="res://TELT/Scripts/Battle/TeltBattle.cs" id="1_fqpg2"]
+[ext_resource type="Texture2D" uid="uid://dyp0jvxtc5fuw" path="res://TELT/Tilesets/Cardbacks/TeltBackside.png" id="2_1gpw6"]
+[ext_resource type="PackedScene" uid="uid://b7wu35ib6ov37" path="res://TELT/Scenes/CardVisual.tscn" id="2_nncip"]
+[ext_resource type="Script" uid="uid://6j0uafk3lfn" path="res://TELT/Scripts/Battle/BattleMap.cs" id="3_lvtoq"]
+[ext_resource type="Script" uid="uid://cqg18kadl7y4b" path="res://TELT/Scripts/Battle/GameManager.cs" id="3_nncip"]
+[ext_resource type="Texture2D" uid="uid://2ag8sjbncfh8" path="res://TELT/Tilesets/Maps/Basic_map_new.png" id="4_1gpw6"]
+[ext_resource type="Script" uid="uid://v4lg6hakjai6" path="res://TELT/Scripts/Player/PlayerData.cs" id="4_cwi3j"]
+[ext_resource type="Texture2D" uid="uid://cq7lhxduggqjd" path="res://TELT/Tilesets/Maps/Croxy_map.png" id="4_do6nv"]
+[ext_resource type="Texture2D" uid="uid://dt7feea78hali" path="res://TELT/Tilesets/Maps/Eve_map.png" id="5_1gpw6"]
+[ext_resource type="Script" uid="uid://imvucr5hlgbd" path="res://scripts/DiceRoll.cs" id="5_lvtoq"]
+[ext_resource type="Script" uid="uid://b78ltfwb22ld2" path="res://TELT/Scripts/Enemy/EnemyAI.cs" id="5_pjqik"]
+[ext_resource type="Script" uid="uid://cm4s18t7lpvvx" path="res://TELT/Scripts/Battle/AbilityResolver.cs" id="6_cwi3j"]
+[ext_resource type="Texture2D" uid="uid://c5qooy84y0ara" path="res://TELT/Tilesets/Maps/Hilda_map.png" id="6_upegj"]
+[ext_resource type="Texture2D" uid="uid://d3yhxhvciry63" path="res://TELT/Tilesets/Maps/Mio_map.png" id="7_3rd10"]
+[ext_resource type="Texture2D" uid="uid://c5blo1wr704kg" path="res://TELT/Tilesets/Maps/Skester_map.png" id="8_2fdk5"]
+[ext_resource type="FontFile" uid="uid://b0b5y1ystn251" path="res://assets/Fonts/Pixelmax-Regular.otf" id="9_do6nv"]
+[ext_resource type="PackedScene" uid="uid://cnd1erk0wljls" path="res://scenes/dice_visual.tscn" id="11_upegj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8w6e"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52qys"]
+content_margin_top = 6.0
+bg_color = Color(0.36429623, 0.28675535, 0.21430561, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rd10"]
+content_margin_top = 6.0
+bg_color = Color(0.5881782, 0.478219, 0.37825602, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do6nv"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1yuv"]
+content_margin_top = 6.0
+bg_color = Color(0.36429623, 0.28675535, 0.21430561, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fdk5"]
+content_margin_top = 6.0
+bg_color = Color(0.5881782, 0.478219, 0.37825602, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gpw6"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kt412"]
+content_margin_top = 6.0
+bg_color = Color(0.26834476, 0.20375824, 0.14243942, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pboha"]
+content_margin_top = 6.0
+bg_color = Color(0.67218465, 0.5438142, 0.42684504, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upegj"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op636"]
+content_margin_top = 6.0
+bg_color = Color(0.26834476, 0.20375824, 0.14243942, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ufvv"]
+content_margin_top = 6.0
+bg_color = Color(0.67218465, 0.5438142, 0.42684504, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1iu3b"]
+bg_color = Color(0.87659293, 0.78760844, 0.7086541, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+expand_margin_top = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gpw6"]
+atlas = ExtResource("2_1gpw6")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upegj"]
+atlas = ExtResource("2_1gpw6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjaq4"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7o3ih"]
+content_margin_top = 6.0
+bg_color = Color(0.33955696, 0.26325625, 0.18702373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7e6y6"]
+content_margin_top = 6.0
+bg_color = Color(0.67218465, 0.5438142, 0.42684504, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1rl0"]
+content_margin_top = 6.0
+bg_color = Color(0.63982654, 0.7605156, 0.6787421, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l302w"]
+content_margin_top = 6.0
+bg_color = Color(0.25882354, 0.3529412, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ibsc"]
+content_margin_top = 6.0
+bg_color = Color(0.47058824, 0.6, 0.5137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pk2cw"]
+content_margin_top = 6.0
+bg_color = Color(0.8759564, 0.65345174, 0.67771, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmcdp"]
+content_margin_top = 6.0
+bg_color = Color(0.46094424, 0.23965347, 0.2725395, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dnx3"]
+content_margin_top = 6.0
+bg_color = Color(0.6880683, 0.39113358, 0.43442258, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xrjg"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4b55q"]
+content_margin_top = 6.0
+bg_color = Color(0.33955696, 0.26325625, 0.18702373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3omoa"]
+content_margin_top = 6.0
+bg_color = Color(0.67218465, 0.5438142, 0.42684504, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1aukk"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynnem"]
+content_margin_top = 6.0
+bg_color = Color(0.33955696, 0.26325625, 0.18702373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gddi0"]
+content_margin_top = 6.0
+bg_color = Color(0.67218465, 0.5438142, 0.42684504, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_continueButton", "_diceVisual", "_diceOddEvenLabel", "_background")]
+script = ExtResource("1_fqpg2")
+_gameManager = NodePath("GameManager")
+_battleMap = NodePath("BattleMap")
+_abilityResolver = NodePath("AbilityResolver")
+_player = NodePath("Player")
+_enemy = NodePath("Enemy")
+_enemyAI = NodePath("EnemyAI")
+_playerSlotsContainer = NodePath("UI/PlayerSlots")
+_enemySlotsContainer = NodePath("UI/EnemySlots")
+_handContainer = NodePath("UI/HandContainer")
+_phaseLabel = NodePath("UI/PhaseLabel")
+_playerDamageLabel = NodePath("UI/PlayerDamageLabel")
+_enemyDamageLabel = NodePath("UI/EnemyDamageLabel")
+_oddButton = NodePath("DiceRollOverlay/OddButton")
+_evenButton = NodePath("DiceRollOverlay/EvenButton")
+_resultLabel = NodePath("UI/ResultLabel")
+_combatButton = NodePath("UI/CombatButton")
+_nextMatchButton = NodePath("UI/NextMatchButton")
+_diceRollOverlay = NodePath("DiceRollOverlay")
+_ui = NodePath("UI")
+_enemyHandDisplay = NodePath("UI/EnemyHandContainer")
+_cardBackTexture = ExtResource("2_1gpw6")
+_playerDeckDisplay = NodePath("UI/PlayerDeckDisplay")
+_deckCountLabel = NodePath("UI/PlayerDeckDisplay/DeckCountLabel")
+_discardPile = NodePath("UI/DiscardPile")
+_discardTopCard = NodePath("UI/DiscardPile/DiscardTopCard")
+_discardSheet = NodePath("UI/DiscardSheet")
+_discardGrid = NodePath("UI/DiscardSheet/DiscardGrid")
+_closeDiscardButton = NodePath("UI/DiscardSheet/CloseButton")
+_diceResultLabel = NodePath("DiceRollOverlay/DiceResultLabel")
+_diceTitle = NodePath("DiceRollOverlay/TitleLabel")
+_druidChoicePanel = NodePath("UI/DruidChoicePanel")
+_plusThreeButton = NodePath("UI/DruidChoicePanel/PlusThreeButton")
+_minusThreeButton = NodePath("UI/DruidChoicePanel/MinusThreeButton")
+_enemyDeckDisplay = NodePath("UI/EnemyDeckDisplay")
+_enemyDeckCountLabel = NodePath("UI/EnemyDeckDisplay/DeckCountLabel")
+_enemyDiscardPile = NodePath("UI/EnemyDiscardPile")
+_enemyDiscardSheet = NodePath("UI/EnemyDiscardSheet")
+_enemyDiscardGrid = NodePath("UI/EnemyDiscardSheet/DiscardGrid")
+_enemyCloseDiscardButton = NodePath("UI/EnemyDiscardSheet/CloseButton")
+_gameOverScreen = NodePath("GameOverScreen")
+_gameOverResultLabel = NodePath("GameOverScreen/ResultLabel")
+_gameOverScoreLabel = NodePath("GameOverScreen/ScoreLabel")
+_rematchButton = NodePath("GameOverScreen/RematchButton")
+_continueButton = NodePath("GameOverScreen/ContinueButton")
+_diceVisual = NodePath("DiceRollOverlay/DiceVisual")
+_diceOddEvenLabel = NodePath("DiceRollOverlay/DiceOddEvenLabel")
+_cardVisualScene = ExtResource("2_nncip")
+_background = NodePath("Background")
+_basicBackground = ExtResource("4_1gpw6")
+_croxBackground = ExtResource("4_do6nv")
+_eveBackground = ExtResource("5_1gpw6")
+_hildaBackground = ExtResource("6_upegj")
+_mioBackground = ExtResource("7_3rd10")
+_skesterBackground = ExtResource("8_2fdk5")
+
+[node name="Background" type="TextureRect" parent="." unique_id=63247513]
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 1279.0
+offset_bottom = 718.0
+
+[node name="DiceRollOverlay" type="CanvasLayer" parent="." unique_id=1562141442]
+
+[node name="DimRect" type="ColorRect" parent="DiceRollOverlay" unique_id=1663160870]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.43529412)
+
+[node name="TitleLabel" type="Label" parent="DiceRollOverlay" unique_id=1433207662]
+offset_left = 378.0
+offset_top = 209.0
+offset_right = 906.0
+offset_bottom = 262.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 50
+text = "Choose Odd or Even"
+
+[node name="OddButton" type="Button" parent="DiceRollOverlay" unique_id=1332659469]
+custom_minimum_size = Vector2(200, 80)
+offset_left = 428.0
+offset_top = 348.0
+offset_right = 628.0
+offset_bottom = 428.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_r8w6e")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_52qys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3rd10")
+text = "ODD"
+
+[node name="EvenButton" type="Button" parent="DiceRollOverlay" unique_id=1846937]
+custom_minimum_size = Vector2(200, 80)
+offset_left = 658.0
+offset_top = 348.0
+offset_right = 858.0
+offset_bottom = 428.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_do6nv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n1yuv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2fdk5")
+text = "EVEN"
+
+[node name="DiceVisual" parent="DiceRollOverlay" unique_id=361873701 instance=ExtResource("11_upegj")]
+position = Vector2(642, 497)
+scale = Vector2(8, 7.439)
+animation = &"DiceIdle"
+
+[node name="DiceOddEvenLabel" type="Label" parent="DiceRollOverlay" unique_id=888252090]
+offset_left = 443.0
+offset_top = 524.0
+offset_right = 831.0
+offset_bottom = 679.0
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiceResultLabel" type="Label" parent="DiceRollOverlay" unique_id=1625707931]
+offset_left = 308.0
+offset_top = 179.0
+offset_right = 956.0
+offset_bottom = 530.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameManager" type="Node" parent="." unique_id=1193511484]
+script = ExtResource("3_nncip")
+
+[node name="BattleMap" type="Node" parent="." unique_id=1018063194]
+script = ExtResource("3_lvtoq")
+
+[node name="DiceRoll" type="Node" parent="." unique_id=2132708533]
+script = ExtResource("5_lvtoq")
+
+[node name="AbilityResolver" type="Node" parent="." unique_id=1542998908]
+script = ExtResource("6_cwi3j")
+
+[node name="Player" type="Node" parent="." unique_id=2084589427]
+script = ExtResource("4_cwi3j")
+
+[node name="Enemy" type="Node" parent="." unique_id=68569918]
+script = ExtResource("4_cwi3j")
+
+[node name="EnemyAI" type="Node" parent="." unique_id=116703914]
+script = ExtResource("5_pjqik")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1486639312]
+
+[node name="EnemySlots" type="HBoxContainer" parent="UI" unique_id=1746219569]
+offset_left = 294.0
+offset_top = 130.0
+offset_right = 986.0
+offset_bottom = 322.0
+theme_override_constants/separation = 60
+
+[node name="SlotLeft" type="Panel" parent="UI/EnemySlots" unique_id=212148885]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="SlotMidLeft" type="Panel" parent="UI/EnemySlots" unique_id=1431149598]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="SlotMidRight" type="Panel" parent="UI/EnemySlots" unique_id=456685338]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="SlotRight" type="Panel" parent="UI/EnemySlots" unique_id=448619665]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="PlayerSlots" type="HBoxContainer" parent="UI" unique_id=334822034]
+offset_left = 294.0
+offset_top = 350.0
+offset_right = 986.0
+offset_bottom = 542.0
+theme_override_constants/separation = 60
+
+[node name="SlotLeft" type="Panel" parent="UI/PlayerSlots" unique_id=1669198828]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="SlotMidLeft" type="Panel" parent="UI/PlayerSlots" unique_id=1579744713]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="SlotMidRight" type="Panel" parent="UI/PlayerSlots" unique_id=1915529540]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="SlotRight" type="Panel" parent="UI/PlayerSlots" unique_id=1054415469]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="HandContainer" type="HBoxContainer" parent="UI" unique_id=1713562952]
+anchors_preset = -1
+anchor_left = 0.393
+anchor_top = 0.87900007
+anchor_right = 0.592
+anchor_bottom = 1.059
+offset_left = -358.04
+offset_top = -86.880066
+offset_right = 247.23999
+offset_bottom = 0.52001953
+theme_override_constants/separation = 120
+alignment = 1
+
+[node name="EnemyHandContainer" type="HBoxContainer" parent="UI" unique_id=32399201]
+anchors_preset = -1
+anchor_left = 0.303
+anchor_top = -0.071
+anchor_right = 0.595
+anchor_bottom = 0.11800001
+offset_left = -188.84
+offset_top = -79.88
+offset_right = 297.39996
+offset_bottom = -3.9600067
+theme_override_constants/separation = -7
+alignment = 1
+
+[node name="PhaseLabel" type="Label" parent="UI" unique_id=1054225182]
+offset_left = 4.0
+offset_top = 308.0
+offset_right = 339.0
+offset_bottom = 358.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 30
+text = "Phase"
+
+[node name="CombatButton" type="Button" parent="UI" unique_id=2012242632]
+offset_left = 1000.0
+offset_top = 270.0
+offset_right = 1207.0
+offset_bottom = 391.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_1gpw6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kt412")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pboha")
+text = "Combat"
+
+[node name="NextMatchButton" type="Button" parent="UI" unique_id=307363912]
+offset_left = 1000.0
+offset_top = 270.0
+offset_right = 1206.0
+offset_bottom = 391.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_upegj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_op636")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ufvv")
+text = "Next Match"
+
+[node name="PlayerDamageLabel" type="Label" parent="UI" unique_id=1113909651]
+offset_left = 990.0
+offset_top = 455.0
+offset_right = 1086.0
+offset_bottom = 533.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_1iu3b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyDamageLabel" type="Label" parent="UI" unique_id=596582083]
+offset_left = 990.0
+offset_top = 150.0
+offset_right = 1086.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_1iu3b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="UI" unique_id=1886026298]
+offset_left = 3.0
+offset_top = 435.0
+offset_right = 139.0
+offset_bottom = 511.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+
+[node name="PlayerDeckDisplay" type="Panel" parent="UI" unique_id=902658488]
+offset_left = 3.0
+offset_top = 544.0
+offset_right = 114.0
+offset_bottom = 717.0
+
+[node name="DeckCardBack" type="TextureRect" parent="UI/PlayerDeckDisplay" unique_id=11589218]
+custom_minimum_size = Vector2(94, 126)
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 173.0
+texture = SubResource("AtlasTexture_1gpw6")
+
+[node name="DeckCountLabel" type="Label" parent="UI/PlayerDeckDisplay" unique_id=1536049433]
+layout_mode = 0
+offset_top = -13.0
+offset_right = 110.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 11
+
+[node name="DiscardPile" type="Panel" parent="UI" unique_id=1550879950]
+offset_left = 1166.0
+offset_top = 544.0
+offset_right = 1277.0
+offset_bottom = 717.0
+
+[node name="DiscardTopCard" type="TextureRect" parent="UI/DiscardPile" unique_id=1021947398]
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 173.0
+texture = SubResource("AtlasTexture_upegj")
+
+[node name="DiscardSheet" type="CanvasLayer" parent="UI" unique_id=800579085]
+
+[node name="SheetBackground" type="ColorRect" parent="UI/DiscardSheet" unique_id=817483566]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.36078432)
+
+[node name="DiscardGrid" type="GridContainer" parent="UI/DiscardSheet" unique_id=1320750465]
+custom_minimum_size = Vector2(500, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 6.0
+offset_right = -73.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 75
+theme_override_constants/v_separation = 100
+columns = 8
+
+[node name="CloseButton" type="Button" parent="UI/DiscardSheet" unique_id=1337673305]
+offset_left = 566.0
+offset_top = 646.0
+offset_right = 712.0
+offset_bottom = 705.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_bjaq4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7o3ih")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7e6y6")
+text = "Close"
+
+[node name="EnemyDeckDisplay" type="Panel" parent="UI" unique_id=1130389662]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 114.0
+offset_bottom = 176.0
+
+[node name="DeckCardBack" type="TextureRect" parent="UI/EnemyDeckDisplay" unique_id=1253240070]
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 173.0
+texture = ExtResource("2_1gpw6")
+
+[node name="DeckCountLabel" type="Label" parent="UI/EnemyDeckDisplay" unique_id=23300842]
+layout_mode = 0
+offset_top = 182.0
+offset_right = 110.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 11
+
+[node name="EnemyDiscardPile" type="Panel" parent="UI" unique_id=621980161]
+offset_left = 1166.0
+offset_top = 3.0
+offset_right = 1277.0
+offset_bottom = 176.0
+
+[node name="DiscardTopCard" type="TextureRect" parent="UI/EnemyDiscardPile" unique_id=1022448168]
+custom_minimum_size = Vector2(111, 173)
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 173.0
+texture = ExtResource("2_1gpw6")
+
+[node name="EnemyDiscardSheet" type="CanvasLayer" parent="UI" unique_id=33392804]
+
+[node name="SheetBackground" type="ColorRect" parent="UI/EnemyDiscardSheet" unique_id=283406119]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.36078432)
+
+[node name="DiscardGrid" type="GridContainer" parent="UI/EnemyDiscardSheet" unique_id=1793232659]
+custom_minimum_size = Vector2(500, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 6.0
+offset_right = -73.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 75
+theme_override_constants/v_separation = 100
+columns = 8
+
+[node name="CloseButton" type="Button" parent="UI/EnemyDiscardSheet" unique_id=1426355997]
+offset_left = 566.0
+offset_top = 646.0
+offset_right = 712.0
+offset_bottom = 705.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_bjaq4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7o3ih")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7e6y6")
+text = "Close"
+
+[node name="DruidChoicePanel" type="Panel" parent="UI" unique_id=1161286652]
+
+[node name="PlusThreeButton" type="Button" parent="UI/DruidChoicePanel" unique_id=437568835]
+layout_mode = 0
+offset_left = -30.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0, 0.6313726, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.48330313, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.96585184, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0.9647059, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d1rl0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l302w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3ibsc")
+text = "+3"
+
+[node name="MinusThreeButton" type="Button" parent="UI/DruidChoicePanel" unique_id=1352318734]
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.8509804, 0, 0.14509805, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.31764707, 0.31764707, 1)
+theme_override_colors/font_hover_color = Color(0.96359974, 0.1302841, 7.70092e-07, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.31764707, 0.31764707, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pk2cw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cmcdp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2dnx3")
+text = "-3"
+
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=188902222]
+
+[node name="Background" type="ColorRect" parent="GameOverScreen" unique_id=1780227788]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.5176471)
+
+[node name="ResultLabel" type="Label" parent="GameOverScreen" unique_id=910934739]
+offset_left = 398.0
+offset_top = 92.0
+offset_right = 876.0
+offset_bottom = 363.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.12941177)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 120
+text = "RESULT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="GameOverScreen" unique_id=974939188]
+offset_top = 303.0
+offset_right = 1280.0
+offset_bottom = 489.0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 50
+text = "Score - Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RematchButton" type="Button" parent="GameOverScreen" unique_id=1779116948]
+offset_left = 504.0
+offset_top = 490.0
+offset_right = 774.0
+offset_bottom = 584.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxFlat_8xrjg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4b55q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3omoa")
+text = "Rematch?"
+
+[node name="ContinueButton" type="Button" parent="GameOverScreen" unique_id=1172741071]
+offset_left = 504.0
+offset_top = 490.0
+offset_right = 774.0
+offset_bottom = 584.0
+theme_override_fonts/font = ExtResource("9_do6nv")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxFlat_1aukk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ynnem")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gddi0")
+text = "Continue"

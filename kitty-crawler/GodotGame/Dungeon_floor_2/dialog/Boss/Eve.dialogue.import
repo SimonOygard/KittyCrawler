@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ci1cqcbbyrh03"
+path="res://.godot/imported/Eve.dialogue-9900510e6d8838f64c6c6c5c45a22870.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/Boss/Eve.dialogue"
+dest_files=["res://.godot/imported/Eve.dialogue-9900510e6d8838f64c6c6c5c45a22870.tres"]
+
+[params]
+
+defaults=true

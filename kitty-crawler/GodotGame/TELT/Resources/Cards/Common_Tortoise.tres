@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c8ee82we7otn3"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_tbcvy"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_fgpy2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_tbcvy")
+region = Rect2(128, 0, 64, 96)
+
+[resource]
+script = ExtResource("2_fgpy2")
+CardName = "Tortoise"
+Damage = 1
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "No damage exceeds tortoise"
+Ability = 1
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"

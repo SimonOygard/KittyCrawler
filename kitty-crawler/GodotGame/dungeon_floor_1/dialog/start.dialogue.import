@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://tdiw8t2kfl1y"
+path="res://.godot/imported/start.dialogue-259705cc71a6596ac25a6d43a15fa3af.tres"
+
+[deps]
+
+source_file="res://dungeon_floor_1/dialog/start.dialogue"
+dest_files=["res://.godot/imported/start.dialogue-259705cc71a6596ac25a6d43a15fa3af.tres"]
+
+[params]
+
+defaults=true

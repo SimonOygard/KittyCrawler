@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://r5t3asunglou"]
+
+[ext_resource type="Script" uid="uid://b1weg06ifwbul" path="res://TELT/TeltBattleConfig.cs" id="1_o0v8u"]
+
+[node name="TeltBattleConfig" type="Node" unique_id=1957665519]
+script = ExtResource("1_o0v8u")

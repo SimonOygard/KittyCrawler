@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b2rnkcswp7nna"
+path="res://.godot/imported/MimicPuzzle.dialogue-0a411f58e087c62a37bab6a5402358dd.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/scenes/Levels/MimicPuzzle.dialogue"
+dest_files=["res://.godot/imported/MimicPuzzle.dialogue-0a411f58e087c62a37bab6a5402358dd.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://ck2usy1jd16s1"]
+
+[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_fobe0"]
+[ext_resource type="Texture2D" uid="uid://03aga4i27eo7" path="res://TELT/Tilesets/Boss_sprites/Hilda.png" id="1_srft1"]
+[ext_resource type="Resource" uid="uid://djpov3oce0ck6" path="res://TELT/Resources/Bosses/hilda.tres" id="2_e2efe"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_e2efe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4g7b"]
+atlas = ExtResource("1_srft1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fobe0"]
+atlas = ExtResource("1_srft1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2efe"]
+atlas = ExtResource("1_srft1")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pfe7"]
+atlas = ExtResource("1_srft1")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_87vvc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4g7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fobe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2efe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pfe7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqpgm"]
+size = Vector2(44, 42)
+
+[node name="Hilda" type="CharacterBody2D" unique_id=399574412]
+script = ExtResource("1_fobe0")
+_bossData = ExtResource("2_e2efe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1474759555]
+sprite_frames = SubResource("SpriteFrames_87vvc")
+autoplay = "default"
+frame_progress = 0.44319516
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=797873998]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_gqpgm")
+
+[node name="LevelTransition" type="Node" parent="." unique_id=1919326282]
+script = ExtResource("3_e2efe")
+ScenePath = "res://TELT/Scenes/TeltBattle.tscn"

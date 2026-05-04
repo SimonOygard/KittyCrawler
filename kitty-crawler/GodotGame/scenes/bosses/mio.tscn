@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c8isxjwrw8ktg"]
+
+[ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_rn88q"]
+[ext_resource type="Resource" uid="uid://btj5dn2n4bj7y" path="res://TELT/Resources/Bosses/mio.tres" id="2_ul8g8"]
+[ext_resource type="Texture2D" uid="uid://cx1noglo6nk3w" path="res://TELT/Tilesets/Boss_sprites/Mio.png" id="2_yr6an"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_ul8g8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcef0"]
+size = Vector2(26, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7wxo"]
+atlas = ExtResource("2_yr6an")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdciy"]
+atlas = ExtResource("2_yr6an")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywpy8"]
+atlas = ExtResource("2_yr6an")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yquuk"]
+atlas = ExtResource("2_yr6an")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrm2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7wxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdciy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywpy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yquuk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mio" type="CharacterBody2D" unique_id=1343359438]
+script = ExtResource("1_rn88q")
+_bossData = ExtResource("2_ul8g8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1489560491]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_mcef0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=27121739]
+sprite_frames = SubResource("SpriteFrames_xrm2f")
+autoplay = "default"
+frame_progress = 0.63542753
+
+[node name="LevelTransition" type="Node" parent="." unique_id=1862658809]
+script = ExtResource("3_ul8g8")
+ScenePath = "res://TELT/Scenes/TeltBattle.tscn"

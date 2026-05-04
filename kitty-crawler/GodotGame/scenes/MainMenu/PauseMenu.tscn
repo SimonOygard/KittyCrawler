@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://daf3h1asgsbgk"]
+
+[ext_resource type="Script" uid="uid://pxplh78vv8gt" path="res://scripts/core/PauseMenu.cs" id="1_d84ql"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1827945065]
+script = ExtResource("1_d84ql")
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1002232509]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu" unique_id=231650984]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -52.0
+offset_right = 168.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer" unique_id=265531173]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer" unique_id=2124298243]
+layout_mode = 2
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer" unique_id=578105685]
+layout_mode = 2
+text = "Continue"
+
+[node name="SaveGame" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer" unique_id=1443494800]
+layout_mode = 2
+text = "Save Game"
+
+[node name="Quit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer" unique_id=584885969]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Continue" to="." method="OnPausedContinuePressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/SaveGame" to="." method="OnSavePressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]

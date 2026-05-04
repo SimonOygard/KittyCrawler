@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dmikcccglhcfo"]
+
+[ext_resource type="Texture2D" uid="uid://dkqmc1mw3eijv" path="res://TELT/Tilesets/CardBase.png" id="1_5yd6d"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_4g6ei"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qwu"]
+atlas = ExtResource("1_5yd6d")
+region = Rect2(64, 96, 64, 96)
+
+[resource]
+script = ExtResource("2_4g6ei")
+CardName = "Watcher"
+Damage = 5
+Texture = SubResource("AtlasTexture_f6qwu")
+AbilityDescription = "Discard a card, draw a card"
+Ability = 10
+metadata/_custom_type_script = "uid://bic8u8tbeisc8"
