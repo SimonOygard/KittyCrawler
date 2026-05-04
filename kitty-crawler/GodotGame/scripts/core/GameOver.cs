@@ -13,12 +13,37 @@ public partial class GameOver : CanvasLayer
 
     private LineEdit NameInput;
     private WorldStateManager _worldState;
+    private Label FinalScoreLabel;
+    private Label FinalTimerLabel;
+
 
     public override void _Ready()
     {
         NameInput = GetNode<LineEdit>("GameOver/MarginContainer/VBoxContainer/NameInput");
+
+        FinalScoreLabel = GetNode<Label>("GameOver/FinalScore/Score");
+        FinalTimerLabel = GetNode<Label>("GameOver/FinalTime/Timer");
+
+
+        GD.Print(FinalScoreLabel);
+        GD.Print(FinalTimerLabel);
+
+        _worldState = GetNode<WorldStateManager>("/root/WorldStateManager");
+        _worldState.LoadGame();
+
+        GD.Print($"GameOver values: score={_worldState.Score}, time={_worldState.TimeSeconds}");
+
     }
 
+    public void UpdateScoreLabel()
+    {
+        FinalScoreLabel.Text = $"{_worldState.Score}";
+    }
+
+    public void UpdateTimerLabel()
+    {
+        FinalTimerLabel.Text = $"{_worldState.TimeSeconds}";
+    }
     public void OnLeaderBoardPressed()
     {
         EmitSignal(SignalName.LeaderboardRequested);

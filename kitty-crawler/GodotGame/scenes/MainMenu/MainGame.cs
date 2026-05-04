@@ -23,6 +23,7 @@ public partial class MainGame : Node2D
         pauseMenu = GetNodeOrNull<PauseMenu>("UI/PauseMenu");
 
         _gameTimer = GetNode<GameTimerManager>("/root/GameTimerManager");
+        _worldStateManager = GetNode<WorldStateManager>("/root/WorldStateManager");
 
         mainMenu.StartGameRequested += StartGame;
         mainMenu.LeaderboardRequested += Leaderboard;
@@ -55,6 +56,9 @@ public partial class MainGame : Node2D
 
         if (newGame)
         {
+            _worldStateManager.GameEnded = false;
+
+            _worldStateManager.WorldStateReset();
             _levelTransition.ScenePath = GameScenePath;
             _levelTransition.TriggerTransition();
 
@@ -76,8 +80,10 @@ public partial class MainGame : Node2D
 
         AudioManager.Instance.PlayEndGameTheme();
         SceneManager.Instance.UnloadCurrentLevel();
-        
+
         endMenu?.Show();
+        endMenu.UpdateScoreLabel();
+        endMenu.UpdateTimerLabel();
         GD.Print("End menu shown.");
     }
 

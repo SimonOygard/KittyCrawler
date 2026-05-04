@@ -64,7 +64,23 @@ public partial class SceneManager : Node
             instance.Name = "CurrentLevel";
             GD.Print("Scene instantiated: " + scenePath);
 
+            if (type == TransitionType.Battle)
+            {
+                var player = GetTree().GetFirstNodeInGroup("player") as PlayerBody.Player;
+
+                if (player != null)
+                {
+                    WorldStateManager.Instance?.SetReturnPlayerPosition(player.GlobalPosition);
+                    GD.Print("Saved return player position: ", player.GlobalPosition);
+                }
+                else
+                {
+                    GD.PrintErr("No Player found in group 'player'.");
+                }
+            }
+
             SetupScene(instance, scenePath, type, objectName);
+
             await FadeTransition.Instance.FadeToBlack();
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 

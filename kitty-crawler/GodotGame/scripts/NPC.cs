@@ -31,6 +31,7 @@ public partial class NPC : CharacterBody2D, IInteractable
         {
             var states = new Godot.Collections.Array<Variant>();
             states.Add(Variant.From(this));
+            WorldStateManager.Instance.SetMode(WorldStateManager.GameMode.Dialogue);
             DialogueManager.ShowDialogueBalloon(_dialogueResource, "start", states);
         }
         else
@@ -50,7 +51,7 @@ public partial class NPC : CharacterBody2D, IInteractable
     private void OnDialogueEnded(Resource resource)
     {
         GD.Print($"[NPC] DialogueEnded: resource={resource?.ResourcePath}, dialogueResource={_dialogueResource?.ResourcePath}, wantsBattle={_wantsBattle}");
-
+        WorldStateManager.Instance.SetMode(WorldStateManager.GameMode.Gameplay);
         if (resource != _dialogueResource) return;
 
         if (_wantsBattle)

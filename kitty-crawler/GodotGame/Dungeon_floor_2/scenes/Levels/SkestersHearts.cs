@@ -44,6 +44,8 @@ public partial class SkestersHearts : Node2D
         if (body is Player player)
         {
             GD.Print("Player entered end teleport, game over!");
+            _worldStateManager.GameEnded = true;
+            _worldStateManager.SaveGame(); // final correct save
             SceneManager.Instance.GameOver();
         }
     }
