@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="TELT\Resources\Bosses\" />
+    <Folder Include="TELT\Resources\NPCs\" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="2_ote1w"]
 [ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="3_jgnmv"]
 [ext_resource type="PackedScene" uid="uid://bemuii73nkcr2" path="res://scenes/bosses/croxy.tscn" id="4_1cviu"]
+[ext_resource type="PackedScene" uid="uid://dpqnxbrl5fx5l" path="res://scenes/NPC/NPCSkeleton.tscn" id="5_vehe6"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skara.tres" id="6_kp8p4"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skohn.tres" id="7_0xj3t"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skolaf.tres" id="8_ifvhv"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skoline.tres" id="9_vkxdf"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skomas.tres" id="10_jnpee"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skrolf.tres" id="11_pi670"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skven.tres" id="12_a175k"]
+[ext_resource type="Resource" path="res://TELT/Resources/NPCs/skyvar.tres" id="13_dle3b"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="14_kp8p4"]
 
 [node name="Skesters_diamond" type="Node2D" unique_id=774304775]
 
@@ -20,3 +30,40 @@ position = Vector2(0, 211)
 
 [node name="Croxy" parent="." unique_id=1371494723 instance=ExtResource("4_1cviu")]
 position = Vector2(0, -32)
+
+[node name="NPC Manager" type="Node" parent="." unique_id=713672268]
+
+[node name="Skara" parent="NPC Manager" unique_id=790474174 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(-84, -92)
+_npcData = ExtResource("6_kp8p4")
+
+[node name="Skohn" parent="NPC Manager" unique_id=1275270348 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(40, -94)
+_npcData = ExtResource("7_0xj3t")
+
+[node name="Skolaf" parent="NPC Manager" unique_id=1910975377 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(-100, -49)
+_npcData = ExtResource("8_ifvhv")
+
+[node name="Skoline" parent="NPC Manager" unique_id=887597155 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(75, -47)
+_npcData = ExtResource("9_vkxdf")
+
+[node name="Skomas" parent="NPC Manager" unique_id=250572120 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(-66, 68)
+_npcData = ExtResource("10_jnpee")
+
+[node name="Skrolf" parent="NPC Manager" unique_id=1153576724 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(50, 70)
+_npcData = ExtResource("11_pi670")
+
+[node name="Skven" parent="NPC Manager" unique_id=1424335501 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(14, 121)
+_npcData = ExtResource("12_a175k")
+
+[node name="Skyvar" parent="NPC Manager" unique_id=1208664280 groups=["NPC"] instance=ExtResource("5_vehe6")]
+position = Vector2(-10, 163)
+_npcData = ExtResource("13_dle3b")
+
+[node name="LevelTransition2" type="Node" parent="NPC Manager/Skyvar" unique_id=2069385550]
+script = ExtResource("14_kp8p4")

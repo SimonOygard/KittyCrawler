@@ -308,6 +308,7 @@ public partial class TeltBattle : Node2D
     private void SetupDecks()
     {
         var boss = TeltBattleConfig.Instance?.CurrentBoss;
+        var npc = TeltBattleConfig.Instance?.CurrentNPC;
 
         var startDeck = new List<CardData>
         {
@@ -350,6 +351,13 @@ public partial class TeltBattle : Node2D
         {
             var enemyDeck = new List<CardData>();
             foreach (var card in boss.Deck)
+                enemyDeck.Add(card.Duplicate() as CardData);
+            _enemy.SetDeck(enemyDeck);
+        }
+        else if (npc != null && npc.Deck.Count > 0) // ← legg til
+        {
+            var enemyDeck = new List<CardData>();
+            foreach (var card in npc.Deck)
                 enemyDeck.Add(card.Duplicate() as CardData);
             _enemy.SetDeck(enemyDeck);
         }
@@ -1333,7 +1341,7 @@ public partial class TeltBattle : Node2D
                                    && _battleMap.PlayerEmptySlotCount == 4
                                    && _battleMap.EnemyEmptySlotCount == 4;
 
-            float delay = isVeryFirstTurn ? 8f : 0.5f;
+            float delay = isVeryFirstTurn ? 6.2f : 0.5f;
 
             Callable.From(() =>
             {
@@ -1462,16 +1470,25 @@ public partial class TeltBattle : Node2D
         UpdateSlotVisuals();
 
         var boss = TeltBattleConfig.Instance?.CurrentBoss;
+        var npc = TeltBattleConfig.Instance?.CurrentNPC;
         bool playerWon = winner == GameManager.TurnOwner.Player;
 
         if (boss != null)
         {
             PlayerData.DefeatNpc(boss.NpcId, _enemy.TotalDamageReceived);
-
             if (playerWon && !PlayerData.HasReceivedCard(boss.NpcId))
             {
                 PlayerData.GiveRewardCard(boss.NpcId);
                 EmitSignal(SignalName.CardReceived, boss.NpcId);
+            }
+        }
+        else if (npc != null) // ← legg til
+        {
+            PlayerData.DefeatNpc(npc.NpcId, _enemy.TotalDamageReceived);
+            if (playerWon && !PlayerData.HasReceivedCard(npc.NpcId))
+            {
+                PlayerData.GiveRewardCard(npc.NpcId);
+                EmitSignal(SignalName.CardReceived, npc.NpcId);
             }
         }
         else
@@ -1480,7 +1497,7 @@ public partial class TeltBattle : Node2D
             PlayerData.DefeatNpc("npc_goblin_king", _enemy.TotalDamageReceived);
         }
         EmitSignal(SignalName.ScoreUpdated, _enemy.TotalDamageReceived);
-        EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? "npc_goblin_king");
+        EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? npc?.NpcId ?? "unknown");
 
         ShowGameOverScreen(winner, playerDamage, enemyDamage);
     }

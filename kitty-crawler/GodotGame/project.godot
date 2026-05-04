@@ -55,6 +55,7 @@ player="playercharacters"
 Chests="Chests and mimics"
 traps="trapsstates"
 MainGame="Main game node"
+NPC="NPCs"
 
 [gui]
 
