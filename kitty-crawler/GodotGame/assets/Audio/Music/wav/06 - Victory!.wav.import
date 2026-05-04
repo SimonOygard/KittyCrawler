@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ss05mdfkx8fc"
+path="res://.godot/imported/06 - Victory!.wav-8692dc6b3cf0467c8c2922f7f134937e.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Music/wav/06 - Victory!.wav"
+dest_files=["res://.godot/imported/06 - Victory!.wav-8692dc6b3cf0467c8c2922f7f134937e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

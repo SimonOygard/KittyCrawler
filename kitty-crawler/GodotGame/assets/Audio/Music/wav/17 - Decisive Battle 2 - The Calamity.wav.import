@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cr0xy1l8vtuh"
+path="res://.godot/imported/17 - Decisive Battle 2 - The Calamity.wav-e917d3645c2620a1c9aa5f39b1939578.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Music/wav/17 - Decisive Battle 2 - The Calamity.wav"
+dest_files=["res://.godot/imported/17 - Decisive Battle 2 - The Calamity.wav-e917d3645c2620a1c9aa5f39b1939578.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

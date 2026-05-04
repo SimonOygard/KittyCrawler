@@ -27,6 +27,7 @@ TeltBattleConfig="*uid://r5t3asunglou"
 WorldStateManager="*uid://dl4kbgvq2xgip"
 GameTimerManager="*uid://cahivhuyhtj3o"
 SceneManager="*uid://dw6ihsncitqor"
+AudioManager="*uid://dn3rheg4rdkon"
 
 [dialogue_manager]
 
