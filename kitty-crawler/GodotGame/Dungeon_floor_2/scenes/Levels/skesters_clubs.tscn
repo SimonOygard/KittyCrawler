@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="5_t8wbb"]
 [ext_resource type="PackedScene" uid="uid://ck2usy1jd16s1" path="res://scenes/bosses/hilda.tscn" id="6_2ymp2"]
 [ext_resource type="PackedScene" uid="uid://c8isxjwrw8ktg" path="res://scenes/bosses/mio.tscn" id="7_t8wbb"]
+[ext_resource type="PackedScene" uid="uid://5dl8p2m4weou" path="res://scenes/NPC/skomas.tscn" id="9_on7w3"]
+[ext_resource type="Resource" uid="uid://baljut83sk120" path="res://Dungeon_floor_2/dialog/NPC/Skomas.dialogue" id="10_qgtgt"]
 
 [node name="SkestersClubs" type="Node2D" unique_id=1914724191]
 
@@ -133,3 +135,7 @@ position = Vector2(0, -208)
 
 [node name="Mio" parent="." unique_id=1343359438 instance=ExtResource("7_t8wbb")]
 position = Vector2(-1, 190)
+
+[node name="Skomas" parent="." unique_id=790474174 instance=ExtResource("9_on7w3")]
+position = Vector2(-45, 250)
+_dialogueResource = ExtResource("10_qgtgt")

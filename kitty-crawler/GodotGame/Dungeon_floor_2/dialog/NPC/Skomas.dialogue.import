@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://baljut83sk120"
+path="res://.godot/imported/Skomas.dialogue-5b250abb574f0e7ff3e830555d46e08c.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/NPC/Skomas.dialogue"
+dest_files=["res://.godot/imported/Skomas.dialogue-5b250abb574f0e7ff3e830555d46e08c.tres"]
+
+[params]
+
+defaults=true

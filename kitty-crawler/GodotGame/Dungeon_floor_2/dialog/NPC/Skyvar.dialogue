@@ -1,0 +1,8 @@
+~ start
+Skyvar: What an adorable car! What do you say to a round of TELT?
+- Yes
+    do StartBattle()
+    => END
+- No
+    Skyvar: Pussy..
+    => END

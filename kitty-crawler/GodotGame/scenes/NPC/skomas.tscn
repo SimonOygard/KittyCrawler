@@ -1,27 +1,23 @@
-[gd_scene format=3 uid="uid://dpqnxbrl5fx5l"]
+[gd_scene format=3 uid="uid://5dl8p2m4weou"]
 
-[ext_resource type="Script" uid="uid://bv2johivrehsi" path="res://scripts/NPC.cs" id="1_c472o"]
-[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="2_6ta4k"]
-[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="2_jyd3e"]
-[ext_resource type="Script" uid="uid://d2sqnr7an36io" path="res://TELT/Resources/NPCData.cs" id="3_4weyx"]
-[ext_resource type="Texture2D" uid="uid://b31d7uf5q8kl2" path="res://TELT/Tilesets/Monsters/Skeleton.png" id="4_bbefl"]
-
-[sub_resource type="Resource" id="Resource_toqcu"]
-script = ExtResource("3_4weyx")
+[ext_resource type="Script" uid="uid://bv2johivrehsi" path="res://scripts/NPC.cs" id="1_2660u"]
+[ext_resource type="Resource" uid="uid://b15k7dcfwlehs" path="res://TELT/Resources/NPCs/skomas.tres" id="2_nn5to"]
+[ext_resource type="Texture2D" uid="uid://b31d7uf5q8kl2" path="res://TELT/Tilesets/Monsters/Skeleton.png" id="4_c1wnb"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="5_p5ikq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxsnv"]
 size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nd0mj"]
-atlas = ExtResource("4_bbefl")
+atlas = ExtResource("4_c1wnb")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5nns"]
-atlas = ExtResource("4_bbefl")
+atlas = ExtResource("4_c1wnb")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7bdj"]
-atlas = ExtResource("4_bbefl")
+atlas = ExtResource("4_c1wnb")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dpo8j"]
@@ -65,9 +61,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="NPCSkeleton" type="CharacterBody2D" unique_id=790474174]
-script = ExtResource("1_c472o")
-_npcData = SubResource("Resource_toqcu")
+[node name="Skomas" type="CharacterBody2D" unique_id=790474174]
+script = ExtResource("1_2660u")
+_npcData = ExtResource("2_nn5to")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1592896962]
 shape = SubResource("RectangleShape2D_sxsnv")
@@ -80,5 +76,5 @@ autoplay = "Skomas_Idle"
 frame_progress = 0.16325475
 
 [node name="LevelTransition" type="Node" parent="." unique_id=6016073]
-script = ExtResource("2_jyd3e")
+script = ExtResource("5_p5ikq")
 ScenePath = "res://TELT/Scenes/TeltBattle.tscn"

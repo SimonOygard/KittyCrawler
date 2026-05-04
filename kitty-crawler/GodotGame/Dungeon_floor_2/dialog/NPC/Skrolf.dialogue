@@ -1,0 +1,8 @@
+~ start
+Skrolf: Hello! I am Skrolf. Tent?
+- Yes
+    do StartBattle()
+    => END
+- No
+    Skrolf: That means you loose.
+    => END
