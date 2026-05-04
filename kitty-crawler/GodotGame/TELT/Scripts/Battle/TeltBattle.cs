@@ -310,41 +310,46 @@ public partial class TeltBattle : Node2D
         var boss = TeltBattleConfig.Instance?.CurrentBoss;
         var npc = TeltBattleConfig.Instance?.CurrentNPC;
 
-        var startDeck = new List<CardData>
+        List<CardData> playerDeck;
+        if (PlayerData.SavedDeck.Count > 0)
         {
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Bat.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Elemental.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Goblin.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Minotaur.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Spider.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Watcher.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Wraith.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Angel.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Cat.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Demon.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Drake.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Druid.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Dryad.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_EyeofHope.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_EyeofDespair.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Golem.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Horror.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Sludge.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Croxy.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_PuzzleMaster.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Hilda.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Eve.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Skester.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Mio.tres")).Duplicate() as CardData,
+            playerDeck = PlayerData.SavedDeck
+                .Select(path => GD.Load<CardData>(path).Duplicate() as CardData)
+                .ToList();
+        }
+        else
+        {
+            playerDeck = new List<CardData>
+            {
+                (GD.Load<CardData>(CardLibrary.Bat)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Bat)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Bat)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Elemental)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Elemental)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Goblin)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Goblin)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Imp)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Imp)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Minotaur)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Minotaur)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Skeleton)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Skeleton)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Skeleton)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Snake)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Snake)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Spider)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Spider)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Tortoise)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Tortoise)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Watcher)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Watcher)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Wraith)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Yeti)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Yeti)).Duplicate() as CardData,
+            };
+        }
 
-
-        };
-
-        _player.SetDeck(startDeck);
+        _player.SetDeck(playerDeck);
         _player.ShuffleDeck();
 
         if (boss != null && boss.Deck.Count > 0)
@@ -363,7 +368,7 @@ public partial class TeltBattle : Node2D
         }
         else
         {
-            var enemyDeck = startDeck.ConvertAll(c => c.Duplicate() as CardData);
+            var enemyDeck = playerDeck.ConvertAll(c => c.Duplicate() as CardData);
             _enemy.SetDeck(enemyDeck);
         }
 

@@ -19,6 +19,29 @@ public partial class PlayerData : Node
         _deck = new List<CardData>(deck);
     }
 
+    private static List<string> _ownedCards = new();
+    private static List<string> _savedDeck = new();
+
+    public static List<string> OwnedCards => new(_ownedCards);
+    public static List<string> SavedDeck => new(_savedDeck);
+
+    public static void AddCardToInventory(string cardId)
+    {
+        _ownedCards.Add(cardId);
+        SaveScore();
+    }
+
+    public static void SaveDeck(List<string> deck)
+    {
+        _savedDeck = new List<string>(deck);
+        SaveScore();
+    }
+
+    public static bool HasCardInInventory(string cardId)
+    {
+        return _ownedCards.Contains(cardId);
+    }
+
     public void ShuffleDeck()
     {
         var rng = new RandomNumberGenerator();
@@ -172,9 +195,10 @@ public partial class PlayerData : Node
         {
             ["damageDealt"] = _totalDamageDealt,
             ["defeatedNpcs"] = string.Join(",", _defeatedNpcs),
-            ["receivedCards"] = string.Join(",", _receivedCards)
+            ["receivedCards"] = string.Join(",", _receivedCards),
+            ["ownedCards"] = string.Join(",", _ownedCards),       // ← legg til
+            ["savedDeck"] = string.Join(",", _savedDeck)          // ← legg til
         };
-
         file.StoreString(Json.Stringify(data));
     }
 
@@ -187,14 +211,20 @@ public partial class PlayerData : Node
         _totalDamageDealt = data["damageDealt"].AsInt32();
 
         if (data.ContainsKey("defeatedNpcs") && data["defeatedNpcs"].AsString() != "")
-        {
             foreach (var npc in data["defeatedNpcs"].AsString().Split(","))
                 _defeatedNpcs.Add(npc);
-        }
 
-        if (data.ContainsKey("receivedCards") && data["receivedCards"].AsString() != "")  // ← legg til
+        if (data.ContainsKey("receivedCards") && data["receivedCards"].AsString() != "")
             foreach (var card in data["receivedCards"].AsString().Split(","))
                 _receivedCards.Add(card);
+
+        if (data.ContainsKey("ownedCards") && data["ownedCards"].AsString() != "") // ← legg til
+            foreach (var card in data["ownedCards"].AsString().Split(","))
+                _ownedCards.Add(card);
+
+        if (data.ContainsKey("savedDeck") && data["savedDeck"].AsString() != "") // ← legg til
+            foreach (var card in data["savedDeck"].AsString().Split(","))
+                _savedDeck.Add(card);
     }
 
 }
