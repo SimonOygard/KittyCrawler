@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 public partial class AudioManager : Node
 {
+    public static AudioManager Instance { get; private set; }
+
     // Background music
     private AudioStreamPlayer _backgroundMusicPlayer;
     private static readonly AudioStream MainMenu = GD.Load<AudioStream>("res://assets/Audio/Music/wav/02-TitleTheme.wav");
@@ -26,6 +28,7 @@ public partial class AudioManager : Node
     private const string Main_Menu= "res://scenes/MainMenu/MainScene.tscn";
     private const string Telt = "res://TELT/Scenes/TeltBattle.tscn";
     private const string End_Menu= "res://scenes/MainMenu/GameOver.tscn";
+    private const string LeaderBoard = "res://scenes/MainMenu/Leaderboard/Leaderboard.tscn";
 
     private const float MusicVolumeDb = -10f;
     private const float SilentVolumeDb = -40f;
@@ -35,6 +38,7 @@ public partial class AudioManager : Node
 
     public override void _Ready()
     {
+        Instance = this;
         var sceneManager = GetNode<SceneManager>("/root/SceneManager");
         sceneManager.LevelLoaded += OnLevelLoaded;
 
@@ -63,6 +67,9 @@ public partial class AudioManager : Node
                 PlayEndGameTheme();
                 break;
 
+            case LeaderBoard:
+                break;
+
             default:
                 PlayMainGameTheme();
                 break;
@@ -87,6 +94,7 @@ public partial class AudioManager : Node
     {
         ChangeBackgroundMusic(stream);
     }
+
 
     private async void ChangeBackgroundMusic(AudioStream stream)
     {
