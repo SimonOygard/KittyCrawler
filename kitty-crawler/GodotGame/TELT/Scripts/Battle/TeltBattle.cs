@@ -82,6 +82,9 @@ public partial class TeltBattle : Node2D
     [Signal] public delegate void NpcDefeatedEventHandler(string npcId);
     [Signal] public delegate void CardReceivedEventHandler(string cardId);
 
+    // Lyd
+    private AudioManager _audioManager;
+
 
     public void SetBackground(Texture2D texture)
     {
@@ -114,6 +117,8 @@ public partial class TeltBattle : Node2D
 
         var stateManager = GetNode<WorldStateManager>("/root/WorldStateManager");
         stateManager.RegisterSaveEvents(this);
+        _audioManager = GetNode<AudioManager>("/root/AudioManager");
+        _audioManager.PlayBackgroundMusic();
 
         _deckCountLabel.Visible = false;
         // Koble GameManager signals
@@ -369,12 +374,14 @@ public partial class TeltBattle : Node2D
         bool playerStarts = _gameManager.MatchStarter == GameManager.TurnOwner.Player;
 
         _diceVisual.Play("DiceRolling");
+        _audioManager.PlayDiceShake();
         _diceVisual.AnimationFinished += OnRollingDone;
 
         void OnRollingDone()
         {
             _diceVisual.AnimationFinished -= OnRollingDone;
             _diceVisual.Play($"Dice{result}");
+            _audioManager.PlayDiceRoll();
             _diceVisual.AnimationFinished += OnResultDone;
         }
 
@@ -419,6 +426,7 @@ public partial class TeltBattle : Node2D
     private async void OnNextMatchPressed()
     {
         _nextMatchButton.Visible = false;
+        _audioManager.PlayCleanUp();
 
         foreach (var label in _combatDamageLabels)
             label.QueueFree();
@@ -461,6 +469,17 @@ public partial class TeltBattle : Node2D
 
             var abilityCard = _pendingAbilityCard;
             _abilityResolver.ResolveWithHandTarget(_pendingAbilityCard, card.CardData, true);
+            if (abilityCard.Ability == CardData.AbilityType.DiscardGainStats)
+            {
+                GetTree().CreateTimer(0.05f).Timeout += () =>
+                    FlashSlotForCard(abilityCard, true, new Color(0.2f, 1f, 0.2f, 1f));
+                _audioManager.PlayDiscard();
+            }
+            else if (abilityCard.Ability == CardData.AbilityType.DiscardDraw)
+            {
+                _audioManager.PlayDiscard();
+                GetTree().CreateTimer(0.3f).Timeout += () => _audioManager.PlayCardDraw();
+            }
             RemoveCardFromHand(card);
             _waitingForTarget = false;
             _waitingForHandTarget = false;
@@ -561,6 +580,7 @@ public partial class TeltBattle : Node2D
 
         if (success)
         {
+            _audioManager.PlaySkester();
             _player.TryPlayCard(_selectedCard.CardData);
             RemoveCardFromHand(_selectedCard);
             _selectedCard = null;
@@ -624,6 +644,10 @@ public partial class TeltBattle : Node2D
 
         if (success)
         {
+            if (cardData.CardRarity == CardData.Rarity.Rare && cardData.Ability != CardData.AbilityType.RemoveGainStats
+                                                            && cardData.Ability != CardData.AbilityType.RemoveUnit
+                                                            && cardData.Ability != CardData.AbilityType.SwitchSlots)
+                _audioManager.DuckBackgroundMusic() ;
             if (!_abilityResolver.NeedsTarget(cardData))
             {
                 var ability = cardData.Ability;
@@ -654,15 +678,36 @@ public partial class TeltBattle : Node2D
                     {
                         case CardData.AbilityType.AllEnemyMinusStat:
                             FlashAllOccupiedSlots(false, new Color(1f, 0.2f, 0.2f, 1f));
+                            _audioManager.PlayEve();
                             break;
                         case CardData.AbilityType.AllAllyPlusStat:
                             FlashAllOccupiedSlots(true, new Color(0.2f, 1f, 0.2f, 1f));
+                            _audioManager.PlayCroxy();
                             break;
                         case CardData.AbilityType.DealThreeDamage:
                             FlashDamageLabel(_enemyDamageLabel, 3);
+                            _audioManager.PlayDealDamage();
                             break;
                         case CardData.AbilityType.HealThree:
                             FlashHealLabel(_playerDamageLabel);
+                            _audioManager.PlayHeal();
+                            break;
+                        case CardData.AbilityType.DrawCard: // ← legg til
+                            _audioManager.PlayCardDraw();
+                            break;
+                        case CardData.AbilityType.DrawTwoCards: // ← legg til
+                            _audioManager.PlayCardDraw();
+                            GetTree().CreateTimer(0.3f).Timeout += () => _audioManager.PlayCardDraw();
+                            break;
+                        case CardData.AbilityType.DiscardDraw:
+                            _audioManager.PlayDiscard();
+                            GetTree().CreateTimer(0.3f).Timeout += () => _audioManager.PlayCardDraw();
+                            break;
+                        case CardData.AbilityType.OpponentDiscards:
+                            _audioManager.PlayDiscard();
+                            break;
+                        case CardData.AbilityType.AnySlot:
+                            _audioManager.PlaySkester();
                             break;
                     }
                 };
@@ -957,6 +1002,7 @@ public partial class TeltBattle : Node2D
                     break;
             }
 
+
         if (_pendingAbilityCard.Ability == CardData.AbilityType.GiveMinusOneStat
             && isPlayerSlot
             && position == _pendingCardPosition)
@@ -1031,20 +1077,43 @@ public partial class TeltBattle : Node2D
         UpdateSlotVisuals(); // ← først
         GetTree().CreateTimer(0.05f).Timeout += () =>
         {
-            switch (resolvedAbility)
+            GetTree().CreateTimer(0.05f).Timeout += () =>
             {
-                case CardData.AbilityType.GivePlusOneStat:
-                case CardData.AbilityType.GivePlusTwoStats:
-                    FlashStatOnSlot(resolvedTarget, new Color(0.2f, 1f, 0.2f, 1f));
-                    break;
-                case CardData.AbilityType.GiveMinusOneStat:
-                case CardData.AbilityType.GiveMinusTwoStats:
-                    FlashStatOnSlot(resolvedTarget, new Color(1f, 0.2f, 0.2f, 1f));
-                    break;
-                case CardData.AbilityType.ResetStat:
-                    FlashStatOnSlot(resolvedTarget, new Color(0.3f, 0.5f, 1f, 1f));
-                    break;
-            }
+                switch (resolvedAbility)
+                {
+                    case CardData.AbilityType.GivePlusOneStat:
+                    case CardData.AbilityType.GivePlusTwoStats:
+                        FlashStatOnSlot(resolvedTarget, new Color(0.2f, 1f, 0.2f, 1f));
+                        _audioManager.PlayPlusStat();
+                        break;
+                    case CardData.AbilityType.GiveMinusOneStat:
+                    case CardData.AbilityType.GiveMinusTwoStats:
+                        FlashStatOnSlot(resolvedTarget, new Color(1f, 0.2f, 0.2f, 1f));
+                        _audioManager.PlayMinusStat();
+                        break;
+                    case CardData.AbilityType.ResetStat:
+                        FlashStatOnSlot(resolvedTarget, new Color(0.3f, 0.5f, 1f, 1f));
+                        _audioManager.PlayResetStat();
+                        break;
+                    case CardData.AbilityType.RemoveUnit:
+                    case CardData.AbilityType.RemoveGainStats:
+                        _audioManager.PlayRemoveUnit();
+                        GetTree().CreateTimer(0.3f).Timeout += () => _audioManager.PlayPlusStat();
+                        break;
+                    case CardData.AbilityType.SwitchSlots:
+                        _audioManager.PlayHilda();
+                        break;
+                    case CardData.AbilityType.CopyStat:
+                        _audioManager.PlayCopyStat();
+                        break;
+                    case CardData.AbilityType.ApplyPoison:
+                        _audioManager.PlayPoison();
+                        break;
+                    case CardData.AbilityType.ApplyRage:
+                        _audioManager.PlayRage();
+                        break;
+                }
+            };
         };
 
         UpdateUI();
@@ -1280,9 +1349,64 @@ public partial class TeltBattle : Node2D
                         {
                             case CardData.AbilityType.DealThreeDamage:
                                 FlashDamageLabel(_playerDamageLabel, 3);
+                                _audioManager.PlayDealDamage();
                                 break;
                             case CardData.AbilityType.HealThree:
                                 FlashHealLabel(_enemyDamageLabel);
+                                _audioManager.PlayHeal();
+                                break;
+                            case CardData.AbilityType.DrawCard:
+                                _audioManager.PlayCardDraw();
+                                break;
+                            case CardData.AbilityType.DrawTwoCards:
+                                _audioManager.PlayCardDraw();
+                                GetTree().CreateTimer(0.3f).Timeout += () => _audioManager.PlayCardDraw();
+                                break;
+                            case CardData.AbilityType.AllEnemyMinusStat:
+                                _audioManager.PlayEve();
+                                break;
+                            case CardData.AbilityType.AllAllyPlusStat:
+                                _audioManager.PlayCroxy();
+                                break;
+                            case CardData.AbilityType.AnySlot:
+                                _audioManager.PlaySkester();
+                                break;
+                            case CardData.AbilityType.OpponentDiscards:
+                                _audioManager.PlayDiscard();
+                                break;
+                            case CardData.AbilityType.GiveMinusOneStat:
+                            case CardData.AbilityType.GiveMinusTwoStats:
+                                _audioManager.PlayMinusStat();
+                                break;
+                            case CardData.AbilityType.GivePlusOneStat:
+                            case CardData.AbilityType.GivePlusTwoStats:
+                                _audioManager.PlayPlusStat();
+                                break;
+                            case CardData.AbilityType.RemoveUnit:
+                            case CardData.AbilityType.RemoveGainStats:
+                                _audioManager.PlayRemoveUnit();
+                                break;
+                            case CardData.AbilityType.CopyStat:
+                                _audioManager.PlayCopyStat();
+                                break;
+                            case CardData.AbilityType.ResetStat:
+                                _audioManager.PlayResetStat();
+                                break;
+                            case CardData.AbilityType.SwitchSlots:
+                                _audioManager.PlayHilda();
+                                break;
+                            case CardData.AbilityType.DiscardDraw:
+                                _audioManager.PlayDiscard();
+                                GetTree().CreateTimer(0.3f).Timeout += () => _audioManager.PlayCardDraw();
+                                break;
+                            case CardData.AbilityType.DiscardGainStats:
+                                _audioManager.PlayDiscard();
+                                break;
+                            case CardData.AbilityType.ApplyPoison:
+                                _audioManager.PlayPoison();
+                                break;
+                            case CardData.AbilityType.ApplyRage:
+                                _audioManager.PlayRage();
                                 break;
                         }
                         _lastAIAbility = CardData.AbilityType.None;
@@ -1566,6 +1690,10 @@ public partial class TeltBattle : Node2D
 
         int newStat = Mathf.Clamp(druidTarget.Card.GetCurrentDamage() + amount, 0, 9);
         druidTarget.Card.CurrentDamage = newStat;
+        if (amount > 0)
+            _audioManager.PlayPlusStat();
+        else
+            _audioManager.PlayMinusStat();
         GD.Print($"[Ability] Druid: {druidTarget.Card.CardName} er nå {newStat}");
 
         _waitingForTarget = false;
@@ -1732,6 +1860,14 @@ public partial class TeltBattle : Node2D
         bool isDraw = playerDamage == enemyDamage;
         bool playerWon = winner == GameManager.TurnOwner.Player;
 
+        _audioManager.StopBackgroundMusic();
+        if (isDraw)
+            _audioManager.PlayDraw();
+        else if (playerWon)
+            _audioManager.PlayVictory();
+        else
+            _audioManager.PlayDefeat();
+
         _gameOverResultLabel.Text = isDraw ? "DRAW" :
             playerWon ? "VICTORY!" : "DEFEAT";
         _gameOverScoreLabel.Text =
@@ -1806,6 +1942,8 @@ public partial class TeltBattle : Node2D
             if (hasPlayer) rush.TweenProperty(playerPanel, "position:y", playerOrigin.Y - 30f, 0.1f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.In);
             if (hasEnemy) rush.TweenProperty(enemyPanel, "position:y", enemyOrigin.Y + 30f, 0.1f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.In);
             await ToSignal(rush, "finished");
+
+            _audioManager.PlayCombatDamage();
 
             // ← Alltid vis damage label her, selv ved 0
             ShowLaneDamageLabel(i, laneResults[i].playerDamage, laneResults[i].enemyDamage);
@@ -1898,6 +2036,11 @@ public partial class TeltBattle : Node2D
 
         await ToSignal(GetTree().CreateTimer(0.45f), "timeout");
         GD.Print("PlayCleanupAnimation ferdig");
+    }
+
+    public void DuckBackgroundMusic()
+    {
+        _audioManager.DuckBackgroundMusic();
     }
 
 }

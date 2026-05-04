@@ -79,6 +79,12 @@ public partial class EnemyAI : Node
 
         _gameManager.TryPlayCard(chosenCard, chosenSlot, GameManager.TurnOwner.Enemy);
 
+        if (chosenCard.CardRarity == CardData.Rarity.Rare
+            && chosenCard.Ability != CardData.AbilityType.RemoveGainStats
+            && chosenCard.Ability != CardData.AbilityType.RemoveUnit
+            && chosenCard.Ability != CardData.AbilityType.SwitchSlots)
+            _teltBattle.DuckBackgroundMusic();
+
         if (!_abilityResolver.NeedsTarget(chosenCard))
         {
             GD.Print($"[AI] ResolveNoTarget for {chosenCard.Ability}");
@@ -105,6 +111,7 @@ public partial class EnemyAI : Node
                         .FirstOrDefault();
                     weakest ??= currentHand.OrderBy(c => c.GetCurrentDamage()).First();
                     _abilityResolver.ResolveWithHandTarget(chosenCard, weakest, false);
+                    _teltBattle.SetLastAIAbility(chosenCard.Ability);
                     _gameManager.EmitBoardUpdated();
                 }
             }
@@ -159,6 +166,7 @@ public partial class EnemyAI : Node
                     else
                     {
                         _abilityResolver.ResolveWithSlotTarget(chosenCard, targetSlot, false);
+                        _teltBattle.SetLastAIAbility(chosenCard.Ability);
                     }
                 }
             }
