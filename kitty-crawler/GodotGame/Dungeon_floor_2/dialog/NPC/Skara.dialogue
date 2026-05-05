@@ -6,3 +6,8 @@ Skara: Hey kitty kitty. Want to throw some cards?
 - No
     Skara: Oh...
     => END
+	
+~ PostBattle
+Skara: I played the wrong card on accident...
+You received a card "[color=#808080]Eye of Despair[/color]".
+=> END

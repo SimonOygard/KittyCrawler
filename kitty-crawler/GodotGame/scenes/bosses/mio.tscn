@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_rn88q"]
 [ext_resource type="Resource" uid="uid://btj5dn2n4bj7y" path="res://TELT/Resources/Bosses/mio.tres" id="2_ul8g8"]
 [ext_resource type="Texture2D" uid="uid://cx1noglo6nk3w" path="res://TELT/Tilesets/Boss_sprites/Mio.png" id="2_yr6an"]
+[ext_resource type="Resource" uid="uid://c7kx6kxmdkhtg" path="res://Dungeon_floor_2/dialog/Boss/Mio.dialogue" id="3_rofo5"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_ul8g8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcef0"]
@@ -47,6 +48,7 @@ animations = [{
 [node name="Mio" type="CharacterBody2D" unique_id=1343359438]
 script = ExtResource("1_rn88q")
 _bossData = ExtResource("2_ul8g8")
+_dialogueResource = ExtResource("3_rofo5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1489560491]
 position = Vector2(0, 9)

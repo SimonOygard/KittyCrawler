@@ -2,10 +2,10 @@
 Eve: What?
 Eve: .... a cat?
 Eve: Now we battle!
-do start_battle()
+do StartBattle()
 => END
 
-~ post_battle
+~ PostBattle
 Eve: You have defeated me...
-Eve: "You received Eve's card."
+"You received [color=yellow]Eve[/color]'s card."
 => END

@@ -1489,12 +1489,16 @@ public partial class TeltBattle : Node2D
             PlayerData.DefeatNpc(npc.NpcId, _enemy.TotalDamageReceived);
             if (playerWon && !PlayerData.HasReceivedCard(npc.NpcId))
                 PlayerData.GiveRewardCard(npc.NpcId, npc.RewardCard != null ? npc.RewardCard.ResourcePath : "");
+
         }
         else
         {
             // Fallback for testing uten config
             PlayerData.DefeatNpc("npc_goblin_king", _enemy.TotalDamageReceived);
         }
+        if (playerWon)
+            TeltBattleConfig.Instance.JustReturnedFromBattle = true;
+
         EmitSignal(SignalName.ScoreUpdated, _enemy.TotalDamageReceived);
         EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? npc?.NpcId ?? "unknown");
 
