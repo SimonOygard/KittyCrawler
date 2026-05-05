@@ -13,6 +13,11 @@ public partial class DeckEditorUI : CanvasLayer
     [Export] private Button _saveDeckButton;
     [Export] private Button _closeButton;
     [Export] private PackedScene _cardButtonVisualScene;
+    [Export] private Control _previewContainer;
+    [Export] private PackedScene _cardVisualScene;
+    [Export] private Label _feedbackLabel;
+
+    private CardVisual _previewCard = null;
 
     private List<string> _currentDeck = new();
     private List<string> _inventory = new();
@@ -70,12 +75,32 @@ public partial class DeckEditorUI : CanvasLayer
         grid.AddChild(button);
         button.Setup(cardData);
 
-        GD.Print($"[DeckEditor] Button lagt til: {cardData.CardName}, size={button.Size}, minSize={button.CustomMinimumSize}");
+        // Hover preview
+        button.MouseEntered += () => ShowPreview(cardData);
+        button.MouseExited += () => HidePreview();
 
         if (isInDeck)
             button.Pressed += () => MoveToInventory(cardPath);
         else
             button.Pressed += () => MoveToDeck(cardPath);
+    }
+
+    private void ShowPreview(CardData cardData)
+    {
+        HidePreview();
+        _previewCard = _cardVisualScene.Instantiate<CardVisual>();
+        _previewContainer.AddChild(_previewCard);
+        _previewCard.Setup(cardData);
+        _previewCard.SetStatic();
+    }
+
+    private void HidePreview()
+    {
+        if (_previewCard != null)
+        {
+            _previewCard.QueueFree();
+            _previewCard = null;
+        }
     }
 
     private void MoveToDeck(string cardPath)
@@ -86,7 +111,7 @@ public partial class DeckEditorUI : CanvasLayer
         var cardData = GD.Load<CardData>(cardPath);
         int maxCopies = cardData.CardRarity switch
         {
-            CardData.Rarity.Common => 2,
+            CardData.Rarity.Common => 3,
             CardData.Rarity.Uncommon => 2,
             CardData.Rarity.Rare => 1,
             _ => 1
@@ -109,18 +134,25 @@ public partial class DeckEditorUI : CanvasLayer
         RefreshUI();
     }
 
+
     private void OnSaveDeckPressed()
     {
         if (_currentDeck.Count < 25)
         {
-            GD.Print($"[DeckEditor] Deck må ha 25 kort, har {_currentDeck.Count}");
-            // Vis feilmelding til spilleren
-            _deckCountLabel.AddThemeColorOverride("font_color", Colors.Red);
+            ShowFeedback("Unable to save deck", Colors.Red);
             return;
         }
-        _deckCountLabel.RemoveThemeColorOverride("font_color");
         PlayerData.SaveDeck(_currentDeck);
-        GD.Print($"[DeckEditor] Deck lagret med {_currentDeck.Count} kort");
+        ShowFeedback("Deck saved!", Colors.Green);
+    }
+
+    private async void ShowFeedback(string message, Color color)
+    {
+        _feedbackLabel.Text = message;
+        _feedbackLabel.AddThemeColorOverride("font_color", color);
+        _feedbackLabel.Visible = true;
+        await ToSignal(GetTree().CreateTimer(2f), "timeout");
+        _feedbackLabel.Visible = false;
     }
 
     private void OnClosePressed()
@@ -129,6 +161,8 @@ public partial class DeckEditorUI : CanvasLayer
         Visible = false;
         GetParent<CanvasLayer>().Visible = true;
     }
+
+
 
 
 }

@@ -1482,19 +1482,13 @@ public partial class TeltBattle : Node2D
         {
             PlayerData.DefeatNpc(boss.NpcId, _enemy.TotalDamageReceived);
             if (playerWon && !PlayerData.HasReceivedCard(boss.NpcId))
-            {
-                PlayerData.GiveRewardCard(boss.NpcId);
-                EmitSignal(SignalName.CardReceived, boss.NpcId);
-            }
+                PlayerData.GiveRewardCard(boss.NpcId, boss.RewardCard != null ? boss.RewardCard.ResourcePath : "");
         }
-        else if (npc != null) // ← legg til
+        else if (npc != null)
         {
             PlayerData.DefeatNpc(npc.NpcId, _enemy.TotalDamageReceived);
             if (playerWon && !PlayerData.HasReceivedCard(npc.NpcId))
-            {
-                PlayerData.GiveRewardCard(npc.NpcId);
-                EmitSignal(SignalName.CardReceived, npc.NpcId);
-            }
+                PlayerData.GiveRewardCard(npc.NpcId, npc.RewardCard != null ? npc.RewardCard.ResourcePath : "");
         }
         else
         {
