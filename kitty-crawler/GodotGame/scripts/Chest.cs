@@ -10,13 +10,9 @@ public partial class Chest : CharacterBody2D, IInteractable
     private bool _hasBeenInteractedWith = false;
     public bool IsMimic { get; set; } = false;
 
-    [Export]
-    private LevelTransition _levelTransition;
-    
     public override void _Ready()
     {
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        _levelTransition = GetNode<LevelTransition>("LevelTransition");
 
 
         if (_sprite != null)

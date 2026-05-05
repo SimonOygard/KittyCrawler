@@ -19,7 +19,7 @@ public partial class SkestersHearts : Node2D
         _endTeleport = GetNode<Area2D>("End");
 
         _endTeleport.BodyEntered += OnEndTeleportEntered;
-        _endTeleport.Hide();
+        // _endTeleport.Hide();
         _ = AlterLevel();
     }
 

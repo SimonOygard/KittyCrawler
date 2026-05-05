@@ -65,11 +65,11 @@ public partial class GameOver : CanvasLayer
         _worldState.SaveGame();
 
         GD.Print($"Submitting score for player: {playerName} with time: {_worldState.TimeSeconds} seconds");
-        _leaderboardApi.OnSubmitPressed(playerName);
+        
     }
 
     private void OnQuitPressed()
     {
         GetTree().Quit();
-    }Du
+    }
 }

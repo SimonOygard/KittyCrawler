@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://gyjij1tvv1f0" path="res://Dungeon_floor_2/scenes/Maps/diamond_map.tscn" id="1_o6i6l"]
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="2_ote1w"]
 [ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="3_jgnmv"]
+[ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_p3cfe"]
 [ext_resource type="PackedScene" uid="uid://bemuii73nkcr2" path="res://scenes/bosses/croxy.tscn" id="4_1cviu"]
 [ext_resource type="PackedScene" uid="uid://dpqnxbrl5fx5l" path="res://scenes/NPC/NPCSkeleton.tscn" id="5_vehe6"]
 [ext_resource type="Resource" uid="uid://djg32m6l8w0b5" path="res://TELT/Resources/NPCs/skara.tres" id="6_kp8p4"]
@@ -21,6 +22,10 @@ position = Vector2(-2, 250)
 
 [node name="TeleportEnd" parent="." unique_id=1796264885 instance=ExtResource("3_jgnmv")]
 position = Vector2(0, -144)
+ScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_clubs.tscn"
+
+[node name="LevelTransition" type="Node" parent="TeleportEnd" unique_id=1782726861]
+script = ExtResource("3_p3cfe")
 
 [node name="CharacterBody2D" parent="." unique_id=1948828453 instance=ExtResource("2_ote1w")]
 position = Vector2(0, 211)

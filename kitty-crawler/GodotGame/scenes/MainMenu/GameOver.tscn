@@ -146,9 +146,9 @@ text = "Final score: "
 [node name="Score" type="Label" parent="GameOver/FinalScore" unique_id=2011006283]
 layout_mode = 0
 offset_left = 104.0
-offset_top = -1.0
+offset_top = -3.0
 offset_right = 144.0
-offset_bottom = 16.0
+offset_bottom = 14.0
 
 [node name="FinalTime" type="Label" parent="GameOver" unique_id=998051815]
 layout_mode = 0
@@ -161,9 +161,9 @@ text = "Final time:"
 [node name="Timer" type="Label" parent="GameOver/FinalTime" unique_id=2083343362]
 layout_mode = 0
 offset_left = 91.0
-offset_top = -7.0
+offset_top = -15.0
 offset_right = 187.0
-offset_bottom = 24.0
+offset_bottom = 16.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3usap")
 
@@ -173,5 +173,6 @@ script = ExtResource("3_u538a")
 [node name="LeaderboardApi" parent="." unique_id=386077827 instance=ExtResource("4_8kwan")]
 
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/SubmitScore" to="." method="OnSubmitPressed"]
+[connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/SubmitScore" to="LeaderboardApi" method="OnSubmitPressed"]
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Leaderboard" to="." method="OnLeaderBoardPressed"]
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]

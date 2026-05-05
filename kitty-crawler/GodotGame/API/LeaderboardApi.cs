@@ -62,7 +62,7 @@ public partial class LeaderboardApi : Node
         }
     }
 
-    public void OnSubmitPressed(string username)
+    public void OnSubmitPressed()
     {
         var worldState = GetNode<WorldStateManager>("/root/WorldStateManager");
         var httpRequest = GetNode<HttpRequest>("LeaderboardPost");
@@ -74,8 +74,8 @@ public partial class LeaderboardApi : Node
         var jsonData = new Dictionary
         {
             { "username", worldState.UserName },
-            { "score", worldState.Score },
-            { "timeSeconds", worldState.TimeSeconds }
+            { "timeSeconds", (int) worldState.TimeSeconds },
+            { "score", worldState.Score }
         };
 
         httpRequest.Request("https://kittycrawler-b8e0bkhpgegyhhbd.canadacentral-01.azurewebsites.net/api/leaderboard", customHeaders, HttpClient.Method.Post, Json.Stringify(jsonData));
