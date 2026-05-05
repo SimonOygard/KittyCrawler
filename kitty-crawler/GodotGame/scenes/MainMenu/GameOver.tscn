@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://370mjb1qgfbe" path="res://scripts/core/GameOver.cs" id="1_orapq"]
 [ext_resource type="Texture2D" uid="uid://cklyh2pgcqxxu" path="res://assets/Backgrounds/SleepingCatFree/sleepingcat5.png" id="1_uohd1"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_u538a"]
+[ext_resource type="PackedScene" uid="uid://cd83huhnjupcg" path="res://API/API.tscn" id="4_8kwan"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orapq"]
 atlas = ExtResource("1_uohd1")
@@ -168,6 +169,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_3usap")
 
 [node name="LevelTransition" type="Node" parent="GameOver" unique_id=646538655]
 script = ExtResource("3_u538a")
+
+[node name="LeaderboardApi" parent="." unique_id=386077827 instance=ExtResource("4_8kwan")]
 
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/SubmitScore" to="." method="OnSubmitPressed"]
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Leaderboard" to="." method="OnLeaderBoardPressed"]

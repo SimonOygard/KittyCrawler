@@ -62,7 +62,7 @@ public partial class LeaderboardApi : Node
         }
     }
 
-    public void OnSubmitPressed()
+    public void OnSubmitPressed(string username)
     {
         var worldState = GetNode<WorldStateManager>("/root/WorldStateManager");
         var httpRequest = GetNode<HttpRequest>("LeaderboardPost");
