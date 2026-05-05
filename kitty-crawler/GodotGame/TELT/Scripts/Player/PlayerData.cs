@@ -181,10 +181,12 @@ public partial class PlayerData : Node
         return _receivedCards.Contains(npcId);
     }
 
-    public static void GiveRewardCard(string npcId)
+    public static void GiveRewardCard(string npcId, string cardPath)
     {
         if (_receivedCards.Contains(npcId)) return;
         _receivedCards.Add(npcId);
+        if (!string.IsNullOrEmpty(cardPath))
+            _ownedCards.Add(cardPath);
         SaveScore();
     }
 
