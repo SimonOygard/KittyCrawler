@@ -8,6 +8,7 @@ public partial class TeltBattleConfig : Node
     // Hvilken boss skal du slåss mot
     public BossData CurrentBoss { get; set; } = null;
     public NPCData CurrentNPC { get; set; } = null;
+    public bool JustReturnedFromBattle { get; set; } = false;
 
     // Hvilken scene skal du tilbake til etter kampen
     public string ReturnScenePath { get; set; } = "";

@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://dm4cp2mc13ruc" path="res://TELT/Resources/Bosses/eve.tres" id="2_66vof"]
 [ext_resource type="Texture2D" uid="uid://dgh41rk3e4r4d" path="res://TELT/Tilesets/Boss_sprites/Eve.png" id="2_grp7u"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_66vof"]
+[ext_resource type="Resource" uid="uid://ci1cqcbbyrh03" path="res://Dungeon_floor_2/dialog/Boss/Eve.dialogue" id="3_ymexi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xkcc4"]
 size = Vector2(40, 48)
@@ -48,6 +49,7 @@ animations = [{
 collision_layer = 2
 script = ExtResource("1_lt3x8")
 _bossData = ExtResource("2_66vof")
+_dialogueResource = ExtResource("3_ymexi")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1172461793]
 shape = SubResource("RectangleShape2D_xkcc4")

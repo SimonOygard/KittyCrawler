@@ -6,3 +6,8 @@ Skomas: Hello there Tiny Paws! Wanna play some TELT? throw some cards?
 - No
     Skomas: Ah maan...
     => END
+
+~ PostBattle
+Skomas: Lucky...
+You received a card "[color=#808080]Horror[/color]".
+=> END

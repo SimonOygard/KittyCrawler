@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c7kx6kxmdkhtg"
+path="res://.godot/imported/Mio.dialogue-8d28d435a260c76c1ea3d4363a7457e1.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/Boss/Mio.dialogue"
+dest_files=["res://.godot/imported/Mio.dialogue-8d28d435a260c76c1ea3d4363a7457e1.tres"]
+
+[params]
+
+defaults=true

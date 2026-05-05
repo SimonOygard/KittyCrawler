@@ -1,6 +1,7 @@
 using Godot;
 using Interaction;
 using DialogueManagerRuntime;
+using KittyCrawler.TELT;
 
 public partial class NPC : CharacterBody2D, IInteractable
 {
@@ -9,7 +10,7 @@ public partial class NPC : CharacterBody2D, IInteractable
     private bool _wantsBattle = false;
 
     [Export] private LevelTransition _levelTransition;
-    [Export] private KittyCrawler.TELT.NPCData _npcData;
+    [Export] private NPCData _npcData;
     [Export] private Resource _dialogueResource;
 
     public override void _Ready()
@@ -21,22 +22,48 @@ public partial class NPC : CharacterBody2D, IInteractable
             _sprite.Play("skester_idle");
 
         DialogueManager.DialogueEnded += OnDialogueEnded;
+
+        // Start PostBattle dialog automatisk hvis NPC er beseiret og kort er mottatt
+        if (_npcData != null
+            && PlayerData.HasDefeatedNpc(_npcData.NpcId)
+            && PlayerData.HasReceivedCard(_npcData.NpcId))
+        {
+            TeltBattleConfig.Instance.JustReturnedFromBattle = false;
+            CallDeferred(nameof(StartPostBattleDialogue));
+        }
+    }
+
+    private void StartPostBattleDialogue()
+    {
+        var states = new Godot.Collections.Array<Variant>();
+        states.Add(Variant.From(this));
+        DialogueManager.ShowDialogueBalloon(_dialogueResource, "PostBattle", states);
     }
 
     public void Interact()
     {
-        if (_hasBeenInteractedWith) return;
+        bool hasDefeated = PlayerData.HasDefeatedNpc(_npcData.NpcId);
+        bool hasCard = PlayerData.HasReceivedCard(_npcData.NpcId);
 
-        if (_dialogueResource != null)
+        GD.Print($"[NPC] Interact: hasDefeated={hasDefeated}, hasCard={hasCard}");
+
+        if (hasDefeated && hasCard)
+        {
+            // Spill PostBattle dialog
+            var states = new Godot.Collections.Array<Variant>();
+            states.Add(Variant.From(this));
+            DialogueManager.ShowDialogueBalloon(_dialogueResource, "PostBattle", states);
+            return;
+        }
+
+        if (!hasDefeated && _dialogueResource != null)
         {
             var states = new Godot.Collections.Array<Variant>();
             states.Add(Variant.From(this));
-            WorldStateManager.Instance.SetMode(WorldStateManager.GameMode.Dialogue);
             DialogueManager.ShowDialogueBalloon(_dialogueResource, "start", states);
         }
-        else
+        else if (!hasDefeated)
         {
-            _hasBeenInteractedWith = true;
             TriggerCardbattle();
         }
     }

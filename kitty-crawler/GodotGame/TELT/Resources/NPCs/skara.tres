@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://brxvt3x7w7m6p" path="res://TELT/Resources/Cards/Uncommon_Sludge.tres" id="6_x3ug8"]
 [ext_resource type="Resource" uid="uid://b45apbi55l6qx" path="res://TELT/Resources/Cards/Uncommon_Golem.tres" id="7_0qe7m"]
 [ext_resource type="Resource" uid="uid://cm1bg71whb43d" path="res://TELT/Resources/Cards/Uncommon_Horror.tres" id="8_t4874"]
+[ext_resource type="Resource" uid="uid://bgm25fnye48j0" path="res://TELT/Resources/Cards/Uncommon_EyeofDespair.tres" id="9_bpgr7"]
 [ext_resource type="Script" uid="uid://d2sqnr7an36io" path="res://TELT/Resources/NPCData.cs" id="9_exo4p"]
 
 [resource]
@@ -15,5 +16,5 @@ script = ExtResource("9_exo4p")
 NPCName = "Skara"
 NpcId = "skara"
 Deck = Array[ExtResource("1_bncsd")]([ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("2_n1i4p"), ExtResource("3_sawoc"), ExtResource("3_sawoc"), ExtResource("3_sawoc"), ExtResource("3_sawoc"), ExtResource("4_66qc8"), ExtResource("4_66qc8"), ExtResource("4_66qc8"), ExtResource("5_m8u5i"), ExtResource("5_m8u5i"), ExtResource("6_x3ug8"), ExtResource("7_0qe7m"), ExtResource("7_0qe7m"), ExtResource("8_t4874"), ExtResource("8_t4874")])
-RewardCard = ExtResource("8_t4874")
+RewardCard = ExtResource("9_bpgr7")
 metadata/_custom_type_script = "uid://d2sqnr7an36io"
