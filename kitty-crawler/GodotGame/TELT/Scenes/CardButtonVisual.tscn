@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b8qhcb74capxx"]
+
+[ext_resource type="Script" uid="uid://iw3jgby6rff2" path="res://TELT/Scripts/Cards/CardButtonVisual.cs" id="1_0p4x6"]
+[ext_resource type="Texture2D" uid="uid://pytfe1he4l2j" path="res://TELT/Tilesets/CardButtonArt.png" id="2_t073o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mba43"]
+atlas = ExtResource("2_t073o")
+region = Rect2(0, 0, 0, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6bsk"]
+atlas = ExtResource("2_t073o")
+region = Rect2(0, 20, 0, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0bar"]
+atlas = ExtResource("2_t073o")
+region = Rect2(0, 40, 0, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i8yp"]
+atlas = ExtResource("2_t073o")
+region = Rect2(0, 0, 64, 20)
+
+[node name="CardButtonVisual" type="Button" unique_id=1150093982 node_paths=PackedStringArray("_background", "_nameLabel")]
+offset_right = 64.0
+offset_bottom = 20.0
+script = ExtResource("1_0p4x6")
+_background = NodePath("RarityLabel")
+_nameLabel = NodePath("RarityLabel/CardNameLabel")
+_commonTexture = SubResource("AtlasTexture_mba43")
+_uncommonTexture = SubResource("AtlasTexture_x6bsk")
+_rareTexture = SubResource("AtlasTexture_b0bar")
+
+[node name="RarityLabel" type="TextureRect" parent="." unique_id=783132528]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_8i8yp")
+expand_mode = 1
+
+[node name="CardNameLabel" type="Label" parent="RarityLabel" unique_id=1908210769]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 118.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "TestName"
+horizontal_alignment = 1

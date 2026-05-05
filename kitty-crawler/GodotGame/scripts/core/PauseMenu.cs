@@ -1,4 +1,6 @@
 using Godot;
+using KittyCrawler.TELT;
+using KittyCrawler;
 using System;
 
 public partial class PauseMenu : CanvasLayer
@@ -12,9 +14,19 @@ public partial class PauseMenu : CanvasLayer
     [Signal]
     public delegate void SaveGameRequestedEventHandler();
 
+    [Export] private Button _deckEditorUIButton;
+    [Export] private DeckEditorUI _deckEditorUI;
+
+
+
     public override void _Ready()
-	{
-	}
+    {
+        _deckEditorUIButton.Pressed += () =>
+        {
+            Visible = false;
+            _deckEditorUI.Open();
+        };
+    }
 
     public void OnPausedContinuePressed()
     {
