@@ -15,6 +15,8 @@ public partial class WorldStateManager : Node
 
     public bool GameEnded { get; set; } = false;
 
+    public bool HasTeleported { get; set; } = false;
+
     public Vector2 PlayerPosition { get; set; }
 
     public Vector2? ReturnPlayerPosition { get; private set; }
@@ -149,13 +151,13 @@ public partial class WorldStateManager : Node
 
     public bool TryConsumeReturnPlayerPosition(out Vector2 position)
     {
-        if (ReturnPlayerPosition.HasValue)
+        if (ReturnPlayerPosition.HasValue && !HasTeleported)
         {
             position = ReturnPlayerPosition.Value;
             ReturnPlayerPosition = null; // prevents applying it on normal save/load
             return true;
         }
-
+        HasTeleported = false;
         position = Vector2.Zero;
         return false;
     }

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://370mjb1qgfbe" path="res://scripts/core/GameOver.cs" id="1_orapq"]
 [ext_resource type="Texture2D" uid="uid://cklyh2pgcqxxu" path="res://assets/Backgrounds/SleepingCatFree/sleepingcat5.png" id="1_uohd1"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_u538a"]
+[ext_resource type="PackedScene" uid="uid://cd83huhnjupcg" path="res://API/API.tscn" id="4_8kwan"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orapq"]
 atlas = ExtResource("1_uohd1")
@@ -145,9 +146,9 @@ text = "Final score: "
 [node name="Score" type="Label" parent="GameOver/FinalScore" unique_id=2011006283]
 layout_mode = 0
 offset_left = 104.0
-offset_top = -1.0
+offset_top = -3.0
 offset_right = 144.0
-offset_bottom = 16.0
+offset_bottom = 14.0
 
 [node name="FinalTime" type="Label" parent="GameOver" unique_id=998051815]
 layout_mode = 0
@@ -160,15 +161,18 @@ text = "Final time:"
 [node name="Timer" type="Label" parent="GameOver/FinalTime" unique_id=2083343362]
 layout_mode = 0
 offset_left = 91.0
-offset_top = -7.0
+offset_top = -15.0
 offset_right = 187.0
-offset_bottom = 24.0
+offset_bottom = 16.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3usap")
 
 [node name="LevelTransition" type="Node" parent="GameOver" unique_id=646538655]
 script = ExtResource("3_u538a")
 
+[node name="LeaderboardApi" parent="." unique_id=386077827 instance=ExtResource("4_8kwan")]
+
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/SubmitScore" to="." method="OnSubmitPressed"]
+[connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/SubmitScore" to="LeaderboardApi" method="OnSubmitPressed"]
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Leaderboard" to="." method="OnLeaderBoardPressed"]
 [connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]

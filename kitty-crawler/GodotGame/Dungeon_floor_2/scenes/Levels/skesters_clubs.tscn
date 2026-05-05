@@ -18,29 +18,29 @@
 [node name="Diamond" type="Node" parent="." unique_id=711189205 groups=["traps"]]
 script = ExtResource("4_jo1e4")
 
-[node name="Traps" type="Node" parent="Diamond" unique_id=1484268740]
+[node name="DiamondTraps" type="Node" parent="Diamond" unique_id=1484268740]
 
-[node name="SpikeTrap" parent="Diamond/Traps" unique_id=1085106574 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap" parent="Diamond/DiamondTraps" unique_id=1085106574 instance=ExtResource("5_cq0kg")]
 position = Vector2(-64, 0)
 BossTrapType = 3
 
-[node name="SpikeTrap2" parent="Diamond/Traps" unique_id=354323559 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap2" parent="Diamond/DiamondTraps" unique_id=354323559 instance=ExtResource("5_cq0kg")]
 position = Vector2(-80, 14)
 BossTrapType = 3
 
-[node name="SpikeTrap3" parent="Diamond/Traps" unique_id=840928637 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap3" parent="Diamond/DiamondTraps" unique_id=840928637 instance=ExtResource("5_cq0kg")]
 position = Vector2(-64, 14)
 BossTrapType = 3
 
-[node name="SpikeTrap4" parent="Diamond/Traps" unique_id=81566544 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap4" parent="Diamond/DiamondTraps" unique_id=81566544 instance=ExtResource("5_cq0kg")]
 position = Vector2(-80, -15)
 BossTrapType = 3
 
-[node name="SpikeTrap5" parent="Diamond/Traps" unique_id=792836946 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap5" parent="Diamond/DiamondTraps" unique_id=792836946 instance=ExtResource("5_cq0kg")]
 position = Vector2(-64, -15)
 BossTrapType = 3
 
-[node name="SpikeTrap6" parent="Diamond/Traps" unique_id=766822721 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap6" parent="Diamond/DiamondTraps" unique_id=766822721 instance=ExtResource("5_cq0kg")]
 position = Vector2(-80, 0)
 BossTrapType = 3
 
@@ -67,24 +67,24 @@ ScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_spade.tscn"
 Type = 5
 ObjectName = "Spade"
 
-[node name="Traps" type="Node" parent="Spade" unique_id=657347123]
+[node name="SpadeTraps" type="Node" parent="Spade" unique_id=657347123]
 
-[node name="SpikeTrap7" parent="Spade/Traps" unique_id=1871622409 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap7" parent="Spade/SpadeTraps" unique_id=1871622409 instance=ExtResource("5_cq0kg")]
 position = Vector2(80, 0)
 
-[node name="SpikeTrap8" parent="Spade/Traps" unique_id=687878347 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap8" parent="Spade/SpadeTraps" unique_id=687878347 instance=ExtResource("5_cq0kg")]
 position = Vector2(64, 14)
 
-[node name="SpikeTrap9" parent="Spade/Traps" unique_id=516746978 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap9" parent="Spade/SpadeTraps" unique_id=516746978 instance=ExtResource("5_cq0kg")]
 position = Vector2(80, 14)
 
-[node name="SpikeTrap10" parent="Spade/Traps" unique_id=1908486625 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap10" parent="Spade/SpadeTraps" unique_id=1908486625 instance=ExtResource("5_cq0kg")]
 position = Vector2(64, -15)
 
-[node name="SpikeTrap11" parent="Spade/Traps" unique_id=20890576 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap11" parent="Spade/SpadeTraps" unique_id=20890576 instance=ExtResource("5_cq0kg")]
 position = Vector2(80, -15)
 
-[node name="SpikeTrap12" parent="Spade/Traps" unique_id=1383904909 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap12" parent="Spade/SpadeTraps" unique_id=1383904909 instance=ExtResource("5_cq0kg")]
 position = Vector2(64, 0)
 
 [node name="Hearts" type="Node" parent="." unique_id=541777736 groups=["traps"]]
@@ -100,29 +100,29 @@ ScenePath = "res://Dungeon_floor_2/scenes/Levels/skesters_hearts.tscn"
 Type = 5
 ObjectName = "Hearts"
 
-[node name="Traps" type="Node" parent="Hearts" unique_id=1608746997]
+[node name="HeartsTraps" type="Node" parent="Hearts" unique_id=1608746997]
 
-[node name="SpikeTrap13" parent="Hearts/Traps" unique_id=977205698 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap13" parent="Hearts/HeartsTraps" unique_id=977205698 instance=ExtResource("5_cq0kg")]
 position = Vector2(0, -49)
 BossTrapType = 1
 
-[node name="SpikeTrap14" parent="Hearts/Traps" unique_id=1146126219 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap14" parent="Hearts/HeartsTraps" unique_id=1146126219 instance=ExtResource("5_cq0kg")]
 position = Vector2(-15, -35)
 BossTrapType = 1
 
-[node name="SpikeTrap15" parent="Hearts/Traps" unique_id=1386198192 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap15" parent="Hearts/HeartsTraps" unique_id=1386198192 instance=ExtResource("5_cq0kg")]
 position = Vector2(0, -35)
 BossTrapType = 1
 
-[node name="SpikeTrap16" parent="Hearts/Traps" unique_id=592416846 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap16" parent="Hearts/HeartsTraps" unique_id=592416846 instance=ExtResource("5_cq0kg")]
 position = Vector2(16, -49)
 BossTrapType = 1
 
-[node name="SpikeTrap17" parent="Hearts/Traps" unique_id=379415566 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap17" parent="Hearts/HeartsTraps" unique_id=379415566 instance=ExtResource("5_cq0kg")]
 position = Vector2(16, -35)
 BossTrapType = 1
 
-[node name="SpikeTrap18" parent="Hearts/Traps" unique_id=955789179 instance=ExtResource("5_cq0kg")]
+[node name="SpikeTrap18" parent="Hearts/HeartsTraps" unique_id=955789179 instance=ExtResource("5_cq0kg")]
 position = Vector2(-15, -49)
 BossTrapType = 1
 

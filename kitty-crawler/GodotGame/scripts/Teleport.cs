@@ -5,6 +5,7 @@ using PlayerBody;
 public partial class Teleport : Area2D
 {
     private AnimatedSprite2D _sprite;
+    private WorldStateManager _worldStateManager;
 
     [Export]
     private Marker2D _destination;
@@ -14,6 +15,7 @@ public partial class Teleport : Area2D
 
     public override void _Ready()
     {
+        _worldStateManager = GetNode<WorldStateManager>("/root/WorldStateManager");
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
         if (_sprite != null)
@@ -34,6 +36,7 @@ public partial class Teleport : Area2D
                 var transition = GetNode<LevelTransition>("LevelTransition");
                 transition.ScenePath = ScenePath;
 
+                _worldStateManager.HasTeleported = true;
                 transition.TriggerTransition();
                 return;
             }
@@ -44,7 +47,7 @@ public partial class Teleport : Area2D
                 return;
             }
 
-
+            _worldStateManager.HasTeleported = true;
             player.TeleportTo(_destination.GlobalPosition + new Vector2(0, 16));
             GD.Print("Teleported!");
         }
