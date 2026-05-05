@@ -118,7 +118,7 @@ public partial class TeltBattle : Node2D
         var stateManager = GetNode<WorldStateManager>("/root/WorldStateManager");
         stateManager.RegisterSaveEvents(this);
         _audioManager = GetNode<AudioManager>("/root/AudioManager");
-        _audioManager.PlayBackgroundMusic();
+        _audioManager.PlayTeltBackgroundMusic();
 
         _deckCountLabel.Visible = false;
         // Koble GameManager signals

@@ -16,11 +16,14 @@ public partial class Boss : CharacterBody2D, IInteractable
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _levelTransition =  GetNode<LevelTransition>("LevelTransition");
 
-        if (_sprite != null)
+        if (_sprite != null && _sprite.Name == "Skester")
         {
             _sprite.Play("skester_idle");
         }
-
+        else
+        {
+            _sprite.Play("default"); 
+        }
     }
 
     public void Interact()
