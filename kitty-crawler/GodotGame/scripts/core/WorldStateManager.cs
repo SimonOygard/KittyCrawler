@@ -154,11 +154,13 @@ public partial class WorldStateManager : Node
         if (ReturnPlayerPosition.HasValue && !HasTeleported)
         {
             position = ReturnPlayerPosition.Value;
+            GD.Print($"return position is {position}");
             ReturnPlayerPosition = null; // prevents applying it on normal save/load
             return true;
         }
         HasTeleported = false;
         position = Vector2.Zero;
+        GD.Print($"return position is {position} - {ReturnPlayerPosition.HasValue}");
         return false;
     }
 

@@ -57,7 +57,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_h7bdj")
 }],
 "loop": true,
-"name": &"Skomas_Idle",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -71,9 +71,8 @@ shape = SubResource("RectangleShape2D_sxsnv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=341589047]
 sprite_frames = SubResource("SpriteFrames_dpo8j")
-animation = &"Skomas_Idle"
-autoplay = "Skomas_Idle"
-frame_progress = 0.16325475
+animation = &"idle"
+autoplay = "idle"
 
 [node name="LevelTransition" type="Node" parent="." unique_id=6016073]
 script = ExtResource("5_p5ikq")

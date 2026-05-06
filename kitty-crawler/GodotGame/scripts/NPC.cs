@@ -19,7 +19,7 @@ public partial class NPC : CharacterBody2D, IInteractable
         _levelTransition = GetNode<LevelTransition>("LevelTransition");
 
         if (_sprite != null)
-            _sprite.Play("skester_idle");
+            _sprite.Play("idle");
 
         DialogueManager.DialogueEnded += OnDialogueEnded;
 
