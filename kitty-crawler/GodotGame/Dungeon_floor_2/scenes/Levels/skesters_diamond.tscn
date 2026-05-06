@@ -6,12 +6,22 @@
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="3_p3cfe"]
 [ext_resource type="PackedScene" uid="uid://bemuii73nkcr2" path="res://scenes/bosses/croxy.tscn" id="4_1cviu"]
 [ext_resource type="PackedScene" uid="uid://dpqnxbrl5fx5l" path="res://scenes/NPC/NPCSkeleton.tscn" id="5_vehe6"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="6_0xj3t"]
 [ext_resource type="Resource" uid="uid://djg32m6l8w0b5" path="res://TELT/Resources/NPCs/skara.tres" id="6_kp8p4"]
 [ext_resource type="Resource" uid="uid://dkrfrlolxmauo" path="res://Dungeon_floor_2/dialog/NPC/Skara.dialogue" id="7_d1oxb"]
+[ext_resource type="Resource" uid="uid://7dn5mi5678ew" path="res://Dungeon_floor_2/dialog/Boss/Croxy.dialogue" id="7_ifvhv"]
+[ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="8_vkxdf"]
 [ext_resource type="Resource" uid="uid://puta6iykxqgs" path="res://Dungeon_floor_2/dialog/NPC/Skyvar.dialogue" id="9_1ptqp"]
 [ext_resource type="Resource" uid="uid://bty6oil0ui0me" path="res://Dungeon_floor_2/dialog/NPC/Skrolf.dialogue" id="11_p3cfe"]
 [ext_resource type="Resource" uid="uid://bp38w8bpyxbqp" path="res://TELT/Resources/NPCs/skrolf.tres" id="11_pi670"]
 [ext_resource type="Resource" uid="uid://di6bgf640to0d" path="res://TELT/Resources/NPCs/skyvar.tres" id="13_dle3b"]
+
+[sub_resource type="Resource" id="Resource_jnpee"]
+script = ExtResource("8_vkxdf")
+BossName = "Croxy"
+NpcId = "croxy"
+DialogueResource = ExtResource("7_ifvhv")
+metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"
 
 [node name="Skesters_diamond" type="Node2D" unique_id=774304775]
 
@@ -32,6 +42,7 @@ position = Vector2(0, 211)
 
 [node name="Croxy" parent="." unique_id=1371494723 instance=ExtResource("4_1cviu")]
 position = Vector2(0, -32)
+BossData = SubResource("Resource_jnpee")
 
 [node name="NPC Manager" type="Node" parent="." unique_id=1785919046]
 

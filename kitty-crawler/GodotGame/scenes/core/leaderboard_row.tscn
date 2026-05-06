@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2c68xntn2er3"]
 
-[ext_resource type="Script" uid="uid://lochjyfee6lr" path="res://LeaderboardRow.cs" id="1_7cuad"]
+[ext_resource type="Script" uid="uid://lochjyfee6lr" path="res://scripts/UI/LeaderboardRow.cs" id="1_7cuad"]
 
 [node name="LeaderboardRow" type="PanelContainer" unique_id=2023261459 node_paths=PackedStringArray("RankLabel", "NameLabel", "ScoreLabel", "TimeLabel")]
 offset_right = 40.0

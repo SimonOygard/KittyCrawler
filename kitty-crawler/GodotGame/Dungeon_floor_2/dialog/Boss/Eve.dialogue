@@ -1,11 +1,37 @@
 ~ start
-Eve: What?
-Eve: .... a cat?
-Eve: Now we battle!
-do StartBattle()
-=> END
-
+Eve: ...
+You suddenly feel very self conscious about your small stature standing in front of the large batwinged lady.
+As she gazes at you coldly you can't help feeling incredibly judged.
+Eve: You have arrived...
+- You knew I was coming?
+    do WorldDialogueManager.MarkBossInteracted()
+    Eve: I know everything. 
+	Eve: ...
+	Eve: Let us battle. 
+    do WorldDialogueManager.StartBossBattle()
+    => END
+- No actually, I just got lost. Bye!
+    do WorldDialogueManager.MarkBossInteracted()
+    Eve: ...
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ BackForMore
+Eve: You have returned.
+- Yes
+    do WorldDialogueManager.MarkBossInteracted()
+    do WorldDialogueManager.StartBossBattle()
+	 => END
+- No no, I just got lost again. Oopsie!
+    do WorldDialogueManager.MarkBossInteracted()
+	Eve: Oh...
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
 ~ PostBattle
-Eve: You have defeated me...
+Eve: You have done well.
+You hear a click and a rumbling in the distance as if a path has opened.
+Eve: This is for you.
 "You received [color=yellow]Eve[/color]'s card."
+do WorldDialogueManager.EndDialogue()
 => END

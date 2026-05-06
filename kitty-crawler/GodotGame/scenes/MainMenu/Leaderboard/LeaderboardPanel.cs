@@ -59,15 +59,6 @@ public partial class LeaderboardPanel : PanelContainer
         }
     }
 
-    private void OnSubmitPressed()
-    {
-        // name : navn input
-        // time : get time from last save load? worldstatemanager?
-        // ^^^
-
-        //parse og send som request?
-    }
-
     private void AddRow(string rank, string name, string score, string time, bool isHeader = false)
     {
         var row = LeaderboardRowScene.Instantiate<LeaderboardRow>();
@@ -84,7 +75,6 @@ public partial class LeaderboardPanel : PanelContainer
         return $"{minutes:00}:{seconds:00}";
     }
 }
-
 
 internal class LeaderboardEntry
 {

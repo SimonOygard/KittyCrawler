@@ -7,7 +7,13 @@ public partial class TrapManager : Node
 
     public override void _Ready()
     {
-        _worldStateManager = GetNode<WorldStateManager>("/root/WorldStateManager");
+        _worldStateManager = WorldStateManager.Instance;
+
+        if (_worldStateManager == null)
+        {
+            GD.PushError("WorldStateManager.Instance is null.");
+            return;
+        }
 
         var traps = GetTree().GetNodesInGroup("traps");
         GD.Print($"Found {traps.Count} nodes in group 'traps'");

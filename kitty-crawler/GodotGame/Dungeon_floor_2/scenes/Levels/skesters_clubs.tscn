@@ -8,8 +8,26 @@
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="5_t8wbb"]
 [ext_resource type="PackedScene" uid="uid://ck2usy1jd16s1" path="res://scenes/bosses/hilda.tscn" id="6_2ymp2"]
 [ext_resource type="PackedScene" uid="uid://c8isxjwrw8ktg" path="res://scenes/bosses/mio.tscn" id="7_t8wbb"]
+[ext_resource type="Resource" uid="uid://chnmxj8nffc8y" path="res://Dungeon_floor_2/dialog/Boss/Hilda.dialogue" id="9_agmqe"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="9_m37xe"]
 [ext_resource type="PackedScene" uid="uid://5dl8p2m4weou" path="res://scenes/NPC/skomas.tscn" id="9_on7w3"]
+[ext_resource type="Resource" uid="uid://c7kx6kxmdkhtg" path="res://Dungeon_floor_2/dialog/Boss/Mio.dialogue" id="10_agmqe"]
 [ext_resource type="Resource" uid="uid://baljut83sk120" path="res://Dungeon_floor_2/dialog/NPC/Skomas.dialogue" id="10_qgtgt"]
+[ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="11_sd6l2"]
+
+[sub_resource type="Resource" id="Resource_sd6l2"]
+script = ExtResource("11_sd6l2")
+BossName = "Hilda"
+NpcId = "hilda"
+DialogueResource = ExtResource("9_agmqe")
+metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"
+
+[sub_resource type="Resource" id="Resource_8pji4"]
+script = ExtResource("11_sd6l2")
+BossName = "Mio"
+NpcId = "mio"
+DialogueResource = ExtResource("10_agmqe")
+metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"
 
 [node name="SkestersClubs" type="Node2D" unique_id=1914724191]
 
@@ -132,9 +150,11 @@ position = Vector2(0, 256)
 
 [node name="Hilda" parent="." unique_id=399574412 instance=ExtResource("6_2ymp2")]
 position = Vector2(0, -208)
+BossData = SubResource("Resource_sd6l2")
 
 [node name="Mio" parent="." unique_id=1343359438 instance=ExtResource("7_t8wbb")]
 position = Vector2(-1, 190)
+BossData = SubResource("Resource_8pji4")
 
 [node name="Skomas" parent="." unique_id=790474174 instance=ExtResource("9_on7w3")]
 position = Vector2(-45, 250)

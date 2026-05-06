@@ -7,6 +7,10 @@ namespace KittyCrawler.TELT;
 
 public partial class TeltBattle : Node2D
 {
+    public BossData CurrentBossData { get; set; }
+
+    public string ReturnScenePath { get; set; } = "";
+
     // ── Node-referanser ───────────────────────────────────────────────
     [Export] private GameManager _gameManager;
     [Export] private BattleMap _battleMap;
@@ -84,9 +88,8 @@ public partial class TeltBattle : Node2D
     [Signal] public delegate void NpcDefeatedEventHandler(string npcId);
     [Signal] public delegate void CardReceivedEventHandler(string cardId);
 
-    // Lyd
+    // -- Lyd----------
     private AudioManager _audioManager;
-
 
     public void SetBackground(Texture2D texture)
     {
@@ -185,11 +188,14 @@ public partial class TeltBattle : Node2D
         // Koble knapper
         _exitBattleButton.Pressed += () =>
         {
-            var returnPath = TeltBattleConfig.Instance.ReturnScenePath;
-            if (!string.IsNullOrEmpty(returnPath))
-                SceneManager.Instance?.ChangeSceneAsync(returnPath);
+            if (!string.IsNullOrEmpty(ReturnScenePath))
+            {
+                SceneManager.Instance?.ChangeSceneAsync(ReturnScenePath);
+            }
             else
+            {
                 GetTree().Quit();
+            }
         };
 
         // Vurderer å skjule eller fjerne denne før levering (Skip, som er force game over)
@@ -211,9 +217,8 @@ public partial class TeltBattle : Node2D
 
         _continueButton.Pressed += () =>
         {
-            var returnPath = TeltBattleConfig.Instance.ReturnScenePath;
-            if (!string.IsNullOrEmpty(returnPath))
-                SceneManager.Instance?.ChangeSceneAsync(returnPath);
+            if (!string.IsNullOrEmpty(ReturnScenePath))
+                SceneManager.Instance?.ChangeSceneAsync(ReturnScenePath);
             else
                 GD.PrintErr("[TELT] Ingen ReturnScenePath satt!");
         };
@@ -1491,7 +1496,7 @@ public partial class TeltBattle : Node2D
 
         UpdateSlotVisuals();
 
-        var boss = TeltBattleConfig.Instance?.CurrentBoss;
+        var boss = CurrentBossData;
         var npc = TeltBattleConfig.Instance?.CurrentNPC;
         bool playerWon = winner == GameManager.TurnOwner.Player;
 

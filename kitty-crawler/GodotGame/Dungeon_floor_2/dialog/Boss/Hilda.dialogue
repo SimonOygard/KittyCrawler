@@ -1,0 +1,36 @@
+~ start
+Hilda: *sniff sniff*
+The large ogre looks at you as she sniffs the air. Her face cracks into a sly grin.
+Hilda: Looks like we're having cat for dinner tonight!
+She licks her lips and you suddenly feel that you can relate to how a can of tuna feels when you look at it.
+- I'm here because Mio was worried about you! Don't eat me please.
+    do WorldDialogueManager.MarkBossInteracted()
+    Hilda: Mio huh? Very well. Let's play a game. If you lose you will be my dinner!
+    do WorldDialogueManager.StartBossBattle()
+    => END
+- Ehm no! Actually I'm expired! I will see if I can go find you a fresh meal.
+    do WorldDialogueManager.MarkBossInteracted()
+    Hilda: Hmmph. Fine.
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ BackForMore
+Hilda: Back again little morsel?
+- Yes, but not as dinner! Let's play!
+    do WorldDialogueManager.MarkBossInteracted()
+    do WorldDialogueManager.StartBossBattle()
+	 => END
+- My name isn't morsel.
+    do WorldDialogueManager.MarkBossInteracted()
+	Hilda: Oh...
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ PostBattle
+Hilda: Well guess I'll have to order takeaway tongiht.
+She harrumphs but you can tell she is also happy you bested her.
+You hear a click and a rumbling in the distance as if a path has opened.
+Hilda: Here, have this! Hopefully it's useful to you.
+"You received [color=yellow]Hilda[/color]'s card."
+do WorldDialogueManager.EndDialogue()
+=> END

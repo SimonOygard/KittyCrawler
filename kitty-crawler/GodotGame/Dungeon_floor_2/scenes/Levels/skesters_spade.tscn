@@ -3,11 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://d44dlueljh4h" path="res://Dungeon_floor_2/scenes/Maps/spade_map.tscn" id="1_uur3i"]
 [ext_resource type="PackedScene" uid="uid://bao4jykmd4cg0" path="res://scenes/bosses/eve.tscn" id="2_ik45p"]
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="3_umt08"]
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="3_xqt5p"]
 [ext_resource type="Script" uid="uid://bw6ou6msfjtmo" path="res://scripts/MimicManager.cs" id="4_2ouvy"]
+[ext_resource type="Resource" uid="uid://ci1cqcbbyrh03" path="res://Dungeon_floor_2/dialog/Boss/Eve.dialogue" id="4_4n71b"]
 [ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://scenes/Chest.tscn" id="5_e6egn"]
+[ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="5_o84xn"]
 [ext_resource type="PackedScene" uid="uid://3dhhvcsjt4v6" path="res://scenes/teleport.tscn" id="6_xqt5p"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="7_ik45p"]
 [ext_resource type="PackedScene" uid="uid://bxppt2lchtfiy" path="res://Dungeon_floor_2/scenes/PuzzleBoss.tscn" id="8_umt08"]
+
+[sub_resource type="Resource" id="Resource_vavio"]
+script = ExtResource("5_o84xn")
+BossName = "Eve"
+NpcId = "eve"
+DialogueResource = ExtResource("4_4n71b")
+metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"
 
 [node name="SkestersSpadeLevel" type="Node2D" unique_id=1768466649]
 
@@ -17,6 +27,7 @@
 position = Vector2(400, -96.000015)
 rotation = 0.012246307
 scale = Vector2(1.5, 1.5)
+BossData = SubResource("Resource_vavio")
 
 [node name="CharacterBody2D" parent="." unique_id=1493943995 instance=ExtResource("3_umt08")]
 position = Vector2(402, 386)
