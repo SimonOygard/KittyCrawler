@@ -7,17 +7,20 @@
 [ext_resource type="Resource" uid="uid://boqidqeaykju1" path="res://TELT/Resources/Cards/Rare_Hilda.tres" id="5_hoqgj"]
 [ext_resource type="Resource" uid="uid://d1k4aps3g1bmh" path="res://TELT/Resources/Cards/Rare_Mio.tres" id="6_p0njt"]
 [ext_resource type="Resource" uid="uid://dpb5wbt4fo4nt" path="res://TELT/Resources/Cards/Uncommon_Cat.tres" id="7_hycne"]
+[ext_resource type="Resource" uid="uid://cru35mgvv1jxr" path="res://TELT/Resources/Cards/Uncommon_EyeofHope.tres" id="8_gjdpn"]
 [ext_resource type="Resource" uid="uid://cm1bg71whb43d" path="res://TELT/Resources/Cards/Uncommon_Horror.tres" id="8_mt1qu"]
+[ext_resource type="Resource" uid="uid://bgm25fnye48j0" path="res://TELT/Resources/Cards/Uncommon_EyeofDespair.tres" id="9_hoqgj"]
 [ext_resource type="Resource" uid="uid://dmikcccglhcfo" path="res://TELT/Resources/Cards/Common_Watcher.tres" id="9_lbwus"]
 [ext_resource type="Resource" uid="uid://cxtb07ekdfxan" path="res://TELT/Resources/Cards/Common_Wraith.tres" id="10_6bmf1"]
 [ext_resource type="Resource" uid="uid://bvg7uchylhl30" path="res://TELT/Resources/Cards/Common_Elemental.tres" id="11_yhru7"]
 [ext_resource type="Resource" uid="uid://cnq2f1ospem8p" path="res://TELT/Resources/Cards/Common_Skeleton.tres" id="12_buflu"]
+[ext_resource type="Resource" uid="uid://bbjpsi1og3lje" path="res://TELT/Resources/Cards/Common_Bat.tres" id="12_p0njt"]
 [ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="13_si7n7"]
 
 [resource]
 script = ExtResource("13_si7n7")
 BossName = "Skester"
 NpcId = "skester"
-Deck = Array[ExtResource("1_07v2a")]([ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("3_u4cog"), ExtResource("4_gjdpn"), ExtResource("5_hoqgj"), ExtResource("6_p0njt"), ExtResource("7_hycne"), ExtResource("8_mt1qu"), ExtResource("8_mt1qu"), ExtResource("8_mt1qu"), ExtResource("8_mt1qu"), ExtResource("9_lbwus"), ExtResource("9_lbwus"), ExtResource("10_6bmf1"), ExtResource("10_6bmf1"), ExtResource("11_yhru7"), ExtResource("11_yhru7"), ExtResource("12_buflu"), ExtResource("12_buflu"), ExtResource("12_buflu"), ExtResource("12_buflu"), ExtResource("12_buflu")])
+Deck = Array[ExtResource("1_07v2a")]([ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("2_c0rki"), ExtResource("3_u4cog"), ExtResource("4_gjdpn"), ExtResource("5_hoqgj"), ExtResource("6_p0njt"), ExtResource("7_hycne"), ExtResource("8_gjdpn"), ExtResource("9_hoqgj"), ExtResource("8_mt1qu"), ExtResource("8_mt1qu"), ExtResource("9_lbwus"), ExtResource("9_lbwus"), ExtResource("12_p0njt"), ExtResource("10_6bmf1"), ExtResource("11_yhru7"), ExtResource("11_yhru7"), ExtResource("12_buflu"), ExtResource("12_buflu"), ExtResource("12_buflu"), ExtResource("12_buflu"), ExtResource("12_buflu")])
 RewardCard = ExtResource("2_c0rki")
 metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://5a1q0pjxftxb"]
+
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="1_jupbf"]
+[ext_resource type="Resource" uid="uid://cnq2f1ospem8p" path="res://TELT/Resources/Cards/Common_Skeleton.tres" id="2_7exou"]
+[ext_resource type="Resource" uid="uid://bbjpsi1og3lje" path="res://TELT/Resources/Cards/Common_Bat.tres" id="3_c1tmv"]
+[ext_resource type="Resource" uid="uid://bvg7uchylhl30" path="res://TELT/Resources/Cards/Common_Elemental.tres" id="4_w8sep"]
+[ext_resource type="Resource" uid="uid://cxtb07ekdfxan" path="res://TELT/Resources/Cards/Common_Wraith.tres" id="5_v8tyn"]
+[ext_resource type="Resource" uid="uid://5s8sks5iwt1x" path="res://TELT/Resources/Cards/Uncommon_Angel.tres" id="6_2c324"]
+[ext_resource type="Resource" uid="uid://b45apbi55l6qx" path="res://TELT/Resources/Cards/Uncommon_Golem.tres" id="7_yblfi"]
+[ext_resource type="Resource" uid="uid://cm1bg71whb43d" path="res://TELT/Resources/Cards/Uncommon_Horror.tres" id="8_vxd8w"]
+[ext_resource type="Script" uid="uid://d2sqnr7an36io" path="res://TELT/Resources/NPCData.cs" id="9_up6ir"]
+
+[resource]
+script = ExtResource("9_up6ir")
+NPCName = "Skven"
+NpcId = "skven"
+Deck = Array[ExtResource("1_jupbf")]([ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("2_7exou"), ExtResource("3_c1tmv"), ExtResource("3_c1tmv"), ExtResource("3_c1tmv"), ExtResource("3_c1tmv"), ExtResource("4_w8sep"), ExtResource("4_w8sep"), ExtResource("4_w8sep"), ExtResource("5_v8tyn"), ExtResource("5_v8tyn"), ExtResource("6_2c324"), ExtResource("6_2c324"), ExtResource("7_yblfi"), ExtResource("6_2c324"), ExtResource("8_vxd8w")])
+RewardCard = ExtResource("6_2c324")
+metadata/_custom_type_script = "uid://d2sqnr7an36io"

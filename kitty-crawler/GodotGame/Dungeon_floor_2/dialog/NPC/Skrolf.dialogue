@@ -1,0 +1,13 @@
+~ start
+Skrolf: Hello! I am Skrolf. Tent?
+- Yes
+    do StartBattle()
+    => END
+- No
+    Skrolf: That means you loose.
+    => END
+	
+~ PostBattle
+Skrolf: If I just had drawn ONE more card...
+You received a card "[color=#808080]Druid[/color]".
+=> END

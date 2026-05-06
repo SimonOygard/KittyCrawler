@@ -310,4 +310,11 @@ public partial class GameManager : Node
     {
         EmitSignal(SignalName.OpponentDiscardRequested, isPlayer);
     }
+
+    // Skip-knappen
+    public void ForceGameOver(TurnOwner winner)
+    {
+        CurrentPhase = GamePhase.GameOver;
+        EmitSignal(SignalName.GameOver, (int)winner, 0, 1);
+    }
 }

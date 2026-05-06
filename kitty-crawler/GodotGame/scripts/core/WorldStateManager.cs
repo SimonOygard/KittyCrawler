@@ -7,9 +7,19 @@ using System.Text.Json;
 
 public partial class WorldStateManager : Node
 {
-    public WorldStateManager? Instance { get; private set; }
+    public static WorldStateManager? Instance { get; private set; }
+
+    public GameMode Mode { get; private set; } = GameMode.Gameplay;
+
+    public bool PlayerCanAct => Mode == GameMode.Gameplay;
+
+    public bool GameEnded { get; set; } = false;
+
+    public bool HasTeleported { get; set; } = false;
 
     public Vector2 PlayerPosition { get; set; }
+
+    public Vector2? ReturnPlayerPosition { get; private set; }
 
     public string UserName { get; set; } = string.Empty;
 
@@ -27,6 +37,10 @@ public partial class WorldStateManager : Node
     public override void _Ready()
 	{
         Instance = this;
+    }
+    public void SetMode(GameMode mode)
+    {
+        Mode = mode;
     }
 
     public void SaveGame()
@@ -47,16 +61,25 @@ public partial class WorldStateManager : Node
         };
 
         file.StoreString(Json.Stringify(data));
+        GD.Print($"Saving: score={Score}, time={TimeSeconds}");
     }
 
     public void LoadGame()
     {
         var savePath = "user://savegame.json";
         if (!FileAccess.FileExists(savePath)) return;
+
         using var file = FileAccess.Open(savePath, FileAccess.ModeFlags.Read);
         var json = file.GetAsText();
 
-        // JsonSerializer.Deserialize<WorldStateManager>(json);
+        var data = Json.ParseString(json).AsGodotDictionary();
+
+        Score = (int)data["score"];
+        Health = (int)data["health"];
+        TimeSeconds = (float)data["timeSeconds"];
+        UserName = (string)data["userName"];
+        GD.Print($"Loaded save: score={Score}, time={TimeSeconds}");
+
     }
 
 
@@ -66,29 +89,45 @@ public partial class WorldStateManager : Node
         if (!BossesWon.Contains(npcId))
         {
             BossesWon.Add(npcId);
-            SaveGame(); // Lagre spilltilstanden etter å ha beseiret en NPC
+
+            if (!GameEnded)
+                SaveGame();
         }
     }
+
 
     public void OnCardAdded(string cardId)
     {
         if (!CardsOwned.Contains(cardId))
         {
             CardsOwned.Add(cardId);
-            SaveGame(); // Lagre spilltilstanden etter å ha fått et nytt kort
+
+            if (!GameEnded)
+                SaveGame();
         }
     }
 
-   public void OnScoreUpdated(int newScore)
+    public void OnScoreUpdated(int newScore)
     {
-        Score = newScore;
-        SaveGame(); // Lagre spilltilstanden etter at poengsummen har blitt oppdatert
+        if (GameEnded) return;
+
+        Score += newScore;
+        SaveGame();
     }
 
+    public void OnTimeUpdated(float newTimeSeconds)
+    {
+        if (GameEnded) return;
+
+        TimeSeconds = newTimeSeconds;
+        SaveGame();
+    }
     public void OnHealthUpdated(int newHealth)
     {
+        if (GameEnded) return;
+
         Health = newHealth;
-        SaveGame(); // Lagre spilltilstanden etter at helsen har blitt oppdatert
+        SaveGame();
     }
 
     public void RegisterSaveEvents(TeltBattle battle)
@@ -99,15 +138,43 @@ public partial class WorldStateManager : Node
         // battle.HealthUpdated += OnHealthUpdated;
     }
 
-    public void OnTimeUpdated(float newTimeSeconds)
-    {
-        TimeSeconds = newTimeSeconds;
-        SaveGame();
-    }
-
     public override void _ExitTree()
     {
         Instance = null;
         base._ExitTree();
+    }
+
+    public void SetReturnPlayerPosition(Vector2 position)
+    {
+        ReturnPlayerPosition = position;
+    }
+
+    public bool TryConsumeReturnPlayerPosition(out Vector2 position)
+    {
+        if (ReturnPlayerPosition.HasValue && !HasTeleported)
+        {
+            position = ReturnPlayerPosition.Value;
+            GD.Print($"return position is {position}");
+            ReturnPlayerPosition = null; // prevents applying it on normal save/load
+            return true;
+        }
+        HasTeleported = false;
+        position = Vector2.Zero;
+        GD.Print($"return position is {position} - {ReturnPlayerPosition.HasValue}");
+        return false;
+    }
+
+    public void WorldStateReset()
+    {
+        Score = 0;
+        Health = 0;
+        TimeSeconds = 0;
+        UserName = "";
+    }
+
+    public enum GameMode
+    {
+        Gameplay,
+        Dialogue,
     }
 }

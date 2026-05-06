@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://duacjydavwxed"]
+
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="1_nsdrl"]
+[ext_resource type="Resource" uid="uid://cnq2f1ospem8p" path="res://TELT/Resources/Cards/Common_Skeleton.tres" id="2_lta3i"]
+[ext_resource type="Resource" uid="uid://bbjpsi1og3lje" path="res://TELT/Resources/Cards/Common_Bat.tres" id="3_qw028"]
+[ext_resource type="Resource" uid="uid://bvg7uchylhl30" path="res://TELT/Resources/Cards/Common_Elemental.tres" id="4_vvlgn"]
+[ext_resource type="Resource" uid="uid://cxtb07ekdfxan" path="res://TELT/Resources/Cards/Common_Wraith.tres" id="5_ro6rw"]
+[ext_resource type="Resource" uid="uid://b45apbi55l6qx" path="res://TELT/Resources/Cards/Uncommon_Golem.tres" id="6_yo8s2"]
+[ext_resource type="Resource" uid="uid://brxvt3x7w7m6p" path="res://TELT/Resources/Cards/Uncommon_Sludge.tres" id="7_ooqlr"]
+[ext_resource type="Resource" uid="uid://cm1bg71whb43d" path="res://TELT/Resources/Cards/Uncommon_Horror.tres" id="8_sdscg"]
+[ext_resource type="Script" uid="uid://d2sqnr7an36io" path="res://TELT/Resources/NPCData.cs" id="9_tuuo4"]
+
+[resource]
+script = ExtResource("9_tuuo4")
+NPCName = "Skoline"
+NpcId = "skoline"
+Deck = Array[ExtResource("1_nsdrl")]([ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("2_lta3i"), ExtResource("3_qw028"), ExtResource("3_qw028"), ExtResource("3_qw028"), ExtResource("3_qw028"), ExtResource("4_vvlgn"), ExtResource("4_vvlgn"), ExtResource("4_vvlgn"), ExtResource("5_ro6rw"), ExtResource("5_ro6rw"), ExtResource("6_yo8s2"), ExtResource("6_yo8s2"), ExtResource("6_yo8s2"), ExtResource("7_ooqlr"), ExtResource("8_sdscg")])
+RewardCard = ExtResource("6_yo8s2")
+metadata/_custom_type_script = "uid://d2sqnr7an36io"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://di6bgf640to0d"]
+
+[ext_resource type="Script" uid="uid://bic8u8tbeisc8" path="res://TELT/Scripts/Cards/CardData.cs" id="1_n0gx2"]
+[ext_resource type="Resource" uid="uid://cnq2f1ospem8p" path="res://TELT/Resources/Cards/Common_Skeleton.tres" id="2_cfusu"]
+[ext_resource type="Resource" uid="uid://bbjpsi1og3lje" path="res://TELT/Resources/Cards/Common_Bat.tres" id="3_qi7i6"]
+[ext_resource type="Resource" uid="uid://bvg7uchylhl30" path="res://TELT/Resources/Cards/Common_Elemental.tres" id="4_m1pkd"]
+[ext_resource type="Resource" uid="uid://cxtb07ekdfxan" path="res://TELT/Resources/Cards/Common_Wraith.tres" id="5_cisvk"]
+[ext_resource type="Resource" uid="uid://dnvgd3c1a4k0t" path="res://TELT/Resources/Cards/Uncommon_Demon.tres" id="6_w0tye"]
+[ext_resource type="Resource" uid="uid://brxvt3x7w7m6p" path="res://TELT/Resources/Cards/Uncommon_Sludge.tres" id="7_4beui"]
+[ext_resource type="Resource" uid="uid://cm1bg71whb43d" path="res://TELT/Resources/Cards/Uncommon_Horror.tres" id="8_ap5nn"]
+[ext_resource type="Script" uid="uid://d2sqnr7an36io" path="res://TELT/Resources/NPCData.cs" id="9_bxoq5"]
+[ext_resource type="Resource" uid="uid://b0blolq32skeh" path="res://TELT/Resources/Cards/Uncommon_Druid.tres" id="9_nqh3s"]
+
+[resource]
+script = ExtResource("9_bxoq5")
+NPCName = "Skyvar"
+NpcId = "skyvar"
+Deck = Array[ExtResource("1_n0gx2")]([ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("2_cfusu"), ExtResource("3_qi7i6"), ExtResource("3_qi7i6"), ExtResource("3_qi7i6"), ExtResource("3_qi7i6"), ExtResource("4_m1pkd"), ExtResource("4_m1pkd"), ExtResource("4_m1pkd"), ExtResource("5_cisvk"), ExtResource("5_cisvk"), ExtResource("6_w0tye"), ExtResource("6_w0tye"), ExtResource("6_w0tye"), ExtResource("7_4beui"), ExtResource("8_ap5nn")])
+RewardCard = ExtResource("9_nqh3s")
+metadata/_custom_type_script = "uid://d2sqnr7an36io"

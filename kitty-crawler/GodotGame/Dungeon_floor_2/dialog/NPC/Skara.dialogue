@@ -1,0 +1,13 @@
+~ start
+Skara: Hey kitty kitty. Want to throw some cards?
+- Yes
+    do StartBattle()
+    => END
+- No
+    Skara: Oh...
+    => END
+	
+~ PostBattle
+Skara: I played the wrong card on accident...
+You received a card "[color=#808080]Eye of Despair[/color]".
+=> END

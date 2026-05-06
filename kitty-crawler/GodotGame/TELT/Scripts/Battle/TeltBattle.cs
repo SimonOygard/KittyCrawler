@@ -57,6 +57,8 @@ public partial class TeltBattle : Node2D
     [Export] private Button _continueButton;
     [Export] private AnimatedSprite2D _diceVisual;
     [Export] private Label _diceOddEvenLabel;
+    [Export] private Button _exitBattleButton;
+    [Export] private Button _skipButton;
 
 
     // ── Kortscene ─────────────────────────────────────────────────────
@@ -130,7 +132,7 @@ public partial class TeltBattle : Node2D
         {
             if (isPlayer) // Spiller spilte kortet → motstander discader
             {
-                GetTree().CreateTimer(0.4f).Timeout += () => // ← delay
+                GetTree().CreateTimer(0.6f).Timeout += () => // ← delay
                 {
                     var hand = _enemy.GetHand();
                     if (hand.Count > 0)
@@ -162,7 +164,7 @@ public partial class TeltBattle : Node2D
             if (!_waitingForTarget && !_waitingForHandTarget)
                 _combatButton.Visible = true;
         };
-        _gameManager.BoardUpdated += () => // ← her
+        _gameManager.BoardUpdated += () =>
         {
             UpdateSlotVisuals();
             UpdateUI();
@@ -181,6 +183,21 @@ public partial class TeltBattle : Node2D
         _diceVisual.Play("DiceIdle");
 
         // Koble knapper
+        _exitBattleButton.Pressed += () =>
+        {
+            var returnPath = TeltBattleConfig.Instance.ReturnScenePath;
+            if (!string.IsNullOrEmpty(returnPath))
+                SceneManager.Instance?.ChangeSceneAsync(returnPath);
+            else
+                GetTree().Quit();
+        };
+
+        // Vurderer å skjule eller fjerne denne før levering (Skip, som er force game over)
+        _skipButton.Pressed += () =>
+        {
+            _gameManager.ForceGameOver(GameManager.TurnOwner.Player);
+        };
+
         _oddButton.Pressed += () =>
         {
             GD.Print("Odd trykket!");
@@ -308,42 +325,48 @@ public partial class TeltBattle : Node2D
     private void SetupDecks()
     {
         var boss = TeltBattleConfig.Instance?.CurrentBoss;
+        var npc = TeltBattleConfig.Instance?.CurrentNPC;
 
-        var startDeck = new List<CardData>
+        List<CardData> playerDeck;
+        if (PlayerData.SavedDeck.Count > 0)
         {
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Bat.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Elemental.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Goblin.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Imp.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Minotaur.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Skeleton.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Spider.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Snake.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Tortoise.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Watcher.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Common_Wraith.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Angel.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Cat.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Demon.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Drake.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Druid.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Dryad.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_EyeofHope.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_EyeofDespair.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Golem.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Horror.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Uncommon_Sludge.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Croxy.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_PuzzleMaster.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Hilda.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Eve.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Skester.tres")).Duplicate() as CardData,
-            (GD.Load<CardData>("res://TELT/Resources/Cards/Rare_Mio.tres")).Duplicate() as CardData,
+            playerDeck = PlayerData.SavedDeck
+                .Select(path => GD.Load<CardData>(path).Duplicate() as CardData)
+                .ToList();
+        }
+        else
+        {
+            playerDeck = new List<CardData>
+            {
+                (GD.Load<CardData>(CardLibrary.Bat)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Bat)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Bat)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Elemental)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Elemental)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Goblin)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Goblin)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Imp)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Imp)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Minotaur)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Minotaur)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Skeleton)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Skeleton)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Skeleton)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Snake)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Snake)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Spider)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Spider)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Tortoise)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Tortoise)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Watcher)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Watcher)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Wraith)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Yeti)).Duplicate() as CardData,
+                (GD.Load<CardData>(CardLibrary.Yeti)).Duplicate() as CardData,
+            };
+        }
 
-
-        };
-
-        _player.SetDeck(startDeck);
+        _player.SetDeck(playerDeck);
         _player.ShuffleDeck();
 
         if (boss != null && boss.Deck.Count > 0)
@@ -353,9 +376,16 @@ public partial class TeltBattle : Node2D
                 enemyDeck.Add(card.Duplicate() as CardData);
             _enemy.SetDeck(enemyDeck);
         }
+        else if (npc != null && npc.Deck.Count > 0) // ← legg til
+        {
+            var enemyDeck = new List<CardData>();
+            foreach (var card in npc.Deck)
+                enemyDeck.Add(card.Duplicate() as CardData);
+            _enemy.SetDeck(enemyDeck);
+        }
         else
         {
-            var enemyDeck = startDeck.ConvertAll(c => c.Duplicate() as CardData);
+            var enemyDeck = playerDeck.ConvertAll(c => c.Duplicate() as CardData);
             _enemy.SetDeck(enemyDeck);
         }
 
@@ -1333,7 +1363,7 @@ public partial class TeltBattle : Node2D
                                    && _battleMap.PlayerEmptySlotCount == 4
                                    && _battleMap.EnemyEmptySlotCount == 4;
 
-            float delay = isVeryFirstTurn ? 8f : 0.5f;
+            float delay = isVeryFirstTurn ? 6.2f : 0.5f;
 
             Callable.From(() =>
             {
@@ -1462,25 +1492,32 @@ public partial class TeltBattle : Node2D
         UpdateSlotVisuals();
 
         var boss = TeltBattleConfig.Instance?.CurrentBoss;
+        var npc = TeltBattleConfig.Instance?.CurrentNPC;
         bool playerWon = winner == GameManager.TurnOwner.Player;
 
         if (boss != null)
         {
             PlayerData.DefeatNpc(boss.NpcId, _enemy.TotalDamageReceived);
-
             if (playerWon && !PlayerData.HasReceivedCard(boss.NpcId))
-            {
-                PlayerData.GiveRewardCard(boss.NpcId);
-                EmitSignal(SignalName.CardReceived, boss.NpcId);
-            }
+                PlayerData.GiveRewardCard(boss.NpcId, boss.RewardCard != null ? boss.RewardCard.ResourcePath : "");
+        }
+        else if (npc != null)
+        {
+            PlayerData.DefeatNpc(npc.NpcId, _enemy.TotalDamageReceived);
+            if (playerWon && !PlayerData.HasReceivedCard(npc.NpcId))
+                PlayerData.GiveRewardCard(npc.NpcId, npc.RewardCard != null ? npc.RewardCard.ResourcePath : "");
+
         }
         else
         {
             // Fallback for testing uten config
             PlayerData.DefeatNpc("npc_goblin_king", _enemy.TotalDamageReceived);
         }
+        if (playerWon)
+            TeltBattleConfig.Instance.JustReturnedFromBattle = true;
+
         EmitSignal(SignalName.ScoreUpdated, _enemy.TotalDamageReceived);
-        EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? "npc_goblin_king");
+        EmitSignal(SignalName.NpcDefeated, boss?.NpcId ?? npc?.NpcId ?? "unknown");
 
         ShowGameOverScreen(winner, playerDamage, enemyDamage);
     }

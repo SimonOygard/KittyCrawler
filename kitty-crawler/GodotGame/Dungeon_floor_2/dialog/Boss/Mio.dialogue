@@ -1,0 +1,15 @@
+~ start
+Mio: What?
+Mio: .... a cat?
+Mio: Battle?
+- Yes
+    do StartBattle()
+    => END
+- No
+    Mio: Oh...
+    => END
+	
+~ PostBattle
+Mio: You have defeated me...
+"You received [color=yellow]Mio[/color]'s card."
+=> END

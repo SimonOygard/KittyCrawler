@@ -3,9 +3,12 @@ using System;
 
 public partial class TrapManager : Node
 {
-    // Called when the node enters the scene tree for the first time.
+    private WorldStateManager _worldStateManager;
+
     public override void _Ready()
     {
+        _worldStateManager = GetNode<WorldStateManager>("/root/WorldStateManager");
+
         var traps = GetTree().GetNodesInGroup("traps");
         GD.Print($"Found {traps.Count} nodes in group 'traps'");
 
@@ -19,31 +22,30 @@ public partial class TrapManager : Node
             GD.Print($"Found node in group 'traps': {node.Name} of type {node.GetType()}");
             if (node is SpikeTrap trap)
             {
-                //GD.Print($"SpikeTrap found: {trap.Name}");
-                //if (true)
-                //{
-                //    trap.IsArmed = true;
-                //    // logikk for å aktivere eller deaktivere feller basert på spillets tilstand kan legges her
-                //}
-                //else
-                //{
-                //    trap.IsArmed = false;
-                //}
+                trap.IsArmed = true;
+                CheckTrapStatus(trap);
             }
         }
 
-        // for testing randomly arm one trap
-
-        var rng = new RandomNumberGenerator();
-        rng.Randomize();
-
-
-        int index = rng.RandiRange(0, traps.Count - 1);
-
-        if (traps[index] is SpikeTrap chosenTrap)
+    }
+    private void CheckTrapStatus(SpikeTrap trap)
+    {
+        var parent = trap.GetParent();
+        
+        if (parent.Name == "HeartsTraps" && _worldStateManager.BossesWon.Contains("eve"))
         {
-            chosenTrap.IsArmed = true;
-            GD.Print($"Trap at index {index} is now armed");
+            GD.Print("Eve defeated disarming traps");
+            trap.IsArmed = false;
+        }
+        else if (parent.Name == "DiamondTraps" && _worldStateManager.BossesWon.Contains("mio"))
+        {
+            GD.Print("Mio defeated disarming traps");
+            trap.IsArmed = false;
+        }
+        else if (parent.Name == "SpadeTraps" && _worldStateManager.BossesWon.Contains("croxy")) //sjekk case sensitive og spelling
+        {
+            GD.Print("Croxy defeated disarming traps");
+            trap.IsArmed = false;
         }
 
     }

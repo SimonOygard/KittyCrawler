@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://duidj2rvs3imq"]
+
+[ext_resource type="Script" uid="uid://bcjrf6cwek3r0" path="res://scripts/UI/DeckEditorUI.cs" id="1_ggm8o"]
+[ext_resource type="PackedScene" uid="uid://b8qhcb74capxx" path="res://TELT/Scenes/CardButtonVisual.tscn" id="2_qwopv"]
+[ext_resource type="Texture2D" uid="uid://dx33l6d711vh6" path="res://TELT/Tilesets/DeckEditorBackground.png" id="3_eqqj4"]
+[ext_resource type="PackedScene" uid="uid://b7wu35ib6ov37" path="res://TELT/Scenes/CardVisual.tscn" id="3_mcyo7"]
+[ext_resource type="FontFile" uid="uid://b0b5y1ystn251" path="res://assets/Fonts/Pixelmax-Regular.otf" id="4_rvfsw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvfsw"]
+atlas = ExtResource("3_eqqj4")
+
+[node name="DeckEditor" type="CanvasLayer" unique_id=1533881802 node_paths=PackedStringArray("_deckGrid", "_inventoryGrid", "_deckCountLabel", "_saveDeckButton", "_closeButton", "_previewContainer", "_feedbackLabel")]
+script = ExtResource("1_ggm8o")
+_deckGrid = NodePath("MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel/VBoxContainer/ScrollContainer/DeckGrid")
+_inventoryGrid = NodePath("MarginContainer/VBoxContainer/Deck&InventoryContainer/InventoryPanel/VBoxContainer/ScrollContainer/InventoryGrid")
+_deckCountLabel = NodePath("MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel/VBoxContainer/HBoxContainer/DeckCountLabel")
+_saveDeckButton = NodePath("SaveDeckButton")
+_closeButton = NodePath("CloseButton")
+_cardButtonVisualScene = ExtResource("2_qwopv")
+_previewContainer = NodePath("Control")
+_cardVisualScene = ExtResource("3_mcyo7")
+_feedbackLabel = NodePath("SavedDeckLabel")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1087950151]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_rvfsw")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1164182707]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1008360552]
+layout_mode = 2
+
+[node name="Deck&InventoryContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1829162445]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="DeckPanel" type="Panel" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer" unique_id=346659420]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel" unique_id=800972661]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.025
+anchor_top = -0.012
+anchor_right = -0.025
+anchor_bottom = -0.012
+offset_left = 163.75
+offset_top = 156.29199
+offset_right = 573.75
+offset_bottom = 588.292
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel/VBoxContainer" unique_id=1559983190]
+layout_mode = 2
+
+[node name="DeckLabel" type="Label" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel/VBoxContainer/HBoxContainer" unique_id=978485450]
+layout_mode = 2
+text = "DECK"
+
+[node name="DeckCountLabel" type="Label" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel/VBoxContainer/HBoxContainer" unique_id=1360831209]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel/VBoxContainer" unique_id=1951003571]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DeckGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/DeckPanel/VBoxContainer/ScrollContainer" unique_id=1492804050]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="InventoryPanel" type="Panel" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer" unique_id=1594320565]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/InventoryPanel" unique_id=1768289459]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 148.0
+offset_right = 495.0
+offset_bottom = 580.0
+
+[node name="InventoryLabel" type="Label" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/InventoryPanel/VBoxContainer" unique_id=1490668380]
+layout_mode = 2
+text = "INVENTORY"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/InventoryPanel/VBoxContainer" unique_id=1290452057]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/Deck&InventoryContainer/InventoryPanel/VBoxContainer/ScrollContainer" unique_id=643362444]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1594258614]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="." unique_id=1186992473]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 574.0
+offset_top = 264.0
+offset_right = 702.0
+offset_bottom = 456.0
+
+[node name="RuleText25cards" type="Label" parent="." unique_id=447907769]
+offset_left = 248.0
+offset_top = 632.0
+offset_right = 433.0
+offset_bottom = 669.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.59607846)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 15
+text = "The deck must contain
+25 cards."
+horizontal_alignment = 1
+
+[node name="RuleTextMaxCopies" type="Label" parent="." unique_id=766754332]
+offset_left = 866.0
+offset_top = 620.0
+offset_right = 1008.0
+offset_bottom = 712.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.59607846)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("4_rvfsw")
+theme_override_font_sizes/font_size = 14
+text = "Max copies pr card
+Rare: 1
+Uncommons: 2
+Commons: 3
+"
+horizontal_alignment = 1
+
+[node name="SaveDeckButton" type="Button" parent="." unique_id=1999010546]
+offset_left = 463.0
+offset_top = 661.0
+offset_right = 573.0
+offset_bottom = 689.0
+text = "SAVE DECK"
+
+[node name="CloseButton" type="Button" parent="." unique_id=580813509]
+offset_left = 707.0
+offset_top = 661.0
+offset_right = 817.0
+offset_bottom = 689.0
+text = "CLOSE"
+
+[node name="SavedDeckLabel" type="Label" parent="." unique_id=1901578522]
+visible = false
+offset_left = 479.0
+offset_top = 539.0
+offset_right = 796.0
+offset_bottom = 581.0
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1

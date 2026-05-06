@@ -326,6 +326,48 @@ corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eats"]
+content_margin_top = 6.0
+bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6366"]
+content_margin_top = 6.0
+bg_color = Color(0.33955696, 0.26325625, 0.18702373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hc2kr"]
+content_margin_top = 6.0
+bg_color = Color(0.67218465, 0.5438142, 0.42684504, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xrjg"]
 content_margin_top = 6.0
 bg_color = Color(0.7019608, 0.57254905, 0.45490196, 1)
@@ -410,7 +452,7 @@ corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 corner_detail = 5
 
-[node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_continueButton", "_diceVisual", "_diceOddEvenLabel", "_background")]
+[node name="TeltBattle" type="Node2D" unique_id=1551717235 node_paths=PackedStringArray("_gameManager", "_battleMap", "_abilityResolver", "_player", "_enemy", "_enemyAI", "_playerSlotsContainer", "_enemySlotsContainer", "_handContainer", "_phaseLabel", "_playerDamageLabel", "_enemyDamageLabel", "_oddButton", "_evenButton", "_resultLabel", "_combatButton", "_nextMatchButton", "_diceRollOverlay", "_ui", "_enemyHandDisplay", "_playerDeckDisplay", "_deckCountLabel", "_discardPile", "_discardTopCard", "_discardSheet", "_discardGrid", "_closeDiscardButton", "_diceResultLabel", "_diceTitle", "_druidChoicePanel", "_plusThreeButton", "_minusThreeButton", "_enemyDeckDisplay", "_enemyDeckCountLabel", "_enemyDiscardPile", "_enemyDiscardSheet", "_enemyDiscardGrid", "_enemyCloseDiscardButton", "_gameOverScreen", "_gameOverResultLabel", "_gameOverScoreLabel", "_rematchButton", "_continueButton", "_diceVisual", "_diceOddEvenLabel", "_exitBattleButton", "_skipButton", "_background")]
 script = ExtResource("1_fqpg2")
 _gameManager = NodePath("GameManager")
 _battleMap = NodePath("BattleMap")
@@ -458,6 +500,8 @@ _rematchButton = NodePath("GameOverScreen/RematchButton")
 _continueButton = NodePath("GameOverScreen/ContinueButton")
 _diceVisual = NodePath("DiceRollOverlay/DiceVisual")
 _diceOddEvenLabel = NodePath("DiceRollOverlay/DiceOddEvenLabel")
+_exitBattleButton = NodePath("UI/ExitGameButton")
+_skipButton = NodePath("UI/SkipForceWinButton")
 _cardVisualScene = ExtResource("2_nncip")
 _background = NodePath("Background")
 _basicBackground = ExtResource("4_1gpw6")
@@ -868,6 +912,24 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pk2cw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cmcdp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2dnx3")
 text = "-3"
+
+[node name="ExitGameButton" type="Button" parent="UI" unique_id=651578284]
+offset_left = 1120.0
+offset_top = 461.0
+offset_right = 1271.0
+offset_bottom = 521.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_7eats")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a6366")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hc2kr")
+text = "Exit Battle"
+
+[node name="SkipForceWinButton" type="Button" parent="UI" unique_id=1012029171]
+offset_left = 3.0
+offset_top = 379.0
+offset_right = 192.0
+offset_bottom = 455.0
+theme_override_font_sizes/font_size = 39
+text = "AUTO WIN"
 
 [node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=188902222]
 
