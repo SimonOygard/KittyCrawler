@@ -40,7 +40,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_8rf07")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -55,8 +55,8 @@ shape = SubResource("RectangleShape2D_xkcc4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1887095717]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_vjf08")
-autoplay = "default"
-frame_progress = 0.4628865
+animation = &"idle"
+autoplay = "idle"
 
 [node name="LevelTransition" type="Node" parent="." unique_id=811000798]
 script = ExtResource("3_66vof")

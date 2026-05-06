@@ -37,7 +37,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1pfe7")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -50,8 +50,8 @@ _bossData = ExtResource("2_e2efe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1474759555]
 sprite_frames = SubResource("SpriteFrames_87vvc")
-autoplay = "default"
-frame_progress = 0.44319516
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=797873998]
 position = Vector2(0, 11)
