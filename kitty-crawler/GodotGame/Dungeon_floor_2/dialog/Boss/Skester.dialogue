@@ -1,0 +1,34 @@
+~ start
+Skester: [wave]Heheheehe![/wave]
+The Jester in front of you giggles as he dances in front of you, jumping from one leg to another.
+Skester: You are quite resourceful! I'm glad you made it all this way!
+
+- I have freed the residents of this dungeon from your evil grasp!
+    do WorldDialogueManager.MarkBossInteracted()
+    Skester: I'm not evil! I'm just funny! [wave]Heheheehe![/wave] 
+	Skester: But have you ever seen a jester fight? [wave]Heheheehe![/wave]
+    do WorldDialogueManager.StartBossBattle()
+    => END
+- It's not funny. I'll be taking my leave now.
+    do WorldDialogueManager.MarkBossInteracted()
+    Skester: [wave]Heheheehe![/wave]
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ BackForMore
+Skester: There you are again! Let's play! [wave]Heheheehe![/wave]
+- Bring it on!
+    do WorldDialogueManager.MarkBossInteracted()
+    do WorldDialogueManager.StartBossBattle()
+	 => END
+- What? No! I have better things to do.
+    do WorldDialogueManager.MarkBossInteracted()
+	Skester: Awww... [wave]Heheheehe![/wave]
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ PostBattle
+Suddenly Skester disappears in a big puff og smoke. You are left with the sense it's not the last you'll see of him.
+Where the Jester once stood a portal has appeared. Maybe this is the exit?
+do WorldDialogueManager.EndDialogue()
+=> END

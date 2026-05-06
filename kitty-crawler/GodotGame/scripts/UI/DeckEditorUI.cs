@@ -62,7 +62,7 @@ public partial class DeckEditorUI : CanvasLayer
         foreach (var cardPath in _inventory)
             AddCardEntry(_inventoryGrid, cardPath, false);
 
-        _deckCountLabel.Text = $"{_currentDeck.Count}/29";
+        _deckCountLabel.Text = $"{_currentDeck.Count}/25";
     }
 
     private void AddCardEntry(GridContainer grid, string cardPath, bool isInDeck)

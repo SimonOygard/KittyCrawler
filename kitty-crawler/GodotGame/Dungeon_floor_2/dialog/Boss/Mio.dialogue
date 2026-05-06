@@ -1,15 +1,37 @@
 ~ start
 Mio: What?
 Mio: .... a cat?
-Mio: Battle?
-- Yes
-    do StartBattle()
+Mio: Welcome little cat.
+You can tell the giant minotaur looks sad.
+Mio: Oh.. That... Well recently our dungeon has been infested by an evil entity named Skester.
+Mio: He has corrupted my friends and I miss playing Telt with them so dearly.
+- I can help
+    do WorldDialogueManager.MarkBossInteracted()
+    Mio: Oh that would be great! Let me teach you the rules of our card game Telt.
+    do WorldDialogueManager.StartBossBattle()
     => END
-- No
+- That doesn't sound like my problem.
+    do WorldDialogueManager.MarkBossInteracted()
     Mio: Oh...
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ BackForMore
+Mio: Are you ready to learn Telt now?
+- Yes
+    do WorldDialogueManager.MarkBossInteracted()
+    do WorldDialogueManager.StartBossBattle()
+	 => END
+- No
+    do WorldDialogueManager.MarkBossInteracted()
+	Mio: Oh...
+    do WorldDialogueManager.EndDialogue()
     => END
 	
 ~ PostBattle
-Mio: You have defeated me...
+Mio: Good job! Now please go and help my friends.
+You hear a click and a rumbling in the distance as if a path has opened.
+Mio: Here, take this. It can help you on your journey.
 "You received [color=yellow]Mio[/color]'s card."
+do WorldDialogueManager.EndDialogue()
 => END

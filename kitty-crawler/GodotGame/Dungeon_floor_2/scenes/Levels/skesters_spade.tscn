@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d44dlueljh4h" path="res://Dungeon_floor_2/scenes/Maps/spade_map.tscn" id="1_uur3i"]
 [ext_resource type="PackedScene" uid="uid://bao4jykmd4cg0" path="res://scenes/bosses/eve.tscn" id="2_ik45p"]
+[ext_resource type="Resource" uid="uid://dm4cp2mc13ruc" path="res://TELT/Resources/Bosses/eve.tres" id="3_2ouvy"]
 [ext_resource type="PackedScene" uid="uid://dj0p2c5mpm834" path="res://scenes/PlayerCharacter.tscn" id="3_umt08"]
 [ext_resource type="Script" uid="uid://bw6ou6msfjtmo" path="res://scripts/MimicManager.cs" id="4_2ouvy"]
 [ext_resource type="PackedScene" uid="uid://cosh0ap1plum3" path="res://scenes/Chest.tscn" id="5_e6egn"]
@@ -17,6 +18,7 @@
 position = Vector2(400, -96.000015)
 rotation = 0.012246307
 scale = Vector2(1.5, 1.5)
+BossData = ExtResource("3_2ouvy")
 
 [node name="CharacterBody2D" parent="." unique_id=1493943995 instance=ExtResource("3_umt08")]
 position = Vector2(402, 386)

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://7dn5mi5678ew"
+path="res://.godot/imported/Croxy.dialogue-4470124a4f9f82f589d947585d002be2.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/Boss/Croxy.dialogue"
+dest_files=["res://.godot/imported/Croxy.dialogue-4470124a4f9f82f589d947585d002be2.tres"]
+
+[params]
+
+defaults=true

@@ -20,15 +20,18 @@ public partial class SceneManager : Node
     public string CurrentLevelPath { get; private set; } = "";
     public string PreviousLevelPath { get; private set; } = "";
     public string CurrentBossName { get; private set; } = "";
+    public BossData CurrentBossData { get; private set; }
 
     private bool _isChangingScene = false;
 
     private const string _mainGameScenePath = "res://scenes/MainMenu/MainScene.tscn";
+    private const string _cardBattleScenePath = "res://TELT/Scenes/TeltBattle.tscn";
 
     public override void _Ready()
 	{
         Instance = this;
-	}
+
+    }
     public void GameOver()
     {
         EmitSignal(SignalName.GameOverRequested);
@@ -99,7 +102,20 @@ public partial class SceneManager : Node
             _isChangingScene = false;
         }
     }
-   
+    public async void OnDialogueBattleRequested(BossData bossData)
+    {
+        if (bossData == null)
+        {
+            GD.PushError("SceneManager received null BossData.");
+            return;
+        }
+
+        CurrentBossData = bossData;
+        CurrentBossName = bossData.NpcId;
+
+        await ChangeSceneAsync(_cardBattleScenePath, TransitionType.Battle, bossData.NpcId);
+    }
+
     public void UnloadCurrentLevel()
     {
         var old = GetTree().CurrentScene;
@@ -148,15 +164,15 @@ public partial class SceneManager : Node
         switch (type)
         {
             case TransitionType.Battle:
-                if (instance is BattleScene battle)
+                if (instance is TeltBattle battle)
                 {
-                    battle.EnemyName = objectName;
+                    battle.CurrentBossData = CurrentBossData;
                     battle.ReturnScenePath = GetTree().CurrentScene?.SceneFilePath ?? "";
-                    GD.Print("Enemy name assigned");
+                    GD.Print($"Boss battle assigned: {CurrentBossData?.BossName}");
                 }
                 else
                 {
-                    GD.PrintErr("Transition type is Battle, but scene is not a BattleScene.");
+                    GD.PrintErr("Transition type is Battle, but scene is not a TeltBattle.");
                 }
                 break;
 

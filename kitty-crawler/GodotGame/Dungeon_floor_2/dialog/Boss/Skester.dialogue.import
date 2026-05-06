@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://nwnl3n8snwvt"
+path="res://.godot/imported/Skester.dialogue-923306aaf4d9e648c5d51f3b57073fd4.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/Boss/Skester.dialogue"
+dest_files=["res://.godot/imported/Skester.dialogue-923306aaf4d9e648c5d51f3b57073fd4.tres"]
+
+[params]
+
+defaults=true

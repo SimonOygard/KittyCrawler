@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://chnmxj8nffc8y"
+path="res://.godot/imported/Hilda.dialogue-332e21b5e5dcd364cbb6622f8e13ce2d.tres"
+
+[deps]
+
+source_file="res://Dungeon_floor_2/dialog/Boss/Hilda.dialogue"
+dest_files=["res://.godot/imported/Hilda.dialogue-332e21b5e5dcd364cbb6622f8e13ce2d.tres"]
+
+[params]
+
+defaults=true

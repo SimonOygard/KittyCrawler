@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://cxtb07ekdfxan" path="res://TELT/Resources/Cards/Common_Wraith.tres" id="9_4g3i3"]
 [ext_resource type="Resource" uid="uid://bvt4xcl0yp4xw" path="res://TELT/Resources/Cards/Rare_Eve.tres" id="10_llpn4"]
 [ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="11_t0kr6"]
+[ext_resource type="Resource" uid="uid://ci1cqcbbyrh03" path="res://Dungeon_floor_2/dialog/Boss/Eve.dialogue" id="14_nyip2"]
 
 [resource]
 script = ExtResource("11_t0kr6")
@@ -21,4 +22,5 @@ BossName = "Eve"
 NpcId = "eve"
 Deck = Array[ExtResource("1_40xpo")]([ExtResource("2_coa6t"), ExtResource("2_coa6t"), ExtResource("3_l2rg7"), ExtResource("3_l2rg7"), ExtResource("3_coa6t"), ExtResource("3_coa6t"), ExtResource("2_kpklx"), ExtResource("2_kpklx"), ExtResource("4_l2rg7"), ExtResource("7_0txtl"), ExtResource("7_0txtl"), ExtResource("5_nyip2"), ExtResource("6_j745n"), ExtResource("6_j745n"), ExtResource("10_llpn4"), ExtResource("10_llpn4"), ExtResource("8_kpklx"), ExtResource("8_kpklx"), ExtResource("7_0txtl"), ExtResource("7_0txtl"), ExtResource("8_37dln"), ExtResource("8_37dln"), ExtResource("3_l2rg7"), ExtResource("3_l2rg7"), ExtResource("9_4g3i3")])
 RewardCard = ExtResource("10_llpn4")
+DialogueResource = ExtResource("14_nyip2")
 metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"

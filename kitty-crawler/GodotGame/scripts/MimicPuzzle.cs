@@ -21,9 +21,6 @@ public partial class MimicPuzzle : CharacterBody2D
     private CollisionShape2D _interactionShape;
     private CollisionShape2D _bossCollisionShape;
 
-    // EmitSignal -> Send damage til Playerdata (DO NOT ADD YET FØR PR GODKJENT)
-    // -> Send Card recieved til Playerdata(DO NOT ADD YET FØR PR GODKJENT)
-    //-> Send en score[10 total points possible - 3 points for every wrong attempt f.eks] (DO NOT ADD YET FØR PR GODKJENT)
     public Chest _chosenChest = null;
     public Chest _openedChest = null;
     public Chest _finalChest = null;

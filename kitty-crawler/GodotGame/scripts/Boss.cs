@@ -1,15 +1,19 @@
 using Godot;
 using Interaction;
+using KittyCrawler.TELT;
 using System;
+using System.Threading.Tasks;
 
 
 public partial class Boss : CharacterBody2D, IInteractable
 {
     private AnimatedSprite2D _sprite;
-    private bool _hasBeenInteractedWith = false;
+
+    [Signal]
+    public delegate void BossInteractedEventHandler(string bossName);
 
     [Export] private LevelTransition _levelTransition;
-    [Export] private KittyCrawler.TELT.BossData _bossData;
+    [Export] public BossData BossData;
 
     public override void _Ready()
     {
@@ -20,27 +24,33 @@ public partial class Boss : CharacterBody2D, IInteractable
         {
             _sprite.Play("idle");
         }
+
     }
 
     public void Interact()
     {
-        if (_hasBeenInteractedWith)
+        if (WorldStateManager.Instance != null &&
+            !WorldStateManager.Instance.PlayerCanAct)
         {
             return;
         }
 
-        _hasBeenInteractedWith = true;
+        if (BossData == null)
+        {
+            GD.PushError($"{Name} has no BossData assigned.");
+            return;
+        }
 
-        TriggerCardbattle();
+        WorldDialogueManager.Instance?.OnBossInteracted(BossData);
+
         GD.Print("Boss has been interacted with " + Name);
-
     }
 
     private void TriggerCardbattle()
     {
-        if (_bossData != null)
+        if (BossData != null)
         {
-            TeltBattleConfig.Instance.CurrentBoss = _bossData;
+            TeltBattleConfig.Instance.CurrentBoss = BossData;
             GD.Print("Telt battle triggered for boss: " + GetTree().CurrentScene.SceneFilePath);
             TeltBattleConfig.Instance.ReturnScenePath = GetTree().CurrentScene.SceneFilePath;
         }

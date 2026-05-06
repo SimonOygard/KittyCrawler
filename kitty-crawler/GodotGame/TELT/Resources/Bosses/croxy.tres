@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://brxvt3x7w7m6p" path="res://TELT/Resources/Cards/Uncommon_Sludge.tres" id="8_wcuf2"]
 [ext_resource type="Resource" uid="uid://b0blolq32skeh" path="res://TELT/Resources/Cards/Uncommon_Druid.tres" id="9_3hwqs"]
 [ext_resource type="Resource" uid="uid://ck3o4wvt56ffh" path="res://TELT/Resources/Cards/Rare_Croxy.tres" id="10_tkr24"]
+[ext_resource type="Resource" uid="uid://7dn5mi5678ew" path="res://Dungeon_floor_2/dialog/Boss/Croxy.dialogue" id="11_60kpi"]
 [ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="11_arent"]
 
 [resource]
@@ -18,4 +19,5 @@ BossName = "Croxy"
 NpcId = "croxy"
 Deck = Array[ExtResource("1_w3ul2")]([ExtResource("2_60kpi"), ExtResource("2_60kpi"), ExtResource("2_60kpi"), ExtResource("2_60kpi"), ExtResource("3_2hsku"), ExtResource("3_2hsku"), ExtResource("3_2hsku"), ExtResource("4_1dtiu"), ExtResource("4_1dtiu"), ExtResource("4_1dtiu"), ExtResource("5_g11tu"), ExtResource("5_g11tu"), ExtResource("5_g11tu"), ExtResource("6_xo2xb"), ExtResource("6_xo2xb"), ExtResource("6_xo2xb"), ExtResource("7_5vgd7"), ExtResource("7_5vgd7"), ExtResource("8_wcuf2"), ExtResource("8_wcuf2"), ExtResource("9_3hwqs"), ExtResource("9_3hwqs"), ExtResource("9_3hwqs"), ExtResource("10_tkr24"), ExtResource("10_tkr24")])
 RewardCard = ExtResource("10_tkr24")
+DialogueResource = ExtResource("11_60kpi")
 metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://drj64kp27m0gt" path="res://scripts/Boss.cs" id="1_63bc8"]
 [ext_resource type="Texture2D" uid="uid://dmqge75mn5xu0" path="res://Dungeon_floor_2/Tileset/Skester/Skester_sprite.png" id="1_xkcc4"]
-[ext_resource type="Resource" uid="uid://c00o2vat4dkkh" path="res://TELT/Resources/Bosses/skester.tres" id="2_n4t4o"]
 [ext_resource type="Texture2D" uid="uid://ulyjlcnp5l5v" path="res://Dungeon_floor_2/Tileset/Skester/Skester_spawning.png" id="2_xkcc4"]
+[ext_resource type="Texture2D" uid="uid://dlpmfwdhvg4j" path="res://assets/Characters/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet_no-Effect.png" id="4_5a8mh"]
 [ext_resource type="Script" uid="uid://diwudeabwx7vt" path="res://scripts/LevelTransition.cs" id="4_n4t4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xkcc4"]
@@ -76,6 +76,10 @@ region = Rect2(192, 192, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ct2yg"]
 atlas = ExtResource("1_xkcc4")
 region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwxer"]
+atlas = ExtResource("4_5a8mh")
+region = Rect2(1066, 558, 41, 186)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fon13"]
 atlas = ExtResource("2_xkcc4")
@@ -229,8 +233,11 @@ animations = [{
 }, {
 "duration": 0.8,
 "texture": SubResource("AtlasTexture_ct2yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwxer")
 }],
-"loop": true,
+"loop": false,
 "name": &"skester_dies",
 "speed": 5.0
 }, {
@@ -319,7 +326,6 @@ animations = [{
 
 [node name="Skester" type="CharacterBody2D" unique_id=672527403]
 script = ExtResource("1_63bc8")
-_bossData = ExtResource("2_n4t4o")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1172461793]
 position = Vector2(-4, 4)
@@ -329,7 +335,7 @@ shape = SubResource("RectangleShape2D_xkcc4")
 z_index = 10
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fon13")
-animation = &"idle"
+animation = &"skester_dies"
 autoplay = "idle"
 
 [node name="LevelTransition" type="Node" parent="." unique_id=1346115759]

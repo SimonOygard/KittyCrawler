@@ -1,0 +1,36 @@
+~ start
+Croxy: [wave]Hissssssssss...[/wave]
+The looming lava lizard looms over you hissing as it spots you approaching.
+Croxy: Welcome to my lair... [wave]hissssss.[/wave]
+Croxy: You're here because of Mio? Well them him I don't need his help!
+- He misses you a lot.
+    do WorldDialogueManager.MarkBossInteracted()
+    Croxy: Very well then! [wave]hissssss.[/wave]
+	Croxy: I challenge you to a battle, get ready to fight!
+    do WorldDialogueManager.StartBossBattle()
+    => END
+- Oh okay I'll get right on that.
+    do WorldDialogueManager.MarkBossInteracted()
+    Croxy: Good.
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ BackForMore
+Croxy: Back sssso ssssoon?
+- Yes
+    do WorldDialogueManager.MarkBossInteracted()
+    do WorldDialogueManager.StartBossBattle()
+	 => END
+- I just got lost. I'll get going again.
+    do WorldDialogueManager.MarkBossInteracted()
+	Croxy: Oh...
+    do WorldDialogueManager.EndDialogue()
+    => END
+	
+~ PostBattle
+Croxy: I accept my defeat... You have bessssted me.
+You hear a click and a rumbling in the distance as if a path has opened.
+Croxy: Here, take thisssss. You have earned it.
+"You received [color=yellow]Croxy[/color]'s card."
+do WorldDialogueManager.EndDialogue()
+=> END
