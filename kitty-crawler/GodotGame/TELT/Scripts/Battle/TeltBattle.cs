@@ -57,6 +57,8 @@ public partial class TeltBattle : Node2D
     [Export] private Button _continueButton;
     [Export] private AnimatedSprite2D _diceVisual;
     [Export] private Label _diceOddEvenLabel;
+    [Export] private Button _exitBattleButton;
+    [Export] private Button _skipButton;
 
 
     // ── Kortscene ─────────────────────────────────────────────────────
@@ -130,7 +132,7 @@ public partial class TeltBattle : Node2D
         {
             if (isPlayer) // Spiller spilte kortet → motstander discader
             {
-                GetTree().CreateTimer(0.4f).Timeout += () => // ← delay
+                GetTree().CreateTimer(0.6f).Timeout += () => // ← delay
                 {
                     var hand = _enemy.GetHand();
                     if (hand.Count > 0)
@@ -162,7 +164,7 @@ public partial class TeltBattle : Node2D
             if (!_waitingForTarget && !_waitingForHandTarget)
                 _combatButton.Visible = true;
         };
-        _gameManager.BoardUpdated += () => // ← her
+        _gameManager.BoardUpdated += () =>
         {
             UpdateSlotVisuals();
             UpdateUI();
@@ -181,6 +183,21 @@ public partial class TeltBattle : Node2D
         _diceVisual.Play("DiceIdle");
 
         // Koble knapper
+        _exitBattleButton.Pressed += () =>
+        {
+            var returnPath = TeltBattleConfig.Instance.ReturnScenePath;
+            if (!string.IsNullOrEmpty(returnPath))
+                SceneManager.Instance?.ChangeSceneAsync(returnPath);
+            else
+                GetTree().Quit();
+        };
+
+        // Vurderer å skjule eller fjerne denne før levering (Skip, som er force game over)
+        _skipButton.Pressed += () =>
+        {
+            _gameManager.ForceGameOver(GameManager.TurnOwner.Player);
+        };
+
         _oddButton.Pressed += () =>
         {
             GD.Print("Odd trykket!");

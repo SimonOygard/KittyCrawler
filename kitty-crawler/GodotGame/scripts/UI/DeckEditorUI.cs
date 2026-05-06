@@ -62,7 +62,7 @@ public partial class DeckEditorUI : CanvasLayer
         foreach (var cardPath in _inventory)
             AddCardEntry(_inventoryGrid, cardPath, false);
 
-        _deckCountLabel.Text = $"{_currentDeck.Count}/25";
+        _deckCountLabel.Text = $"{_currentDeck.Count}/29";
     }
 
     private void AddCardEntry(GridContainer grid, string cardPath, bool isInDeck)
@@ -137,7 +137,7 @@ public partial class DeckEditorUI : CanvasLayer
 
     private void OnSaveDeckPressed()
     {
-        if (_currentDeck.Count < 25)
+        if (_currentDeck.Count < 29)
         {
             ShowFeedback("Unable to save deck", Colors.Red);
             return;
