@@ -106,7 +106,7 @@ public partial class MainGame : Node2D
         endMenu?.Hide();
         mainMenu?.Show();
     }
-    #endregion 
+    #endregion
 
     // --- PauseMenu -------
     #region pause menu

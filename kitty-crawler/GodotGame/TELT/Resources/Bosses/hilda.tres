@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://dlghulvg0oxjr" path="res://TELT/Resources/Cards/Uncommon_Drake.tres" id="10_pdy12"]
 [ext_resource type="Resource" uid="uid://boqidqeaykju1" path="res://TELT/Resources/Cards/Rare_Hilda.tres" id="11_l02ju"]
 [ext_resource type="Script" uid="uid://cnaj1wf4hjc4j" path="res://TELT/Resources/BossData.cs" id="12_7w2lb"]
+[ext_resource type="Resource" uid="uid://chnmxj8nffc8y" path="res://Dungeon_floor_2/dialog/Boss/Hilda.dialogue" id="13_fo23b"]
 
 [resource]
 script = ExtResource("12_7w2lb")
@@ -20,4 +21,5 @@ BossName = "Hilda"
 NpcId = "hilda"
 Deck = Array[ExtResource("1_6a78q")]([ExtResource("11_l02ju"), ExtResource("11_l02ju"), ExtResource("2_nm8lo"), ExtResource("2_nm8lo"), ExtResource("2_nm8lo"), ExtResource("3_pj0mj"), ExtResource("3_pj0mj"), ExtResource("3_pj0mj"), ExtResource("3_pj0mj"), ExtResource("4_7nml5"), ExtResource("4_7nml5"), ExtResource("4_7nml5"), ExtResource("6_0mfbm"), ExtResource("6_0mfbm"), ExtResource("5_7fj06"), ExtResource("6_qb1lf"), ExtResource("6_qb1lf"), ExtResource("6_qb1lf"), ExtResource("7_gyuog"), ExtResource("7_gyuog"), ExtResource("8_gbtc2"), ExtResource("8_gbtc2"), ExtResource("9_1dt6s"), ExtResource("10_pdy12"), ExtResource("10_pdy12")])
 RewardCard = ExtResource("11_l02ju")
+DialogueResource = ExtResource("13_fo23b")
 metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"
