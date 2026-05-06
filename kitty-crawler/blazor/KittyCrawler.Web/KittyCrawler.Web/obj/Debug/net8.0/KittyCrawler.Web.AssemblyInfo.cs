@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KittyCrawler.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab891df83f60572f64ce89676c0429f5095fe553")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bee65e5777862b1094213849a4a1257b33a66324")]
 [assembly: System.Reflection.AssemblyProductAttribute("KittyCrawler.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KittyCrawler.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

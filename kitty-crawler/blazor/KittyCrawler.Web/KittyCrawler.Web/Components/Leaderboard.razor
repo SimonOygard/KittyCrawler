@@ -1,0 +1,70 @@
+@page "/leaderboard"
+@inject HttpClient Http
+
+<div class="site-shell">
+
+    <header class="top-nav">
+        <div class="brand">🐱 KITTYCRAWLER</div>
+
+        <nav>
+            <NavLink class="nav-button" href="/">⌂ HOME</NavLink>
+            <NavLink class="nav-button" href="/download">⬇ DOWNLOAD</NavLink>
+            <NavLink class="nav-button active" href="/leaderboard">🏆 LEADERBOARD</NavLink>
+        </nav>
+
+        <div class="skull">☠</div>
+    </header>
+
+    <main class="center-screen">
+        <section class="leaderboard-card leaderboard-page-card">
+            <h1>LEADERBOARD</h1>
+
+            <div class="divider">◆──── 🏆 ────◆</div>
+
+            @if (entries == null)
+            {
+                <p>Laster...</p>
+            }
+            else if (entries.Count == 0)
+            {
+                <p>Ingen scores enda.</p>
+            }
+            else
+            {
+                <ol class="leaderboard-list">
+                    @for (int i = 0; i < entries.Count; i++)
+                    {
+                        <li>
+                            <span>@(i + 1). @entries[i].Username</span>
+                            <strong>@entries[i].Score</strong>
+                            <em>@entries[i].TimeSeconds sek</em>
+                        </li>
+                    }
+                </ol>
+            }
+        </section>
+    </main>
+
+    <footer class="pixel-footer">
+        <span>🐱 © 2026 KittyCrawler</span>
+        <span>OM SPILLET · PERSONVERN · KONTAKT</span>
+    </footer>
+
+</div>
+
+@code {
+    private List<LeaderboardEntry>? entries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        entries = await Http.GetFromJsonAsync<List<LeaderboardEntry>>(
+            "https://kittycrawler-b8e0bkhpgegyhhbd.canadacentral-01.azurewebsites.net/api/leaderboard");
+    }
+
+    public class LeaderboardEntry
+    {
+        public string Username { get; set; } = "";
+        public int Score { get; set; }
+        public int TimeSeconds { get; set; }
+    }
+}
