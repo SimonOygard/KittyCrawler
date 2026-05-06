@@ -1,7 +1,55 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<div class="site-shell">
 
-<h1>Hello, world!</h1>
+    <header class="top-nav">
+        <div class="brand"> <img src="images/kattehode.png" class="logo-cat" /> KITTYCRAWLER</div>
 
-Welcome to your new app.
+        <nav>
+            <NavLink class="nav-button active" href="/">⌂ HOME</NavLink>
+            <NavLink class="nav-button" href="/download">⬇ DOWNLOAD</NavLink>
+            <NavLink class="nav-button" href="/leaderboard">🏆 LEADERBOARD</NavLink>
+        </nav>
+
+        <div class="skull">☠</div>
+    </header>
+
+    <main class="hero-grid">
+
+        <section class="download-card">
+            <img src="images/kattehode.png" class="logo-cat" />
+
+            <h2>LAST NED</h2>
+            <h1>KITTYCRAWLER</h1>
+
+            <div class="divider">◆──── ☠ ────◆</div>
+
+            <NavLink class="download-main" href="/download">
+                LAST NED SPILLET
+            </NavLink>
+
+            <small>Windows 10/11 • Versjon 1.0.0</small>
+        </section>
+
+        <section class="leaderboard-card">
+            <h2>LEADERBOARD</h2>
+
+            <ol>
+                <li><span>1. TestPlayer</span><strong>1337</strong></li>
+                <li><span>2. Tobias</span><strong>1200</strong></li>
+                <li><span>3. GodotTest</span><strong>100</strong></li>
+            </ol>
+
+            <NavLink class="show-all" href="/leaderboard">
+                VIS HELE TOPPLISTEN ›
+            </NavLink>
+        </section>
+
+    </main>
+
+    <footer class="pixel-footer">
+        <span><img src="images/kattehode.png" class="logo-cat" /> © 2026 KittyCrawler</span>
+        <span>OM SPILLET · PERSONVERN · KONTAKT</span>
+    </footer>
+
+</div>
