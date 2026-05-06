@@ -27,7 +27,7 @@ public partial class Teleport : Area2D
         GD.Print("Portal ready");
     }
 
-    private void OnBodyEntered(Node body)
+    private async void OnBodyEntered(Node body)
     {
         if (body is Player player)
         {
@@ -38,7 +38,8 @@ public partial class Teleport : Area2D
 
                 _worldStateManager.HasTeleported = true;
                 transition.TriggerTransition();
-                return;
+
+               return;
             }
 
             if (_destination == null)
@@ -47,7 +48,6 @@ public partial class Teleport : Area2D
                 return;
             }
 
-            _worldStateManager.HasTeleported = true;
             player.TeleportTo(_destination.GlobalPosition + new Vector2(0, 16));
             GD.Print("Teleported!");
         }
