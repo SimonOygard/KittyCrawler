@@ -53,6 +53,16 @@ public partial class PlayerData : Node
         }
     }
 
+    public static void ResetForNewGame()
+    {
+        _ownedCards.Clear();
+        _savedDeck.Clear();
+        _defeatedNpcs.Clear();
+        _receivedCards.Clear();
+        _totalDamageDealt = 0;
+        SaveScore();
+    }
+
     // ── Trekking ──────────────────────────────────────────────────────
     public CardData LastDrawnCard { get; private set; } = null;
 

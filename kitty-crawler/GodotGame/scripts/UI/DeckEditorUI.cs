@@ -33,12 +33,24 @@ public partial class DeckEditorUI : CanvasLayer
 
     public void Open()
     {
-        if (_isOpen) return; // ← blokkér dobbelt åpning
+        if (_isOpen) return;
         _isOpen = true;
 
         _currentDeck = new List<string>(PlayerData.SavedDeck);
-        var ownedCards = PlayerData.OwnedCards;
-        _inventory = ownedCards.Where(c => !_currentDeck.Contains(c)).ToList();
+
+        // Tell opp kopier i deck, vis resterende fra OwnedCards
+        var ownedCards = new List<string>(PlayerData.OwnedCards);
+        var deckCopy = new List<string>(_currentDeck);
+
+        _inventory = new List<string>();
+        foreach (var path in ownedCards)
+        {
+            int idx = deckCopy.IndexOf(path);
+            if (idx >= 0)
+                deckCopy.RemoveAt(idx); // "brukt" én kopi mot decket
+            else
+                _inventory.Add(path);  // resterende havner i inventory
+        }
 
         RefreshUI();
         Visible = true;
@@ -137,7 +149,7 @@ public partial class DeckEditorUI : CanvasLayer
 
     private void OnSaveDeckPressed()
     {
-        if (_currentDeck.Count < 29)
+        if (_currentDeck.Count < 25)
         {
             ShowFeedback("Unable to save deck", Colors.Red);
             return;

@@ -332,6 +332,10 @@ public partial class TeltBattle : Node2D
         var boss = TeltBattleConfig.Instance?.CurrentBoss;
         var npc = TeltBattleConfig.Instance?.CurrentNPC;
 
+        GD.Print($"[SetupDecks] TeltBattleConfig er null: {TeltBattleConfig.Instance == null}");
+        GD.Print($"[SetupDecks] CurrentBoss er null: {boss == null}");
+        GD.Print($"[SetupDecks] Boss deck størrelse: {boss?.Deck.Count ?? -1}");
+
         List<CardData> playerDeck;
         if (PlayerData.SavedDeck.Count > 0)
         {

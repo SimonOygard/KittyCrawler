@@ -113,6 +113,8 @@ public partial class SceneManager : Node
         CurrentBossData = bossData;
         CurrentBossName = bossData.NpcId;
 
+        TeltBattleConfig.Instance.CurrentBoss = bossData;
+
         await ChangeSceneAsync(_cardBattleScenePath, TransitionType.Battle, bossData.NpcId);
     }
 
@@ -142,7 +144,7 @@ public partial class SceneManager : Node
     private async Task ReplaceCurrentScene(Node newScene)
     {
         var currentScene = GetTree().CurrentScene;
-        
+
         if (currentScene != null && currentScene.Name == "CurrentLevel")
         {
             PreviousLevelPath = currentScene.SceneFilePath;

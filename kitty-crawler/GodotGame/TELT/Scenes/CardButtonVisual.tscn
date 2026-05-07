@@ -20,8 +20,8 @@ atlas = ExtResource("2_t073o")
 region = Rect2(0, 0, 64, 20)
 
 [node name="CardButtonVisual" type="Button" unique_id=1150093982 node_paths=PackedStringArray("_background", "_nameLabel")]
-offset_right = 64.0
-offset_bottom = 20.0
+offset_right = 128.0
+offset_bottom = 41.0
 script = ExtResource("1_0p4x6")
 _background = NodePath("RarityLabel")
 _nameLabel = NodePath("RarityLabel/CardNameLabel")

@@ -10,7 +10,7 @@ region = Rect2(64, 96, 64, 96)
 [resource]
 script = ExtResource("2_4g6ei")
 CardName = "Watcher"
-Damage = 5
+Damage = 4
 Texture = SubResource("AtlasTexture_f6qwu")
 AbilityDescription = "Discard a card, draw a card"
 Ability = 10
