@@ -14,9 +14,8 @@ git clone https://github.com/SimonOygard/KittyCrawler.git
 
 ## Mappestruktur
 - GodotGame/ – Selve spillet
-- Backend/   – ASP.NET Core API
-- Frontend/  – Blazor
-- Database/  – SQL-migrasjoner
+- Backend/   – blazor\KittyCrawler.Web
+- Frontend/  – blazor\KittyCrawlerApi
 
 
 ## Kjøring av spill:
