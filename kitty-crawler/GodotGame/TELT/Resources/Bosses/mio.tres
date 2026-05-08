@@ -14,7 +14,7 @@
 script = ExtResource("8_5hk7t")
 BossName = "Mio"
 NpcId = "mio"
-Deck = Array[ExtResource("1_fjqv7")]([ExtResource("2_gbulg"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("2_gbulg"), ExtResource("5_uwsl1"), ExtResource("5_uwsl1"), ExtResource("6_p8dqk"), ExtResource("6_p8dqk"), ExtResource("6_p8dqk"), ExtResource("7_1ed6a"), ExtResource("7_1ed6a"), ExtResource("7_1ed6a"), ExtResource("7_1ed6a"), ExtResource("7_1ed6a")])
+Deck = Array[ExtResource("1_fjqv7")]([ExtResource("2_gbulg"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("3_joxhc"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("4_v500g"), ExtResource("2_gbulg"), ExtResource("5_uwsl1"), ExtResource("5_uwsl1"), ExtResource("6_p8dqk"), ExtResource("6_p8dqk"), ExtResource("6_p8dqk"), ExtResource("7_1ed6a"), ExtResource("7_1ed6a"), ExtResource("7_1ed6a"), ExtResource("7_1ed6a"), ExtResource("2_gbulg")])
 RewardCard = ExtResource("2_gbulg")
 DialogueResource = ExtResource("8_w1m12")
 metadata/_custom_type_script = "uid://cnaj1wf4hjc4j"

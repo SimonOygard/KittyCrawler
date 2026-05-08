@@ -2,6 +2,7 @@ using DialogueManagerRuntime;
 using Godot;
 using KittyCrawler.TELT;
 using System;
+using Game.Core;
 
 public partial class MainGame : Node2D
 {
@@ -60,9 +61,11 @@ public partial class MainGame : Node2D
             _worldStateManager.GameEnded = false;
 
             _worldStateManager.WorldStateReset();
+
+            Globals.InitializeStartingCards();
+
             _levelTransition.ScenePath = GameScenePath;
             _levelTransition.TriggerTransition();
-            PlayerData.SaveDeck([]);
 
             GD.Print("Starting a new game...");
             _gameTimer.StartTimer();
