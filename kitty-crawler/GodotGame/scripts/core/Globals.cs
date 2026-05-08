@@ -44,7 +44,6 @@ namespace Game.Core
             Logger.Info("Loading Globals ...");
             PlayerData.LoadScore();
 
-            // Første gang spillet noen gang startes (ingen lagret data)
             if (PlayerData.OwnedCards.Count == 0)
                 InitializeStartingCards();
         }

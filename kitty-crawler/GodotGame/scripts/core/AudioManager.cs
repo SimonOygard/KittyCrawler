@@ -30,7 +30,7 @@ public partial class AudioManager : Node
     private const string End_Menu= "res://scenes/MainMenu/GameOver.tscn";
     private const string LeaderBoard = "res://scenes/MainMenu/Leaderboard/Leaderboard.tscn";
 
-    private const float MusicVolumeDb = -10f;
+    private const float MusicVolumeDb = -20f;
     private const float SilentVolumeDb = -40f;
     private bool _isChangingMusic = false;
 

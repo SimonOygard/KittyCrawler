@@ -3,7 +3,7 @@ Croxy: [wave]Hissssssssss...[/wave]
 The looming lava lizard looms over you hissing as it spots you approaching.
 Croxy: Welcome to my lair... [wave]hissssss.[/wave]
 Croxy: You're here because of Mio? Well them him I don't need his help!
-- He misses you a lot.
+- He missssssses you a lot.
     do WorldDialogueManager.MarkBossInteracted()
     Croxy: Very well then! [wave]hissssss.[/wave]
 	Croxy: I challenge you to a battle, get ready to fight!

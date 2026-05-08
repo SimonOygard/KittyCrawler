@@ -66,7 +66,6 @@ public partial class MainGame : Node2D
 
             _levelTransition.ScenePath = GameScenePath;
             _levelTransition.TriggerTransition();
-            // PlayerData.SaveDeck([]);
 
             GD.Print("Starting a new game...");
             _gameTimer.StartTimer();
